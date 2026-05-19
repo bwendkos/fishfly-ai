@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FishFly — The Indispensable Saltwater Fly Resource</title>
-<meta name="description" content="A comprehensive saltwater fly library, plus a personalized planner for your trips. From the Bahamas to the Bismarck, the Lowcountry to the Nubian Flats." />
+<title>About — FishFly</title>
+<meta name="description" content="FishFly is a saltwater fly fishing resource — part comprehensive library, part personalized planner." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -101,169 +101,67 @@ a { color: inherit; text-decoration: none; }
   .brand-name { display: none; }
 }
 
-/* --- HERO --- */
-.hero-image {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-.hero-text {
+/* --- PAGE CONTENT --- */
+.page-content {
   max-width: 640px;
   margin: 0 auto;
-  padding: 80px 6vw;
-  text-align: center;
+  padding: 80px 6vw 96px;
 }
-.hero-eyebrow {
+.page-eyebrow {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 24px;
-}
-.hero-title {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 600;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
-  color: var(--accent);
   margin-bottom: 20px;
 }
-.hero-subtitle {
+.page-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.page-subtitle {
   font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: var(--text-soft);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
-.hero-rule {
+.page-body {
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+.page-body p { margin-bottom: 1em; }
+.page-body p:last-child { margin-bottom: 0; }
+.page-body a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-soft);
+  padding-bottom: 1px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.page-body a:hover { color: var(--accent-soft); border-bottom-color: var(--accent); }
+.page-rule {
   width: 60px;
   height: 1px;
   background: var(--sand);
-  margin: 0 auto;
+  margin: 48px 0;
 }
-
-/* --- PRODUCT CARDS --- */
-.products {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 6vw 96px;
-}
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
-}
-.product-card {
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: 32px;
-  background: var(--card-bg);
-  display: flex;
-  flex-direction: column;
-}
-.card-eyebrow {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.card-eyebrow.live { color: var(--sand); }
-.card-eyebrow.soon { color: var(--rust); }
-.card-title {
+.page-subhead {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 12px;
-  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  margin-top: 36px;
+  letter-spacing: -0.005em;
 }
-.card-stat {
-  font-family: "JetBrains Mono", monospace;
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  letter-spacing: 0.04em;
-}
-.card-body {
-  color: var(--text-soft);
-  font-size: 1rem;
-  line-height: 1.65;
-  margin-bottom: 24px;
-}
-.card-status {
-  font-family: "Playfair Display", Georgia, serif;
-  font-style: italic;
-  color: var(--sand);
-  font-size: 1rem;
-  margin-bottom: 20px;
-}
-.card-cta {
-  margin-top: auto;
-  align-self: flex-start;
-  font-size: 0.98rem;
-  font-weight: 500;
-  color: var(--accent);
-  border-bottom: 1px solid var(--accent-soft);
-  padding-bottom: 2px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.card-cta:hover { color: var(--accent-soft); border-bottom-color: var(--accent); }
-.card-cta .arrow {
-  display: inline-block;
-  margin-left: 0.35em;
-  transition: transform 0.15s ease;
-}
-.card-cta:hover .arrow { transform: translateX(3px); }
-
-/* --- SIGNUP FORM --- */
-.signup-form {
-  margin-top: auto;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-.signup-form input[type="email"] {
-  flex: 1 1 200px;
-  min-width: 0;
-  font-family: inherit;
-  font-size: 0.95rem;
-  padding: 10px 14px;
-  border: 1px solid var(--rule);
-  border-radius: 3px;
-  background: var(--bg);
-  color: var(--text);
-  transition: border-color 0.15s ease;
-}
-.signup-form input[type="email"]:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-.signup-form button {
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 500;
-  padding: 10px 20px;
-  background: var(--accent);
-  color: #fff;
-  border: 1px solid var(--accent);
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-.signup-form button:hover { background: var(--accent-soft); }
-.signup-success {
-  font-family: "Playfair Display", Georgia, serif;
-  font-style: italic;
-  color: var(--accent);
-  font-size: 1rem;
-  padding: 10px 0;
-}
+.page-subhead:first-of-type { margin-top: 0; }
 
 /* --- FOOTER --- */
 .footer {
@@ -319,51 +217,38 @@ a { color: inherit; text-decoration: none; }
       <span class="brand-name">FishFly</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="/" class="active">Home</a>
+      <a href="/">Home</a>
       <a href="/library/">Library</a>
-      <a href="/about/">About</a>
+      <a href="/about/" class="active">About</a>
       <a href="/blog/">Blog</a>
-      <a class="cta" href="#signup">Sign-up</a>
+      <a class="cta" href="/#signup">Sign-up</a>
     </nav>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <img class="hero-image" src="/images/hero-flats.jpg" alt="Saltwater flats at first light" />
-  <div class="hero-text">
-    <p class="hero-eyebrow">the indispensable resource for saltwater fly fishermen</p>
-    <h1 class="hero-title serif">The Indispensable Saltwater Fly Resource.</h1>
-    <p class="hero-subtitle">A comprehensive saltwater fly library. A personalized planner for your trips.</p>
-    <div class="hero-rule"></div>
+<!-- PAGE -->
+<main class="page-content">
+  <p class="page-eyebrow">About</p>
+  <h1 class="page-title serif">Built by a fly fisherman, for fly fishermen.</h1>
+  <p class="page-subtitle">FishFly is a saltwater fly fishing resource — part comprehensive library, part personalized planner.</p>
+  <div class="page-body">
+    <p>The Fly Library is a comprehensive catalog of saltwater fly patterns, organized by the destinations that fish them — 204 patterns across 42 destinations today, from the Bahamas to the Bismarck, the Lowcountry to the Nubian Flats. Every pattern carries a verified photo or the Compass silhouette in its place; nothing is fabricated, nothing borrowed from the wrong fly.</p>
+    <p>FishFly.ai, coming next, will generate a personalized trip brief for the destination and dates you choose: species, weather windows, fly selection, gear, regulations, access — assembled the way a guide would brief you the night before, without the scramble of forty browser tabs.</p>
+    <p>The conviction behind both: the best saltwater fly resource shouldn't be scattered across out-of-print books, half-remembered forum threads, and a Google Doc you can't find. It should be one place, organized like a fisherman thinks.</p>
   </div>
-</section>
 
-<!-- PRODUCT CARDS -->
-<section class="products">
-  <div class="product-grid">
+  <div class="page-rule"></div>
 
-    <article class="product-card">
-      <div class="card-eyebrow live">live now</div>
-      <h2 class="card-title">The Fly Library</h2>
-      <div class="card-stat">204 patterns · 42 destinations · 683 cards</div>
-      <p class="card-body">The complete saltwater fly reference, organized by the destinations that fish with them — from the Bahamas to the Bismarck, the Lowcountry to the Nubian Flats.</p>
-      <a class="card-cta" href="/library/">Explore the Fly Library <span class="arrow">→</span></a>
-    </article>
-
-    <article class="product-card">
-      <div class="card-eyebrow soon">coming soon</div>
-      <h2 class="card-title">FishFly.ai</h2>
-      <p class="card-body">Personalized destination guides, generated for your trip. Tell us where you're going and when — get a complete brief on species, weather, gear, regulations, and access.</p>
-      <p class="card-status">Building with love, tight lines and clear waters.</p>
-      <form id="signup" class="signup-form" action="#" novalidate>
-        <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
-        <button type="submit">Notify me</button>
-      </form>
-    </article>
-
+  <h2 class="page-subhead">Who's behind it</h2>
+  <div class="page-body">
+    <p>A proper bio lands here once the launch dust settles. For now: one obsessive saltwater fly fisherman with too many destinations on the list and too many flies in the box, building the resource he kept wishing existed.</p>
   </div>
-</section>
+
+  <h2 class="page-subhead">Get in touch</h2>
+  <div class="page-body">
+    <p><a href="mailto:hello@fishfly.ai">hello@fishfly.ai</a></p>
+  </div>
+</main>
 
 <!-- FOOTER -->
 <footer class="footer">
@@ -373,26 +258,9 @@ a { color: inherit; text-decoration: none; }
     <a href="/library/">Library</a><span class="sep">·</span>
     <a href="/about/">About</a><span class="sep">·</span>
     <a href="/blog/">Blog</a><span class="sep">·</span>
-    <a href="#signup">Sign-up</a>
+    <a href="/#signup">Sign-up</a>
   </div>
 </footer>
-
-<script>
-(function () {
-  var form = document.getElementById('signup');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = form.querySelector('input[type="email"]');
-    var value = (input && input.value || '').trim();
-    if (!value || value.indexOf('@') === -1) {
-      input && input.focus();
-      return;
-    }
-    form.outerHTML = '<p class="signup-success">Thanks — we\'ll let you know when FishFly launches.</p>';
-  });
-})();
-</script>
 
 </body>
 </html>
