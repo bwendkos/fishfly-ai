@@ -3,23 +3,28 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FishFly — Coming Soon</title>
-<meta name="description" content="FishFly is in progress. The Saltwater Fly Library is live now." />
+<title>FishFly — The Indispensable Saltwater Fly Resource</title>
+<meta name="description" content="A comprehensive saltwater fly library, plus a personalized planner for your trips. From the Bahamas to the Bismarck, the Lowcountry to the Nubian Flats." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
   --bg: #f7f3ec;
   --bg-alt: #efe9df;
+  --card-bg: #ffffff;
   --text: #1a1f2e;
   --text-soft: #4a5568;
   --text-muted: #8b8478;
   --accent: #1e3a5f;
   --accent-soft: #2a4d7a;
+  --sand: #c89668;
+  --sand-soft: #e8c9a3;
+  --rust: #8b3a3a;
   --rule: #d8d2c4;
+  --rule-soft: #e8e4dc;
 }
 
 html, body {
@@ -32,95 +37,358 @@ html, body {
 }
 
 .serif { font-family: "Playfair Display", Georgia, serif; }
+.mono  { font-family: "JetBrains Mono", monospace; }
 
-main {
-  min-height: 100vh;
+a { color: inherit; text-decoration: none; }
+
+/* --- NAV --- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 243, 236, 0.88);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 6vw;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+.brand-mark { width: 32px; height: 32px; display: block; }
+.brand-name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  transition: color 0.15s ease;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a.cta {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-soft);
+  padding-bottom: 2px;
+}
+@media (max-width: 560px) {
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 0.84rem; }
+  .brand-name { display: none; }
 }
 
-.card {
-  max-width: 560px;
+/* --- HERO --- */
+.hero-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.hero-text {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 80px 6vw;
   text-align: center;
 }
-
-.eyebrow {
-  font-size: 0.78rem;
+.hero-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
 }
-
-h1 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+.hero-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
   color: var(--accent);
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
-
-.tagline {
-  font-size: 1.125rem;
-  color: var(--text-soft);
-  margin-bottom: 2.5rem;
+.hero-subtitle {
+  font-family: "Playfair Display", Georgia, serif;
   font-style: italic;
+  font-size: 1.25rem;
+  color: var(--text-soft);
+  margin-bottom: 32px;
 }
-
-.divider {
+.hero-rule {
   width: 60px;
   height: 1px;
-  background: var(--rule);
-  margin: 0 auto 2.5rem;
+  background: var(--sand);
+  margin: 0 auto;
 }
 
-.status {
-  font-size: 1rem;
+/* --- PRODUCT CARDS --- */
+.products {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 6vw 96px;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+.product-card {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 32px;
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+}
+.card-eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.card-eyebrow.live { color: var(--sand); }
+.card-eyebrow.soon { color: var(--rust); }
+.card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.card-stat {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+.card-body {
   color: var(--text-soft);
-  margin-bottom: 2rem;
-}
-
-.library-link {
-  display: inline-block;
   font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.card-status {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  color: var(--sand);
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.card-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 0.98rem;
   font-weight: 500;
   color: var(--accent);
-  text-decoration: none;
   border-bottom: 1px solid var(--accent-soft);
   padding-bottom: 2px;
   transition: color 0.15s ease, border-color 0.15s ease;
 }
-
-.library-link:hover {
-  color: var(--accent-soft);
-  border-bottom-color: var(--accent);
-}
-
-.library-link .arrow {
+.card-cta:hover { color: var(--accent-soft); border-bottom-color: var(--accent); }
+.card-cta .arrow {
   display: inline-block;
-  margin-left: 0.4em;
+  margin-left: 0.35em;
   transition: transform 0.15s ease;
 }
+.card-cta:hover .arrow { transform: translateX(3px); }
 
-.library-link:hover .arrow {
-  transform: translateX(3px);
+/* --- SIGNUP FORM --- */
+.signup-form {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
+.signup-form input[type="email"] {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.15s ease;
+}
+.signup-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.signup-form button {
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.signup-form button:hover { background: var(--accent-soft); }
+.signup-success {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+/* --- FOOTER --- */
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 60px 6vw 48px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+.footer-copy { margin-bottom: 16px; }
+.footer-links a {
+  color: var(--text-soft);
+  margin: 0 4px;
+  transition: color 0.15s ease;
+}
+.footer-links a:hover { color: var(--accent); }
+.footer-links .sep { color: var(--rule); margin: 0 6px; }
 </style>
 </head>
 <body>
-<main>
-  <div class="card">
-    <div class="eyebrow">FishFly</div>
-    <h1 class="serif">Coming soon</h1>
-    <p class="tagline">Landing page in progress.</p>
-    <div class="divider"></div>
-    <p class="status">In the meantime, the Saltwater Fly Library is live.</p>
-    <a class="library-link" href="/library/">
-      Explore the Fly Library <span class="arrow">→</span>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="FishFly home">
+      <svg class="brand-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="FishFly logo">
+        <circle cx="100" cy="100" r="92" stroke="#c89668" stroke-width="4" fill="none"/>
+        <circle cx="100" cy="100" r="74" stroke="#1e3a5f" stroke-width="2.2" fill="none"/>
+        <g fill="#c89668">
+          <polygon points="100,8 92,30 100,24 108,30"/>
+          <polygon points="192,100 170,92 176,100 170,108"/>
+          <polygon points="100,192 108,170 100,176 92,170"/>
+          <polygon points="8,100 30,108 24,100 30,92"/>
+          <polygon points="100,28 96,38 100,35 104,38" transform="rotate(45 100 100)"/>
+          <polygon points="100,28 96,38 100,35 104,38" transform="rotate(135 100 100)"/>
+          <polygon points="100,28 96,38 100,35 104,38" transform="rotate(225 100 100)"/>
+          <polygon points="100,28 96,38 100,35 104,38" transform="rotate(315 100 100)"/>
+        </g>
+        <text x="100" y="20" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">N</text>
+        <text x="183" y="104" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">E</text>
+        <text x="100" y="195" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">S</text>
+        <text x="17" y="104" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">W</text>
+        <path d="M 40 134 Q 60 126 80 134 T 120 134 T 160 134" stroke="#1e3a5f" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <g transform="translate(0,-12) translate(106,100) scale(1.2) translate(-106,-100)" stroke="#1e3a5f" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 70 100 a 4.5 4.5 0 1 1 0.1 0" stroke-width="3"/>
+          <path d="M 74 100 L 122 100" stroke-width="3.2"/>
+          <path d="M 122 100 Q 135 101 137 114 Q 135 126 120 127 Q 107 125 112 112" stroke-width="3.2"/>
+          <g stroke-width="1.2"><path d="M 82 86 L 82 114"/><path d="M 85 83 L 85 117"/><path d="M 88 82 L 88 118"/><path d="M 91 83 L 91 117"/><path d="M 94 86 L 94 114"/></g>
+          <g stroke-width="1.2" opacity="0.95"><path d="M 94 91 Q 120 86 144 84"/><path d="M 94 95 Q 120 90 146 92"/><path d="M 94 100 Q 120 96 144 102"/><path d="M 94 104 Q 120 100 138 108"/></g>
+          <ellipse cx="76" cy="100" rx="3.5" ry="2.2" stroke-width="2"/>
+        </g>
+      </svg>
+      <span class="brand-name">FishFly</span>
     </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/library/">Library</a>
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a class="cta" href="#signup">Sign-up</a>
+    </nav>
   </div>
-</main>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-image" src="/images/hero-flats.jpg" alt="Saltwater flats at first light" />
+  <div class="hero-text">
+    <p class="hero-eyebrow">the indispensable resource for saltwater fly fishermen</p>
+    <h1 class="hero-title serif">The Indispensable Saltwater Fly Resource.</h1>
+    <p class="hero-subtitle">A comprehensive saltwater fly library. A personalized planner for your trips.</p>
+    <div class="hero-rule"></div>
+  </div>
+</section>
+
+<!-- PRODUCT CARDS -->
+<section class="products">
+  <div class="product-grid">
+
+    <article class="product-card">
+      <div class="card-eyebrow live">live now</div>
+      <h2 class="card-title">The Fly Library</h2>
+      <div class="card-stat">204 patterns · 42 destinations · 683 cards</div>
+      <p class="card-body">The complete saltwater fly reference, organized by the destinations that fish with them — from the Bahamas to the Bismarck, the Lowcountry to the Nubian Flats.</p>
+      <a class="card-cta" href="/library/">Explore the Fly Library <span class="arrow">→</span></a>
+    </article>
+
+    <article class="product-card">
+      <div class="card-eyebrow soon">coming soon</div>
+      <h2 class="card-title">FishFly.ai</h2>
+      <p class="card-body">Personalized destination guides, generated for your trip. Tell us where you're going and when — get a complete brief on species, weather, gear, regulations, and access.</p>
+      <p class="card-status">Building with love, tight lines and clear waters.</p>
+      <form id="signup" class="signup-form" action="#" novalidate>
+        <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
+        <button type="submit">Notify me</button>
+      </form>
+    </article>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-copy">© 2026 FishFly.ai</div>
+  <div class="footer-links">
+    <a href="/">Home</a><span class="sep">·</span>
+    <a href="/library/">Library</a><span class="sep">·</span>
+    <a href="/about/">About</a><span class="sep">·</span>
+    <a href="/blog/">Blog</a><span class="sep">·</span>
+    <a href="#signup">Sign-up</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('signup');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = form.querySelector('input[type="email"]');
+    var value = (input && input.value || '').trim();
+    if (!value || value.indexOf('@') === -1) {
+      input && input.focus();
+      return;
+    }
+    form.outerHTML = '<p class="signup-success">Thanks — we\'ll let you know when FishFly launches.</p>';
+  });
+})();
+</script>
+
 </body>
 </html>
