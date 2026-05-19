@@ -57,7 +57,7 @@ fishfly-ai/
 - [x] Static Fly Library at root
 - [x] GitHub repo
 - [x] Netlify auto-deploy from `main`
-- [ ] Custom domain `fishfly.ai`
+- [x] Custom domain `fishfly.ai`
 
 ### Phase 1B — Marketing + Library at /library
 - [ ] Landing page at `/` in Fly Library design language
