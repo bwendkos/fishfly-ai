@@ -4,13 +4,6 @@
 [build]
   publish = "."
 
-[[redirects]]
-  # During Phase 1A, the root of the site IS the Fly Library.
-  # In Phase 1B, change this so / shows the FishFly landing page and the Library lives at /library.
-  from = "/library"
-  to = "/index.html"
-  status = 200
-
 [[headers]]
   for = "/*"
   [headers.values]
