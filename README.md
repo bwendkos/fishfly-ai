@@ -136,3 +136,5 @@ Set these in **Netlify → Site settings → Environment variables**, NOT in thi
 5. **Smart Buy-link routing** — retailer registry in `scripts/build_page.py` → `RETAILERS` dict
 
 Full brand spec, voice, and workflow guidance: see the project's hyperagent.com thread or the linked Curator agent.
+
+**First deploy:** 2026-05-18
