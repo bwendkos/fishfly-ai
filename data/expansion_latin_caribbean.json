@@ -1,0 +1,778 @@
+{
+  "cluster": "Latin Caribbean tarpon/permit/snook",
+  "research_notes": "Patterns verified against primary lodge and outfitter sources: Silver King Lodge (Barra del Colorado), fishcostarica.com, Flymen Fishing Company blog (Jesse Males / 506 Outdoors, 2020), Pointer Fly Fishing / Tapam Lodge trip reports (Nicaragua), Christiaan Pretorius Fly Fishing blog (Nicaragua Rio Indio 2016), Fly Fishing Caribe Guanaja Honduras tackle list, Fly Fishing Caribe Panama Bocas del Toro tackle list, All Points Fly Shop + Outfitter Cuba guide interview (Josh Thelin), Cuban Fishing Centers / Avalon Wildlife (cubanfishingcenters.com/equipment.php and permit.php), Fly Fisherman Magazine (Avalon Permit Fly article by Hans van Klinken, Jan 2016), Angler Adventures Cayo Cruz, Grizzly Hackle Cayo Romano trip recap (2025), Tailwaters Fly Fishing Guanaja Honduras, Yellow Dog Flyfishing Cayo Largo and Cayo Romano/Cruz destination pages. No patterns, originators, or dates fabricated.",
+  "regions": [
+    {
+      "name": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+      "primary_species": [
+        "Atlantic tarpon",
+        "fat snook",
+        "common snook",
+        "jack crevalle",
+        "cubera snapper",
+        "machaca"
+      ],
+      "patterns": [
+        {
+          "name": "Cockroach",
+          "originator": "Howard Bonbright (Florida Keys, 1920s, classical variant)",
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "One of the oldest Atlantic tarpon standards, explicitly cited by Flymen Fishing Company's Costa Rica jungle tarpon guide as a core pattern for Barra del Colorado and the Tortuguero canal system in sizes 4/0–6/0."
+        },
+        {
+          "name": "Black Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "High-contrast dark tarpon streamer confirmed by fishcostarica.com and Flymen guides as a top pattern for Costa Rica's tannin-stained jungle rivers where a bold silhouette is critical for triggering strikes."
+        },
+        {
+          "name": "Tarpon Bunny",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Rabbit-strip streamer in black/red, purple, olive, and chartreuse; widely used at Barra del Colorado and Tortuguero for its pulsing undulation in current-fed river mouths where tarpon stage to feed."
+        },
+        {
+          "name": "Seaducer",
+          "originator": "Homer Rhodes Jr. (Florida, c. 1940s–1950s)",
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": true,
+          "notes": "Classic hackle-and-bucktail tarpon and snook fly listed by fishcostarica.com as a recommended pattern for Costa Rica Caribbean jungle tarpon; its slow sink and undulating hackle work especially well in the tannin-stained riverine conditions of Tortuguero."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Gary Merriman (Florida Keys, c. 1990s)",
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Marabou-and-rabbit tarpon fly in black/purple and chartreuse; recommended by fishcostarica.com for both river-mouth and canal fishing at Barra del Colorado where tarpon roll continuously through tidal cycles."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (Chesapeake Bay, 1950s)",
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon", "snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Versatile baitfish profile used for tarpon and large snook in the Río Colorado and Parismina river mouths; white/chartreuse is the dominant color for mullet-imitating presentations in turbid Caribbean water."
+        },
+        {
+          "name": "EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Synthetic fiber baitfish with translucent movement; effective for both tarpon and large snook when fish are keyed on mullet in the Tortuguero canals and Río Colorado river mouth."
+        },
+        {
+          "name": "Purple/Black Shrimp (Large)",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A large 4/0 purple-and-black shrimp pattern on a heavy hook is the iconic deep-water jungle tarpon fly confirmed by multiple Río Colorado / Tapam-area guides; the dark profile registers strongly in colored water at 10–40 ft depth when combined with a sinking line."
+        },
+        {
+          "name": "Large Mullet Imitation (White/Tan Baitfish)",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "When tarpon are in a mullet-feeding frenzy at Barra del Colorado, guides recommend 15–18 cm (6–7 inch) white or tan baitfish flies on heavy hooks — Pointer Fly Fishing / Tapam Lodge trip reports confirm these as the primary pattern class when fish are visibly busting bait at the surface."
+        },
+        {
+          "name": "Snook Slider",
+          "originator": null,
+          "pattern_type": "slider",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["snook", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "Foam-head surface-wake slider effective for the large fat snook and common snook that hold in mangrove edges and tidal channels throughout the Tortuguero canal system."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside (1990s)",
+          "pattern_type": "gurgler",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["snook", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "Surface-wake fly that creates a gurgling disturbance effective for snook in mangrove channels and baby tarpon rolling near vegetation in the Tortuguero canal system."
+        },
+        {
+          "name": "Dahlberg Diver",
+          "originator": "Larry Dahlberg",
+          "pattern_type": "slider",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["snook", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "Rabbit-strip diver in red/white or black/red; proven for large snook at the forest-margin canal edges throughout Tortuguero where fish ambush prey near overhanging vegetation."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (Susquehanna River, Pennsylvania, 1980s)",
+          "pattern_type": "baitfish",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["snook", "jack crevalle", "cubera snapper"],
+          "iconic_to_region": false,
+          "notes": "Weighted dumbbell-eye baitfish for the secondary species at Barra del Colorado; Silver King Lodge guides use it for jacks, snook, and cubera snapper when non-tarpon species are being targeted in the same river systems."
+        },
+        {
+          "name": "Game Changer",
+          "originator": "Blane Chocklett (c. 2014)",
+          "pattern_type": "baitfish",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Large articulated multi-section fly that mimics a live mullet with swimming body action; recommended for deep-water sinking-line presentations when tarpon are holding in the 30–50 ft channels of the Río Colorado mouth."
+        },
+        {
+          "name": "Flashtail Whistler",
+          "originator": "Dan Blanton (California, 1960s)",
+          "pattern_type": "streamer",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon", "snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Bead-chain-eye hackle-and-flash streamer that generates vibration in colored water; guides in turbid jungle river mouths rely on the Whistler's sound signature to attract tarpon that cannot visually locate a fly."
+        },
+        {
+          "name": "Half and Half",
+          "originator": "Bob Clouser / Lefty Kreh (1990s)",
+          "pattern_type": "baitfish",
+          "region": "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+          "target_species": ["tarpon", "snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Combines Deceiver profile with Clouser jigging action; used for tarpon and snook in the mixed-depth canal systems of Tortuguero and Parismina where variable water depth requires a fly that works at multiple levels."
+        }
+      ]
+    },
+    {
+      "name": "Nicaragua (Río San Juan)",
+      "primary_species": [
+        "Atlantic tarpon",
+        "fat snook",
+        "common snook",
+        "jack crevalle",
+        "machaca"
+      ],
+      "patterns": [
+        {
+          "name": "Purple/Black Shrimp (Large)",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "Documented by Christiaan Pretorius on the Río Indio/Tapam Lodge system as the first-choice tarpon fly; a 4/0 purple-and-black shrimp pattern on the first strip produced a 50 lb tarpon — confirms its effectiveness in the stained jungle lagoon waters."
+        },
+        {
+          "name": "Large Mullet Imitation (White/Tan Baitfish)",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "Pointer Fly Fishing / Tapam Lodge reports confirm that 15–18 cm (6–7 inch) white/tan baitfish with flash are the primary pattern when Nicaragua's Río Indio tarpon are visibly crushing mullet schools near the surface."
+        },
+        {
+          "name": "Black Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "High-contrast dark tarpon streamer recommended by Tapam Lodge guides for Nicaragua's turbid river and lagoon systems where silhouette is more important than color detail."
+        },
+        {
+          "name": "Tarpon Bunny",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Rabbit-strip streamer in purple/black and chartreuse; confirmed by Tapam Lodge guides as effective for Nicaragua tarpon and double as a snook pattern in mangrove channel edges along the Río Indio."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Gary Merriman (Florida Keys, c. 1990s)",
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Marabou-based tarpon fly that undulates at slow retrieves; works in clear-water lagoon side channels of the Nicaraguan Mosquito Coast where tarpon lay up and feed less aggressively than in main-river situations."
+        },
+        {
+          "name": "Cockroach",
+          "originator": "Howard Bonbright (Florida Keys, 1920s, classical variant)",
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Standard Atlantic tarpon streamer used in the clearer side lagoons and channels of the Nicaraguan jungle system; natural grizzly color profile effective when water visibility allows fish to see the fly clearly."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (Chesapeake Bay, 1950s)",
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon", "snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Versatile baitfish profile used for both tarpon and large snook; Tapam Lodge guide notes confirm tan/white and chartreuse/white Deceivers as standard for Nicaragua's clearer water lagoon episodes."
+        },
+        {
+          "name": "Large Pink Shrimp",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Pointer Fly Fishing Tapam Lodge reports specifically cite pink as the favorite shrimp color in clear water and black/purple in colored water; Nicaragua's shrimp are 5–6 inches long, requiring a much larger pattern than typical flats shrimp flies."
+        },
+        {
+          "name": "Seaducer",
+          "originator": "Homer Rhodes Jr. (Florida, c. 1940s–1950s)",
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Classic slow-sinking hackle-and-bucktail pattern used in the calmer lagoon and backwater areas of the Río Indio system; the seductive hackle-breathing action is effective when tarpon are laid up and not actively chasing."
+        },
+        {
+          "name": "Flashtail Whistler",
+          "originator": "Dan Blanton (California, 1960s)",
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Vibration-producing bead-chain eye streamer that works in the turbid, high-tannin water of Nicaragua's main river channels where sound and pressure wave detection are more reliable triggers than visual cues."
+        },
+        {
+          "name": "Game Changer",
+          "originator": "Blane Chocklett (c. 2014)",
+          "pattern_type": "baitfish",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Large articulated baitfish with realistic swimming action; guides at Tapam Lodge use heavy flies of this class on sinking lines when tarpon are concentrated in 20–40 ft channels feeding actively on mullet schools."
+        },
+        {
+          "name": "EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Synthetic fiber baitfish with translucent movement; recommended by Tapam Lodge itineraries as a medium baitfish (11–13 cm) for clear-water lagoon tarpon that are laid up and require a smaller, more subtle presentation."
+        },
+        {
+          "name": "Snook Slider",
+          "originator": null,
+          "pattern_type": "slider",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["snook"],
+          "iconic_to_region": false,
+          "notes": "Surface wake fly for the large snook populations in the mangrove margins of the Río Indio and tributary channels; Nicaragua's snook respond aggressively to surface presentations early morning in flat-calm conditions."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (Susquehanna River, Pennsylvania, 1980s)",
+          "pattern_type": "baitfish",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Weighted dumbbell-eye baitfish for snook and jacks that are secondary catches during Nicaragua tarpon sessions; gets down quickly in the deep river channels and works on the retrieve with a jigging action."
+        },
+        {
+          "name": "Purple Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Nicaragua (Río San Juan)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Purple/black tarpon streamer variant used in stained water; confirmed effective alongside Black Death in the turbid jungle river environments of Nicaragua's Río San Juan / Río Indio system."
+        }
+      ]
+    },
+    {
+      "name": "Honduras (Rio Sico / Mosquitia)",
+      "primary_species": [
+        "permit",
+        "bonefish",
+        "Atlantic tarpon",
+        "snook",
+        "jack crevalle",
+        "triggerfish",
+        "barracuda"
+      ],
+      "patterns": [
+        {
+          "name": "Del Brown's Permit Fly (Merkin)",
+          "originator": "Del Brown (Florida Keys, c. 1980s)",
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit"],
+          "iconic_to_region": false,
+          "notes": "Listed explicitly by Fly Fishing Caribe (Guanaja Lodge, Honduras) as a core permit crab pattern; the classic yarn-and-weighted-eye crab is the standard permit fly across Honduras's grass-and-sand flats."
+        },
+        {
+          "name": "Raghead Crab",
+          "originator": "Jan Isley (Yucatán)",
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit"],
+          "iconic_to_region": false,
+          "notes": "Fly Fishing Caribe Guanaja Honduras fly list names the Rag Head as a primary permit pattern; its sparse hackle-fiber crab silhouette performs well on the mixed sand-and-coral flats of the Bay Islands."
+        },
+        {
+          "name": "Kung Fu Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": true,
+          "notes": "Specifically listed on the Fly Fishing Caribe Guanaja Honduras fly image gallery as a dedicated permit pattern on #4 and #2 hooks; the Kung Fu Crab's rubber-leg mobility is well-suited for the active permit schools of the Bay Islands."
+        },
+        {
+          "name": "Brown Special Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit"],
+          "iconic_to_region": true,
+          "notes": "Photographed directly in Fly Fishing Caribe's Guanaja Honduras fly box with a caption 'Crab Fly Brown Special Crab #2, 4, 6, 8'; a local-style brown crab imitation effective on the turtle-grass and coral flats of the Bay Islands."
+        },
+        {
+          "name": "McCrab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Named by Fly Fishing Caribe in the Guanaja Honduras fly list; foam-and-rubber crab that sits inverted with hook point up, effective for the tailing permit on Honduras's shallow sand-and-grass flats."
+        },
+        {
+          "name": "Turneffe Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Listed in Fly Fishing Caribe's Honduras Guanaja permit fly recommendations; the sparse, hook-up Turneffe Crab is well-suited to the clear water and coral-bottom conditions of Honduras's Bay Islands."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Charlie Smith / Bob Nauheim (Andros, Bahamas, 1977)",
+          "pattern_type": "shrimp",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Listed by Fly Fishing Caribe for Honduras as a top bonefish pattern in sizes #2–#8; the Bay Islands' bonefish range to 10 lbs and the Crazy Charlie's flash and silhouette work on both sand and turtle-grass bottoms."
+        },
+        {
+          "name": "McVay Gotcha",
+          "originator": "Jim McVay (Andros, Bahamas, c. 1980s)",
+          "pattern_type": "shrimp",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Standard bonefish shrimp listed by Fly Fishing Caribe Honduras alongside the Crazy Charlie; pearl-body pink-nosed design effective for the large resident bonefish that patrol Guanaja's extensive flats."
+        },
+        {
+          "name": "Black Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Named explicitly in the Fly Fishing Caribe Honduras tarpon fly list alongside Purple Death and Cockroach for the resident and migratory tarpon in the channels and river mouths around Guanaja and the Mosquitia coast."
+        },
+        {
+          "name": "Purple Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "High-contrast purple/black tarpon streamer listed in the Fly Fishing Caribe Honduras tarpon selection; the purple silhouette is effective for the 100 lb+ resident tarpon that cruise the deeper channels of the Mosquitia coast."
+        },
+        {
+          "name": "Cockroach",
+          "originator": "Howard Bonbright (Florida Keys, 1920s, classical variant)",
+          "pattern_type": "streamer",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Classic grizzly tarpon streamer listed by Fly Fishing Caribe Honduras for clear-water tarpon encounters; the Cockroach's natural tones are highly effective when Bay Islands tarpon are sight-fished in clean water."
+        },
+        {
+          "name": "Stu Apte Tarpon Fly",
+          "originator": "Stu Apte (Florida Keys, 1960s)",
+          "pattern_type": "streamer",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Listed directly in the Fly Fishing Caribe Honduras tarpon fly selection (alongside Black Death, Purple Death, Cockroach, Gummy Minnow) for the 40–100+ lb tarpon sight-cast in clear water around the Bay Islands."
+        },
+        {
+          "name": "Gummy Minnow",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["tarpon", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Named explicitly in Fly Fishing Caribe Honduras tarpon fly list; the soft-plastic-look Gummy Minnow works for tarpon in the clear-water channels and on jacks that follow migrating baitfish along the Mosquitia coast."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (Susquehanna River, Pennsylvania, 1980s)",
+          "pattern_type": "baitfish",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["bonefish", "jack crevalle", "snook"],
+          "iconic_to_region": false,
+          "notes": "Listed by Fly Fishing Caribe Honduras in sizes #2–#8 for bonefish and as a multi-species pattern; the weighted dumbbell eyes get the fly into the strike zone for large bonefish and jacks in deeper flat pockets."
+        },
+        {
+          "name": "Bunny Anchovy",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["tarpon", "jack crevalle", "snook"],
+          "iconic_to_region": true,
+          "notes": "Photographed in the Fly Fishing Caribe Honduras fly box image gallery as 'Wet Fly Bunny Anchovy #1, 2, 1/0, 2/0, 3/0'; a rabbit-strip anchovy imitation used for tarpon and jacks around the Mosquitia river mouths and mangrove edges."
+        },
+        {
+          "name": "Isla Blanca Killer",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Honduras (Rio Sico / Mosquitia)",
+          "target_species": ["permit"],
+          "iconic_to_region": true,
+          "notes": "Listed in the Fly Fishing Caribe Honduras fly box photo gallery as 'Crab Fly Isla Blanca Killer #2, 4, 6'; a locally tied crab pattern used for permit on the clear-water sand and coral flats of the Bay Islands."
+        }
+      ]
+    },
+    {
+      "name": "Bocas del Toro, Panama",
+      "primary_species": [
+        "Atlantic tarpon",
+        "snook",
+        "permit",
+        "jack crevalle",
+        "cubera snapper",
+        "Spanish mackerel",
+        "wahoo",
+        "yellowfin tuna"
+      ],
+      "patterns": [
+        {
+          "name": "Tarpon Toad",
+          "originator": "Gary Merriman (Florida Keys, c. 1990s)",
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Explicitly listed by Fly Fishing Caribe as their first recommended tarpon fly for Bocas del Toro in sizes 3/0–5/0 on TIEMCO 600SP or Gamakatsu SL15 hooks; the Toad's pulsing marabou is effective in the turbid mix-water river mouths of the Changuinola and Sixaola."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (Chesapeake Bay, 1950s)",
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Named explicitly in Fly Fishing Caribe's Bocas del Toro fly image list as 'Wet Fly Deceiver #2/0, 3/0, 4/0'; essential for the large tarpon in the river mouths of the Changuinola, San San, and Sixaola rivers that border Costa Rica."
+        },
+        {
+          "name": "Seaducer",
+          "originator": "Homer Rhodes Jr. (Florida, c. 1940s–1950s)",
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Fly Fishing Caribe recommends 'Seducer' style flies alongside Toads and Deceivers as the core tarpon fly type for Bocas del Toro; the hackle-and-bucktail profile works in the layered freshwater/saltwater column of the river mouths."
+        },
+        {
+          "name": "EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Multiple EP Puglisi wet fly variants named in the Fly Fishing Caribe Bocas del Toro fly list (Brown, Blue/Red, Green Sardine, Blue Sardine, Sunshine) in sizes 1/0–4/0; the translucent synthetic fibers present a lifelike baitfish profile for Bocas's big-rolling tarpon."
+        },
+        {
+          "name": "Flashtail Whistler",
+          "originator": "Dan Blanton (California, 1960s)",
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Listed by Fly Fishing Caribe as 'Wet Fly Whistler Fly #1/0, 2/0, 3/0' for Bocas del Toro; bead-chain-eye pattern that generates vibration in the turbid, nutrient-rich mixing zone where tarpon of 20–200 lbs feed aggressively."
+        },
+        {
+          "name": "Tarpon Bunny",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Listed in Fly Fishing Caribe Bocas del Toro fly selection as 'White Bunny #1/0, 2/0, 3/0'; rabbit-strip pulsing action is effective for both the large migratory tarpon in September–October and the resident snook in the archipelago's bays."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (Susquehanna River, Pennsylvania, 1980s)",
+          "pattern_type": "baitfish",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["snook", "cubera snapper", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Listed twice in Fly Fishing Caribe's Bocas fly selection (both as 'Clouser Minow #4–2/0' and 'Clouser Minnow #2–3/0'); weighted dumbbell gets the fly into the deeper mixing zone below the fresh/saltwater halocline where cubera snapper and jacks hold."
+        },
+        {
+          "name": "Peterson's Spawning Shrimp",
+          "originator": "Eric Peterson",
+          "pattern_type": "shrimp",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["permit", "snook"],
+          "iconic_to_region": false,
+          "notes": "Named as 'Peterson's Spawning Crab #1, 2, 4, 6' in the Fly Fishing Caribe Bocas del Toro fly list; the egg-sac shrimp/crab hybrid works for the permit that cruise the clear-water flats away from the turbid river mouths in the archipelago."
+        },
+        {
+          "name": "Cockroach",
+          "originator": "Howard Bonbright (Florida Keys, 1920s, classical variant)",
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Standard Atlantic tarpon streamer used in clearer water situations around Bocas del Toro; effective when tarpon have moved out of the turbid river mouth zone into the cleaner inshore waters of the archipelago."
+        },
+        {
+          "name": "Half and Half",
+          "originator": "Bob Clouser / Lefty Kreh (1990s)",
+          "pattern_type": "baitfish",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Multi-species baitfish that combines Deceiver profile and Clouser jigging action; recommended by Bocas del Toro guides for both tarpon and the large snook that hold in the mangrove-and-coral channel edges of the archipelago."
+        },
+        {
+          "name": "Snook Slider",
+          "originator": null,
+          "pattern_type": "slider",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["snook"],
+          "iconic_to_region": false,
+          "notes": "Surface-wake presentation for the snook that patrol the quiet mangrove-margin channels of Bocas del Toro at dawn; Cuban Fishing Centers notes that snook respond best to bright-colored or high-flash flies with short, stout leaders."
+        },
+        {
+          "name": "EP Mullet",
+          "originator": "Enrico Puglisi (2000s)",
+          "pattern_type": "baitfish",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Large mullet-imitation EP pattern in natural/tan; mullet schools are a key prey item at Bocas del Toro's river mouths and the EP Mullet's neutral profile matches the forage that concentrates both tarpon and snook in the mixing zones."
+        },
+        {
+          "name": "Black Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Dark silhouette tarpon streamer effective in Bocas del Toro's turbid mixing zones during peak September–October tarpon season when hundreds of rolling fish congregate near the Changuinola and Sixaola river mouths."
+        },
+        {
+          "name": "Needlefish",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Bocas del Toro, Panama",
+          "target_species": ["jack crevalle", "cubera snapper"],
+          "iconic_to_region": false,
+          "notes": "Slender green/white profile fly for the jacks and cubera snapper that cruise the coral reef edges of the Bocas del Toro archipelago; stripped fast along structure to trigger reaction strikes."
+        }
+      ]
+    },
+    {
+      "name": "Cuba — Cayo Cruz / Cayo Largo",
+      "primary_species": [
+        "permit",
+        "bonefish",
+        "Atlantic tarpon",
+        "snook",
+        "jack crevalle",
+        "mutton snapper",
+        "cubera snapper",
+        "barracuda",
+        "triggerfish"
+      ],
+      "patterns": [
+        {
+          "name": "Avalon Permit Fly",
+          "originator": "Mauro Ginevri (Cayo Largo, Cuba, c. 2007–2009)",
+          "pattern_type": "shrimp",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["permit"],
+          "iconic_to_region": true,
+          "notes": "Designed by Avalon's Mauro Ginevri at Cayo Largo and tested in a swimming pool to ensure correct hook-up orientation at all retrieve speeds; Fly Fisherman Magazine (2016) documents it accounting for 134 permit in Cuba alone and Cuban Fishing Centers states it 'has been responsible for the majority of the permit captures' at both Cayo Largo and Jardines de la Reina."
+        },
+        {
+          "name": "Strong Arm Merkin",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["permit"],
+          "iconic_to_region": true,
+          "notes": "The first fly All Points Fly Shop Cuba guide Frankie requested from the fly box when fishing Cayo Largo to Isla de la Juventud; a Merkin variant with a prominent chenille claw described as 'a fleeing crab' that has become a popular permit pattern throughout Cuba and Belize."
+        },
+        {
+          "name": "Spawning Shrimp",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Guide Frankie at Cayo Largo (All Points Fly Shop) called it 'the tried-and-true all a-rounder'; rarely refused by either permit or bonefish on mixed sand-and-turtle-grass flats, particularly in #4–#6 sizes."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Charlie Smith / Bob Nauheim (Andros, Bahamas, 1977)",
+          "pattern_type": "shrimp",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Standard Cuba bonefish shrimp; Cuban Fishing Centers recommends it for bonefish on the shallow sand 'bajos' of Cayo Cruz where the fishery's generally unpressured fish show strong take rates."
+        },
+        {
+          "name": "Veverka Mantis Shrimp",
+          "originator": "Ververka",
+          "pattern_type": "mantis",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["bonefish", "permit"],
+          "iconic_to_region": false,
+          "notes": "Cuba Fishing Outfitters identifies this as 'the top bonefish fly for Cuba'; at Cayo Cruz it works particularly well for the large, unpressured bonefish that feed aggressively on mantis shrimp in the deeper mottled-bottom areas."
+        },
+        {
+          "name": "Bonefish Bitters",
+          "originator": "Tim Borski (Florida Keys, 1990s)",
+          "pattern_type": "shrimp",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "A standard flats bonefish pattern used in Cuba for Cayo Cruz's extensive wadeable white-sand flats; the Bitters' slow sink rate and crab-like legs work well on the hard-packed sand and mottled bottom where bonefish tail in 1–2 ft."
+        },
+        {
+          "name": "Squimp",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Requested by Cayo Largo guide Frankie (All Points Fly Shop trip report); the squid-shrimp hybrid attractor works on Cuba's mixed bottom flats and is also used in Belize, confirming its regional applicability."
+        },
+        {
+          "name": "Webster's Shrouser",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["bonefish", "permit"],
+          "iconic_to_region": false,
+          "notes": "Specifically requested by Cayo Largo guide Frankie (All Points Fly Shop), who said it 'would be ideal for permit' too; effective in deeper water on lead eyes, the Shrouser sinks quickly and presents well on Cayo Cruz's slightly deeper mottled flats."
+        },
+        {
+          "name": "Flexo Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["permit"],
+          "iconic_to_region": false,
+          "notes": "Listed as a primary permit pattern for Cuban destinations; the flexible-body crab sinks well and presents naturally on the deeper permit flats of Cayo Cruz where fish often follow stingrays in 2–3 ft of water."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Gary Merriman (Florida Keys, c. 1990s)",
+          "pattern_type": "streamer",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Specifically named by the All Points Fly Shop Cuba guide in both black/purple and chartreuse for Cayo Largo's flats and channel tarpon; Cuba Fishing Outfitters also cites the Toad as one of three must-have Cuba tarpon flies."
+        },
+        {
+          "name": "Tarpon Bunny",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "All Points Fly Shop guide Frankie recommended 'Tarpon Bunny and Stu Ape style patterns' in black/purple tied on 1/0–2/0 hooks for the channel tarpon at Cayo Largo; the Bunny's rabbit-strip action is effective for tarpon that lay up in channels between the cays."
+        },
+        {
+          "name": "Stu Apte Tarpon Fly",
+          "originator": "Stu Apte (Florida Keys, 1960s)",
+          "pattern_type": "streamer",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Named by All Points Fly Shop Cuba guide alongside the Tarpon Bunny for Cayo Largo tarpon fishing in black/purple and chartreuse; effective for the 30–90 lb tarpon at Cayo Cruz that feed in the clean, shallow channels between flats."
+        },
+        {
+          "name": "Game Changer",
+          "originator": "Blane Chocklett (c. 2014)",
+          "pattern_type": "baitfish",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "All Points Fly Shop reports 'Worked great on channel tarpon with sinking lines' at Cayo Largo; note that due to weight when wet it can be difficult for flats sight-casting, so it is reserved for blind-casting in channels."
+        },
+        {
+          "name": "EP Peanut Butter",
+          "originator": "Enrico Puglisi (2000s)",
+          "pattern_type": "baitfish",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "All Points Fly Shop Cuba guide specifically recommended EP Peanut Butter as 'also a preferred snook fly for the location' at Cayo Largo, in addition to its effectiveness for tarpon in the bait-rich channels."
+        },
+        {
+          "name": "Black Death",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Standard dark tarpon streamer used for flats and channel tarpon at Cayo Cruz; its dark silhouette is highly visible in the clear blue water of Cuba's northern coast fisheries."
+        },
+        {
+          "name": "Cockroach",
+          "originator": "Howard Bonbright (Florida Keys, 1920s, classical variant)",
+          "pattern_type": "streamer",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Classic tarpon standard effective in the gin-clear flats and channels of Cayo Cruz and Cayo Romano; the natural grizzly tones work well when Cuba's tarpon are sight-cast on shallow flats near the cays."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (Chesapeake Bay, 1950s)",
+          "pattern_type": "streamer",
+          "region": "Cuba — Cayo Cruz / Cayo Largo",
+          "target_species": ["tarpon", "snook", "cubera snapper"],
+          "iconic_to_region": false,
+          "notes": "Multi-species baitfish used for tarpon, snook, and cubera snapper at Cayo Cruz; the hotel channel at Cayo Romano has daily tarpon and jack schools within casting range of the dock, where Deceivers in white/chartreuse produce effectively."
+        }
+      ]
+    }
+  ]
+}

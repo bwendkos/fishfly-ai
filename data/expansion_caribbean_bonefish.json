@@ -1,0 +1,608 @@
+{
+  "cluster": "Caribbean bonefish hubs",
+  "research_notes": "All patterns verified against named sources: Angler Adventures, Orvis/Deep Water Cay, Fish-Bones Grand Cayman (Cayman-specific), Flatsnation (Cayman Sleek), Global FlyFisher (Meko Special), SaltyFlyTying/Deneki (Andros/Bahamas), Xcalak on the Fly / Woolybuggin (Mexico Yucatan), Palometa Club (Ascension Bay), Fishing Adventures Bonaire (Bonaire flats), Soul Fly Lodge (Berry Islands/Bahamas). Originator dates omitted where year of origination is unverified.",
+  "regions": [
+    {
+      "name": "Bimini, Bahamas",
+      "primary_species": ["bonefish", "permit", "barracuda"],
+      "notes": "Closest Bahamas island to Florida; home to some of the largest Atlantic bonefish on deep, clear sand flats. Flies need heavier eyes (lead or large bead-chain) to reach bottom on the 2-4 ft deep Bimini Sound flats. Big-profile patterns outperform small flies for the resident large bones.",
+      "patterns": [
+        {
+          "name": "Crazy Charlie",
+          "originator": "Bob Nauheim (1970s)",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Universal Bahamas staple — bead-chain eye weight and pearl/tan body match Bimini sand-flat shrimp and land softly enough for pressured fish."
+        },
+        {
+          "name": "McVay Gotcha",
+          "originator": "Jim McVay (1980s)",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Arguably the single most-recommended Bahamas bonefish fly; pearl mylar body and pink nose excel on Bimini's light sand bottom in sizes #2-#4 for big fish."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "baitfish",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish", "barracuda"],
+          "iconic_to_region": false,
+          "notes": "Tan-and-white Clouser with lead eyes is the go-to deep-water pattern when Bimini bones hold in 3-5 ft channels adjacent to the flats."
+        },
+        {
+          "name": "Bunny Bone",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Rabbit-fur skinny-water fly recommended by Angler Adventures for tailing fish in 6-18 inches; the soft landing is essential in calm Bimini Sound conditions."
+        },
+        {
+          "name": "Bonefish Bitters",
+          "originator": "Craig Mathews / John Juracek (1990s)",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Amber and tan Bitters is universally recommended for Bahamas clear-water flats and is an excellent neutral-profile option when fish are selective."
+        },
+        {
+          "name": "Meko Special",
+          "originator": "Omeko Glinton",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Created by Grand Bahama guide Omeko Glinton; neutral tan body with palmered hackle works across dark and light bottoms without switching flies — well-suited to Bimini's mixed flats."
+        },
+        {
+          "name": "Craven's Bonefish Junk",
+          "originator": "Charlie Craven",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Evolved from the Gotcha with rubber legs, epoxy eyes, and a bright orange hotspot; large profile (#2-#4) appeals to Bimini's big, adult bones that key on size."
+        },
+        {
+          "name": "Del Brown's Permit Fly (Merkin)",
+          "originator": "Del Brown (1980s)",
+          "pattern_type": "crab",
+          "region": "Bimini, Bahamas",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Standard permit crab for the occasional permit encountered on Bimini flats; also eaten by large bonefish feeding on crabs over grassy patches."
+        },
+        {
+          "name": "EP Ghost Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Tan EP Ghost Shrimp recommended by Deep Water Cay guides for cautious Bahamas bonefish; very sparse profile lands quietly and sinks on bead-chain eyes."
+        },
+        {
+          "name": "Peterson's Spawning Shrimp",
+          "originator": "Eric Peterson",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish", "permit"],
+          "iconic_to_region": false,
+          "notes": "High-confidence Bahamas pattern with reports of 19-fish days; rabbit-fur wing pulses at rest, effective on both Bimini bonefish and the occasional permit."
+        },
+        {
+          "name": "Christmas Island Special",
+          "originator": "Tim Borski (attributed)",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Recommended by Deep Water Cay guides (Orvis article) for quiet entry on spooky fish; gold or orange colorway works year-round on Bahamian sand."
+        },
+        {
+          "name": "Velcro Crab",
+          "originator": "Winston Moore",
+          "pattern_type": "crab",
+          "region": "Bimini, Bahamas",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Top Bahamas permit crab called out by Deep Water Cay guides; presented ahead of cruising permit with a bottom-sinking drift, also taken by big bonefish."
+        },
+        {
+          "name": "Brewer's Amber Shrimp",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": true,
+          "notes": "Classic Bahamas shrimp in amber/tan with wood-duck tail; listed by Angler Adventures as a must-have pattern for Bahamian flats including Bimini — amber colorway matches mangrove-edge shrimp."
+        },
+        {
+          "name": "Simram",
+          "originator": "Rick Simonsen",
+          "pattern_type": "shrimp",
+          "region": "Bimini, Bahamas",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Lead-eye deep-water Bahamas pattern featured by Angler Adventures; the rabbit-strip wing and shrimp silhouette are effective when Bimini bones hold in deeper channel edges."
+        }
+      ]
+    },
+    {
+      "name": "Turks & Caicos",
+      "primary_species": ["bonefish", "permit", "barracuda", "jack crevalle"],
+      "notes": "Large bonefish averaging 5-8 lb on Caicos Bank flats surrounding North and Middle Caicos. Less-pressured fishery than Bahamas; fish are willing but also encountered in diverse depth conditions from 6-inch tailwater to 3-ft cruising flats. Strong DIY wading scene (Provo, Bottle Creek).",
+      "patterns": [
+        {
+          "name": "McVay Gotcha",
+          "originator": "Jim McVay (1980s)",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Explicitly recommended by The Sands resort and multiple T&C guides as the single best fly for Provo bonefish — tan and pink colorways in #2-#6."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Bob Nauheim (1970s)",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Foundational T&C flat fly; bead-chain weight perfectly suited to 2-3 ft flats; pearl and tan variants cover sand and grass bottoms alike."
+        },
+        {
+          "name": "Veverka Mantis Shrimp",
+          "originator": "Bob Veverka",
+          "pattern_type": "mantis",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Soft landing and realistic mantis-shrimp profile make it a top choice for cautious T&C fish; Soul Fly Lodge (Berry Islands) and Deep Water Cay guides both recommend it as a first-choice pattern."
+        },
+        {
+          "name": "EP Spawning Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Listed as a top Bahamas/T&C flat fly by Soul Fly Lodge; EP fiber profile moves naturally in the water and sinks efficiently to the 2-4 ft Caicos Bank depths."
+        },
+        {
+          "name": "Craven's Bonefish Junk",
+          "originator": "Charlie Craven",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Rubber legs and hot-orange accent trigger large T&C bones; widely recommended for Bahamas-family destinations including T&C flats."
+        },
+        {
+          "name": "Bonefish Bitters",
+          "originator": "Craig Mathews / John Juracek (1990s)",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Neutral amber profile in sizes #4-#8 works across T&C's varied bottom substrates; recommended as a standard Bahamas-style flat fly by multiple sources."
+        },
+        {
+          "name": "Christmas Island Special",
+          "originator": "Tim Borski (attributed)",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Small profile with quiet water entry makes it excellent for the calm, clear conditions on Provo flats and Bottle Creek wading areas."
+        },
+        {
+          "name": "Del Brown's Permit Fly (Merkin)",
+          "originator": "Del Brown (1980s)",
+          "pattern_type": "crab",
+          "region": "Turks & Caicos",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Permit are present on T&C flats, particularly near stingray feeding craters; the Merkin is a standard crab presentation for both permit and crab-feeding bonefish."
+        },
+        {
+          "name": "Peterson's Spawning Shrimp",
+          "originator": "Eric Peterson",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish", "permit"],
+          "iconic_to_region": false,
+          "notes": "Effective for both large T&C bonefish and occasional permit; the egg-sac trigger is particularly potent on large, selective bones common on North/Middle Caicos."
+        },
+        {
+          "name": "EP Ghost Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Recommended by Deep Water Cay (Grand Bahama) guides — an identical fishery context to T&C; tan colorway matches Caicos Bank sand-flat shrimp."
+        },
+        {
+          "name": "Meko Special",
+          "originator": "Omeko Glinton",
+          "pattern_type": "shrimp",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Designed to work across all bottom colors without fly changes — ideal for DIY T&C anglers moving between sand flats, turtle grass, and marl."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "baitfish",
+          "region": "Turks & Caicos",
+          "target_species": ["bonefish", "barracuda", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Lead-eye Clouser in tan/white handles the deeper Caicos Bank channels where large bonefish cruise; also takes barracuda and jacks incidentally."
+        }
+      ]
+    },
+    {
+      "name": "Cayman Islands",
+      "primary_species": ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+      "notes": "Grand Cayman has the largest bonefish (averaging 3-5 lb) and a certified guide industry (Fish-Bones, Fish Cayman). Little Cayman has numerous but smaller bones (averaging 2-4 lb). The turtle grass and mixed-bottom flats demand weedless flies. Grand Cayman also offers tarpon, snook, and occasional permit. The fish are described as pressured and having 'seen every Gotcha and Crazy Charlie' — finesse, locally developed patterns excel.",
+      "patterns": [
+        {
+          "name": "The Usual",
+          "originator": "Fish-Bones Fly Fishing (Grand Cayman)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": true,
+          "notes": "Grand Cayman guide service Fish-Bones' signature fly, featured in Dick Brown's Bonefish Fly Patterns; derived from Veverka Mantis Shrimp and optimized for Cayman turtle-grass flats with short-twitch retrieve."
+        },
+        {
+          "name": "Simple Shrimp",
+          "originator": "Fish-Bones Fly Fishing (Grand Cayman)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": true,
+          "notes": "Heavier companion to The Usual, designed for a defensive splayed-leg posture on the bottom; rust with orange tail is the top Cayman tailing-bonefish color."
+        },
+        {
+          "name": "Cayman Sleek",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": true,
+          "notes": "Pearl mylar body, golden bead-chain eyes, brown/tan craft-fur tail, rubber legs; developed specifically after Cayman bonefish refused standard Gotchas and Crazy Charlies — effective on both small and large fish across size range."
+        },
+        {
+          "name": "Hot-Legs Crazy Charlie",
+          "originator": "Fish-Bones Fly Fishing (Grand Cayman)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": true,
+          "notes": "Cayman-specific variant of the Crazy Charlie with orange-tipped rubber legs for mixed sand-and-grass flats; sparse body ensures fast sink and soft landing."
+        },
+        {
+          "name": "Strip Tease (Sparkplug)",
+          "originator": "Dick Brown (attributed)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Recommended by Fish-Bones for deep 'white holes' on flood tides when Cayman bones key on sand-fleas and crabs; semi-translucent UV body with rubber legs and orange mouth."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Bob Nauheim (1970s)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Foundation pattern used on all three Cayman islands; the Hot-Legs variant is preferred locally, but the standard Charlie remains a reliable fallback on cooperative fish."
+        },
+        {
+          "name": "McVay Gotcha",
+          "originator": "Jim McVay (1980s)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Cayman fish have seen heavy Gotcha pressure on guided flats; still effective on fresh fish and in deeper water where presentation distance reduces spooking."
+        },
+        {
+          "name": "Veverka Mantis Shrimp",
+          "originator": "Bob Veverka",
+          "pattern_type": "mantis",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "The parent pattern of Fish-Bones' The Usual — bead-chain eyes provide gentle landing for pressured Cayman bones tailing in shallow turtle grass."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside",
+          "pattern_type": "popper",
+          "region": "Cayman Islands",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Fish-Bones lists a Gurgler as a top Cayman tarpon and snook fly; the Central Mangrove Wetlands and shoreline cuts on Grand Cayman hold both species."
+        },
+        {
+          "name": "Bonefish Bitters",
+          "originator": "Craig Mathews / John Juracek (1990s)",
+          "pattern_type": "shrimp",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Proven neutral profile for pressured flats fish; amber version mimics the common snapping shrimp found on Cayman grass flats."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "baitfish",
+          "region": "Cayman Islands",
+          "target_species": ["bonefish", "tarpon", "barracuda"],
+          "iconic_to_region": false,
+          "notes": "Lead-eye Fox-and-Bunny Clouser variant is the Fish-Bones go-to for deeper water cruising bones; also targets Cayman tarpon and cuda in channels."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (1950s)",
+          "pattern_type": "baitfish",
+          "region": "Cayman Islands",
+          "target_species": ["barracuda", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "Standard cuda and tarpon baitfish presentation for Cayman reef edges; the Fish-Bones site confirms barracuda and tarpon as key Cayman species alongside bonefish."
+        }
+      ]
+    },
+    {
+      "name": "ABC Islands (Bonaire, Aruba, Curaçao)",
+      "primary_species": ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+      "notes": "Bonaire is the star — Sorobon lagoon and Lac Bay are ankle-to-knee-deep DIY flats with clear water and mixed sand-and-weed bottom. Fishing Adventures Bonaire (Peter Tuinman) confirms permit, barracuda, jacks, cubera snapper, ladyfish, tripletail, and tarpon alongside bones. The DIY scene rewards simple, easy-to-tie patterns that can be self-supplied. Rocky, hard-bottom sections near coral require weed guards.",
+      "patterns": [
+        {
+          "name": "McVay Gotcha",
+          "originator": "Jim McVay (1980s)",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "The most recommended DIY bonefish fly worldwide; tan and pearl variants in #4-#6 with varied bead-chain weight are the essential Bonaire flat staple."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Bob Nauheim (1970s)",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Easy to tie and widely available; ideal for DIY anglers self-supplying flies for Bonaire — multiple color and weight variants cover all Lac Bay conditions."
+        },
+        {
+          "name": "Bonefish Bitters",
+          "originator": "Craig Mathews / John Juracek (1990s)",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Soft-hackle neutral-profile shrimp excellent for cautious Bonaire bones on clear, calm lagoon flats; amber body mimics common Caribbean mantis shrimp coloration."
+        },
+        {
+          "name": "Veverka Mantis Shrimp",
+          "originator": "Bob Veverka",
+          "pattern_type": "mantis",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Soft entry and realistic mantis shrimp silhouette suit Bonaire's clear, calm Sorobon-lagoon conditions where sight-fishing is the norm."
+        },
+        {
+          "name": "EP Ghost Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Tan EP Ghost Shrimp in #6-#8 with bead-chain eyes is well-suited to Bonaire's crystal-clear water and mixed-sand flats; sparse profile avoids spooking fish in gin-clear conditions."
+        },
+        {
+          "name": "Christmas Island Special",
+          "originator": "Tim Borski (attributed)",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Quiet entry, small profile, and versatile gold/orange colorway suit the calm Bonaire lagoon conditions; easy to tie for DIY fly tyers preparing for the trip."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "baitfish",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish", "barracuda", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Lead-eye Clouser covers deeper Lac Bay edges and channel margins; also the most versatile choice for barracuda and jacks frequently encountered by wading anglers."
+        },
+        {
+          "name": "Del Brown's Permit Fly (Merkin)",
+          "originator": "Del Brown (1980s)",
+          "pattern_type": "crab",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Permit are confirmed on Bonaire flats (Fishing Adventures Bonaire); Merkin crab on a sinking presentation is the standard approach when permit are spotted."
+        },
+        {
+          "name": "Borski Slider",
+          "originator": "Tim Borski",
+          "pattern_type": "slider",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Deerhair head with rabbit strip tail creates a sliding action through the water; confirmed effective for both bonefish and the jack crevalle encountered on Bonaire flats."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (1950s)",
+          "pattern_type": "baitfish",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["barracuda", "tarpon", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Versatile baitfish pattern for the barracuda, tarpon (occasionally), and jack crevalle that share Bonaire's lagoons and reef edges with bonefish."
+        },
+        {
+          "name": "Peterson's Spawning Shrimp",
+          "originator": "Eric Peterson",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Rabbit-fur wing provides natural pulse on shallow weed flats; effective on sight-feeding Bonaire bonefish and carries the egg-sac trigger that consistently produces multiple-fish days."
+        },
+        {
+          "name": "Spawning Shrimp",
+          "originator": "Duane Baker",
+          "pattern_type": "shrimp",
+          "region": "ABC Islands (Bonaire, Aruba, Curaçao)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Widely cited as a tournament-winning bonefish pattern across the Caribbean; the realistic spawning shrimp profile is effective in the prolific crustacean habitat of Bonaire's mangrove-fringed lagoons."
+        }
+      ]
+    },
+    {
+      "name": "Boca Paila & Sian Ka'an, Mexico",
+      "primary_species": ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"],
+      "notes": "Distinct from Ascension Bay and Espíritu Santo Bay to the south. Boca Paila Lagoon and the northern Sian Ka'an flats include Caampechen, San Miguel, and the immediate Boca Paila zone. Bonefish, permit (palometa), baby/juvenile tarpon, snook in mangrove cuts, barracuda, and jacks. Founded 1964, Boca Paila Lodge set the standard for flats fishing. Mixed sand, turtle grass, and marl bottoms; clear to slightly turbid water. Mexico Yucatan permit are famously difficult. Snook in mangrove creeks respond to surface flies. Baby tarpon in lagoon channels.",
+      "patterns": [
+        {
+          "name": "McVay Gotcha",
+          "originator": "Jim McVay (1980s)",
+          "pattern_type": "shrimp",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Standard flat-fly across all Yucatan bonefish venues; tan, pearl, and pink variants in #4-#8 with bead-chain eyes are the reliable first choice for Boca Paila bonefish."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Bob Nauheim (1970s)",
+          "pattern_type": "shrimp",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Xcalak and Boca Paila guides consistently recommend Crazy Charlie in tan and pearl for Yucatan bonefish on both sandy and grassy bottoms."
+        },
+        {
+          "name": "Bonefish Bitters",
+          "originator": "Craig Mathews / John Juracek (1990s)",
+          "pattern_type": "shrimp",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Top choice for Yucatan bones in sizes #6-#8 per Xcalak-area guides; a touch of orange or pink hotspot in the tan version performs especially well."
+        },
+        {
+          "name": "Del Brown's Permit Fly (Merkin)",
+          "originator": "Del Brown (1980s)",
+          "pattern_type": "crab",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["permit"],
+          "iconic_to_region": false,
+          "notes": "The original crab pattern for Mexico's palometa (permit); standard at Boca Paila Lodge and throughout the Sian Ka'an for tailing permit on grass flats."
+        },
+        {
+          "name": "Flexo Crab",
+          "originator": "Aaron Adams / Bonefish & Tarpon Trust (attributed)",
+          "pattern_type": "crab",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": false,
+          "notes": "Xcalak-area guides list Flexo Crab as a top permit pattern for Sian Ka'an flats; olive, tan, and white in #2-#4 with rubber legs and quick sink rate."
+        },
+        {
+          "name": "Strong Arm Merkin",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["permit"],
+          "iconic_to_region": false,
+          "notes": "Recommended by Xcalak guides for Yucatan permit; natural-color crab with rubber legs sinks quickly to meet tailing permit before they move off the flat."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Scott Sanchez",
+          "pattern_type": "streamer",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Black-and-purple Tarpon Toad in 1/0 is a primary pattern for the juvenile tarpon (baby tarpon) that roll in Boca Paila Lagoon channels and mangrove cuts."
+        },
+        {
+          "name": "Black Death",
+          "originator": "Steve Rajeff",
+          "pattern_type": "streamer",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Classic black-and-purple tarpon/snook streamer; recommended by Xcalak and Sian Ka'an guides for baby tarpon in low-light and tannic mangrove water."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside",
+          "pattern_type": "popper",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["snook", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "Surface gurgler is extremely effective for Boca Paila snook ambushing baitfish along mangrove edges and for juvenile tarpon in the Sian Ka'an lagoon channels."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (1950s)",
+          "pattern_type": "baitfish",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["snook", "barracuda", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "White/chartreuse Deceiver is a standard snook and barracuda pattern for Boca Paila mangrove channels and lagoon drop-offs; also takes juvenile tarpon."
+        },
+        {
+          "name": "Peterson's Spawning Shrimp",
+          "originator": "Eric Peterson",
+          "pattern_type": "shrimp",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["bonefish", "permit"],
+          "iconic_to_region": false,
+          "notes": "Effective for both Boca Paila bonefish and permit; the spawning-shrimp trigger is especially relevant in spring and early summer when Caribbean shrimp spawn on Sian Ka'an flats."
+        },
+        {
+          "name": "Christmas Island Special",
+          "originator": "Tim Borski (attributed)",
+          "pattern_type": "shrimp",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "notes": "Gold and orange variants are recommended for Mexican Yucatan bonefish in shallow, calm conditions; the unweighted or plastic-eye version lands softly on spooky flats."
+        },
+        {
+          "name": "EP Backcountry Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Boca Paila & Sian Ka'an, Mexico",
+          "target_species": ["snook", "tarpon", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "EP fiber baitfish in white/chartreuse or olive/white is a premier snook and backcountry species pattern for Boca Paila's mangrove-creek and lagoon environments."
+        }
+      ]
+    }
+  ]
+}

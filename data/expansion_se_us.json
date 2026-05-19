@@ -1,0 +1,641 @@
+{
+  "cluster": "SE US redfish/snook",
+  "regions": [
+    {
+      "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+      "notes": "Glass-clear flats with schooling redfish year-round, plus black drum, spotted seatrout, snook (southern IRL), and juvenile tarpon. Sight-fishing demands precise, low-profile presentations. Drew Chicone, Capt. Frank Catino, and Capt. Justin Price are benchmark guides for this system.",
+      "patterns": [
+        {
+          "name": "Redfish Crack",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Universal SE flats shrimp pattern; especially productive for schooling IRL reds in clear water on natural/tan colorways — already in library."
+        },
+        {
+          "name": "Kwan",
+          "originator": "Craig Mathews / Bob Nastasi (circa 1990s)",
+          "pattern_type": "shrimp",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "spotted seatrout", "black drum"],
+          "iconic_to_region": false,
+          "notes": "Low-profile shrimp/crab hybrid that sinks slowly and lands quietly, ideal for spooky Mosquito Lagoon reds on ultra-clear flats — already in library."
+        },
+        {
+          "name": "Drum Beater",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["black drum", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Purpose-built crab pattern for tailing black drum on the Mosquito Lagoon / IRL grass flats where drum can be found alongside redfish — already in library."
+        },
+        {
+          "name": "Borski Slider",
+          "originator": "Tim Borski",
+          "pattern_type": "slider",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "snook", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Weedless, slow-sinking slider designed for shallow clear-water reds and snook in the southern IRL; effective across the full SE inshore spectrum — already in library."
+        },
+        {
+          "name": "EP Crab",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "crab",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "black drum", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "EP-fiber crab with weedguard covers the fiddler-crab and blue-crab forage central to IRL redfish and black drum feeding — already in library."
+        },
+        {
+          "name": "Spoon Fly",
+          "originator": null,
+          "pattern_type": "attractor",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "snook"],
+          "iconic_to_region": false,
+          "notes": "Weedless mylar spoon fly excels for schooling Mosquito Lagoon reds pushing shrimp and baitfish on grass flats — already in library."
+        },
+        {
+          "name": "Toad",
+          "originator": "Tim Borski",
+          "pattern_type": "streamer",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "snook", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "Baitfish-profile subsurface pattern that catches virtually all IRL inshore species, particularly effective for schooling reds and backcountry snook — already in library."
+        },
+        {
+          "name": "Crystal Schminnow",
+          "originator": "Norm Zeigler (late 1990s)",
+          "pattern_type": "shrimp",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["snook", "spotted seatrout", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Half-shrimp, half-minnow marabou-and-chenille pattern originated at Sanibel but fishes superbly throughout the IRL for snook on structure and seatrout on grass edges — already in library."
+        },
+        {
+          "name": "Chicone's Disco Shrimp",
+          "originator": "Drew Chicone",
+          "pattern_type": "attractor",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "snook", "spotted seatrout", "juvenile tarpon"],
+          "iconic_to_region": true,
+          "notes": "Topwater shrimp with a gurgler-style disc face and built-in rattle mimicking a snapping fleeing shrimp; a Space Coast / IRL backcountry staple recommended by Capt. Frank Catino for Mosquito Lagoon."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "streamer",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "spotted seatrout", "snook", "black drum"],
+          "iconic_to_region": false,
+          "notes": "Universal workhorse recommended by every IRL guide for fish tucked on grass edges and in channels; ties chartreuse/white and white/chartreuse for the light-stained IRL water — already in library."
+        },
+        {
+          "name": "EP Minnow / Mullet",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "spotted seatrout", "snook"],
+          "iconic_to_region": false,
+          "notes": "Mullet are year-round forage in the IRL and this EP-fiber baitfish is a go-to summer pattern when reds shift off crabs and onto finger mullet schools — already in library."
+        },
+        {
+          "name": "Redfish Worm",
+          "originator": null,
+          "pattern_type": "worm",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "black drum"],
+          "iconic_to_region": false,
+          "notes": "Long, dark worm-profile fly worked slowly in front of tailing black drum and rooting redfish on IRL turtle-grass flats where marine worms are abundant forage — already in library."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside",
+          "pattern_type": "gurgler",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "snook", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Small gurglers are a documented early-morning tactic on Mosquito Lagoon to locate and draw surface strikes from scattered reds and trout before the sun gets high — already in library."
+        },
+        {
+          "name": "EP Spawning Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["redfish", "spotted seatrout", "snook"],
+          "iconic_to_region": false,
+          "notes": "Sparse, translucent EP-fiber shrimp that excels in the IRL's clear water where spooky fish can see and inspect a fly before eating — already in library."
+        },
+        {
+          "name": "Seaducer",
+          "originator": "Tom McNally / Homer Rhode Jr. (1940s)",
+          "pattern_type": "streamer",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["snook", "redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Classic hackle-and-feather streamer that lands softly and sinks slowly — ideal for presenting to laid-up snook on IRL canal edges and under dock lights — already in library."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Bill and Kate Howe",
+          "pattern_type": "streamer",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["juvenile tarpon", "snook", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Small (#2–1/0) Tarpon Toad in black/purple or chartreuse is the standard juvenile tarpon fly for the IRL's backcountry creeks and is equally productive on snook — already in library."
+        },
+        {
+          "name": "Crease Fly",
+          "originator": "Joe Blados (1990s)",
+          "pattern_type": "popper",
+          "region": "Mosquito Lagoon & Indian River Lagoon, FL",
+          "target_species": ["snook", "redfish", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Foam-and-mylar topwater baitfish pattern that generates explosive surface strikes from snook on IRL shorelines and schooling redfish pushing glass minnows — already in library."
+        }
+      ]
+    },
+    {
+      "region": "South Carolina Lowcountry",
+      "notes": "Flood-tide redfish on shallow spartina grass flats is the defining experience; the ACE Basin, Cape Romain, and Charleston-area marshes support enormous schools of reds tailing on fiddler crabs during summer/fall full-moon tides. Crab patterns dominate; weedguards are non-negotiable.",
+      "patterns": [
+        {
+          "name": "Redfish Crack",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Universal SE shrimp/crab hybrid; one of the most consistent producers when SC reds transition from fiddler crab feeding to grass-shrimp feeding in late summer and fall — already in library."
+        },
+        {
+          "name": "Kwan",
+          "originator": "Craig Mathews / Bob Nastasi (circa 1990s)",
+          "pattern_type": "shrimp",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Quiet-landing, slow-sink shrimp/crab that presents perfectly to tailing reds on hard-bottom SC flood-tide flats — already in library."
+        },
+        {
+          "name": "Borski Slider",
+          "originator": "Tim Borski",
+          "pattern_type": "slider",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Weedless slider that can be skated into spartina roots and retrieved through tailing fish — widely used by Lowcountry guides when reds are rooting for fiddlers in heavy grass — already in library."
+        },
+        {
+          "name": "Toad",
+          "originator": "Tim Borski",
+          "pattern_type": "streamer",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Dark-color Toad (black/purple) is a Lowcountry flood-tide classic; its rubber-leg movement entices reds digging in spartina grass — already in library."
+        },
+        {
+          "name": "EP Crab",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "crab",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Weedguard-equipped EP-fiber crab that imitates the blue crabs and mud crabs central to Lowcountry redfish diet on exposed flats — already in library."
+        },
+        {
+          "name": "Spoon Fly",
+          "originator": null,
+          "pattern_type": "attractor",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Weedless spoon fly for casting to schooling reds moving along spartina edges on lower tides in Bulls Bay and Cape Romain drainages — already in library."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "streamer",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Indispensable subsurface search pattern for SC tidal creek mouths, mud-flat edges, and low-tide channel fish — recommended by Charleston guides alongside crab patterns — already in library."
+        },
+        {
+          "name": "Marsh Creature",
+          "originator": "Capt. Conner Bryant (Tidal Waters Guide Service)",
+          "pattern_type": "streamer",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": true,
+          "notes": "Simple black-and-purple rabbit-strip attractor with bead-chain eyes, designed specifically for summer Lowcountry reds in stained marsh water where dark profiles trigger aggressive eats."
+        },
+        {
+          "name": "LC Fiddler (Lowcountry Fiddler Crab)",
+          "originator": "John H. Holbrook (Beaufort, SC, circa 2007)",
+          "pattern_type": "crab",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": true,
+          "notes": "EP-fiber fiddler crab imitation developed in Beaufort, SC specifically for flood-tide tailing reds on Lowcountry hard-bottom flats; Holbrook's go-to from spring through summer when crabs dominate stomach contents."
+        },
+        {
+          "name": "LC Shrimp (Lowcountry Shrimp)",
+          "originator": "John H. Holbrook (Beaufort, SC, circa 2006)",
+          "pattern_type": "shrimp",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": true,
+          "notes": "Root-beer bucktail and Estaz shrimp designed in Beaufort, SC to match late-summer and fall grass-shrimp abundance in SC marshes; complements the LC Fiddler Crab in Holbrook's four-fly seasonal rotation."
+        },
+        {
+          "name": "Ratliff's Fiddlestick Crab",
+          "originator": "Ratliff (origin: SE US coastal guides)",
+          "pattern_type": "crab",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": true,
+          "notes": "Custom-tied fiddler-crab imitation widely cited by SE US coastal guides as a top flood-tide pattern; the articulated claw movement mimics a fiddler bolting across a hard sand flat."
+        },
+        {
+          "name": "Strong Arm Merkin",
+          "originator": "Del Brown variant",
+          "pattern_type": "crab",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Yarn-and-rubber-leg crab with weedguard; the weedless, slow-sinking profile makes it essential for presenting in the spartina grass at flood tide for tailing SC reds — already in library."
+        },
+        {
+          "name": "Fleeing Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Lead-eye crab that dives quickly and mimics a panicked fleeing crab — the Cathy's Fleeing Crab variant is widely cited by SC and GA flood-tide guides alongside Fiddlestick Crab and Merkin — already in library."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside",
+          "pattern_type": "gurgler",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Popping-foam surface fly used to locate and trigger aggressive reds on flooded Lowcountry flats at dawn; the commotion draws fish from distance in flat, calm marsh conditions — already in library."
+        },
+        {
+          "name": "EP Spawning Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Sparse EP shrimp matches the large brown and white shrimp that flood SC tidal marshes in summer and autumn, triggering school-redfish feeding frenzies at low tide creek mouths — already in library."
+        },
+        {
+          "name": "Velcro Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Velcro-body crab that resists grass pick-up and presents a realistic outline; widely used in SC/GA for flood-tide reds in spartina where weed-free retrieves are essential — already in library."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Bill and Kate Howe",
+          "pattern_type": "streamer",
+          "region": "South Carolina Lowcountry",
+          "target_species": ["tarpon", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Occasional tarpon — particularly in August and September off SC beaches and inlets — are targeted with large Toads; also works on schooling reds pushing baitfish — already in library."
+        }
+      ]
+    },
+    {
+      "region": "Georgia Lowcountry",
+      "notes": "Big tides (7–9.5 ft at St. Simons) push redfish deep into spartina flats on flood tides identical to SC. Golden Isles (St. Simons, Jekyll, Sea Island, Sapelo) offer less fishing pressure than SC. Capt. David Edens (Fly Cast Charters, St. Simons) is the benchmark Orvis-endorsed guide. Black toad flies and felt/EP crab patterns are local favorites.",
+      "patterns": [
+        {
+          "name": "Redfish Crack",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Core SE flats shrimp pattern applicable throughout the Georgia Golden Isles for schooling reds and seatrout on tide-driven grass flats — already in library."
+        },
+        {
+          "name": "Kwan",
+          "originator": "Craig Mathews / Bob Nastasi (circa 1990s)",
+          "pattern_type": "shrimp",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Quiet-landing shrimp/crab that presents cleanly to GA tailing reds in shallow water; functions well in both muddy and clear-water GA tidal conditions — already in library."
+        },
+        {
+          "name": "Toad",
+          "originator": "Tim Borski",
+          "pattern_type": "streamer",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Black Toad is the documented go-to pattern for Georgia flood-tide reds; Capt. David Edens has used it for years as a primary fly in the Golden Isles marsh — already in library."
+        },
+        {
+          "name": "Borski Slider",
+          "originator": "Tim Borski",
+          "pattern_type": "slider",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Weedless subsurface slider for navigating dense spartina grass on GA flood-tide flats; works equally well poled through creeks at low tide — already in library."
+        },
+        {
+          "name": "EP Crab",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Weedguard crab pattern used by Golden Isles guides for tailing reds on low-tide mud flats and hard-bottom exposed areas — already in library."
+        },
+        {
+          "name": "Drum Beater",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "black drum"],
+          "iconic_to_region": false,
+          "notes": "Targeted crab/shrimp for the occasional black drum mixed in with GA schools of redfish on oyster-shell and mud-flat areas — already in library."
+        },
+        {
+          "name": "Lowcountry Fiddler Crab (Felt Crab)",
+          "originator": "Capt. David Edens (St. Simons Island, GA)",
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": true,
+          "notes": "Felt-bodied fiddler crab developed by Capt. Edens specifically for GA marsh fishing; the soft felt lands nearly silently on ultra-shallow flats and works on both flood-tide and low-tide reds at St. Simons and Jekyll."
+        },
+        {
+          "name": "LC Fiddler (Lowcountry Fiddler Crab)",
+          "originator": "John H. Holbrook (Beaufort, SC, circa 2007)",
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "The SC-originated Holbrook fiddler crab is used throughout Georgia coastal waters by guides who follow identical spartina-flat fiddler-crab fishing tactics."
+        },
+        {
+          "name": "St. Simons Scampi",
+          "originator": "Capt. David Edens (St. Simons Island, GA)",
+          "pattern_type": "shrimp",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": true,
+          "notes": "Shrimp pattern designed by Capt. David Edens for Golden Isles conditions; the St. Simons Scampi Red Fish Fly is cited by the Sea Island Fly Fishers club as a proven local shrimp pattern for GA reds and trout."
+        },
+        {
+          "name": "Ratliff's Fiddlestick Crab",
+          "originator": "Ratliff (origin: SE US coastal guides)",
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": true,
+          "notes": "Documented as a top flood-tide fiddler crab pattern used at St. Simons, Ga. and throughout the SE marsh coast where big-tide flood-tide fishing drives fiddler-crab eating frenzies."
+        },
+        {
+          "name": "Fleeing Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Cathy's Fleeing Crab is cited alongside the Fiddlestick and Merkin as a standard Georgia and South Carolina flood-tide crab selection — already in library."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside",
+          "pattern_type": "gurgler",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Surface disturbance fly used at dawn on calm GA marsh flats to locate and trigger tailing reds before light allows sight-fishing — already in library."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "streamer",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "spotted seatrout", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "All-purpose jig-fly for Georgia creek mouths and channel edges where trout and reds stack on outgoing tides; equally effective for jacks in the sound — already in library."
+        },
+        {
+          "name": "EP Spawning Shrimp",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "shrimp",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Matches the grass shrimp and brown shrimp abundant in GA tidal creeks in fall; reliable September–November pattern for reds shifting off crabs toward shrimp — already in library."
+        },
+        {
+          "name": "Velcro Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Weed-resistant crab that pushes cleanly through the thick spartina of Golden Isles flood-tide flats; standard supplement to the Toad and Fiddlestick in GA guide boxes — already in library."
+        },
+        {
+          "name": "Strong Arm Merkin",
+          "originator": "Del Brown variant",
+          "pattern_type": "crab",
+          "region": "Georgia Lowcountry",
+          "target_species": ["redfish"],
+          "iconic_to_region": false,
+          "notes": "Merkin-style yarn crab named at GA flood-tide sessions alongside Fiddlestick and Fleeing Crab as an essential weedless pattern for tailing marsh reds — already in library."
+        }
+      ]
+    },
+    {
+      "region": "Tampa Bay & Sanibel, FL",
+      "notes": "Dual focus: (1) Tampa Bay's celebrated May–June tarpon migration — world-class rolling schools in the Bay and passes, historically associated with Andy Mill and Sandy Moret; (2) Sanibel/Captiva/Pine Island Sound snook fishery — clear beach and pass fishing for large snook, plus backcountry juvenile tarpon and redfish. Norm Zeigler's fly shop was the Sanibel institution; his Crystal Schminnow is the regional signature snook pattern.",
+      "patterns": [
+        {
+          "name": "Crystal Schminnow",
+          "originator": "Norm Zeigler (Sanibel Island, FL, late 1990s)",
+          "pattern_type": "shrimp",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "spotted seatrout", "redfish", "juvenile tarpon"],
+          "iconic_to_region": true,
+          "notes": "The definitive Sanibel fly — half shrimp, half minnow marabou-and-chenille pattern originated for snook in beach troughs and under mangroves on Sanibel Island; Norm Zeigler's signature, catches 60+ species — already in library."
+        },
+        {
+          "name": "Snook Slider",
+          "originator": null,
+          "pattern_type": "slider",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "redfish"],
+          "iconic_to_region": true,
+          "notes": "Foam-headed subsurface slider that skates across the surface film on the retrieve — designed for casting tight to mangrove snags and pilings for laid-up West Florida snook — already in library."
+        },
+        {
+          "name": "Snook-A-Roo",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "redfish"],
+          "iconic_to_region": true,
+          "notes": "Feather-and-bucktail pattern with wide-gap hook developed for Sanibel and Southwest Florida snook; designed to be cast into mangrove pockets and retrieved through structure — already in library."
+        },
+        {
+          "name": "Tarpon Toad",
+          "originator": "Bill and Kate Howe",
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Large Tarpon Toad (2/0–3/0) in black/purple or chartreuse is a Tampa Bay rolling-school tarpon standard; also used in small (#2) versions for Pine Island Sound backcountry juvenile tarpon and snook — already in library."
+        },
+        {
+          "name": "Cockroach",
+          "originator": "Lefty Kreh / Bill Barnes (1950s)",
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Classic grizzly-and-orange tarpon streamer; Tampa Bay rolling-school tarpon historically eat the Cockroach as reliably as any Keys fly — overlaps with tarpon universal patterns — already in library."
+        },
+        {
+          "name": "Black Death",
+          "originator": "Del Brown / Jim Orthwein",
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Black-and-red tarpon fly that performs in Tampa Bay's variable light conditions and darker water around passes during the May–June migration — already in library."
+        },
+        {
+          "name": "Borski Slider",
+          "originator": "Tim Borski",
+          "pattern_type": "slider",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["redfish", "snook"],
+          "iconic_to_region": false,
+          "notes": "Weedless slider works throughout the Pine Island Sound and Matlacha backcountry where redfish and snook share shallow grass-flat habitat — already in library."
+        },
+        {
+          "name": "EP Mullet",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "tarpon", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Mullet is the primary forage across Tampa Bay and Pine Island Sound; the EP Mullet is recommended by Yellow Dog as an essential snook fly for mangrove and beach presentations — already in library."
+        },
+        {
+          "name": "Seaducer",
+          "originator": "Tom McNally / Homer Rhode Jr. (1940s)",
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Soft-landing, slow-sinking hackle pattern for Sanibel beach and mangrove snook when a quiet presentation over clear sand bottom is needed — already in library."
+        },
+        {
+          "name": "Gartside Gurgler",
+          "originator": "Jack Gartside",
+          "pattern_type": "gurgler",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Topwater foam gurgler is a primary surface fly for West Florida snook in the mangroves; the 'Hot Lips' variant (Capt. Steve Huff) is cited as a top mangrove snook fly in North Florida and the Everglades — already in library."
+        },
+        {
+          "name": "Crease Fly",
+          "originator": "Joe Blados (1990s)",
+          "pattern_type": "popper",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "tarpon", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "Topwater baitfish/popper widely used by West Florida snook guides for casting into mangrove pockets and beach troughs; Yellow Dog recommends it as a top Florida snook fly — already in library."
+        },
+        {
+          "name": "EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "tarpon", "redfish"],
+          "iconic_to_region": false,
+          "notes": "Water-shedding EP-fiber baitfish described by Yellow Dog as a 'modern-day classic' for Southwest Florida snook from mangroves to beach fishing — already in library."
+        },
+        {
+          "name": "Schminnow",
+          "originator": "Norm Zeigler (variant of Crystal Schminnow)",
+          "pattern_type": "shrimp",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "spotted seatrout", "redfish"],
+          "iconic_to_region": true,
+          "notes": "The non-crystal base Schminnow (marabou, monofilament eyes) is tied lighter for daytime beach-trough snook presentations where the Crystal Schminnow might spook fish in ultra-clear Sanibel-beach conditions — already in library."
+        },
+        {
+          "name": "Millhouse Tarpon Toad",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Toad variant tied for the Tampa Bay rolling-school tarpon fishery; the bulky profile displaces water and produces side-to-side swimming action that provokes reaction strikes from large migratory tarpon — already in library."
+        },
+        {
+          "name": "Redfish Crack",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["redfish", "snook"],
+          "iconic_to_region": false,
+          "notes": "Standard SE shrimp/crab attractor for the Pine Island Sound and Matlacha backcountry redfish and snook that share grass-flat habitat with intermingled schools — already in library."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "redfish", "spotted seatrout"],
+          "iconic_to_region": false,
+          "notes": "Deep-diving chartreuse Clouser is a workhorse for Tampa Bay passes and bridges where snook stack on current seams during tidal movement — already in library."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh (1950s)",
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["snook", "tarpon", "jack crevalle"],
+          "iconic_to_region": false,
+          "notes": "All-round baitfish deceiver used throughout Tampa Bay for pass snook, tarpon on the beaches, and schooling jacks; white/chartreuse is the standard SW Florida color — already in library."
+        },
+        {
+          "name": "Tarpon Bunny",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Tampa Bay & Sanibel, FL",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": false,
+          "notes": "Rabbit-strip Tarpon Bunny in black or purple is used for Tampa Bay bridge tarpon and Sanibel pass fish when a slow-sinking undulating profile is needed — already in library."
+        }
+      ]
+    }
+  ]
+}

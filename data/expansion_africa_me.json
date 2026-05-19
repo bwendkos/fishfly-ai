@@ -1,0 +1,483 @@
+{
+  "cluster": "Africa/Middle East GT",
+  "regions": [
+    {
+      "region": "Sudan / Nubian Flats (Red Sea)",
+      "notes": "Premier triggerfish destination globally. Operated by Tourette Fishing / African Waters (Scuba Libre mothership). Yellowmargin and titan (moustache) triggers tailing on white-sand and turtle-grass flats. GTs, bluefin trevally, and milkfish available. Season March–June.",
+      "patterns": [
+        {
+          "name": "Alphlexo Crab",
+          "originator": "Keith Rose-Innes / Alec Gerbec / James Christmas (2015, Alphonse Island, Seychelles)",
+          "pattern_type": "crab",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["yellowmargin triggerfish", "titan triggerfish", "giant trevally", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "The Indian Ocean's defining crab pattern; tan and olive variants are the go-to for tailing triggers on Nubian sand and turtle-grass flats where colour-matching the substrate is critical."
+        },
+        {
+          "name": "Flexo Crab",
+          "originator": "Richard Whitner / Orvis (commercialised; precursor to Alphlexo)",
+          "pattern_type": "crab",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["yellowmargin triggerfish", "titan triggerfish", "bonefish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Original Flexo body with rubber legs; widely carried as a backup trigger crab and recommended by Christmas Island and Nubian guides alike when Alphlexo is unavailable."
+        },
+        {
+          "name": "Spawning Shrimp",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["yellowmargin triggerfish", "titan triggerfish", "bonefish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Named explicitly by Oliver White (Fly Fisherman) as one of his top-two Sudan trigger patterns; bead-chain eyes keep it in the feeding zone on the flats without spooking fish."
+        },
+        {
+          "name": "Turneffe Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["yellowmargin triggerfish", "titan triggerfish", "bonefish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Oliver White's other top Sudan trigger recommendation; lead eyes and heavy-wire hook put the fly on the bottom where tailing fish pin their prey before eating."
+        },
+        {
+          "name": "Nubian Spaghetti",
+          "originator": "Robert Pljuscec / Wild Sea Expedition (December 2020, Shambaya Flat, Sudan)",
+          "pattern_type": "worm",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["yellowmargin triggerfish", "titan triggerfish", "milkfish"],
+          "iconic_to_region": true,
+          "already_in_library": false,
+          "notes": "Born on the Nubian flats during a failed milkfish session; an ultra-chenille worm with dumbbells and rabbit fur that proved immediately deadly on tailing triggers — and attracted milkfish — on its first outing the next morning."
+        },
+        {
+          "name": "Kraken Crab",
+          "originator": "Alphonse Fishing Company / Blue Safari guides (Seychelles)",
+          "pattern_type": "crab",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["yellowmargin triggerfish", "titan triggerfish", "bonefish"],
+          "iconic_to_region": false,
+          "already_in_library": false,
+          "notes": "Unspecific crustacean imitation that covers crabs, hermit crabs, and coral invertebrates in olive, dark brown, tan, and white; cross-over Indian Ocean trigger/bonefish pattern carried by Nubian-bound anglers."
+        },
+        {
+          "name": "Christmas Island Special",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["bonefish", "yellowmargin triggerfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Listed by Christmas Island guides as a top trigger shrimp and confirmed effective on Nubian bonefish; the tan/pink variant works the sandy-bottom flats between coral heads."
+        },
+        {
+          "name": "Semper Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Olive and black-purple Semper variants are the standard GT baitfish pattern on the reef edges of Sudan; Aardvark McLeod lists it alongside GT brush flies as a primary Indian Ocean GT choice."
+        },
+        {
+          "name": "GT Brush Fly",
+          "originator": "Tim Babich / FlyCastaway (Tan variant originator); broader GT brush tradition via South African Indian Ocean guides",
+          "pattern_type": "baitfish",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Black and tan craft-fur brush flies on 6/0–8/0 Gamakatsu SL12S hooks are the single most-cited GT pattern for Indian Ocean fisheries including Sudan; imitates mullet and squid prevalent on the coral edges."
+        },
+        {
+          "name": "Pearl Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "White / pearl GT brush fly used for bright-light midday conditions on the Nubian outer reef edges where GTs ambush baitfish schools."
+        },
+        {
+          "name": "Black Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "All-black brush fly for low-light dawn/dusk GT hunting on the Nubian reef edges and surf zones; silhouette visibility is key when GTs patrol in poor light."
+        },
+        {
+          "name": "Milky Dream",
+          "originator": "Alphonse Fishing Company / Blue Safari guides (Alphonse Island, Seychelles)",
+          "pattern_type": "attractor",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Olive-green-chartreuse algae imitation; the most-referenced milkfish pattern for Indian Ocean flats including the Nubian Shambaya flat where milkfish are encountered tailing through turtle-grass."
+        },
+        {
+          "name": "Wayne's Milky Magic",
+          "originator": "Wayne Haselau",
+          "pattern_type": "attractor",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Red chenille egg-sac at the head imitates protein-rich crustacean eggs mixed in algae; used alongside the Milky Dream on Nubian milkfish schools tailing in the weed."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Foam popper for surface-crashing GT sessions on the coral reef crests and island points of Sudan; queenfish and bluefin trevally also harass surface patterns aggressively at these locations."
+        },
+        {
+          "name": "Pretorius Semper Squid",
+          "originator": null,
+          "pattern_type": "other",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Squid-profile fly effective on GTs hunting the deeper reef edges off Sudan's outer islands; GTs in the Red Sea feed heavily on small squid escaping coral heads."
+        },
+        {
+          "name": "Magnetic Minnow",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Sudan / Nubian Flats (Red Sea)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish", "bohar snapper"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Weighted baitfish pattern cast to cruising GTs and bluefin trevally on deeper flat edges in Sudan; the erratic sink-and-dart action triggers reaction strikes from reef predators."
+        }
+      ]
+    },
+    {
+      "region": "Oman (Hallaniyat Islands)",
+      "notes": "Home of the world's largest GTs by average size (50–65 kg fish regularly encountered), located 50 km off the village of Shuwaymiyah in southern Oman. Expedition-style lodge fishery run by No Boundaries Oman / Ocean Active. Also holds queenfish in spectacular packs, milkfish on sardine baitballs, golden trevally, permit, and multiple other trevally species. Season October–May.",
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": "Tim Babich / FlyCastaway (Tan variant); broader Indian Ocean GT brush tradition",
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "The primary fly for monster-GT targeting at Hallaniyat; 8/0 versions are mandatory when 50-kg-plus fish are the quarry — anything lighter risks straightening the hook on the initial run."
+        },
+        {
+          "name": "Black Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "All-black craft-fur brush on 8/0 hook for dawn/dusk sessions along the rocky Hallaniyat shoreline; the dark silhouette is visible even in white-water surf where Oman's biggest GTs hunt."
+        },
+        {
+          "name": "Pearl Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "White/pearl baitfish brush fished over sardine baitballs matches the natural prey that draws Oman's monster GT into feeding frenzies alongside queenfish and golden trevally."
+        },
+        {
+          "name": "Semper Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Olive and black-purple Semper flies are the standard articulated baitfish pattern for Hallaniyat GT and queenfish, particularly when sardine baitballs push predators to the surface."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Oman's GT fishery was built on surface presentations; a large foam popper replicates conventional GT poppers for anglers who want to bring topwater energy to a fly rod."
+        },
+        {
+          "name": "Pretorius Semper Squid",
+          "originator": null,
+          "pattern_type": "other",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Squid imitation for the deeper offshore rock piles and drop-offs around the Hallaniyat Islands where GTs ambush squid pushed up by upwelling currents."
+        },
+        {
+          "name": "Magnetic Minnow",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally", "queenfish", "golden trevally", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Weighted EP-style minnow cast into baitball feeding frenzies; the compact profile outcompetes conventional sardine imitations to trigger Oman's aggressive predators."
+        },
+        {
+          "name": "Milky Dream",
+          "originator": "Alphonse Fishing Company / Blue Safari guides",
+          "pattern_type": "attractor",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Fly Odyssey exploratory trips confirmed huge milkfish in the Hallaniyat weed lines; the Milky Dream, pioneered in the Seychelles, is the baseline algae-imitation pattern for these fish worldwide."
+        },
+        {
+          "name": "Wayne's Milky Magic",
+          "originator": "Wayne Haselau",
+          "pattern_type": "attractor",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Carries a protein cue (red chenille egg-sac) that milkfish find irresistible in the mixed algae and crustacean weed lines around Hallaniyat's surf zones."
+        },
+        {
+          "name": "Alphlexo Crab",
+          "originator": "Keith Rose-Innes / Alec Gerbec / James Christmas (2015)",
+          "pattern_type": "crab",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["permit", "bluefin trevally", "bonefish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Oman's Shuwaymiyah area holds permit that patrol sardine baitballs (unique behaviour documented by Mark Harris); an Alphlexo dropped ahead of them covers the crab-eating instinct."
+        },
+        {
+          "name": "Flexo Crab",
+          "originator": "Richard Whitner / Orvis",
+          "pattern_type": "crab",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["permit", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Standard backup crab for Oman permit and bluefin trevally when the heavier Alphlexo risks spooking fish in clear, calm conditions around the rocky points."
+        },
+        {
+          "name": "EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["queenfish", "giant trevally", "golden trevally", "dorado"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "EP fiber sardine/mullet profile matches the baitfish on which queenfish mount spectacular pack attacks at Shuwaymiyah and the Hallaniyat reef edges."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["queenfish", "golden trevally", "bluefin trevally", "giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Heavy dumbbell eyes sink the Clouser below baitballs to reach the trevally species that feed sub-surface; chartreuse-white and blue-white proven across Indian Ocean trevally fisheries."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh",
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["queenfish", "giant trevally", "dorado"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Large white-and-blue Deceivers match the sardine schools that pile up against the Hallaniyat cliffs; queenfish in particular are aggressive surface strikers on this classic streamer."
+        },
+        {
+          "name": "Game Changer",
+          "originator": "Blane Chocklett (circa 2014)",
+          "pattern_type": "baitfish",
+          "region": "Oman (Hallaniyat Islands)",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Articulated multi-joint swimmer gives a lifelike undulation that provokes strikes from giant GTs that have seen conventional brush flies repeatedly; best used for reluctant fish in clear conditions."
+        }
+      ]
+    },
+    {
+      "region": "Mozambique (Bazaruto Archipelago)",
+      "notes": "Flats and offshore combo fishery. World-class GT (large fish up to 50+ kg), queenfish, and bonefish in the channels between Bazaruto and Benguerra Islands. Offshore: black marlin, sailfish, dogtooth tuna, blue marlin. Fly fishing includes wading the narrow flats channels and dredging over offshore pinnacles. Best flats season March–July.",
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": "Tim Babich / FlyCastaway (Tan variant); Indian Ocean GT brush tradition",
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "queenfish", "kingfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Standard GT fly for Mozambique's reef edges and channel mouths; chartreuse-and-white and black variants are carried by guides at Benguerra Island and Bazaruto lodge operations."
+        },
+        {
+          "name": "Black Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Black silhouette brush fly for early-morning and cloudy-day GT sessions along Bazaruto's deeper channel edges where large fish patrol in low-light conditions."
+        },
+        {
+          "name": "Pearl Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "White/pearl brush fly matches the abundant baitfish (sardines, mullet) that draw GT and queenfish into the Bazaruto channels on the outgoing tide."
+        },
+        {
+          "name": "Semper Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Olive Semper is the default baitfish pattern when GTs push mullet and baitfish into the Bazaruto Archipelago's shallow back-channel areas on the flooding tide."
+        },
+        {
+          "name": "Alphlexo Crab",
+          "originator": "Keith Rose-Innes / Alec Gerbec / James Christmas (2015)",
+          "pattern_type": "crab",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["bonefish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Mozambique bonefish on the Benguerra/Bazaruto channel flats respond to small crab imitations; the tan Alphlexo is the starting point for any Indian Ocean bonefish flat exploration."
+        },
+        {
+          "name": "Crazy Charlie",
+          "originator": "Bob Nassar (with Bob Clouser, 1970s–80s)",
+          "pattern_type": "shrimp",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["bonefish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Mozambique bonefish in the Bazaruto channels are described as aggressive feeders; the Crazy Charlie in tan or pink provides a highly visible, fast-sinking shrimp that provokes quick takes."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser (1987)",
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "queenfish", "kingfish", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "FishBazaruto.com explicitly recommends heavily-weighted Clousers in chartreuse, white, and dark for dredging over deep offshore pinnacles (6–40 m), which is the primary fly-fishing method for offshore Bazaruto species."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Surface popper for GT and queenfish during baitball pack attacks in Bazaruto's deeper reef zones; the visual strike on a surface fly is among the most spectacular experiences this destination offers."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh",
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["queenfish", "giant trevally", "sailfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Large white-and-chartreuse Deceiver for bait-and-switch sailfish on fly during Bazaruto's winter sailfish season (May–September); also effective on queenfish and GT over the channel reefs."
+        },
+        {
+          "name": "EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["queenfish", "giant trevally", "kingfish", "sailfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "EP sardine/mullet profile is the standard baitfish fly for dredging Bazaruto's offshore pinnacles and surface casting during queenfish pack attacks at the reef edges."
+        },
+        {
+          "name": "Game Changer",
+          "originator": "Blane Chocklett (circa 2014)",
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Articulated swimmer fished on a sinking line over deep Bazaruto pinnacles imitates the large mullet and bream that dogtooth tuna and big GTs target in the offshore current seams."
+        },
+        {
+          "name": "Pretorius Semper Squid",
+          "originator": null,
+          "pattern_type": "other",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "dogtooth tuna", "queenfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Squid are a major forage species on Bazaruto's offshore drop-offs; the Semper Squid fished on a fast-sinking head over the pinnacles accounts for dogtooth and large GTs."
+        },
+        {
+          "name": "Milkfish Snack",
+          "originator": "Umpqua Feather Merchants",
+          "pattern_type": "attractor",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Near-neutrally-buoyant plankton/algae imitation dead-drifted in the current; Mozambique's Bazaruto channels and scum-lines hold milkfish seasonally and this Umpqua-tied pattern is the most commercially available option."
+        },
+        {
+          "name": "Magnetic Minnow",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Compact weighted minnow for the Bazaruto channel edges where fast-moving trevally species ambush baitfish; the fast-sinking profile beats brush flies when fishing deeper water columns."
+        },
+        {
+          "name": "Puglisi Sardine",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Mozambique (Bazaruto Archipelago)",
+          "target_species": ["queenfish", "giant trevally", "sailfish", "dorado"],
+          "iconic_to_region": false,
+          "already_in_library": true,
+          "notes": "Hyper-realistic EP sardine imitates the baitfish shoals that drive pack attacks by Bazaruto's queenfish and GT; also used as a teaser-and-switch fly for bait-and-switch sailfish on fly."
+        }
+      ]
+    }
+  ]
+}

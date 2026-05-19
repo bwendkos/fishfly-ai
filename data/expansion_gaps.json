@@ -1,0 +1,314 @@
+{
+  "cluster": "Expansion Gaps",
+  "regions": [
+    {
+      "name": "Florida Keys (Lower & Middle Keys)",
+      "primary_species": ["tarpon", "snook", "bonefish", "permit"],
+      "patterns": [
+        {
+          "name": "Apte II Tarpon Fly",
+          "originator": "Stu Apte",
+          "pattern_type": "streamer",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A Keys-style hackle-and-saddle fly tied in the Stu Apte tradition, distinct from the original Stu Apte Tarpon Fly in its material proportions and hook size; sold commercially by Reel Flies and Jackson Hole Fly Company as a separate pattern."
+        },
+        {
+          "name": "Millhouse Tarpon Toad",
+          "originator": "Andy Mill",
+          "pattern_type": "streamer",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "Andy Mill's tournament-proven version of the Tarpon Toad, tied on a Gamakatsu SL12s and commercially produced by Fulling Mill; favored by Mill — the most decorated Gold Cup Tarpon Tournament winner — for clear-water Keys flats."
+        },
+        {
+          "name": "Millhouse Tarpon Shrimp",
+          "originator": "Andy Mill",
+          "pattern_type": "shrimp",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "Andy Mill's shrimp-profile tarpon fly, used as a low-light alternative to his toad pattern, with a larger profile that moves water effectively and excels early in the morning on Keys flats."
+        },
+        {
+          "name": "Palolo Worm",
+          "originator": "Jack Gartside",
+          "pattern_type": "worm",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A foam-topped subsurface palolo worm imitation tied on a 1/0–2/0 hook in red or rust-orange, designed to match the infamous annual palolo worm hatch on Lower Keys ocean-side flats where tarpon sip worms at the surface."
+        },
+        {
+          "name": "Gordon Baggett's Stiff Worm",
+          "originator": "Gordon Baggett",
+          "pattern_type": "worm",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "An epoxy-stiffened palolo worm imitation developed by Capt. Gordon Baggett of Bahia Honda, kept straight in the water on the retrieve to mimic the natural swimming motion of real worms; effective outside hatch periods in clear, bright conditions."
+        },
+        {
+          "name": "Ruoff's Laid-Up Tarpon Fly",
+          "originator": "Rick Ruoff",
+          "pattern_type": "streamer",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A natural tan/chartreuse fly with subtle coloration designed for finesse presentations to motionless laid-up tarpon by Keys guide Rick Ruoff, who applied his marine biology background to match the low-contrast tones that appeal to resting fish."
+        },
+        {
+          "name": "Tarpon Bunny (Black)",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A rabbit-strip tarpon fly developed in the Florida Keys in the 1960s–70s with irresistible underwater action; the black colorway is a go-to dark-water and overcast-day pattern that Norman Duncan and subsequent Keys guides helped establish as a flats staple."
+        },
+        {
+          "name": "Tarpon Bunny (Tan)",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "The natural tan version of the Keys rabbit-strip tarpon fly; popular for clear, bright conditions where a more muted, shrimpy profile outfishes flashier patterns and is considered a Sandy Moret-recommended staple at Florida Keys Outfitters."
+        },
+        {
+          "name": "Peyote Palolo",
+          "originator": "Drew Chicone",
+          "pattern_type": "worm",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A modern foam palolo worm imitation by Drew Chicone that creates a visible wake and the distinctive near-surface skittering motion of live worms, fished year-round on Keys oceanside flats with a two-handed strip retrieve."
+        },
+        {
+          "name": "Big Eye Tarpon",
+          "originator": "Bob LeMay",
+          "pattern_type": "streamer",
+          "region": "Florida Keys (Lower & Middle Keys)",
+          "target_species": ["tarpon"],
+          "iconic_to_region": true,
+          "notes": "A sparsely tied Keys-style fly by Bob LeMay featuring prominent eyes, palmered hackle, and a light flash accent that creates shrimp-like movement; sold by Umpqua Feather Merchants specifically for the Florida Keys destination."
+        }
+      ]
+    },
+    {
+      "name": "Biscayne Bay & Everglades, FL",
+      "primary_species": ["tarpon", "snook", "redfish", "bonefish"],
+      "patterns": [
+        {
+          "name": "Peyote Palolo",
+          "originator": "Drew Chicone",
+          "pattern_type": "worm",
+          "region": "Biscayne Bay & Everglades, FL",
+          "target_species": ["tarpon"],
+          "iconic_to_region": false,
+          "notes": "Also fished in the Everglades backcountry for juvenile and migratory tarpon; the foam body and two-handed strip retrieve work effectively in mangrove channels where tarpon feed opportunistically on worm-like forage."
+        }
+      ]
+    },
+    {
+      "name": "Jardines de la Reina, Cuba",
+      "primary_species": ["permit", "tarpon", "bonefish", "cubera snapper", "mutton snapper"],
+      "patterns": [
+        {
+          "name": "Avalon Tarpon Fly",
+          "originator": "Mauro Ginevri (2009)",
+          "pattern_type": "streamer",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["tarpon", "snook"],
+          "iconic_to_region": true,
+          "notes": "A Keys-style tarpon pattern developed at the Avalon Fly Fishing Lodge in Cayo Largo by Italian-Cuban guide Mauro Ginevri as a companion to his permit fly, with a slim hackle profile designed for large tarpon in the clear channels of Jardines de la Reina."
+        },
+        {
+          "name": "Avalon Shrimp",
+          "originator": "Mauro Ginevri (2009)",
+          "pattern_type": "shrimp",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": true,
+          "notes": "Mauro Ginevri's landmark shrimp pattern with a beaded monofilament keel that keeps the fly riding hook-up at all speeds; the design specifically addresses Cuban flats where permit feed on outsized shrimp (9 cm+) and has been credited with the Cuban grand slam revolution."
+        },
+        {
+          "name": "Casa Blanca Crab (Cuban)",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["permit", "bonefish"],
+          "iconic_to_region": true,
+          "notes": "A crab imitation developed at the Casa Blanca lodge area in Cuba, distinct from the Yucatan-origin Casa Blanca Raghead already in the library; tied with local color variations for the turtle-grass and coral-sand flats of Jardines de la Reina."
+        },
+        {
+          "name": "Cuban Mantis Shrimp",
+          "originator": null,
+          "pattern_type": "mantis",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["permit", "snapper", "cubera snapper"],
+          "iconic_to_region": true,
+          "notes": "A mantis-shrimp imitation in Cuban color variations (tan-olive over cream) distinct from the Veverka Mantis Shrimp already in the library; popular among Jardines guides targeting both permit on the flats and large snapper around coral edges."
+        },
+        {
+          "name": "Jardines Bonefish Fly",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["bonefish"],
+          "iconic_to_region": true,
+          "notes": "A simple tan-and-pink shrimp imitation tied by Jardines de la Reina guides for the large (3–10 lb) bonefish on the extensive turtle-grass flats; emphasizes a slow-sinking, minimal-disturbance profile for wary Cuban fish in gin-clear water."
+        },
+        {
+          "name": "Cubera Deceiver",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["cubera snapper", "tarpon"],
+          "iconic_to_region": true,
+          "notes": "An oversized baitfish pattern in white-and-chartreuse or black-and-purple tied on 3/0–4/0 hooks, used by Jardines guides on channel edges and drop-offs where giant cubera snapper ambush mullet and mojarra."
+        },
+        {
+          "name": "Snapper Charlie",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["mutton snapper", "cubera snapper"],
+          "iconic_to_region": true,
+          "notes": "A heavier-hook, weighted-eye variant of the Crazy Charlie style adapted for flats snapper fishing at Jardines de la Reina, tied in pink-and-tan to imitate the small shrimp that mutton snapper tail on shallow grass."
+        },
+        {
+          "name": "EP Snook Bunny (Cuban)",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Jardines de la Reina, Cuba",
+          "target_species": ["snook", "tarpon"],
+          "iconic_to_region": false,
+          "notes": "A rabbit-strip baitfish pattern in chartreuse-white or black-purple used by Cuban guides in the mangrove channels of Jardines de la Reina for the large snook and juvenile tarpon that concentrate around structure on tidal movements."
+        }
+      ]
+    },
+    {
+      "name": "Cape Cod & the Striper Coast (MA / RI / CT)",
+      "primary_species": ["striped bass", "bluefish", "false albacore", "bonito"],
+      "patterns": [
+        {
+          "name": "Platinum Blonde",
+          "originator": "Joe Brooks (ca. 1940s, popularized; original credited to Bill Gallasch / Homer Rhode Jr.)",
+          "pattern_type": "streamer",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bluefish"],
+          "iconic_to_region": true,
+          "notes": "An all-white bucktail fly on a silver-tinsel body — the foundational member of the Brooks Blonde series — originally developed for Chesapeake Bay stripers and considered by many the first modern saltwater hi-tie streamer; takes stripers from the Cape to the Outer Banks."
+        },
+        {
+          "name": "Honey Blonde",
+          "originator": "Joe Brooks (ca. 1940s)",
+          "pattern_type": "streamer",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bluefish", "false albacore"],
+          "iconic_to_region": true,
+          "notes": "An all-yellow bucktail Blonde on a gold-tinsel body; one of the most fished color variants in New England for early-morning striper and false albacore blitzes when baitfish show a warm olive-yellow flank."
+        },
+        {
+          "name": "Strawberry Blonde",
+          "originator": "Joe Brooks (ca. 1940s)",
+          "pattern_type": "streamer",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bluefish"],
+          "iconic_to_region": true,
+          "notes": "A red-over-white bucktail Blonde; the color contrast and pulsing bucktail silhouette make it a reliable striper pattern in stained or murky northeast coastal water where high contrast triggers reaction strikes."
+        },
+        {
+          "name": "Argentine Blonde",
+          "originator": "Joe Brooks (ca. 1940s)",
+          "pattern_type": "streamer",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bluefish", "bonito"],
+          "iconic_to_region": false,
+          "notes": "The original Blonde variant — a light-blue wing over a white tail on a silver-mylar body — developed by Joe Brooks for Chesapeake Bay stripers and Argentine fisheries; works effectively along the Northeast coast as a silhouette baitfish imitation."
+        },
+        {
+          "name": "Corsair Sand Eel",
+          "originator": "Jack Gartside",
+          "pattern_type": "baitfish",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bonito", "false albacore"],
+          "iconic_to_region": true,
+          "notes": "Jack Gartside's realistic sand-eel imitation built from Corsair tubing with a flash-material insert and painted olive lateral line; developed specifically for Martha's Vineyard and Cape Cod flats where sand lance are the dominant baitfish from May through August."
+        },
+        {
+          "name": "Cape Cod Sand Eel",
+          "originator": "Chris Windram",
+          "pattern_type": "baitfish",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bonito", "false albacore"],
+          "iconic_to_region": true,
+          "notes": "A slim Clouser-Deceiver hybrid on a Mustad 34007 1/0 with white saddle hackles, chartreuse bucktail over white, and a pearl HT Braid body; tied in the heart of sand eel country on Cape Cod and listed as a top-5 go-to striper fly by SaltwaterFlies.com."
+        },
+        {
+          "name": "Bunker Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass"],
+          "iconic_to_region": true,
+          "notes": "A large synthetic or EP-fiber menhaden imitation (10–14 inches) used along the New Jersey and Massachusetts coasts when adult bunker schools draw trophy stripers to the surface; essential for boat anglers targeting 30–50 lb fish in dense bait situations."
+        },
+        {
+          "name": "Bunker Spawn Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bluefish"],
+          "iconic_to_region": true,
+          "notes": "A smaller (3–5 inch) juvenile menhaden imitation in white-and-olive or white-and-gray EP fibers, imitating post-spawn peanut bunker in the fall; a critical pattern when juvenile bunker schools concentrate in estuaries and tidal rivers from late summer through October."
+        },
+        {
+          "name": "Tabory's Sand Eel",
+          "originator": "Lou Tabory",
+          "pattern_type": "baitfish",
+          "region": "Cape Cod & the Striper Coast (MA / RI / CT)",
+          "target_species": ["striped bass", "bonito", "false albacore"],
+          "iconic_to_region": true,
+          "notes": "Lou Tabory's slim, sparse sand-eel imitation — a separate pattern from his Snake Fly — featuring a long, narrow profile and minimal materials that allow it to sink slowly through sand-eel schools off Cape Cod beaches; documented in his book Inshore Fly Fishing as a must-have for summer sand-eel blitzes."
+        }
+      ]
+    },
+    {
+      "name": "Montauk & Long Island Sound, NY",
+      "primary_species": ["striped bass", "bluefish", "false albacore", "bonito"],
+      "patterns": [
+        {
+          "name": "Platinum Blonde",
+          "originator": "Joe Brooks (ca. 1940s, popularized; original credited to Bill Gallasch / Homer Rhode Jr.)",
+          "pattern_type": "streamer",
+          "region": "Montauk & Long Island Sound, NY",
+          "target_species": ["striped bass", "bluefish"],
+          "iconic_to_region": true,
+          "notes": "A foundational all-white bucktail streamer used extensively from Moriches Bay to Montauk Point; its hi-tie wing breathes in current and under strip, making it equally effective in the rips and the surf."
+        },
+        {
+          "name": "Honey Blonde",
+          "originator": "Joe Brooks (ca. 1940s)",
+          "pattern_type": "streamer",
+          "region": "Montauk & Long Island Sound, NY",
+          "target_species": ["striped bass", "false albacore"],
+          "iconic_to_region": false,
+          "notes": "The all-yellow Blonde variant is a staple in Long Island Sound during sand eel hatches when the bait shows a warm olive-yellow cast; also effective for false albacore chasing rain bait off Montauk in September."
+        },
+        {
+          "name": "Corsair Sand Eel",
+          "originator": "Jack Gartside",
+          "pattern_type": "baitfish",
+          "region": "Montauk & Long Island Sound, NY",
+          "target_species": ["striped bass", "bonito", "false albacore"],
+          "iconic_to_region": true,
+          "notes": "Described by Jack Gartside as a go-to pattern wherever sand eels are abundant; designed for tandem rigging off Moriches Bay through Montauk where sand lance hold in schools on shallow flats and striper blitzes are predictable."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "_note": "Image URL overrides to replace weak/fallback images with stronger sourced ones. Applied at rebuild time after final.json is consolidated.",
+  "overrides": {
+    "Bird Dog (Captain Sullivan's)": {
+      "image_url": "https://news.orvis.com/wp-content/uploads/2021/11/sully2.jpg",
+      "image_source": "Orvis News editorial article — '3 Guide-Tested Patterns for Everglades National Park'",
+      "reason": "Original was a fallback; this is the actual fly photo from the Orvis article featuring Captain Sullivan's patterns."
+    },
+    "River Monster (Captain Sullivan's)": {
+      "image_url": "https://news.orvis.com/wp-content/uploads/2021/11/sully3.jpg",
+      "image_source": "Orvis News editorial article — '3 Guide-Tested Patterns for Everglades National Park'",
+      "reason": "Same Orvis article — third Sullivan pattern photo."
+    },
+    "Lee's Ghost Shrimp": {
+      "image_url": "https://www.saltyflytying.com/cdn/shop/products/bonefish-flies-abaco-preview-7_1024x1024@2x.png?v=1599853504",
+      "image_source": "SaltyFlyTying.com — Bonefish Flies Abaco eBook chapter preview",
+      "reason": "Better than original; shows the pattern from Drew Chicone's book chapter on the fly."
+    },
+    "Bonefish Special": {
+      "image_url": "http://bearsden.com/cdn/shop/files/IMG_6319.jpg?v=1721143437",
+      "image_source": "Bear's Den Fly Shop — Bonefish Special product page",
+      "reason": "Strong upgrade. High-res (2846x2846) professional product photo of the named pattern from a major retailer."
+    },
+    "Siliclone": {
+      "image_url": "https://i.ytimg.com/vi/bfXOqhjZMbA/sddefault.jpg",
+      "image_source": "YouTube — 'Tying the Popovics Siliclone Mullet'",
+      "reason": "Marginal upgrade. Siliclone is not commercially sold so options are limited; this is a clearer tying-video thumbnail showing the fly."
+    }
+  },
+  "skipped": {
+    "Brush Popper": "Generic name; no specific 'Brush Popper' commercial photo exists. Original fallback retained rather than substituting another fly's image.",
+    "Grocery Fly": "Specific Baja regional pattern with no public commercial photos. Original fallback retained."
+  }
+}

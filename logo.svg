@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="The Saltwater Fly Library logo">
+  <!-- Outer compass ring: light brown -->
+  <circle cx="100" cy="100" r="92" stroke="#c89668" stroke-width="4" fill="none"/>
+  <!-- Inner ring: deep blue, same thickness as wave -->
+  <circle cx="100" cy="100" r="74" stroke="#1e3a5f" stroke-width="2.2" fill="none"/>
+  <!-- Compass points + cardinals (8 markers): light brown -->
+  <g fill="#c89668">
+    <polygon points="100,8 92,30 100,24 108,30"/>
+    <polygon points="192,100 170,92 176,100 170,108"/>
+    <polygon points="100,192 108,170 100,176 92,170"/>
+    <polygon points="8,100 30,108 24,100 30,92"/>
+    <polygon points="100,28 96,38 100,35 104,38" transform="rotate(45 100 100)"/>
+    <polygon points="100,28 96,38 100,35 104,38" transform="rotate(135 100 100)"/>
+    <polygon points="100,28 96,38 100,35 104,38" transform="rotate(225 100 100)"/>
+    <polygon points="100,28 96,38 100,35 104,38" transform="rotate(315 100 100)"/>
+  </g>
+  <!-- Cardinal labels: brown -->
+  <text x="100" y="20" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">N</text>
+  <text x="183" y="104" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">E</text>
+  <text x="100" y="195" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">S</text>
+  <text x="17" y="104" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">W</text>
+  <!-- Wave: blue, baseline y=134, clipped to inside inner ring -->
+  <path d="M 40 134 Q 60 126 80 134 T 120 134 T 160 134" stroke="#1e3a5f" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+  <!-- Fly: blue, scaled 1.2x around (106,100), lifted 12 -->
+  <g transform="translate(0,-12) translate(106,100) scale(1.2) translate(-106,-100)" stroke="#1e3a5f" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 70 100 a 4.5 4.5 0 1 1 0.1 0" stroke-width="3"/>
+    <path d="M 74 100 L 122 100" stroke-width="3.2"/>
+    <path d="M 122 100 Q 135 101 137 114 Q 135 126 120 127 Q 107 125 112 112" stroke-width="3.2"/>
+    <g stroke-width="1.2"><path d="M 82 86 L 82 114"/><path d="M 85 83 L 85 117"/><path d="M 88 82 L 88 118"/><path d="M 91 83 L 91 117"/><path d="M 94 86 L 94 114"/></g>
+    <g stroke-width="1.2" opacity="0.95"><path d="M 94 91 Q 120 86 144 84"/><path d="M 94 95 Q 120 90 146 92"/><path d="M 94 100 Q 120 96 144 102"/><path d="M 94 104 Q 120 100 138 108"/></g>
+    <ellipse cx="76" cy="100" rx="3.5" ry="2.2" stroke-width="2"/>
+  </g>
+</svg>

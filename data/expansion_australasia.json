@@ -1,0 +1,599 @@
+{
+  "cluster": "Australasia GT",
+  "research_notes": "Patterns compiled from FlyLife Magazine (Brett Wolf, Exmouth GTs), Saltwater Flies Australia (SWFA) product catalog, fishonfly.com.au (Stephen Chatterton), theflyfisher.com.au (Australian fly shop), Saltwater Flyrodders Australia forum (Stephen Bradbury), swoffa.com, Fly Odyssey Australia, Hastings Fly Fishers Australia, Big Y Fly Co / Fulling Mill product descriptions, Yellow Dog Flyfishing GT assortment. Existing-library universals are flagged. No patterns invented or originator names fabricated.",
+  "regions": [
+    {
+      "name": "Australia — Exmouth / Ningaloo Reef",
+      "primary_species": [
+        "giant trevally",
+        "queenfish",
+        "longtail tuna",
+        "mahi-mahi",
+        "bluefin trevally",
+        "golden trevally",
+        "Indo-Pacific permit",
+        "Spanish mackerel",
+        "bonefish"
+      ],
+      "patterns": [
+        {
+          "name": "Openshaw's Ghost",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": true,
+          "notes": "Translucent mullet imitation with silicone head that becomes nearly ghostly when wet; named by and sold by Saltwater Flies Australia, explicitly recommended for Ningaloo Reef GTs and queenfish on the flats by FlyLife Magazine guide Brett Wolf."
+        },
+        {
+          "name": "GT Mullet",
+          "originator": "James Christmas",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Broadside baitfish profile designed by Alphonse/Christmas Island guide James Christmas to imitate mullet on tropical flats; slim and aerodynamic enough to cast on heavy GT rods, widely used across Indo-Pacific GT destinations including Ningaloo."
+        },
+        {
+          "name": "Flaming Lamborghini",
+          "originator": "Fulling Mill",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Coral-grouper imitation designed to fish around coral heads and reef structure; tied on Gamakatsu SL12 and recommended by The Flyfisher (Australia) in their curated GT selection; part of the standard Exmouth GT fly box."
+        },
+        {
+          "name": "GT Flashy Profile",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "Spanish mackerel"],
+          "iconic_to_region": false,
+          "notes": "High-flash baitfish streamer in chartreuse or white that is explicitly listed in The Flyfisher Australia's staff-curated GT fly selection; effective on both Ningaloo and Gulf-side flats for GTs and pelagics."
+        },
+        {
+          "name": "GT Bus Ticket",
+          "originator": "Fulling Mill",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Open-flats GT pattern in lighter colors mimicking baitfish over white sand; described as a best-seller by multiple Australian retailers and confirmed in GT fly boxes curated for Indo-Pacific destinations."
+        },
+        {
+          "name": "Gym Sock",
+          "originator": "Fulling Mill",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Translucent mullet-imitating streamer listed among top-5 must-have patterns for GTs and roosterfish by Big Y Fly Co; recommended by multiple Australian fly shops for tropical Indo-Pacific GT fishing."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": "James Christmas",
+          "pattern_type": "popper",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "bluefin trevally", "golden trevally"],
+          "iconic_to_region": false,
+          "notes": "Universal GT surface popper, already in the library (existing #96); included here as a regional tag to confirm it is a standard fly carried on Ningaloo GT skiffs.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #74); explicitly described as the standard Ningaloo subsurface GT fly in FlyLife Magazine with guide Brett Wolf recommending 6/0 and 8/0 black and black-and-purple versions around reef and mangrove edges.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Black Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally"],
+          "iconic_to_region": true,
+          "notes": "Library universal (existing #13); described by Brett Wolf in FlyLife as the most reliable fly for Ningaloo Reef GT around coral and mangroves, and the fly used on the 80–90 lb GT described in the article.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Pink Thing",
+          "originator": "Graham White (early 1980s)",
+          "pattern_type": "streamer",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "golden trevally", "bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Seminal Australian saltwater fly originated by Darwin tier Graham White in the early 1980s originally as a barramundi fly; now a multi-species pattern proven on GT and queenfish across northern Australian flats including Exmouth."
+        },
+        {
+          "name": "Black 'n' Barred",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "golden trevally"],
+          "iconic_to_region": false,
+          "notes": "Black variant of the Pink Thing with barred grizzly hackle fright stripes, documented by Saltwater Flyrodders Australia as one of Australia's most popular multi-species tropical flies; effective on trevally and queenfish across all Northern Australian saltwater environments."
+        },
+        {
+          "name": "EP GT's Sardina",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "Spanish mackerel", "longtail tuna"],
+          "iconic_to_region": false,
+          "notes": "Library pattern (existing #55); EP's large sardina-style baitfish pattern is documented by Hastings Fly Fishers Australia as a top-tier GT fly alongside the Black Brush and GT Semper; included as regional tag.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Crease Fly",
+          "originator": "Joe Blados",
+          "pattern_type": "popper",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "mahi-mahi", "longtail tuna"],
+          "iconic_to_region": false,
+          "notes": "Library pattern (existing #42); documented surface fly for Ningaloo GT and pelagic species; the folded-foam surface disturbance attracts GTs on both Ningaloo and Gulf-side flats.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "Spanish mackerel", "longtail tuna"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #81); Hastings Fly Fishers Australia list Deceivers among core GT flies, and Australian saltwater guides routinely carry 4/0–6/0 versions in white and chartreuse for queenfish and mahi in the Ningaloo bluewater.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Milkfish Plankton Fly",
+          "originator": "Saltwater Flies Australia (SWFA)",
+          "pattern_type": "attractor",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "notes": "Algae-and-plankton imitation in green tones with UV hotspot produced by Saltwater Flies Australia specifically for Australian milkfish; Exmouth Gulf has documented milkfish populations on the flats."
+        },
+        {
+          "name": "Rattling Fat Boy",
+          "originator": "Saltwater Flies Australia (SWFA)",
+          "pattern_type": "baitfish",
+          "region": "Australia — Exmouth / Ningaloo Reef",
+          "target_species": ["giant trevally", "queenfish", "golden trevally"],
+          "iconic_to_region": false,
+          "notes": "Rattle-chamber baitfish pattern produced by Saltwater Flies Australia in sizes SL12 4/0–6/0; the sonic-rattle version is targeted at tropical predators in Australian flats and is listed on their site as a GT and tropical species fly."
+        }
+      ]
+    },
+    {
+      "name": "Australia — Cape York / Gulf of Carpentaria",
+      "primary_species": [
+        "giant trevally",
+        "queenfish",
+        "threadfin salmon",
+        "milkfish",
+        "barramundi",
+        "mangrove jack",
+        "golden trevally",
+        "bluefin trevally"
+      ],
+      "patterns": [
+        {
+          "name": "Pink Thing",
+          "originator": "Graham White (early 1980s)",
+          "pattern_type": "streamer",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["barramundi", "threadfin salmon", "giant trevally", "mangrove jack"],
+          "iconic_to_region": true,
+          "notes": "Originated by Darwin tier Graham White in the early 1980s as a barramundi fly; remains the single most iconic Australian tropical saltwater fly and is named in every Cape York / Gulf barra and GT fly list; pink-and-white is the original, black and yellow variants also standard."
+        },
+        {
+          "name": "Black 'n' Barred",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["barramundi", "threadfin salmon", "giant trevally", "mangrove jack", "queenfish"],
+          "iconic_to_region": true,
+          "notes": "Black version of the Pink Thing with barred-grizzly fright stripes; documented by Saltwater Flyrodders Australia (Stephen Bradbury, Perth) as one of Australia's most popular tropical multi-species flies; particularly effective in dirty or tannin-stained water."
+        },
+        {
+          "name": "Chatto's Baitfish",
+          "originator": "Stephen Chatterton",
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["barramundi", "giant trevally", "queenfish", "mangrove jack", "threadfin salmon"],
+          "iconic_to_region": false,
+          "notes": "Reef-minnow style dumbbell-eye baitfish developed by Central Queensland tier Stephen Chatterton for tropical inshore species; swims hook-point up to reduce snags around Cape York structure; documented with full recipe on fishonfly.com.au."
+        },
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #74); standard GT subsurface fly also used on Cape York and Gulf flats; black and olive-white variants are most common for the turbid Gulf conditions.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": "James Christmas",
+          "pattern_type": "popper",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #96); included in the curated GT selection by The Flyfisher Australia and used across all Australian GT destinations including Cape York.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Milkfish Plankton Fly",
+          "originator": "Saltwater Flies Australia (SWFA)",
+          "pattern_type": "attractor",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "notes": "SWFA-produced algae-plankton imitation documented for Cape York milkfish; The Flyfisher Australia references milkfish at Cape York's west coast and this is the most commercially available Australian-produced milkfish fly."
+        },
+        {
+          "name": "Wayne's Milky Magic",
+          "originator": "Wayne Haselau",
+          "pattern_type": "attractor",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["milkfish"],
+          "iconic_to_region": false,
+          "notes": "Library pattern (existing #139); documented by The Flyfisher Australia for Cape York milkfish; chenille body imitates crustacean egg sacs in algae beds and is consistently listed for Australian milkfish.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Flaming Lamborghini",
+          "originator": "Fulling Mill",
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["giant trevally", "queenfish", "mangrove jack"],
+          "iconic_to_region": false,
+          "notes": "Coral-grouper baitfish imitation recommended in The Flyfisher Australia GT selection; effective around the snag-heavy structure of Cape York estuaries and reef formations in the Coral Sea."
+        },
+        {
+          "name": "GT Flashy Profile",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["giant trevally", "queenfish", "golden trevally"],
+          "iconic_to_region": false,
+          "notes": "Flash-profile GT baitfish in chartreuse listed in Australian staff-curated GT boxes; effective in the clearer inshore water on the east Cape York side where visibility allows flash-reactive strikes."
+        },
+        {
+          "name": "Dahlberg Diver",
+          "originator": "Larry Dahlberg",
+          "pattern_type": "slider",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["barramundi", "mangrove jack", "giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #46); the deer-hair diving head makes this a primary surface-to-subsurface fly for Cape York barramundi around structure and snags; swoffa.com lists it as one of the top Australian barramundi patterns.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser",
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["barramundi", "threadfin salmon", "giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #35); swoffa.com lists Clousers among essential Australian barramundi fly patterns; synthetic Clouser variants (Stephen Chatterton's Clouser Synthetic MKII) are documented for Gulf pelagics including queenfish and GT.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Articulated Baitfish",
+          "originator": "Stephen Chatterton",
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["giant trevally", "barramundi", "queenfish", "mangrove jack"],
+          "iconic_to_region": false,
+          "notes": "Large jointed baitfish at 11.5 cm (4/0) developed by Stephen Chatterton (fishonfly.com.au) as a 'go-to' for sighted ambush predators and pelagics; documented for GT, barra, mangrove jack, and queenfish around Central Queensland and Gulf structure."
+        },
+        {
+          "name": "Openshaw's Ghost",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["giant trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Translucent Australian mullet imitation (Saltwater Flies Australia); effective on Cape York GT and queenfish on open flats where the ghostly profile matches the small baitfish schools the fish key on."
+        },
+        {
+          "name": "Fatboy",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["barramundi", "mangrove jack", "giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Bulky Australian saltwater fly listed by swoffa.com as one of the core Cape York barramundi patterns; the profile pushes water and is effective in turbid Gulf conditions where big barramundi and GT respond to displaced water more than flash."
+        },
+        {
+          "name": "Candy — Pelagic",
+          "originator": "Stephen Chatterton",
+          "pattern_type": "baitfish",
+          "region": "Australia — Cape York / Gulf of Carpentaria",
+          "target_species": ["queenfish", "giant trevally", "longtail tuna", "Spanish mackerel"],
+          "iconic_to_region": false,
+          "notes": "Match-the-hatch unweighted baitfish fly for Australian pelagics documented by Stephen Chatterton (fishonfly.com.au) specifically for queenfish and tuna targeting baitfish schools; a slim schooling-baitfish imitation effective on Cape York queenfish."
+        }
+      ]
+    },
+    {
+      "name": "Papua New Guinea (Bismarck Archipelago)",
+      "primary_species": [
+        "giant trevally",
+        "Niugini (Papuan) black bass",
+        "barramundi",
+        "dogtooth tuna",
+        "mangrove jack",
+        "bluefin trevally",
+        "queenfish",
+        "threadfin salmon"
+      ],
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "dogtooth tuna", "bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #74); the standard Indo-Pacific GT subsurface pattern; PNG GT guides (Fly Odyssey, Rock Expeditions) use the same heavy-tackle brush-fly system on PNG reefs as elsewhere in the Indo-Pacific.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": "James Christmas",
+          "pattern_type": "popper",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #96); documented as one of the go-to GT surface poppers for Indo-Pacific destinations including PNG; the aggressive popping action of PNG GTs makes surface poppers essential.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Black Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "dogtooth tuna", "mangrove jack"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #13); black-on-black brush flies are consistently rated by Indo-Pacific GT guides for low-light and early-morning conditions; particularly effective on the reef edges and passes of the Bismarck Archipelago.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Crease Fly",
+          "originator": "Joe Blados",
+          "pattern_type": "popper",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #42); folded-foam surface popper documented across Indo-Pacific GT destinations; effective for PNG GTs over reef structure where the splashing action imitates panicking baitfish.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Dahlberg Diver",
+          "originator": "Larry Dahlberg",
+          "pattern_type": "slider",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["Niugini black bass", "mangrove jack", "barramundi"],
+          "iconic_to_region": true,
+          "notes": "Library universal (existing #46); the deer-hair diving head is one of the most documented fly types for Papuan black bass in jungle river systems; Fly Odyssey PNG describes these bass as attacking big surface divers around timber and undercut banks.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Big Game Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "dogtooth tuna", "barramundi"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #11); oversized brush-fly construction in 6/0–8/0 required for the large, aggressive GTs around PNG reef systems; Fly Odyssey PNG describes Portlock Reef GTs as requiring the heaviest GT tackle and largest flies.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Pink Thing",
+          "originator": "Graham White (early 1980s)",
+          "pattern_type": "streamer",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["barramundi", "Niugini black bass", "mangrove jack", "threadfin salmon"],
+          "iconic_to_region": false,
+          "notes": "The foundational Australian tropical fly is carried by Australian and PNG guides into PNG freshwater and estuarine systems targeting barramundi, Niugini black bass, and mangrove jack; its hackle-and-bucktail construction handles the brutal structure encountered in PNG jungle rivers."
+        },
+        {
+          "name": "Articulated Baitfish",
+          "originator": "Stephen Chatterton",
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["Niugini black bass", "barramundi", "mangrove jack", "giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Stephen Chatterton documents this articulated pattern as his primary sighted-ambush-predator fly; its large jointed profile is exactly the profile used by Australian guides targeting PNG black bass and barramundi around timber and undercuts."
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh",
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "queenfish", "dogtooth tuna", "mangrove jack"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #81); the Deceiver in large 4/0–6/0 sizes is a standard carry on PNG GT skiffs targeting reef-edge GTs, dogtooth tuna, and the mangrove jack found around PNG's coastal mangrove systems.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Semper Fly",
+          "originator": "Bob Popovics",
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #120); marabou-and-schlappen squid-baitfish hybrid documented as a top GT fly across all Indo-Pacific destinations including PNG's Portlock, Eastern Fields, and Bismarck reef systems.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Flaming Lamborghini",
+          "originator": "Fulling Mill",
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["giant trevally", "mangrove jack", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Coral-grouper baitfish imitation effective around coral structure; PNG's Bismarck reefs and Portlock Reef systems are heavily structured with coral heads where this pattern's grouper coloration triggers reaction strikes."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser",
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["Niugini black bass", "barramundi", "mangrove jack", "giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #35); dumbbell-weighted Clousers in 2/0–4/0 are documented by PNG freshwater guides for Niugini black bass in deeper river pools and are a staple carry on PNG expeditions for both salt and freshwater targets.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Game Changer",
+          "originator": "Blane Chocklett",
+          "pattern_type": "baitfish",
+          "region": "Papua New Guinea (Bismarck Archipelago)",
+          "target_species": ["Niugini black bass", "barramundi", "giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #66); the segmented-articulated construction with life-like swimming action is one of the few Western patterns proven on Niugini black bass; Rock Expeditions PNG notes that bass respond to large, lifelike swimming profiles in the current-seams of jungle rivers.",
+          "library_tag": "existing_pattern"
+        }
+      ]
+    },
+    {
+      "name": "Indonesia (Raja Ampat)",
+      "primary_species": [
+        "giant trevally",
+        "mangrove jack",
+        "dogtooth tuna",
+        "queenfish",
+        "bluefin trevally",
+        "Spanish mackerel",
+        "snapper"
+      ],
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "dogtooth tuna", "bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #74); subsurface GT standard used across all Indo-Pacific destinations; Raja Ampat's mangrove-fringed bays and reef passes concentrate GTs responding well to this pattern's baitfish profile.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": "James Christmas",
+          "pattern_type": "popper",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #96); the surface popper standard for Indo-Pacific GT; Raja Ampat's tropical flats and reef edges hold large GT populations where surface poppers are particularly effective during feeding-tide pushes.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Black Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "mangrove jack", "dogtooth tuna"],
+          "iconic_to_region": true,
+          "notes": "Library universal (existing #13); black is universally noted by Indo-Pacific GT guides as the most productive color in any depth or light condition; Raja Ampat's varied micro-environments from mangroves to open ocean passages all see GTs responding to this fly.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Flaming Lamborghini",
+          "originator": "Fulling Mill",
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "mangrove jack", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Coral-grouper profile designed for structure fishing; Raja Ampat's coral-rich limestone karst islands provide ideal structure habitat matching this fly's coral-reef-dweller imitation."
+        },
+        {
+          "name": "GT Mullet",
+          "originator": "James Christmas",
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish"],
+          "iconic_to_region": false,
+          "notes": "Slim mullet imitation by James Christmas; effective on the sand and rubble flats of Raja Ampat's shallow bays where mullet schools concentrate GTs on feeding tides."
+        },
+        {
+          "name": "Semper Fly",
+          "originator": "Bob Popovics",
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #120); olive-red and black-purple Semper variants documented across all Indo-Pacific GT destinations; the marabou tail movement is particularly effective in Raja Ampat's current-rich reef passes.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Crease Fly",
+          "originator": "Joe Blados",
+          "pattern_type": "popper",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "bluefin trevally", "queenfish", "mangrove jack"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #42); surface popper documented for Indo-Pacific GT and trevally species; Raja Ampat guides carry surface flies for working mangrove edges and reef passes where GT ambush in shallow water.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Lefty's Deceiver",
+          "originator": "Lefty Kreh",
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "dogtooth tuna", "Spanish mackerel", "mangrove jack"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #81); large 4/0–6/0 Deceivers are standard on Indo-Pacific GT fly lists; documented as an effective bluewater baitfish imitation for dogtooth tuna and pelagic GT around Raja Ampat's offshore reef drops.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "GT Flashy Profile",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "queenfish", "Spanish mackerel"],
+          "iconic_to_region": false,
+          "notes": "High-flash chartreuse baitfish; effective on Indonesian pelagics including queenfish and mackerel that school over the coral pinnacles and current lines of Raja Ampat's offshore waters."
+        },
+        {
+          "name": "Clouser Deep Minnow",
+          "originator": "Bob Clouser",
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "mangrove jack", "snapper", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #35); dumbbell-eye Clousers in 2/0–4/0 produce on Indonesian snapper, mangrove jack, and smaller GT that hold in deeper current seams around Raja Ampat's reef structures.",
+          "library_tag": "existing_pattern"
+        },
+        {
+          "name": "Openshaw's Ghost",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "queenfish", "bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Australian-produced translucent mullet imitation; the clear-water flats of Raja Ampat's protected bays make the ghost-like profile particularly effective for sight-casting to GTs and bluefin trevally."
+        },
+        {
+          "name": "Big Game Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Indonesia (Raja Ampat)",
+          "target_species": ["giant trevally", "dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Library universal (existing #11); extra-large brush fly in 6/0–8/0 for the largest GTs and dogtooth tuna encountered in Raja Ampat's deep passes and offshore seamount systems.",
+          "library_tag": "existing_pattern"
+        }
+      ]
+    }
+  ]
+}

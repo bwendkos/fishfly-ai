@@ -1,0 +1,24 @@
+# Netlify configuration for fishfly-ai
+# This is a static site for Phase 1A. Functions get added in Phase 2.
+
+[build]
+  publish = "."
+
+[[redirects]]
+  # During Phase 1A, the root of the site IS the Fly Library.
+  # In Phase 1B, change this so / shows the FishFly landing page and the Library lives at /library.
+  from = "/library"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

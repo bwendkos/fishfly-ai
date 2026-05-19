@@ -1,0 +1,575 @@
+{
+  "cluster": "Niche/specialty",
+  "regions": [
+    {
+      "region": "Gabón, West Africa",
+      "notes": "Atlantic tarpon (Megalops atlanticus) to 250+ lb; distinct West African subspecies. Sette Cama / Loango National Park fishery operated by African Waters. Surf, estuary mouth, and lagoon fishing. Heavy-weighted or deep-sinking flies essential for beach/surf presentations. Gear: 10–12 wt, intermediate to Di7 sinking lines, 40–100 lb shock tippet. Sources: The Mission Fly Fishing Magazine (Conrad Botes, Leonard Flemming); African Waters/Ed Truter gear guide; Jeff Currier travel reports; Fishingexplora.com Sette Cama guide.",
+      "patterns": [
+        {
+          "name": "Spongebob Threadfin Slider",
+          "originator": "Conrad Botes (2015)",
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Giant African threadfin", "Atlantic tarpon", "Jack crevalle"],
+          "iconic_to_region": true,
+          "notes": "Large (14–16 cm) bucktail-and-schlappen slider-head streamer on 4/0–6/0, developed specifically at Sette Cama for trophy-size giant African threadfin; fished on Di5–Di7 sinking lines through estuary current seams."
+        },
+        {
+          "name": "Black & Purple Tarpon Toad",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon"],
+          "iconic_to_region": true,
+          "notes": "The go-to colour variant of the Tarpon Toad for Gabon beach fishing; black and purple colouration is the most-referenced combination in all Sette Cama trip reports for tarpon in dark/turbid surf. EXISTS IN LIBRARY as 'Tarpon Toad' — Gabon colour variant only."
+        },
+        {
+          "name": "Heavy Gabon Deceiver",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon", "Giant African threadfin", "Cubera snapper"],
+          "iconic_to_region": false,
+          "notes": "Lefty's Deceiver profile tied on 4/0–6/0 with extra-long saddle hackle and lead wraps or tungsten core; the extreme surf and deep estuary channels of Sette Cama demand heavier construction than standard Caribbean tarpon Deceivers. EXISTS IN LIBRARY as 'Lefty's Deceiver' — Gabon heavy variant noted."
+        },
+        {
+          "name": "DMA (Dark Marabou Anchovy)",
+          "originator": "Conrad Botes (c. 2015)",
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon", "Giant African threadfin"],
+          "iconic_to_region": true,
+          "notes": "A Gabon-specific dark marabou anchovy streamer referenced alongside Spongebobs and Tarpon Toads as a Sette Cama staple in The Mission Fly Fishing Magazine; imitates the Atlantic anchovy baitfish that concentrate in Gabon's estuary mouths."
+        },
+        {
+          "name": "Cubera Diver (Dahlberg Style)",
+          "originator": "Ed Truter (rec. c. 2015)",
+          "pattern_type": "streamer",
+          "region": "Gabón, West Africa",
+          "target_species": ["Cubera snapper", "Atlantic tarpon", "Jack crevalle"],
+          "iconic_to_region": true,
+          "notes": "Dahlberg Diver with long heavy zonker-strip tail and beefed-up deerhair diving head on 4/0–8/0; African Waters' founding guide Ed Truter specifically recommended this over foam versions for Gabon's cubera snapper, fished on sink-tip to Di5 line. EXISTS IN LIBRARY as 'Dahlberg Diver' — Gabon heavy/oversize variant recommended by Ed Truter."
+        },
+        {
+          "name": "Cockroach (Sette Cama Tarpon)",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon"],
+          "iconic_to_region": false,
+          "notes": "The classic Atlantic tarpon fly travels well to Gabon; on calm days and clear lagoon water the Cockroach profile is used by Sette Cama guides as a lighter-water alternative to the heavier baitfish patterns. EXISTS IN LIBRARY as 'Cockroach'."
+        },
+        {
+          "name": "Gabon Surf Clouser",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon", "Senegal kob", "Leerfish (garrick)"],
+          "iconic_to_region": false,
+          "notes": "Clouser Deep Minnow tied heavy (large lead eyes, 3/0–4/0) in olive/white or chartreuse/white for fast-sinking presentations in Gabon's ripping beach surf; referenced across multiple Sette Cama trip reports as a reliable all-rounder. EXISTS IN LIBRARY as 'Clouser Deep Minnow'."
+        },
+        {
+          "name": "Atlantic Sardine Baitfish",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon", "Giant African threadfin", "Jack crevalle"],
+          "iconic_to_region": true,
+          "notes": "EP-style or Puglisi-style sardine imitation in silver/olive tied on 3/0–5/0 to match the Atlantic sardines and engraulids that schools of tarpon and threadfin crash in the Ndogo estuary; a distinct bait profile from Indo-Pacific sardines used in Seychelles/Christmas Island patterns."
+        },
+        {
+          "name": "Longfin Jack Streamer",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Longfin jack", "Jack crevalle", "Atlantic tarpon"],
+          "iconic_to_region": true,
+          "notes": "Medium-sized (8–12 cm) CF-Blend or bucktail streamer in white/olive or tan, cast into bait-crashing bird schools in the Ndogo lagoon where longfin and crevalle jacks are primary targets alongside the tarpon program."
+        },
+        {
+          "name": "Snapper Bunker (Cubera Pattern)",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Gabón, West Africa",
+          "target_species": ["Cubera snapper", "Atlantic tarpon"],
+          "iconic_to_region": true,
+          "notes": "Large bulky bunker/menhaden-profile fly on 4/0–6/0 in dark olive and purple; structure-dwelling cubera snapper at Sette Cama respond to a large, dark profile worked slowly near mangrove edges and channel drop-offs with heavy sinking line."
+        },
+        {
+          "name": "Senegal Kob Shrimp",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Gabón, West Africa",
+          "target_species": ["Senegal kob", "Leerfish (garrick)", "Jack crevalle"],
+          "iconic_to_region": true,
+          "notes": "Weighted shrimp pattern in tan/olive tied on 1/0–2/0; Senegal kob (Pseudotolithus senegalensis) feed heavily on estuarine shrimp and are a secondary target at Sette Cama alongside the tarpon; guide-recommended secondary fly box addition."
+        },
+        {
+          "name": "Paradise Cockroach",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Gabón, West Africa",
+          "target_species": ["Atlantic tarpon"],
+          "iconic_to_region": false,
+          "notes": "Larger, more heavily dressed version of the standard Cockroach with extra grizzly hackle for increased movement; the Atlantic tarpon of West Africa are significantly larger than Caribbean fish and an upsized profile is standard practice at Sette Cama. EXISTS IN LIBRARY as 'Paradise Cockroach'."
+        }
+      ]
+    },
+    {
+      "region": "Maldives",
+      "notes": "Emerging Indo-Pacific destination in Huvadhoo, Ari, and Malé atolls. GT, bonefish, milkfish, triggerfish, bluefin trevally, dogtooth tuna. GT season peaks May–October (SW monsoon). Fly fishing operated by Maldives on the Fly (Getaway), Karku, FlyFishing Maldives, and lodge-based guides. Sources: Maldives on the Fly operator website; FlyFishing Maldives species pages; Maldives tour guide articles; Flymen Fishing Company Seychelles assortment (overlapping Indo-Pacific patterns).",
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Maldives",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "The benchmark Indo-Pacific GT streamer; dark colourways (black/purple, red/black) dominate in Maldives surf-reef fishing where contrast is key, lighter tan versions for sandy flats. EXISTS IN LIBRARY as 'GT Brush Fly'."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Maldives",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "The dominant GT surface popper across all Indo-Pacific GT fisheries; Maldives on the Fly operators recommend it specifically for reef-edge and channel-mouth presentations. EXISTS IN LIBRARY as 'NYAP'."
+        },
+        {
+          "name": "KIFF Pop Star",
+          "originator": "KIFF Flies (designed for Seychelles guides, c. 2018)",
+          "pattern_type": "popper",
+          "region": "Maldives",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Large foam/PVC rattle popper designed at Seychelles guide request for easy casting and maximum water displacement; directly applicable to Maldives GT fishing and listed in the Complete Seychelles Fly Assortment; highly castable on 8 wt."
+        },
+        {
+          "name": "Milky Dream",
+          "originator": null,
+          "pattern_type": "attractor",
+          "region": "Maldives",
+          "target_species": ["Milkfish"],
+          "iconic_to_region": false,
+          "notes": "The standard plankton/algae-imitating milkfish fly for the Indian Ocean; used across Maldives, Seychelles, and Christmas Island for surface-feeding milkfish schools. EXISTS IN LIBRARY as 'Milky Dream'."
+        },
+        {
+          "name": "Got Milk (Rio)",
+          "originator": "Rio Products",
+          "pattern_type": "attractor",
+          "region": "Maldives",
+          "target_species": ["Milkfish"],
+          "iconic_to_region": false,
+          "notes": "Rio Products' neutral-buoyant synthetic foam milkfish fly; recommended specifically for Indo-Pacific milkfish including Maldives and Seychelles destinations; a floating plankton imitation for feeding shoals on the surface."
+        },
+        {
+          "name": "Alphlexo Crab",
+          "originator": "Alec Gerbec / James Christmas (Alphonse Fishing Co., c. 2014)",
+          "pattern_type": "crab",
+          "region": "Maldives",
+          "target_species": ["Indo-Pacific permit", "Triggerfish", "Bonefish"],
+          "iconic_to_region": false,
+          "notes": "Nylon-mesh body crab with orange bead eyes; dominant permit and triggerfish pattern across all Indian Ocean flats including the Maldives; key pattern for the lagoon and sandy-flat triggerfish at Huvadhoo Atoll. EXISTS IN LIBRARY as 'Alphlexo Crab'."
+        },
+        {
+          "name": "Bedhead",
+          "originator": "Alphonse Fishing Co. guides (Seychelles, c. 2015)",
+          "pattern_type": "crab",
+          "region": "Maldives",
+          "target_species": ["Indo-Pacific permit", "Triggerfish"],
+          "iconic_to_region": false,
+          "notes": "Dense-bodied EP-style crab with a weighted 'bedhead' profile; listed in the Complete Seychelles Fly Assortment as a key permit/triggerfish pattern; directly applicable to the Maldives flats where triggerfish are a principal target on guide-led trips."
+        },
+        {
+          "name": "Golden Knight",
+          "originator": "Alphonse Fishing Co. / FlyzInc (Seychelles, c. 2016)",
+          "pattern_type": "shrimp",
+          "region": "Maldives",
+          "target_species": ["Bonefish", "Indo-Pacific permit"],
+          "iconic_to_region": false,
+          "notes": "Alphonse Fishing Co. guide-developed bonefish shrimp/Gotcha variant with a golden/tan body, available in tungsten bead and bead-chain weight options; official Seychelles assortment bonefish staple and applicable to Maldives bonefish on atoll flats."
+        },
+        {
+          "name": "Semper Fly",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Maldives",
+          "target_species": ["Bonefish", "Bluefin trevally", "Indo-Pacific permit"],
+          "iconic_to_region": false,
+          "notes": "The versatile Indo-Pacific shrimp pattern is a confirmed effective bonefish and small trevally fly in Maldives atoll fisheries; Alphonse guides list it alongside Clousers and poppers as an all-rounder for the flats. EXISTS IN LIBRARY as 'Semper Fly'."
+        },
+        {
+          "name": "James Sand Prawn",
+          "originator": "James Christmas (Alphonse Fishing Co., c. 2013)",
+          "pattern_type": "shrimp",
+          "region": "Maldives",
+          "target_species": ["Bonefish", "Indo-Pacific permit", "Triggerfish"],
+          "iconic_to_region": false,
+          "notes": "Large sand-prawn imitation on #4 with mono loop/bead weed guard and sound-generating features; designed by Alphonse guide James Christmas; classified as a Seychelles staple that transfers directly to Maldives flats where similar sand prawns are key bonefish forage."
+        },
+        {
+          "name": "Flaming Lambourghini",
+          "originator": "Superflies (c. 2019)",
+          "pattern_type": "baitfish",
+          "region": "Maldives",
+          "target_species": ["Giant trevally"],
+          "iconic_to_region": false,
+          "notes": "Bright orange/red GT streamer designed to match the vivid reef baitfish found in Indian Ocean coral environments; recommended by Seychelles-experienced guides as a GT attraction fly when standard darks fail on tough days."
+        },
+        {
+          "name": "Indo-Pacific Triggerfish Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Maldives",
+          "target_species": ["Titan triggerfish", "Picasso triggerfish", "Yellow-margin triggerfish"],
+          "iconic_to_region": true,
+          "notes": "Small (size 4–6), low-profile coral-crab imitation with keel hook (point-up), rubber legs, and suede claws; the Maldives hosts multiple triggerfish species (titan, Picasso, yellow-margin) that are a signature fly fishing target on sandy and coral flats at Huvadhoo Atoll."
+        },
+        {
+          "name": "Dogtooth Tuna Tube Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Maldives",
+          "target_species": ["Dogtooth tuna"],
+          "iconic_to_region": true,
+          "notes": "Large (20–30 cm) tandem-hook tube fly in white/chartreuse or pink/white; dogtooth tuna are a premier target in the Maldives (Aug–Oct peak) and require fast-sinking, large-profile flies cast to deep channel edges and reef drop-offs on 12 wt outfits."
+        }
+      ]
+    },
+    {
+      "region": "Rodrigues, Mauritius",
+      "notes": "St Brandon's Atoll (Cargados Carajos Shoals), 268 nm NE of Mauritius, operated by FlyCastaway. Trophy bonefish (to 17.5 lb), large GT (40+ in), Indo-Pacific permit. Primarily wade fishing on white sand and coral flats. Short season (Sep–Dec, Apr–Jun). Sources: FlyCastaway St Brandon's brochure/website; Angler Adventures St Brandon's guide; Fly Odyssey Australia; The Complete Seychelles Fly Assortment (applicable overlap patterns).",
+      "patterns": [
+        {
+          "name": "Pillow Talk",
+          "originator": "Alphonse Fishing Co. guides",
+          "pattern_type": "shrimp",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Bonefish", "Indo-Pacific permit", "Triggerfish"],
+          "iconic_to_region": false,
+          "notes": "The premier bonefish shrimp pattern for Alphonse/Seychelles and directly applicable to the large-bonefish white sand flats of St Brandon's Atoll; available in tungsten bead (deep) and bead-chain (shallow) versions. EXISTS IN LIBRARY as 'Pillow Talk'."
+        },
+        {
+          "name": "Alphlexo Crab",
+          "originator": "Alec Gerbec / James Christmas (Alphonse Fishing Co., c. 2014)",
+          "pattern_type": "crab",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Indo-Pacific permit", "Triggerfish", "Bonefish"],
+          "iconic_to_region": false,
+          "notes": "Dominant permit pattern for St Brandon's Indo-Pacific permit; FlyCastaway brochure and multiple St Brandon's reports specifically list this as the go-to permit fly for the atoll's prolific permit fishery. EXISTS IN LIBRARY as 'Alphlexo Crab'."
+        },
+        {
+          "name": "Marabou Fleeing Crab",
+          "originator": "FlyCastaway guides (St Brandon's, c. 2018)",
+          "pattern_type": "crab",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Indo-Pacific permit", "Bonefish", "GT"],
+          "iconic_to_region": true,
+          "notes": "Named in the official FlyCastaway St Brandon's brochure as a signature St Brandon's pattern; marabou-wing fleeing crab variant developed for the ultra-clear white sand flats and large, wary permit of the atoll."
+        },
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "St Brandon's is documented to have GT specimens exceeding 100 lb; standard Indo-Pacific GT brush flies in tan and dark colourways are the benchmark big-game pattern. EXISTS IN LIBRARY as 'GT Brush Fly'."
+        },
+        {
+          "name": "Golden Knight",
+          "originator": "Alphonse Fishing Co. / FlyzInc (Seychelles, c. 2016)",
+          "pattern_type": "shrimp",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Bonefish"],
+          "iconic_to_region": false,
+          "notes": "Official Alphonse/Seychelles guide bonefish pattern transferable to St Brandon's flats; multiple accounts describe bonefish behaviour on these atolls as nearly identical to Alphonse."
+        },
+        {
+          "name": "James Sand Prawn",
+          "originator": "James Christmas (Alphonse Fishing Co., c. 2013)",
+          "pattern_type": "shrimp",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Bonefish", "Indo-Pacific permit", "Triggerfish"],
+          "iconic_to_region": false,
+          "notes": "Large sand-prawn pattern widely recommended for the big bonefish of St Brandon's; the sound-generating bead loop feature is particularly effective for attracting multiple bonefish simultaneously on schooling fish."
+        },
+        {
+          "name": "Bedhead",
+          "originator": "Alphonse Fishing Co. guides (Seychelles, c. 2015)",
+          "pattern_type": "crab",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Indo-Pacific permit", "Triggerfish"],
+          "iconic_to_region": false,
+          "notes": "Dense-body crab for the Indian Ocean permit fishery; confirmed in the Complete Seychelles Fly Assortment as a permit/trigger standard, directly applicable to St Brandon's permit-focused fishing."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Standard Indo-Pacific GT popper; GT at St Brandon's run 40+ inches and the NYAP's large water-displacing profile is essential for aggressive reef-edge presentations. EXISTS IN LIBRARY as 'NYAP'."
+        },
+        {
+          "name": "Milky Dream",
+          "originator": null,
+          "pattern_type": "attractor",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Milkfish"],
+          "iconic_to_region": false,
+          "notes": "Milkfish are present at St Brandon's Atoll; the Milky Dream plankton imitation is the standard fly used across Indian Ocean milkfish fisheries. EXISTS IN LIBRARY as 'Milky Dream'."
+        },
+        {
+          "name": "Semper Fly",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Bonefish", "Indo-Pacific permit"],
+          "iconic_to_region": false,
+          "notes": "A versatile Indo-Pacific shrimp/crab hybrid that performs across all Indian Ocean flats fisheries including St Brandon's; noted in Alphonse Fishing Company guides alongside Clousers and crabs as a general flats pattern. EXISTS IN LIBRARY as 'Semper Fly'."
+        },
+        {
+          "name": "Gotcha (St Brandon's Bonefish)",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Bonefish"],
+          "iconic_to_region": false,
+          "notes": "Standard Gotcha variant (tungsten and bead chain) in tan/pink confirmed in the Seychelles Fly Assortment for Indian Ocean bonefish; direct transfer to the large, eager St Brandon's bonefish population. EXISTS IN LIBRARY as 'McVay Gotcha'."
+        },
+        {
+          "name": "Fleeing Crab",
+          "originator": null,
+          "pattern_type": "crab",
+          "region": "Rodrigues, Mauritius",
+          "target_species": ["Indo-Pacific permit", "Bonefish", "Triggerfish"],
+          "iconic_to_region": false,
+          "notes": "Barred tan/white fleeing crab variant; an Alphonse Fishing Co. standard that applies identically to the hard white sand and broken coral flats of St Brandon's Atoll. EXISTS IN LIBRARY as 'Fleeing Crab'."
+        }
+      ]
+    },
+    {
+      "region": "Madagascar (Nosy Be)",
+      "notes": "Nosy Be and surrounding Mitsio Archipelago, Castor Bank, Leven Bank off northwest Madagascar. Primarily lure/popper/jig fishing with fly fishing growing for GT, dogtooth tuna, sailfish, queenfish. Operated by Madagascar Fishing Adventures (Sakatia Lodge), liveaboard catamarans. Fly options are GT poppers, streamers, and heavy dogtooth tuna tube flies. Sources: Madagascar Fishing Adventures operator website; Sportquest Holidays Madagascar; FishingExpeditions.com; Marcel Cabrera Salvat operator guide.",
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "The primary GT streamer for Nosy Be reef-edge and coral pinnacle fishing; dark colourways (black/purple, red/black) effective against the corals and deep-blue water of Madagascar's outer banks. EXISTS IN LIBRARY as 'GT Brush Fly'."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Giant trevally", "Queenfish"],
+          "iconic_to_region": false,
+          "notes": "Standard large GT popper; effective on the rocky reef points and lagoon entrances around Nosy Be and the Mitsio Archipelago where surface GT action is the signature experience. EXISTS IN LIBRARY as 'NYAP'."
+        },
+        {
+          "name": "KIFF Pop Star",
+          "originator": "KIFF Flies (designed for Seychelles guides, c. 2018)",
+          "pattern_type": "popper",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Giant trevally", "Queenfish"],
+          "iconic_to_region": false,
+          "notes": "High-visibility rattle popper used by Indian Ocean GT guides on both the Seychelles and Madagascar; the extra water-moving action suits the choppier conditions of the Mozambique Channel."
+        },
+        {
+          "name": "Dogtooth Tuna Tube Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Dogtooth tuna"],
+          "iconic_to_region": true,
+          "notes": "Large 20–30 cm tandem-hook tube fly in white/chartreuse or pink/white on 12 wt; dogtooth tuna at Nosy Be average 60 lb with fish to 220 lb recorded; deep presentations over reef drop-offs at Castor Bank and Leven Bank are the primary method."
+        },
+        {
+          "name": "Flashtail Whistler (GT / Queenfish)",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Queenfish", "Giant trevally", "Brassy trevally"],
+          "iconic_to_region": false,
+          "notes": "The Flashtail Whistler's bead-head rattle and flash-forward wing make it an effective mid-water pattern for queenfish and mixed trevally species that school over shallow coral pinnacles at Nosy Be. EXISTS IN LIBRARY as 'Flashtail Whistler'."
+        },
+        {
+          "name": "Sailfish Fly (Tandem Tube)",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Indo-Pacific sailfish"],
+          "iconic_to_region": false,
+          "notes": "Madagascar is renowned for its sailfish numbers passing through the Mozambique Channel; large pink/white or blue/white tandem tube fly presented to free-swimming or teased sailfish. EXISTS IN LIBRARY as 'Flymen Sailfish Fly (Tandem Pink/White Tube)'."
+        },
+        {
+          "name": "Reef Popper (Coral Reef GT)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Giant trevally", "Bluefin trevally"],
+          "iconic_to_region": true,
+          "notes": "A smaller, more compact foam popper (2/0–4/0) suited to casting into tight reef structures at the Serpent Bank and Grand Entry Bank; GTs at Nosy Be frequently sit tight against coral heads requiring more precise, shorter-range presentations than open-flat GT fishing."
+        },
+        {
+          "name": "Magnetic Minnow",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Giant trevally", "Queenfish", "Bluefin trevally"],
+          "iconic_to_region": false,
+          "notes": "Slim-profile synthetic baitfish that casts easily in wind and current; directly applicable to Madagascar's GT and queenfish over reef edges — referenced by Superflies as effective across Indian Ocean GT fisheries including Lakshadweep and Seychelles. EXISTS IN LIBRARY as 'Magnetic Minnow'."
+        },
+        {
+          "name": "Hollow Fleye (Large GT / Dogtooth)",
+          "originator": "Bob Popovics",
+          "pattern_type": "baitfish",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Giant trevally", "Dogtooth tuna", "Wahoo"],
+          "iconic_to_region": false,
+          "notes": "Large (15–20 cm) Hollow Fleye in white/olive or sardine colours on 4/0–6/0; the Hollow Fleye's wide body profile and minimal drag make it effective when cast to crashing GT schools over Nosy Be's offshore banks. EXISTS IN LIBRARY as 'Hollow Fleye'."
+        },
+        {
+          "name": "Wahoo Needlefish",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Wahoo", "King mackerel", "Dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Long (20–25 cm) slim needlefish imitation fished on 12 wt with fast-sinking line; wahoo and Spanish mackerel are regular targets at Nosy Be's offshore FADs and banks. EXISTS IN LIBRARY as 'Needlefish'."
+        },
+        {
+          "name": "Queenfish Crease Fly",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Madagascar (Nosy Be)",
+          "target_species": ["Queenfish", "Bluefin trevally"],
+          "iconic_to_region": true,
+          "notes": "Medium (2/0–4/0) crease fly in silver/blue or white targeting queenfish that school over shallow reef edges around the Mitsio Islands; queenfish respond aggressively to surface presentations and the Crease Fly's erratic skipping action triggers explosive strikes. EXISTS IN LIBRARY as 'Crease Fly'."
+        }
+      ]
+    },
+    {
+      "region": "Solomon Islands",
+      "notes": "Marovo Lagoon and offshore Pacific Islands. Multiple GT species (giant, bluefin, bigeye, yellow-spot trevally), dogtooth tuna, queenfish, mangrove jack, spot-tail bass on rivers. Light pressure, large fish, pristine habitat. Wilderness Lodge (Marovo), Papatura Island Resort. Fly fishing growing alongside lure/jigging. Sources: Wilderness Lodge Solomon Islands; Papatura Island Resort; Fishabout Tours; FishingWorldGuide Solomon Islands 2026.",
+      "patterns": [
+        {
+          "name": "GT Brush Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Giant trevally", "Bluefin trevally", "Bigeye trevally"],
+          "iconic_to_region": false,
+          "notes": "The foundation GT pattern across all Indo-Pacific fisheries; in the Solomon Islands the fishery is lightly pressured enough that even modest presentations draw aggressive response, with dark colourways particularly effective around the coral bommies of Marovo Lagoon. EXISTS IN LIBRARY as 'GT Brush Fly'."
+        },
+        {
+          "name": "NYAP (Not Your Average Popper)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Solomon Islands",
+          "target_species": ["Giant trevally", "Queenfish"],
+          "iconic_to_region": false,
+          "notes": "Large GT surface popper; with light fishing pressure the Solomon Islands GTs are highly responsive to surface poppers around reef edges, channel points, and bommie drop-offs. EXISTS IN LIBRARY as 'NYAP'."
+        },
+        {
+          "name": "Crease Fly",
+          "originator": "Joe Blados",
+          "pattern_type": "popper",
+          "region": "Solomon Islands",
+          "target_species": ["Queenfish", "Bluefin trevally", "Giant trevally"],
+          "iconic_to_region": false,
+          "notes": "The Crease Fly's skipping surface action is particularly suited to queenfish, which are abundant and aggressive in the Solomon Islands lagoons and reef margins; the medium (2/0–3/0) size targets queenfish in the 5–20 lb class. EXISTS IN LIBRARY as 'Crease Fly'."
+        },
+        {
+          "name": "Dogtooth Tuna Tube Fly",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Dogtooth tuna"],
+          "iconic_to_region": true,
+          "notes": "Large tandem tube fly for the giant dogtooth tuna of Solomon seamounts (Matikai seamount near Wilderness Lodge); dogtooth here are described as some of the most intact tuna stocks on Earth and are a primary fly fishing draw."
+        },
+        {
+          "name": "Mangrove Jack Deceiver",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Mangrove jack", "Spot-tail bass"],
+          "iconic_to_region": true,
+          "notes": "Medium-weight (1/0–3/0) Deceiver in red/orange or white/red for mangrove jack and spot-tail bass in the Varea, Kumabusi, and Gevala rivers; these river predators smash baitfish patterns stripped through shaded overhangs and fallen structure."
+        },
+        {
+          "name": "Clouser Deep Minnow (River)",
+          "originator": "Bob Clouser",
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Mangrove jack", "Spot-tail bass", "Coral trout"],
+          "iconic_to_region": false,
+          "notes": "Heavy Clouser in chartreuse/white or red/white for river and lagoon presentations; mangrove jack and spot-tail bass in Solomon river systems eat Clousers stripped near structure. EXISTS IN LIBRARY as 'Clouser Deep Minnow'."
+        },
+        {
+          "name": "Hollow Fleye (GT / Dogtooth)",
+          "originator": "Bob Popovics",
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Giant trevally", "Dogtooth tuna"],
+          "iconic_to_region": false,
+          "notes": "Large white/olive Hollow Fleye for GT and dogtooth tuna around Pacific seamounts and reef drop-offs; the Solomons' exceptionally pristine marine environment supports very large fish that respond to substantial baitfish profiles. EXISTS IN LIBRARY as 'Hollow Fleye'."
+        },
+        {
+          "name": "Magnetic Minnow",
+          "originator": null,
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Giant trevally", "Bluefin trevally", "Queenfish"],
+          "iconic_to_region": false,
+          "notes": "Slim-profile easy-casting GT fly; effective in the strong channel currents of Marovo Lagoon where bulkier brush flies can be hard to control. EXISTS IN LIBRARY as 'Magnetic Minnow'."
+        },
+        {
+          "name": "Popper (Big Game Crease / Pop Star)",
+          "originator": null,
+          "pattern_type": "popper",
+          "region": "Solomon Islands",
+          "target_species": ["Giant trevally", "Queenfish", "Spanish mackerel"],
+          "iconic_to_region": false,
+          "notes": "Large foam/crease-style popper for the reef-edge action around uninhabited offshore islands in the Solomons; the fishery is described as pristine enough that loud surface presentations draw GTs from distance."
+        },
+        {
+          "name": "EP Sardine / EP Baitfish",
+          "originator": "Enrico Puglisi",
+          "pattern_type": "baitfish",
+          "region": "Solomon Islands",
+          "target_species": ["Giant trevally", "Dogtooth tuna", "Spanish mackerel", "Wahoo"],
+          "iconic_to_region": false,
+          "notes": "Medium to large EP baitfish (white/olive or blue/white) for mixed-pelagic targeting at the offshore FADs and reefs of the Solomons, where a wide range of species including GTs, dogtooth tuna, and mackerel respond to quality baitfish imitations. EXISTS IN LIBRARY as 'EP Baitfish'."
+        },
+        {
+          "name": "Flashtail Whistler (Trevally / Queenfish)",
+          "originator": null,
+          "pattern_type": "streamer",
+          "region": "Solomon Islands",
+          "target_species": ["Bluefin trevally", "Bigeye trevally", "Queenfish"],
+          "iconic_to_region": false,
+          "notes": "The Flashtail Whistler is referenced in the Solomon Islands lagoon environment as an effective attractor for mixed trevally species feeding over coral heads; the rattle head triggers reaction strikes from the multiple trevally species present. EXISTS IN LIBRARY as 'Flashtail Whistler'."
+        },
+        {
+          "name": "Christmas Island Special",
+          "originator": null,
+          "pattern_type": "shrimp",
+          "region": "Solomon Islands",
+          "target_species": ["Bonefish"],
+          "iconic_to_region": false,
+          "notes": "Bonefish are present on some Solomon Islands flats (notably around Marovo Lagoon perimeter flats) though not a primary target; the Christmas Island Special in orange/pearl covers the basic bonefish need. EXISTS IN LIBRARY as 'Christmas Island Special'."
+        }
+      ]
+    }
+  ]
+}
