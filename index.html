@@ -358,6 +358,7 @@ a { color: inherit; text-decoration: none; }
       <p class="card-status">Building with love, tight lines and clear waters.</p>
       <form id="signup" class="signup-form" action="#" novalidate>
         <input type="email" name="email" placeholder="your@email.com" required aria-label="Email address" />
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <button type="submit">Notify me</button>
       </form>
     </article>
@@ -378,20 +379,59 @@ a { color: inherit; text-decoration: none; }
 </footer>
 
 <script>
-(function () {
-  var form = document.getElementById('signup');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = form.querySelector('input[type="email"]');
-    var value = (input && input.value || '').trim();
-    if (!value || value.indexOf('@') === -1) {
-      input && input.focus();
-      return;
+document.getElementById('signup').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const emailInput = form.querySelector('input[type="email"]');
+  const gotchaInput = form.querySelector('input[name="_gotcha"]');
+  const button = form.querySelector('button[type="submit"]');
+
+  const email = emailInput.value.trim();
+  const _gotcha = gotchaInput ? gotchaInput.value : '';
+
+  if (!email || !email.includes('@')) {
+    showFormError(form, 'Please enter a valid email address.');
+    return;
+  }
+
+  const originalText = button.textContent;
+  button.disabled = true;
+  button.textContent = 'Subscribing...';
+
+  try {
+    const res = await fetch('/.netlify/functions/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, _gotcha }),
+    });
+    const data = await res.json();
+
+    if (res.ok && data.ok) {
+      form.outerHTML = '<p class="signup-success">Thanks — we\'ll let you know when FishFly launches.</p>';
+    } else {
+      button.disabled = false;
+      button.textContent = originalText;
+      showFormError(form, data.message || 'Something went wrong. Please try again.');
     }
-    form.outerHTML = '<p class="signup-success">Thanks — we\'ll let you know when FishFly launches.</p>';
-  });
-})();
+  } catch (err) {
+    button.disabled = false;
+    button.textContent = originalText;
+    showFormError(form, 'Network error. Please try again.');
+  }
+});
+
+function showFormError(form, message) {
+  let errEl = form.querySelector('.signup-error');
+  if (!errEl) {
+    errEl = document.createElement('p');
+    errEl.className = 'signup-error';
+    errEl.style.color = 'var(--rust)';
+    errEl.style.fontSize = '0.88rem';
+    errEl.style.marginTop = '8px';
+    form.appendChild(errEl);
+  }
+  errEl.textContent = message;
+}
 </script>
 
 </body>

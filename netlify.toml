@@ -1,8 +1,11 @@
 # Netlify configuration for fishfly-ai
-# This is a static site for Phase 1A. Functions get added in Phase 2.
 
 [build]
   publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
 
 [[headers]]
   for = "/*"
