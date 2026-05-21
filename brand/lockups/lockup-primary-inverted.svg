@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 200" aria-label="FishFly primary lockup with tagline (dark backgrounds)">
+  <defs>
+    <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&amp;family=Inter:wght@500&amp;display=swap');</style>
+  </defs>
+  <!-- Compass mark -->
+  <g transform="translate(20, 30)">
+    <circle cx="70" cy="70" r="63" stroke="#c89668" stroke-width="4.2" fill="none"/>
+    <circle cx="70" cy="70" r="49.7" stroke="#f7f3ec" stroke-width="2.24" fill="none"/>
+    <g fill="#c89668">
+      <polygon points="70,4 63,21 70,15.4 77,21"/>
+      <polygon points="135.8,70 119,63 124.6,70 119,77"/>
+      <polygon points="70,135.8 77,119 70,124.6 63,119"/>
+      <polygon points="4.2,70 21,77 15.4,70 21,63"/>
+    </g>
+    <text x="70" y="14" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.7" font-weight="700" fill="#c89668" text-anchor="middle">N</text>
+    <text x="128" y="73" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.7" font-weight="700" fill="#c89668" text-anchor="middle">E</text>
+    <text x="70" y="137" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.7" font-weight="700" fill="#c89668" text-anchor="middle">S</text>
+    <text x="12" y="73" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="0.7" font-weight="700" fill="#c89668" text-anchor="middle">W</text>
+    <path d="M 28 94 Q 42 88 56 94 T 84 94 T 112 94" stroke="#f7f3ec" stroke-width="2.24" stroke-linecap="round" fill="none"/>
+    <g transform="translate(0,-8) translate(74,70) scale(1.2) translate(-74,-70)" stroke="#f7f3ec" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 49 70 a 3.5 3.5 0 1 1 0.07 0" stroke-width="2.8"/>
+      <path d="M 51.8 70 L 85.4 70" stroke-width="3.15"/>
+      <path d="M 85.4 70 Q 94.5 70.7 95.9 79.8 Q 94.5 88.2 84 88.9 Q 74.9 88 78.4 78.4" stroke-width="3.15"/>
+      <g stroke-width="1.26"><path d="M 57.4 60.2 L 57.4 79.8"/><path d="M 59.5 58.1 L 59.5 81.9"/><path d="M 61.6 57.4 L 61.6 82.6"/><path d="M 63.7 58.1 L 63.7 81.9"/><path d="M 65.8 60.2 L 65.8 79.8"/></g>
+      <g stroke-width="1.05" opacity="0.95"><path d="M 65.8 63.7 Q 84 60.2 100.8 58.8"/><path d="M 65.8 66.5 Q 84 63 102.2 64.4"/><path d="M 65.8 70 Q 84 67.2 100.8 71.4"/><path d="M 65.8 72.8 Q 84 70 96.6 75.6"/></g>
+      <ellipse cx="53.2" cy="70" rx="2.8" ry="1.75" stroke-width="1.75"/>
+    </g>
+  </g>
+  <!-- Wordmark -->
+  <text x="180" y="115" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="700" font-size="76" fill="#f7f3ec" letter-spacing="-0.5">fish<tspan fill="#c89668" font-weight="500">·</tspan>fly</text>
+  <!-- Tagline -->
+  <text x="184" y="148" font-family="Inter, sans-serif" font-weight="500" font-size="13" fill="#c89668" letter-spacing="3.6" text-transform="uppercase">FLY FISH. FISH SMART.</text>
+</svg>

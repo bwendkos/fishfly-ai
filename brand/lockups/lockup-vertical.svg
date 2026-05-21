@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" aria-label="FishFly vertical lockup (light backgrounds)">
+  <defs>
+    <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&amp;family=Inter:wght@500&amp;display=swap');</style>
+  </defs>
+  <g transform="translate(140, 20)">
+    <circle cx="60" cy="60" r="54" stroke="#c89668" stroke-width="3.6" fill="none"/>
+    <circle cx="60" cy="60" r="42.6" stroke="#1e3a5f" stroke-width="1.92" fill="none"/>
+    <g fill="#c89668">
+      <polygon points="60,3.6 54,18 60,13.2 66,18"/>
+      <polygon points="116.4,60 102,54 106.8,60 102,66"/>
+      <polygon points="60,116.4 66,102 60,106.8 54,102"/>
+      <polygon points="3.6,60 18,66 13.2,60 18,54"/>
+    </g>
+    <path d="M 24 80.4 Q 36 75.6 48 80.4 T 72 80.4 T 96 80.4" stroke="#1e3a5f" stroke-width="1.92" stroke-linecap="round" fill="none"/>
+    <g transform="translate(0,-7.2) translate(63.6,60) scale(1.2) translate(-63.6,-60)" stroke="#1e3a5f" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 42 60 a 3 3 0 1 1 0.06 0" stroke-width="2.4"/>
+      <path d="M 44.4 60 L 73.2 60" stroke-width="2.7"/>
+      <path d="M 73.2 60 Q 81 60.6 82.2 68.4 Q 81 75.6 72 76.2 Q 64.2 75.4 67.2 67.2" stroke-width="2.7"/>
+    </g>
+  </g>
+  <text x="200" y="220" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="700" font-size="64" fill="#1e3a5f" text-anchor="middle" letter-spacing="-0.5">fish<tspan fill="#c89668" font-weight="500">·</tspan>fly</text>
+  <text x="200" y="260" font-family="Inter, sans-serif" font-weight="500" font-size="12" fill="#c89668" text-anchor="middle" letter-spacing="3.4">FLY FISH. FISH SMART.</text>
+</svg>
