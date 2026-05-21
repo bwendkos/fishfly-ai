@@ -8,8 +8,8 @@ from pathlib import Path
 
 import os
 
-RESEARCH_DIR = Path("/home/vercel-sandbox/workspace/research")
-OUTPUT_FILE = Path(os.environ.get("OUTPUT_FILE", "/home/vercel-sandbox/workspace/fly_library.html"))
+RESEARCH_DIR = Path("data")
+OUTPUT_FILE = Path(os.environ.get("OUTPUT_FILE", "library/index.html"))
 SOURCE_FILE = os.environ.get("SOURCE_FILE")  # If set, overrides default source resolution
 
 # Region intro blurbs (brief species/destination context)
@@ -419,7 +419,8 @@ def build_html(embedded_data: str, n_patterns: int, n_cards: int, n_regions: int
 <title>The Saltwater Fly Library — A Comprehensive Reference by Destination</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/brand/marks/compass-filled-disc.svg">
 <style>
 * {{ box-sizing: border-box; margin: 0; padding: 0; }}
 
@@ -937,6 +938,75 @@ main {{
 }}
 
 /* --- FOOTER --- */
+/* === NAV (Tier 1B, added by patch_library_nav.py) === */
+.nav {{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 243, 236, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule, #d8d2c4);
+}}
+.nav-inner {{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}}
+.brand {{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text, #1a1f2e);
+  text-decoration: none;
+}}
+.brand-mark {{ width: 44px; height: 44px; display: block; }}
+.brand-name {{
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.85rem;
+  letter-spacing: -0.005em;
+  color: var(--accent, #1e3a5f);
+}}
+.brand-name .dot {{
+  color: var(--sand, #c89668);
+  font-weight: 500;
+  padding: 0 0.08em;
+}}
+.nav-links {{
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}}
+.nav-links a {{
+  font-family: "Inter", -apple-system, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-soft, #4a5568);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}}
+.nav-links a:hover {{ color: var(--accent, #1e3a5f); }}
+.nav-links a.cta {{
+  color: var(--accent, #1e3a5f);
+  border-bottom: 1px solid var(--accent-soft, #2a4d7a);
+  padding-bottom: 2px;
+}}
+.nav-links a.active {{
+  color: var(--accent, #1e3a5f);
+  font-weight: 600;
+}}
+@media (max-width: 560px) {{
+  .nav-links {{ gap: 16px; }}
+  .nav-links a {{ font-size: 0.84rem; }}
+  .brand-name {{ display: none; }}
+}}
+
 footer {{
   border-top: 1px solid var(--rule);
   padding: 48px 4vw 64px;
@@ -976,6 +1046,45 @@ footer {{
 <body>
 
 <!-- HERO -->
+<!-- Sticky nav header (Tier 1B) -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/" aria-label="FishFly home">
+      <svg class="brand-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="FishFly logo">
+        <circle cx="100" cy="100" r="90" stroke="#c89668" stroke-width="6" fill="none"/>
+        <circle cx="100" cy="100" r="71" stroke="#1e3a5f" stroke-width="3.2" fill="none"/>
+        <g fill="#c89668">
+          <polygon points="100,6 90,30 100,22 110,30"/>
+          <polygon points="194,100 170,90 178,100 170,110"/>
+          <polygon points="100,194 110,170 100,178 90,170"/>
+          <polygon points="6,100 30,110 22,100 30,90"/>
+        </g>
+        <text x="100" y="20" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">N</text>
+        <text x="183" y="104" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">E</text>
+        <text x="100" y="195" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">S</text>
+        <text x="17" y="104" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1" font-weight="700" fill="#c89668" text-anchor="middle">W</text>
+        <path d="M 40 134 Q 60 126 80 134 T 120 134 T 160 134" stroke="#1e3a5f" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+        <g transform="translate(0,-12) translate(106,100) scale(1.2) translate(-106,-100)" stroke="#1e3a5f" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 70 100 a 5 5 0 1 1 0.1 0" stroke-width="4"/>
+          <path d="M 74 100 L 122 100" stroke-width="4.5"/>
+          <path d="M 122 100 Q 135 101 137 114 Q 135 126 120 127 Q 107 125 112 112" stroke-width="4.5"/>
+          <g stroke-width="1.8"><path d="M 82 86 L 82 114"/><path d="M 85 83 L 85 117"/><path d="M 88 82 L 88 118"/><path d="M 91 83 L 91 117"/><path d="M 94 86 L 94 114"/></g>
+          <g stroke-width="1.5" opacity="0.95"><path d="M 94 91 Q 120 86 144 84"/><path d="M 94 95 Q 120 90 146 92"/><path d="M 94 100 Q 120 96 144 102"/><path d="M 94 104 Q 120 100 138 108"/></g>
+          <ellipse cx="76" cy="100" rx="4" ry="2.5" stroke-width="2.5"/>
+        </g>
+      </svg>
+      <span class="brand-name">fish<span class="dot">&middot;</span>fly</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/library/" class="active">Library</a>
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+      <a class="cta" href="/#signup">Sign-up</a>
+    </nav>
+  </div>
+</header>
+
 <header class="hero">
   <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="The Saltwater Fly Library logo">
     <circle cx="100" cy="100" r="92" stroke="#c89668" stroke-width="4" fill="none"/>
@@ -1057,6 +1166,13 @@ footer {{
   </div>
   <div class="footer-title" style="margin-top: 32px;">"Match the bait, mind the tide, mind the wind."</div>
   <div class="footer-meta">{n_patterns} unique patterns · {n_regions} destinations · {n_cards} regional cards</div>
+  <div class="footer-meta" style="margin-top: 18px;">
+    <a href="/" style="color:inherit;text-decoration:none;margin:0 6px;">Home</a> ·
+    <a href="/library/" style="color:inherit;text-decoration:none;margin:0 6px;">Library</a> ·
+    <a href="/about/" style="color:inherit;text-decoration:none;margin:0 6px;">About</a> ·
+    <a href="/blog/" style="color:inherit;text-decoration:none;margin:0 6px;">Blog</a> ·
+    <a href="/#signup" style="color:inherit;text-decoration:none;margin:0 6px;">Sign-up</a>
+  </div>
 </footer>
 
 <script>
