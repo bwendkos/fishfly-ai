@@ -1,0 +1,33 @@
+{{!< default}}
+{{!-- Static page (e.g., /about/ inside the blog). Mirrors post.hbs without
+     the meta/author byline and the subscribe nudge. --}}
+
+{{#post}}
+<article class="article-frame">
+
+  <header class="article">
+    <div class="article-header">
+      <h1 class="article-title serif">{{title}}</h1>
+      {{#if custom_excerpt}}
+        <p class="article-subtitle serif">{{custom_excerpt}}</p>
+      {{/if}}
+      <div class="article-rule"></div>
+    </div>
+  </header>
+
+  {{#if feature_image}}
+    <figure class="article-feature">
+      <img src="{{img_url feature_image size="l"}}"
+           alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+      {{#if feature_image_caption}}
+        <figcaption class="article-feature-caption">{{{feature_image_caption}}}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}}
+
+  <div class="article-body">
+    {{content}}
+  </div>
+
+</article>
+{{/post}}

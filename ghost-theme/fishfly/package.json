@@ -1,0 +1,40 @@
+{
+  "name": "fishfly",
+  "description": "Custom Ghost theme for FishFly — editorial reading experience matching fishfly.ai brand.",
+  "version": "1.0.0",
+  "engines": {
+    "ghost": ">=5.0.0",
+    "ghost-api": "v5"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "FishFly",
+    "email": "wendkos@me.com",
+    "url": "https://fishfly.ai"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "fishfly",
+    "editorial"
+  ],
+  "config": {
+    "posts_per_page": 12,
+    "image_sizes": {
+      "xs": { "width": 300 },
+      "s":  { "width": 600 },
+      "m":  { "width": 1000 },
+      "l":  { "width": 1600 },
+      "xl": { "width": 2000 }
+    },
+    "card_assets": {
+      "exclude": ["bookmark", "products"]
+    },
+    "custom": {
+      "show_publication_cover": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
+}

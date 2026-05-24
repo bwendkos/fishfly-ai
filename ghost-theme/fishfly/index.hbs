@@ -1,0 +1,19 @@
+{{!< default}}
+{{!-- Home / post listing — "Field Notes". --}}
+
+<section class="index-header">
+  <div class="index-eyebrow">{{@site.title}} Field Notes</div>
+  <h1 class="index-title serif">Field Notes.</h1>
+  {{#if @site.description}}
+    <p class="index-subtitle serif">{{@site.description}}</p>
+  {{/if}}
+  <div class="index-rule"></div>
+</section>
+
+<section class="post-grid">
+  {{#foreach posts}}
+    {{> "post-card"}}
+  {{/foreach}}
+</section>
+
+{{> "pagination"}}

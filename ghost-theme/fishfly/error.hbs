@@ -1,0 +1,18 @@
+{{!< default}}
+{{!-- 404 / generic error. Ghost passes statusCode as a number, so the
+     copy is written for 404 (the dominant case) and falls back gracefully
+     to the Ghost-provided message line for anything else. --}}
+
+<section class="error-page">
+  <div class="error-code">Error {{statusCode}}</div>
+  <h1 class="error-title serif">That page slipped the net.</h1>
+  <p class="error-message">
+    {{#if message}}
+      {{message}}.
+    {{else}}
+      We couldn't find what you were looking for.
+    {{/if}}
+    Head back to the field notes.
+  </p>
+  <a class="error-back" href="{{@site.url}}/">‹ Back to Field Notes</a>
+</section>

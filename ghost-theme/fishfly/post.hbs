@@ -1,0 +1,60 @@
+{{!< default}}
+{{!-- Single article view — reading-tuned. --}}
+
+{{#post}}
+<article class="article-frame">
+
+  <header class="article">
+    <div class="article-header">
+      {{#if primary_tag}}
+        <div class="article-eyebrow">{{primary_tag.name}}</div>
+      {{/if}}
+      <h1 class="article-title serif">{{title}}</h1>
+      {{#if custom_excerpt}}
+        <p class="article-subtitle serif">{{custom_excerpt}}</p>
+      {{/if}}
+      <div class="article-meta">
+        {{#if primary_author}}{{primary_author.name}}<span class="dot">·</span>{{/if}}
+        {{date format="MMMM D, YYYY"}}
+        {{#if reading_time}}<span class="dot">·</span>{{reading_time}}{{/if}}
+      </div>
+      <div class="article-rule"></div>
+    </div>
+  </header>
+
+  {{#if feature_image}}
+    <figure class="article-feature">
+      <img src="{{img_url feature_image size="l"}}"
+           srcset="{{img_url feature_image size="m"}} 1000w, {{img_url feature_image size="l"}} 1600w, {{img_url feature_image size="xl"}} 2000w"
+           sizes="(min-width: 1200px) 1100px, 92vw"
+           alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}">
+      {{#if feature_image_caption}}
+        <figcaption class="article-feature-caption">{{{feature_image_caption}}}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}}
+
+  <div class="article-body">
+    {{content}}
+  </div>
+
+  <div class="post-end">
+    <div class="post-end-rule"></div>
+    {{#if tags}}
+      <div class="post-tags">
+        {{#foreach tags}}
+          <a href="{{url}}">{{name}}</a>
+        {{/foreach}}
+      </div>
+    {{/if}}
+  </div>
+
+</article>
+
+<aside class="subscribe-nudge">
+  <div class="subscribe-nudge-rule"></div>
+  <div class="subscribe-nudge-eyebrow">More dispatches</div>
+  <p class="subscribe-nudge-title serif">Get Field Notes by email — smarter saltwater trips, straight from the source.</p>
+  <a class="subscribe-nudge-button" href="https://fishfly.ai/#signup">Sign up</a>
+</aside>
+{{/post}}

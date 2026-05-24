@@ -1,0 +1,21 @@
+{{!< default}}
+{{!-- Tag archive — posts filed under a specific tag. --}}
+
+{{#tag}}
+<section class="index-header">
+  <div class="index-eyebrow">Tag</div>
+  <h1 class="index-title serif">{{name}}</h1>
+  {{#if description}}
+    <p class="index-subtitle serif">{{description}}</p>
+  {{/if}}
+  <div class="index-rule"></div>
+</section>
+{{/tag}}
+
+<section class="post-grid">
+  {{#foreach posts}}
+    {{> "post-card"}}
+  {{/foreach}}
+</section>
+
+{{> "pagination"}}

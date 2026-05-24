@@ -1,0 +1,9 @@
+{{!-- Site footer — chrome verbatim from fishfly.ai homepage. --}}
+<footer class="footer">
+  <div class="footer-copy">© {{date format="YYYY"}} FishFly.ai</div>
+  <div class="footer-links">
+    {{#foreach @site.navigation}}
+      <a href="{{url}}">{{label}}</a>{{#unless @last}}<span class="sep">·</span>{{/unless}}
+    {{/foreach}}
+  </div>
+</footer>
