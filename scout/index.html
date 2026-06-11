@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FishFly Trip Scout — Personalized Saltwater Fly Fishing Trip Reports</title>
+  <meta name="description" content="AI-powered trip reports for saltwater fly anglers. Tell us where, when, and what you're targeting." />
+
+  <!-- Brand fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       FishFly brand palette (locked v1.0)
+       ============================================================ */
+    :root {
+      --bg-cream: #f7f3ec;
+      --bg-oyster: #efe9df;
+      --ocean: #1e3a5f;
+      --sand: #c89668;
+      --rust: #8b3a3a;
+      --text-primary: #1a1f2e;
+      --text-soft: #4a5568;
+      --text-muted: #8b8478;
+      --rule: #d8d2c4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-cream);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 32px 16px 80px;
+    }
+    .container { max-width: 640px; margin: 0 auto; }
+
+    /* Wordmark */
+    .wordmark {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+    }
+    .wordmark .dot { color: var(--sand); margin: 0 4px; }
+    .tagline {
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 11px;
+      color: var(--sand);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin: 48px 0 12px;
+    }
+    .lede {
+      font-size: 18px;
+      color: var(--text-soft);
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+
+    form { display: flex; flex-direction: column; gap: 28px; }
+    fieldset {
+      border: 1px solid var(--rule);
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 4px;
+    }
+    legend {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--ocean);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0 8px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .field { margin-bottom: 20px; }
+    .field:last-child { margin-bottom: 0; }
+
+    input[type="text"], input[type="email"], input[type="number"], input[type="date"], select {
+      width: 100%;
+      font-family: inherit;
+      font-size: 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--text-primary);
+    }
+    input:focus, select:focus { outline: 2px solid var(--ocean); outline-offset: -1px; border-color: var(--ocean); }
+    .help { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+
+    /* Timing radio cards */
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-card {
+      display: flex;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .radio-card:hover { border-color: var(--ocean); }
+    .radio-card input[type="radio"] { margin-right: 12px; margin-top: 3px; }
+    .radio-card.selected { border-color: var(--ocean); background: var(--bg-oyster); }
+    .radio-card-label { font-weight: 600; }
+    .radio-card-help { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Species multi-select */
+    .species-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    @media (max-width: 480px) { .species-grid { grid-template-columns: 1fr; } }
+    .species-card {
+      padding: 12px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .species-card input[type="checkbox"] { margin-right: 8px; }
+    .species-card.selected { border-color: var(--ocean); background: var(--bg-oyster); }
+    .species-card.marquee { font-weight: 600; }
+
+    /* Consent checkbox */
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px;
+      background: var(--bg-oyster);
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+    .consent input[type="checkbox"] { margin-top: 3px; }
+
+    /* Submit */
+    button[type="submit"] {
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      background: var(--ocean);
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+    }
+    button[type="submit"]:hover { background: #15294a; }
+    button[type="submit"]:disabled { background: var(--text-muted); cursor: not-allowed; }
+
+    .error-banner {
+      display: none;
+      background: rgba(139, 58, 58, 0.08);
+      border-left: 4px solid var(--rust);
+      padding: 12px 16px;
+      color: var(--rust);
+      margin-bottom: 16px;
+      border-radius: 4px;
+    }
+    .error-banner.visible { display: block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wordmark">fish<span class="dot">·</span>fly</div>
+    <div class="tagline">Trip Scout</div>
+
+    <h1>Your personal trip report.</h1>
+    <p class="lede">Tell us where you're headed, when, and what you're after. We'll send you a detailed report covering flies, gear, tides, regulations, and the local intel that's worth knowing before you go.</p>
+
+    <div id="error-banner" class="error-banner"></div>
+
+    <form id="scout-form">
+      <!-- ============================================================
+           SECTION 1: WHO ARE YOU?
+           ============================================================ -->
+      <fieldset>
+        <legend>About you</legend>
+
+        <div class="field">
+          <label for="first_name">First name</label>
+          <input type="text" id="first_name" name="first_name" required maxlength="40" autocomplete="given-name" />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required maxlength="200" autocomplete="email" />
+          <div class="help">We'll send your report here. No spam.</div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================
+           SECTION 2: WHERE
+           ============================================================ -->
+      <fieldset>
+        <legend>Where</legend>
+
+        <div class="field">
+          <label for="country">Destination</label>
+          <select id="country" name="country" required>
+            <option value="">Select destination…</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Belize">Belize</option>
+            <option value="Florida Keys">Florida Keys</option>
+          </select>
+        </div>
+
+        <div class="field" id="island-field" style="display:none">
+          <label for="island">Island / Area</label>
+          <select id="island" name="island"></select>
+        </div>
+
+        <div class="field" id="area-field" style="display:none">
+          <label for="area">Specific area</label>
+          <select id="area" name="area"></select>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================
+           SECTION 3: WHEN
+           ============================================================ -->
+      <fieldset>
+        <legend>When</legend>
+
+        <div class="radio-group" id="timing-mode">
+          <label class="radio-card">
+            <input type="radio" name="timing_mode" value="exact" />
+            <div>
+              <div class="radio-card-label">I have exact dates</div>
+              <div class="radio-card-help">Best for forecasts + precise tide tables</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="timing_mode" value="month" />
+            <div>
+              <div class="radio-card-label">I know the month but haven't booked</div>
+              <div class="radio-card-help">Best for narrowing down to a best-window</div>
+            </div>
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="timing_mode" value="flexible" />
+            <div>
+              <div class="radio-card-label">I'm flexible — find me the best time</div>
+              <div class="radio-card-help">We'll recommend the optimal window across multiple months</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Conditional sub-inputs (shown based on timing_mode) -->
+        <div id="exact-dates" style="display:none; margin-top: 20px;">
+          <div class="field">
+            <label for="start_date">Start date</label>
+            <input type="date" id="start_date" name="start_date" />
+          </div>
+          <div class="field">
+            <label for="end_date">End date</label>
+            <input type="date" id="end_date" name="end_date" />
+          </div>
+        </div>
+
+        <div id="month-picker" style="display:none; margin-top: 20px;">
+          <div class="field">
+            <label for="month">Month</label>
+            <select id="month" name="month">
+              <option value="">Select…</option>
+              <option>January</option><option>February</option><option>March</option>
+              <option>April</option><option>May</option><option>June</option>
+              <option>July</option><option>August</option><option>September</option>
+              <option>October</option><option>November</option><option>December</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top: 20px;">
+          <label for="days">Trip length (days)</label>
+          <input type="number" id="days" name="days" min="1" max="21" value="5" />
+        </div>
+      </fieldset>
+
+      <!-- ============================================================
+           SECTION 4: WHAT YOU'RE TARGETING (dynamic)
+           ============================================================ -->
+      <fieldset>
+        <legend>Target species</legend>
+        <div class="help" style="margin-bottom: 12px;">
+          <span id="species-hint">Pick destination and date first — we'll show you the most relevant species.</span>
+        </div>
+        <div class="species-grid" id="species-grid">
+          <!-- Populated dynamically by JS based on destination + month -->
+        </div>
+      </fieldset>
+
+      <!-- ============================================================
+           SECTION 5: CONSENT + SUBMIT
+           ============================================================ -->
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" required />
+        <span>I'm OK with FishFly emailing me my trip report and occasional updates. <strong>Unsubscribe anytime.</strong></span>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" id="newsletter_opt_in" name="newsletter_opt_in" />
+        <span>Send me the FishFly Field Notes newsletter (1-2 emails / month). Optional.</span>
+      </label>
+
+      <button type="submit" id="submit-btn">Generate my Trip Scout report</button>
+    </form>
+  </div>
+
+  <script>
+    /* ============================================================
+       Destination cascade data
+       ============================================================ */
+    const DESTINATIONS = {
+      Bahamas: {
+        Andros: ["North Andros", "Central Andros", "South Andros"],
+        Abaco: ["Marsh Harbour", "Treasure Cay", "Cherokee Sound", "Elbow Cay"],
+        Exumas: ["Great Exuma", "Staniel Cay", "Compass Cay", "Exuma Cays"],
+        "Long Island": ["North Long Island", "South Long Island"],
+        Eleuthera: ["North Eleuthera", "Governor's Harbour", "South Eleuthera"],
+        Bimini: ["North Bimini", "South Bimini"],
+        "Grand Bahama": ["Freeport", "East End"],
+      },
+      Belize: {
+        "Ambergris Caye": ["San Pedro", "North Island", "South Island"],
+        "Turneffe Atoll": ["North Atoll", "South Atoll"],
+        Placencia: ["Placencia Village", "Seine Bight"],
+        "Glover's Reef": ["Northeast", "Southwest"],
+      },
+      "Florida Keys": {
+        Islamorada: ["Upper Matecumbe Key", "Lower Matecumbe Key", "Plantation Key", "Windley Key"],
+        Marathon: ["Boot Key", "Duck Key", "Grassy Key", "Vaca Key", "Seven Mile Bridge area"],
+        "Key West": ["Old Town", "Stock Island", "Boca Chica", "Cudjoe Key area", "Dry Tortugas (day trip)"],
+        "Other Keys": ["Key Largo", "Tavernier", "Big Pine Key", "Sugarloaf Key", "Summerland Key"],
+      },
+    };
+
+    /* ============================================================
+       Species lookup — TODO: replace with real per-destination/month
+       lookup table from lib/species-by-destination.js
+       ============================================================ */
+    const MARQUEE_SPECIES = [
+      "bonefish", "tarpon", "permit", "redfish", "snook",
+      "giant trevally", "striped bass", "false albacore", "roosterfish"
+    ];
+    const SUPPORTING_SPECIES = [
+      "jack crevalle", "speckled sea trout", "barracuda", "triggerfish",
+      "bluefish", "mahi-mahi", "tuna", "sailfish", "spanish mackerel", "milkfish"
+    ];
+
+    // Simplified MVP heuristic: show 6 species likely-popular for the destination
+    // TODO: replace with lib/species-by-destination.js lookup table
+    function pickSpeciesForDestination(country, month) {
+      if (country === "Bahamas") return ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"];
+      if (country === "Belize") return ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"];
+      if (country === "Florida Keys") return ["tarpon", "permit", "bonefish", "snook", "barracuda", "jack crevalle"];
+      return MARQUEE_SPECIES.slice(0, 6);
+    }
+
+    /* ============================================================
+       UI wiring
+       ============================================================ */
+    const $ = (id) => document.getElementById(id);
+
+    // Cascading destination dropdowns
+    $("country").addEventListener("change", (e) => {
+      const country = e.target.value;
+      const islandField = $("island-field");
+      const areaField = $("area-field");
+      const islandSelect = $("island");
+      const areaSelect = $("area");
+
+      islandSelect.innerHTML = '<option value="">Select…</option>';
+      areaSelect.innerHTML = '<option value="">Select…</option>';
+
+      if (country && DESTINATIONS[country]) {
+        const islands = Object.keys(DESTINATIONS[country]);
+        islands.forEach((i) => {
+          const opt = document.createElement("option");
+          opt.value = i;
+          opt.textContent = i;
+          islandSelect.appendChild(opt);
+        });
+        islandField.style.display = "block";
+      } else {
+        islandField.style.display = "none";
+        areaField.style.display = "none";
+      }
+      updateSpecies();
+    });
+
+    $("island").addEventListener("change", (e) => {
+      const country = $("country").value;
+      const island = e.target.value;
+      const areaField = $("area-field");
+      const areaSelect = $("area");
+      areaSelect.innerHTML = '<option value="">Select…</option>';
+
+      if (country && island && DESTINATIONS[country][island]) {
+        DESTINATIONS[country][island].forEach((a) => {
+          const opt = document.createElement("option");
+          opt.value = a;
+          opt.textContent = a;
+          areaSelect.appendChild(opt);
+        });
+        areaField.style.display = "block";
+      } else {
+        areaField.style.display = "none";
+      }
+    });
+
+    // Timing radio cards
+    document.querySelectorAll('input[name="timing_mode"]').forEach((r) => {
+      r.addEventListener("change", () => {
+        document.querySelectorAll(".radio-card").forEach((c) => c.classList.remove("selected"));
+        r.closest(".radio-card").classList.add("selected");
+        $("exact-dates").style.display = r.value === "exact" ? "block" : "none";
+        $("month-picker").style.display = r.value === "month" || r.value === "flexible" ? "block" : "none";
+        updateSpecies();
+      });
+    });
+
+    $("month").addEventListener("change", updateSpecies);
+
+    // Dynamic species dropdown
+    function updateSpecies() {
+      const country = $("country").value;
+      const month = $("month").value;
+      const grid = $("species-grid");
+      const hint = $("species-hint");
+
+      if (!country) {
+        grid.innerHTML = "";
+        hint.textContent = "Pick destination first — we'll show you the most relevant species.";
+        return;
+      }
+
+      const recommended = pickSpeciesForDestination(country, month);
+      hint.textContent = `Top species at ${country}${month ? ` in ${month}` : ""}. Pick 1-6.`;
+      grid.innerHTML = "";
+
+      recommended.forEach((species) => {
+        const isMarquee = MARQUEE_SPECIES.includes(species);
+        const label = document.createElement("label");
+        label.className = "species-card" + (isMarquee ? " marquee" : "");
+        label.innerHTML = `
+          <input type="checkbox" name="species" value="${species}" />
+          <span style="text-transform:capitalize">${species}</span>
+        `;
+        label.querySelector("input").addEventListener("change", () => {
+          label.classList.toggle("selected");
+        });
+        grid.appendChild(label);
+      });
+    }
+
+    /* ============================================================
+       Submit handler
+       ============================================================ */
+    $("scout-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = $("submit-btn");
+      const errorBanner = $("error-banner");
+      errorBanner.classList.remove("visible");
+
+      const country = $("country").value;
+      const island = $("island").value;
+      const area = $("area").value;
+      const timingMode = document.querySelector('input[name="timing_mode"]:checked')?.value;
+      const month = $("month").value;
+      const startDate = $("start_date").value;
+      const endDate = $("end_date").value;
+      const days = parseInt($("days").value, 10);
+      const species = Array.from(document.querySelectorAll('input[name="species"]:checked')).map((i) => i.value);
+
+      const payload = {
+        first_name: $("first_name").value.trim(),
+        email: $("email").value.trim(),
+        destination: { country, island: island || null, area: area || null },
+        timing: {
+          mode: timingMode,
+          month: month || null,
+          days,
+          start_date: timingMode === "exact" ? startDate : null,
+          end_date: timingMode === "exact" ? endDate : null,
+          flex_months: timingMode === "flexible" && month ? [month] : null,
+        },
+        species,
+        consent: $("consent").checked,
+        newsletter_opt_in: $("newsletter_opt_in").checked,
+      };
+
+      btn.disabled = true;
+      btn.textContent = "Submitting…";
+
+      try {
+        const res = await fetch("/scout/api/intake", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+          window.location.href = `/scout/confirmed.html?intake=${data.intake_id}`;
+        } else {
+          showError(data.error || "Something went wrong.", data.details);
+          btn.disabled = false;
+          btn.textContent = "Generate my Trip Scout report";
+        }
+      } catch (err) {
+        showError("Network error — please try again.");
+        btn.disabled = false;
+        btn.textContent = "Generate my Trip Scout report";
+      }
+    });
+
+    function showError(msg, details) {
+      const banner = $("error-banner");
+      const fullMsg = details ? `${msg}: ${details.join(", ")}` : msg;
+      banner.textContent = fullMsg;
+      banner.classList.add("visible");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
