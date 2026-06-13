@@ -35,6 +35,10 @@ export function renderReport(report, context) {
 <style>${css}</style>
 </head>
 <body>
+
+${renderNav()}
+${renderToolbar(context.reportId, context)}
+
 <div class="page">
 
   ${renderHeader(context, headerTitle, report)}
@@ -68,16 +72,58 @@ export function renderReport(report, context) {
 /* ============================================================ */
 
 function renderHeader(context, headerTitle, report) {
+  // The wordmark + Trip Scout eyebrow now live in the global nav above.
+  // This block is just the article title for the destination.
   return `
-  <div class="report-header no-print-actions">
-    <div class="wordmark">fish<span class="dot">·</span>fly</div>
-    <div class="tagline">Trip Scout</div>
+  <div class="report-header">
     <h1>${escapeHtml(headerTitle)}</h1>
     <p class="meta">
       ${context.species?.length || 0} target species · Generated ${new Date(context.generatedAt).toLocaleDateString()}
     </p>
-    <button id="print-btn" class="print-btn">Print to PDF</button>
   </div>`;
+}
+
+/* ============================================================ */
+/*  Global nav + toolbar (mirrors safety.road.voyage pattern)    */
+/*  Both hidden in print via @media print rules in render-css.   */
+/* ============================================================ */
+
+function renderNav() {
+  return `<nav class="rpt-nav" aria-label="Primary">
+  <div class="rpt-nav-inner">
+    <a href="https://fishfly.ai" class="rpt-nav-brand">
+      <span class="rpt-wordmark">fish<span class="dot">·</span>fly</span>
+      <span class="rpt-brand-tagline">Trip Scout</span>
+    </a>
+    <div class="rpt-nav-spacer"></div>
+    <div class="rpt-nav-links">
+      <a href="https://fishfly.ai/">Home</a>
+      <a href="https://fishfly.ai/library/">Library</a>
+      <a href="https://fishfly.ai/scout/">Trip Scout</a>
+      <a href="https://fishfly.ai/about/">About</a>
+      <a href="https://fishfly.ai/blog/">Blog</a>
+    </div>
+    <a href="https://fishfly.ai/scout/" class="rpt-nav-cta">Get Another Report &rarr;</a>
+  </div>
+</nav>`;
+}
+
+function renderToolbar(reportId, context) {
+  const id = escapeHtml(reportId || "preview");
+  return `<div class="rpt-toolbar">
+  <div class="rpt-toolbar-inner">
+    <div class="rpt-toolbar-left">
+      <span class="rpt-toolbar-dot">&#9679;</span>
+      <span><strong>Report ID:</strong> <code class="rpt-report-id">${id}</code></span>
+      <span class="rpt-toolbar-sep">&middot;</span>
+      <span>Saved permanently</span>
+    </div>
+    <div class="rpt-toolbar-actions">
+      <button class="rpt-tool-btn" onclick="window.print()">Download Printable PDF</button>
+      <button class="rpt-tool-btn" onclick="(function(b){navigator.clipboard?.writeText(window.location.href);b.textContent='Copied!';setTimeout(()=>{b.textContent='Copy Link';},1500);})(this)">Copy Link</button>
+    </div>
+  </div>
+</div>`;
 }
 
 function renderTripOverview(section, context) {
