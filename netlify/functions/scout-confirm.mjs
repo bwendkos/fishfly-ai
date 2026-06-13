@@ -78,7 +78,7 @@ export default async (req) => {
   }
 
   // ---- Redirect to "generating" UI ----------
-  return redirectTo(req, `/confirmed.html?intake=${intakeId}`);
+  return redirectTo(req, `/generating.html?intake=${intakeId}`);
 };
 
 /* ============================================================ */
