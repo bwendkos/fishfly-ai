@@ -48,29 +48,59 @@ function enrichOneFly(fly, species, intake) {
 
 function findBestMatch(claudeFlyName, species, destination) {
   if (!claudeFlyName || !LIBRARY_CATALOG.patterns) return null;
-  const normalized = normalize(claudeFlyName);
+  const claudeNorm = normalize(claudeFlyName);
+  const claudeTokens = tokenSet(claudeNorm);
   const speciesNorm = species?.toLowerCase().trim();
 
-  // First pass: exact name match
+  // Score every catalog pattern; return the highest-scoring one that also
+  // passes the context filter (species). Score breakdown:
+  //   100 — exact normalized name match
+  //    90 — same token set (different order)
+  //    80 — Claude's tokens are a subset of the catalog pattern's tokens
+  //         (e.g., "Clouser Minnow" -> "Clouser Deep Minnow")
+  //    70 — catalog pattern's tokens are a subset of Claude's tokens
+  //         (e.g., "EP Permit Crab" -> "EP Crab")
+  //    50 — substring match either way
+  // Ties broken by SHORTER pattern name (closer to Claude's input, less drift).
+
+  let best = null;
   for (const pattern of LIBRARY_CATALOG.patterns) {
-    if (normalize(pattern.pattern_name) === normalized) {
-      if (patternMatchesContext(pattern, speciesNorm, destination)) {
-        return pattern;
-      }
+    const pNorm = normalize(pattern.pattern_name);
+    const pTokens = tokenSet(pNorm);
+    let score = 0;
+
+    if (pNorm === claudeNorm) score = 100;
+    else if (setsEqual(pTokens, claudeTokens)) score = 90;
+    else if (isSubsetOf(claudeTokens, pTokens)) score = 80;
+    else if (isSubsetOf(pTokens, claudeTokens)) score = 70;
+    else if (pNorm.includes(claudeNorm) || claudeNorm.includes(pNorm)) score = 50;
+    else continue;
+
+    if (!patternMatchesContext(pattern, speciesNorm, destination)) continue;
+
+    if (!best || score > best.score ||
+        (score === best.score && pNorm.length < normalize(best.pattern.pattern_name).length)) {
+      best = { pattern, score };
     }
   }
 
-  // Second pass: substring match (Claude may abbreviate)
-  for (const pattern of LIBRARY_CATALOG.patterns) {
-    const patternNorm = normalize(pattern.pattern_name);
-    if (patternNorm.includes(normalized) || normalized.includes(patternNorm)) {
-      if (patternMatchesContext(pattern, speciesNorm, destination)) {
-        return pattern;
-      }
-    }
-  }
+  return best ? best.pattern : null;
+}
 
-  return null;
+function tokenSet(s) {
+  return new Set((s || "").split(" ").filter(Boolean));
+}
+
+function setsEqual(a, b) {
+  if (a.size !== b.size) return false;
+  for (const x of a) if (!b.has(x)) return false;
+  return true;
+}
+
+function isSubsetOf(small, big) {
+  if (small.size === 0 || small.size > big.size) return false;
+  for (const x of small) if (!big.has(x)) return false;
+  return true;
 }
 
 function patternMatchesContext(pattern, species, destination) {
