@@ -1,7 +1,7 @@
 {
   "name": "fishfly-ai",
   "version": "1.0.0",
-  "description": "A saltwater fly fishing resource — currently The Saltwater Fly Library, with FishFly.ai (the AI-powered personalized destination guide generator) coming in Phase 2.",
+  "description": "A saltwater fly fishing resource — The Saltwater Fly Library + FishFly Trip Scout (AI-generated trip reports at /scout).",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/bwendkos/fishfly-ai#readme",
   "dependencies": {
-    "jsonwebtoken": "^9.0.3"
+    "@anthropic-ai/sdk": "^0.35.0",
+    "@netlify/blobs": "^8.0.0",
+    "@netlify/functions": "^2.8.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "jsonwebtoken": "^9.0.3",
+    "nodemailer": "^6.9.16"
   }
 }

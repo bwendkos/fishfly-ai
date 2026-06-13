@@ -1,0 +1,166 @@
+/**
+ * POST /.netlify/functions/generate-background
+ *
+ * Netlify BACKGROUND function (note the -background suffix in filename).
+ * Returns 202 immediately, runs up to 15 minutes asynchronously.
+ *
+ * Pipeline:
+ *   1. Validate internal trigger header
+ *   2. Read intake from Blobs
+ *   3. Fetch external data (weather/tides/moon) — TODO Phase 2
+ *   4. Call Claude (lib/anthropic.js) with Tool Use forced
+ *   5. Validate against schema (handled inside generateTripReport)
+ *   6. Post-process for Library cross-links (lib/library-matcher.js)
+ *   7. Render HTML report (lib/render-report.js)
+ *   8. Store HTML + metadata in Blobs
+ *   9. Update intake with report_id
+ *  10. Send "report ready" email
+ *  11. If newsletter_opt_in, add to Ghost newsletter
+ *
+ * Idempotency: if report_id is already set on the intake, exit early.
+ */
+
+import { getIntake, setIntakeReportId, saveReport } from "../../scout-lib/storage.mjs";
+import { generateReportId } from "../../scout-lib/crypto.mjs";
+import { generateTripReport } from "../../scout-lib/anthropic.mjs";
+import { renderReport } from "../../scout-lib/render-report.mjs";
+import { enrichWithLibraryLinks } from "../../scout-lib/library-matcher.mjs";
+import { sendEmail } from "../../scout-lib/email.mjs";
+import { reportReadyEmail } from "../../scout-lib/email-templates.mjs";
+import { addNewsletterSubscriber } from "../../scout-lib/ghost.mjs";
+
+export default async (req) => {
+  // ---- Internal trigger guard ----------
+  const expectedSecret = process.env.INTERNAL_TRIGGER_SECRET;
+  if (expectedSecret) {
+    const provided = req.headers.get("x-internal-trigger");
+    if (provided !== expectedSecret) {
+      console.warn("[generate] rejected — missing or wrong internal trigger");
+      return new Response("Forbidden", { status: 403 });
+    }
+  }
+
+  let payload;
+  try {
+    payload = await req.json();
+  } catch {
+    return new Response("Bad request", { status: 400 });
+  }
+
+  const intakeId = payload.intake_id;
+  if (!intakeId) {
+    return new Response("Missing intake_id", { status: 400 });
+  }
+
+  // Fire-and-forget. Netlify tracks the promise until completion (up to 15 min).
+  await runGeneration(intakeId);
+  return new Response("", { status: 202 });
+};
+
+async function runGeneration(intakeId) {
+  const t0 = Date.now();
+  const stamp = () => ((Date.now() - t0) / 1000).toFixed(1) + "s";
+  console.log(`[generate] starting intake=${intakeId}`);
+
+  try {
+    // ---- 1. Load intake ----------
+    const intake = await getIntake(intakeId);
+    if (!intake) {
+      console.error(`[generate] intake not found: ${intakeId}`);
+      return;
+    }
+    if (intake.report_id) {
+      console.log(`[generate] already generated (${intake.report_id}), skipping`);
+      return;
+    }
+    console.log(
+      `[generate] intake loaded @ ${stamp()} — ${intake.destination?.area || intake.destination?.country} / ${(intake.species || []).join(",")}`
+    );
+
+    // ---- 2. Fetch external data (TODO Phase 2) ----------
+    // const weather = await fetchWeatherData(intake);
+    // const tides = await fetchTideData(intake);
+    // const moonSolunar = computeMoonSolunar(intake);
+
+    // ---- 3. Call Claude ----------
+    console.log(`[generate] calling Claude @ ${stamp()}`);
+    const report = await generateTripReport(intake);
+    console.log(`[generate] Claude returned valid JSON @ ${stamp()}`);
+
+    // ---- 4. Post-process for Library cross-links ----------
+    const enrichedReport = enrichWithLibraryLinks(report, intake);
+    console.log(`[generate] Library matcher run @ ${stamp()}`);
+
+    // ---- 5. Generate report ID + render HTML ----------
+    const reportId = generateReportId();
+    const baseUrl = process.env.PUBLIC_BASE_URL || "https://fishfly.ai";
+    const reportUrl = `${baseUrl}/r/${reportId}`;
+
+    const html = renderReport(enrichedReport, {
+      reportId,
+      generatedAt: new Date().toISOString(),
+      firstName: intake.first_name,
+      destination: intake.destination,
+      species: intake.species,
+    });
+    console.log(`[generate] HTML rendered @ ${stamp()} (${html.length} chars)`);
+
+    // ---- 6. Persist ----------
+    await saveReport(reportId, html, {
+      intake_id: intakeId,
+      destination: intake.destination,
+      species: intake.species,
+      owner_email: intake.email,
+      owner_first_name: intake.first_name,
+    });
+    await setIntakeReportId(intakeId, reportId);
+    console.log(`[generate] persisted reportId=${reportId} @ ${stamp()}`);
+
+    // ---- 7. Send "report ready" email ----------
+    const destStr = [
+      intake.destination.area,
+      intake.destination.island,
+      intake.destination.country,
+    ]
+      .filter(Boolean)
+      .join(" › ");
+
+    try {
+      const { subject, html: emailHtml } = reportReadyEmail({
+        firstName: intake.first_name,
+        reportUrl,
+        destination: destStr,
+        species: intake.species,
+      });
+      await sendEmail({ to: intake.email, subject, html: emailHtml });
+      console.log(`[generate] report-ready email sent @ ${stamp()}`);
+    } catch (err) {
+      console.error("[generate] report-ready email failed:", err);
+      // Don't fail the run — report is saved; admin can re-send.
+    }
+
+    // ---- 8. Optional Ghost newsletter opt-in ----------
+    if (intake.newsletter_opt_in) {
+      try {
+        await addNewsletterSubscriber({
+          email: intake.email,
+          firstName: intake.first_name,
+          labels: [
+            "source:trip-scout",
+            `destination:${intake.destination?.country?.toLowerCase()?.replace(/\s+/g, "-")}`,
+            ...(intake.species || []).map((s) => `species:${s.replace(/\s+/g, "-")}`),
+          ],
+        });
+        console.log(`[generate] ghost subscribe done @ ${stamp()}`);
+      } catch (err) {
+        console.error("[generate] ghost subscribe failed:", err);
+      }
+    }
+
+    console.log(`[generate] complete intake=${intakeId} report=${reportId} in ${stamp()}`);
+  } catch (err) {
+    console.error(`[generate] FAILED for intake=${intakeId} @ ${stamp()}:`, err?.message || err);
+    if (err?.stack) console.error(err.stack);
+    // TODO: send "we ran into an issue" email to user OR notify admin
+  }
+}

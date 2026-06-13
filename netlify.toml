@@ -1,4 +1,9 @@
 # Netlify configuration for fishfly-ai
+#
+# Hosts two products on a single site:
+#   - The Saltwater Fly Library + landing chrome (publish=".")
+#   - Trip Scout at /scout/*  (intake form, magic-link confirm,
+#     background Claude generation, persistent reports)
 
 [build]
   publish = "."
@@ -6,6 +11,14 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+  # Trip Scout functions need access to the scout-lib/ directory
+  included_files = ["scout-lib/**"]
+
+# Background function — full 15-min timeout
+[functions."scout-generate-background"]
+  timeout = 900
+
+# ---- Header policy ----
 
 [[headers]]
   for = "/*"
@@ -18,3 +31,33 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Reports are designed to be embeddable in same-origin previews; relax DENY here only.
+[[headers]]
+  for = "/scout/r/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+
+# ---- Trip Scout function routing ----
+# Rewrites (status 200) keep the user-facing URL at fishfly.ai/scout/...
+# while the function executes server-side.
+
+[[redirects]]
+  from = "/scout/api/intake"
+  to = "/.netlify/functions/scout-intake"
+  status = 200
+
+[[redirects]]
+  from = "/scout/api/confirm"
+  to = "/.netlify/functions/scout-confirm"
+  status = 200
+
+[[redirects]]
+  from = "/scout/r/*"
+  to = "/.netlify/functions/scout-report"
+  status = 200
+
+[[redirects]]
+  from = "/scout/health"
+  to = "/.netlify/functions/scout-health"
+  status = 200
