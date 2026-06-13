@@ -421,5 +421,144 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
   .fly-card { page-break-inside: avoid; }
   .library-link, .print-btn { display: none; }
 }
+
+
+/* ============================================================
+   Global nav + toolbar (mirrors safety.road.voyage)
+   ============================================================ */
+.rpt-nav {
+  background: var(--bg-cream);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 32px;
+}
+.rpt-nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.rpt-nav-brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.rpt-wordmark {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.3px;
+}
+.rpt-wordmark .dot { color: var(--sand); margin: 0 3px; }
+.rpt-brand-tagline {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 9.5px;
+  color: var(--sand);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.rpt-nav-spacer { flex: 1; }
+.rpt-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.rpt-nav-links a {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.rpt-nav-links a:hover { color: var(--ocean); }
+.rpt-nav-cta {
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 9px 16px;
+  background: var(--ocean);
+  color: #ffffff;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.rpt-nav-cta:hover { background: #2a4d7a; }
+
+/* Toolbar — below the nav, above the article. */
+.rpt-toolbar {
+  background: var(--bg-oyster);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 32px;
+}
+.rpt-toolbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.rpt-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+  color: var(--text-soft);
+}
+.rpt-toolbar-left strong { color: var(--text-primary); font-weight: 600; }
+.rpt-toolbar-dot { color: var(--sand); font-size: 10px; }
+.rpt-toolbar-sep { color: var(--text-muted); }
+.rpt-report-id {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11.5px;
+  color: var(--ocean);
+  background: rgba(30, 58, 95, 0.06);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+.rpt-toolbar-actions {
+  display: flex;
+  gap: 8px;
+}
+.rpt-tool-btn {
+  padding: 8px 14px;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.rpt-tool-btn:hover {
+  border-color: var(--ocean);
+  color: var(--ocean);
+}
+
+/* Print: nav, toolbar, and any leftover .print-btn are hidden in the printed PDF. */
+@media print {
+  .rpt-nav, .rpt-toolbar, .print-btn { display: none !important; }
+  body { background: #ffffff; }
+  .page { padding-top: 24px; }
+}
+
+/* Responsive: collapse the nav links on narrow viewports. The brand + CTA stay. */
+@media (max-width: 700px) {
+  .rpt-nav-inner { flex-wrap: wrap; row-gap: 12px; }
+  .rpt-nav-links { display: none; }
+  .rpt-toolbar-inner { flex-direction: column; align-items: flex-start; }
+}
 `;
 }
