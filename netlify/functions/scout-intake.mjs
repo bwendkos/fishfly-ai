@@ -31,33 +31,20 @@ import { confirmationEmail } from "../../scout-lib/email-templates.mjs";
 // ---- Canonical species list (marquee 9 + supporting 11 = 20 total) ----
 // TODO: lock this list with Brad before Week 1. Currently includes the 9 marquee
 // species per the May 25 conversation. Expand to full 20 once decided.
-const VALID_SPECIES = new Set([
-  // Marquee 9
-  "bonefish",
-  "tarpon",
-  "permit",
-  "redfish",
-  "snook",
-  "giant trevally",
-  "striped bass",
-  "false albacore",
-  "roosterfish",
-  // Supporting (extend this set as scope expands)
-  "jack crevalle",
-  "speckled sea trout",
-  "barracuda",
-  "triggerfish",
-  "bluefish",
-  "mahi-mahi",
-  "tuna",
-  "sailfish",
-  "spanish mackerel",
-  "milkfish",
-]);
+const VALID_SPECIES = (() => {
+  const set = new Set();
+  for (const dest of Object.values(SPECIES_BY_DESTINATION)) {
+    for (const sp of dest.January || []) {
+      set.add(sp.toLowerCase());
+    }
+  }
+  return set;
+})();
 
 // ---- Canonical destination structure ----
-// Top-level countries
-const VALID_COUNTRIES = new Set(["Bahamas", "Belize", "Florida Keys"]);
+// Sourced from the live Saltwater Fly Library: all 42 destinations covered.
+// VALID_DESTINATIONS is regenerated whenever species-by-destination.mjs changes.
+import { VALID_DESTINATIONS, SPECIES_BY_DESTINATION } from "../../scout-lib/species-by-destination.mjs";
 
 // Timing modes
 const VALID_TIMING_MODES = new Set(["exact", "month", "flexible"]);
@@ -105,14 +92,11 @@ export default async (req) => {
   if (!consent) errors.push("consent is required");
 
   // ---- Destination validation ----
-  if (!destination || typeof destination !== "object") {
+  // Destination is now a flat string (one of the 42 library regions).
+  if (!destination || typeof destination !== "string") {
     errors.push("destination is required");
-  } else {
-    if (!VALID_COUNTRIES.has(destination.country)) {
-      errors.push("destination.country is invalid");
-    }
-    // island and area are required for Bahamas/Belize, optional for Florida Keys (paths differ)
-    // TODO: add destination cascade validation per spec in BUILD_PLAN
+  } else if (!VALID_DESTINATIONS.has(destination)) {
+    errors.push(`destination '${destination}' is not a recognized library region`);
   }
 
   // ---- Timing validation ----
@@ -175,9 +159,7 @@ export default async (req) => {
   const baseUrl = process.env.PUBLIC_BASE_URL || `https://${req.headers.get("host")}`;
   const confirmationUrl = `${baseUrl}/api/confirm?token=${encodeURIComponent(token)}`;
 
-  const destStr = [destination.area, destination.island, destination.country]
-    .filter(Boolean)
-    .join(" › ");
+  const destStr = destination;
 
   try {
     const { subject, html } = confirmationEmail({

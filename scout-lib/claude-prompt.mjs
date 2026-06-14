@@ -83,6 +83,10 @@ The report will be rendered as a printable HTML page and emailed to the angler. 
 
 function formatDestination(dest) {
   if (!dest) return "(unknown)";
+  // Phase 2D: destination is now a flat string (one of the 42 library regions).
+  // Backward-compat: still accept the legacy { country, island, area } shape
+  // for old intakes already in storage.
+  if (typeof dest === "string") return dest;
   const parts = [dest.area, dest.island, dest.country].filter(Boolean);
   return parts.join(" › ");
 }
