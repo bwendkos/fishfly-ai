@@ -1,61 +1,168 @@
 /**
- * Curated lookup table: which species to show in the intake dropdown
- * for a given destination + month combination.
+ * Per-destination, per-month target species lookup for Trip Scout.
  *
- * Keys: `{slug-of-area-or-country}` — match keys produced by frontend.
- * Values: month → array of top 6 species, sorted marquee-9-first.
+ * Source: fishfly-ai/data/final_v2.json regions[].primary_species, with derived
+ * species (from patterns[].regional_usage) for regions whose primary_species is empty.
  *
- * Fallback: if no entry for (key, month), the intake form shows the
- * marquee 9 species as a safe default. The miss is logged so we can
- * fill the table.
+ * Months currently share the same species list per destination (the library doesn't
+ * yet have monthly granularity). Claude's prompt is destination-and-month-aware, so
+ * the report still discusses month-specific viability ("December tarpon are non-peak").
  *
- * MVP scope: Bahamas, Belize, Florida Keys × 12 months.
- *
- * TODO: This is a scaffold. Brad to validate the species lists per
- * destination/month with help from Claude generating first-pass picks.
+ * Regenerate via Phase 2D PR builder (push-pr6.py).
  */
 
 export const SPECIES_BY_DESTINATION = {
-  // ============================================================
-  // BAHAMAS — bonefish-dominant year-round
-  // ============================================================
-  "central-andros-bahamas": {
-    January: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    February: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    March: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    April: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    May: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    June: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    July: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    August: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    September: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    October: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    November: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
-    December: ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"],
+  "ABC Islands (Bonaire, Aruba, Curaçao)": {
+    January: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    February: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    March: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    April: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    May: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    June: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    July: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    August: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    September: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    October: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    November: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
+    December: ["bonefish", "barracuda", "jack crevalle", "permit", "tarpon", "ladyfish"],
   },
 
-  // ============================================================
-  // FLORIDA KEYS — varies seasonally (tarpon peak March-July)
-  // ============================================================
-  "seven-mile-bridge-marathon-keys": {
-    January: ["snook", "permit", "tarpon", "bonefish", "barracuda"],
-    February: ["snook", "permit", "tarpon", "bonefish", "barracuda"],
-    March: ["tarpon", "permit", "bonefish", "snook", "barracuda"],
-    April: ["tarpon", "permit", "bonefish", "snook", "barracuda"],
-    May: ["tarpon", "permit", "bonefish", "snook", "barracuda", "spanish mackerel"],
-    June: ["tarpon", "permit", "bonefish", "snook", "barracuda", "spanish mackerel"],
-    July: ["tarpon", "permit", "bonefish", "snook", "barracuda", "spanish mackerel"],
-    August: ["permit", "bonefish", "tarpon", "snook", "barracuda", "spanish mackerel"],
-    September: ["permit", "bonefish", "tarpon", "snook", "barracuda", "spanish mackerel"],
-    October: ["permit", "bonefish", "tarpon", "snook", "barracuda", "spanish mackerel"],
-    November: ["snook", "permit", "tarpon", "bonefish", "barracuda", "spanish mackerel"],
-    December: ["snook", "permit", "tarpon", "bonefish", "barracuda"],
+  "Abaco & Bahamas Out Islands (Long Island, Acklins, Crooked Island)": {
+    January: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    February: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    March: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    April: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    May: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    June: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    July: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    August: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    September: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    October: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    November: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
+    December: ["bonefish", "permit", "barracuda", "jacks", "sharks", "occasional tarpon", "mutton snapper"],
   },
 
-  // ============================================================
-  // BELIZE — flats species year-round
-  // ============================================================
-  "ambergris-caye-belize": {
+  "Ambergris Caye & Turneffe, Belize": {
+    January: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    February: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    March: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    April: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    May: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    June: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    July: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    August: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    September: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    October: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    November: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    December: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+  },
+
+  "Andros, Bahamas": {
+    January: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    February: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    March: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    April: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    May: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    June: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    July: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    August: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    September: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    October: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    November: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+    December: ["bonefish", "permit", "tarpon (baby and resident)", "barracuda", "jacks", "sharks", "mutton snapper"],
+  },
+
+  "Ascension Bay & Espíritu Santo Bay, Mexico (Yucatán)": {
+    January: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    February: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    March: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    April: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    May: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    June: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    July: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    August: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    September: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    October: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    November: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+    December: ["permit", "bonefish", "tarpon", "snook", "jack crevalle", "barracuda"],
+  },
+
+  "Australia — Cape York / Gulf of Carpentaria": {
+    January: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    February: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    March: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    April: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    May: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    June: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    July: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    August: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    September: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    October: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    November: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+    December: ["giant trevally", "queenfish", "threadfin salmon", "milkfish", "barramundi", "mangrove jack", "golden trevally", "bluefin trevally"],
+  },
+
+  "Australia — Exmouth / Ningaloo Reef": {
+    January: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    February: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    March: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    April: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    May: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    June: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    July: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    August: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    September: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    October: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    November: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+    December: ["giant trevally", "queenfish", "longtail tuna", "mahi-mahi", "bluefin trevally", "golden trevally", "Indo-Pacific permit", "Spanish mackerel", "bonefish"],
+  },
+
+  "Baja California Sur, Mexico": {
+    January: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    February: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    March: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    April: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    May: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    June: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    July: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    August: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    September: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    October: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    November: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+    December: ["roosterfish", "jack crevalle", "ladyfish", "sierra mackerel", "dorado", "striped marlin", "sailfish", "yellowfin tuna", "snook"],
+  },
+
+  "Bimini, Bahamas": {
+    January: ["bonefish", "permit", "barracuda"],
+    February: ["bonefish", "permit", "barracuda"],
+    March: ["bonefish", "permit", "barracuda"],
+    April: ["bonefish", "permit", "barracuda"],
+    May: ["bonefish", "permit", "barracuda"],
+    June: ["bonefish", "permit", "barracuda"],
+    July: ["bonefish", "permit", "barracuda"],
+    August: ["bonefish", "permit", "barracuda"],
+    September: ["bonefish", "permit", "barracuda"],
+    October: ["bonefish", "permit", "barracuda"],
+    November: ["bonefish", "permit", "barracuda"],
+    December: ["bonefish", "permit", "barracuda"],
+  },
+
+  "Biscayne Bay & Everglades, FL": {
+    January: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    February: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    March: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    April: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    May: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    June: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    July: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    August: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    September: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    October: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    November: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+    December: ["bonefish", "permit", "tarpon (juvenile/resident)", "redfish", "snook", "barracuda", "jacks", "snapper", "sharks"],
+  },
+
+  "Boca Paila & Sian Ka'an, Mexico": {
     January: ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"],
     February: ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"],
     March: ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"],
@@ -70,31 +177,536 @@ export const SPECIES_BY_DESTINATION = {
     December: ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"],
   },
 
-  // ============================================================
-  // TODO: expand for all MVP destinations
-  // Bahamas: Abaco, Exumas, Long Island, Eleuthera, Bimini, Grand Bahama
-  // Belize: Turneffe Atoll, Placencia, Glover's Reef
-  // Florida Keys: Islamorada, Marathon (other areas), Key West, Other Keys
-  // ============================================================
+  "Bocas del Toro, Panama": {
+    January: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    February: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    March: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    April: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    May: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    June: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    July: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    August: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    September: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    October: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    November: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+    December: ["Atlantic tarpon", "snook", "permit", "jack crevalle", "cubera snapper", "Spanish mackerel", "wahoo", "yellowfin tuna"],
+  },
+
+  "Cayman Islands": {
+    January: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    February: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    March: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    April: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    May: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    June: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    July: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    August: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    September: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    October: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    November: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+    December: ["bonefish", "permit", "tarpon", "barracuda", "jack crevalle", "snook"],
+  },
+
+  "Christmas Island, Kiribati": {
+    January: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    February: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    March: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    April: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    May: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    June: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    July: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    August: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    September: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    October: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    November: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+    December: ["bonefish", "giant trevally", "bluefin trevally", "golden trevally", "yellowmargin triggerfish", "milkfish", "queenfish"],
+  },
+
+  "Costa Rica Caribbean (Tortuguero / Río Colorado)": {
+    January: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    February: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    March: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    April: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    May: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    June: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    July: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    August: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    September: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    October: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    November: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+    December: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "cubera snapper", "machaca"],
+  },
+
+  "Costa Rica Pacific Coast": {
+    January: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    February: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    March: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    April: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    May: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    June: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    July: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    August: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    September: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    October: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    November: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+    December: ["Pacific sailfish", "blue marlin", "black marlin", "striped marlin", "dorado", "yellowfin tuna", "roosterfish", "jack crevalle", "cubera snapper", "Pacific snook", "tripletail"],
+  },
+
+  "Cuba — Cayo Cruz / Cayo Largo": {
+    January: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    February: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    March: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    April: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    May: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    June: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    July: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    August: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    September: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    October: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    November: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+    December: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "mutton snapper", "cubera snapper", "barracuda", "triggerfish"],
+  },
+
+  "Florida Keys (Lower & Middle Keys)": {
+    January: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    February: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    March: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    April: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    May: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    June: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    July: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    August: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    September: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    October: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    November: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+    December: ["tarpon", "permit", "bonefish", "barracuda", "sharks", "mutton snapper", "jack crevalle"],
+  },
+
+  "Gabón, West Africa": {
+    January: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    February: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    March: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    April: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    May: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    June: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    July: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    August: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    September: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    October: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    November: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+    December: ["Atlantic tarpon", "Cubera snapper", "Giant African threadfin", "Jack crevalle", "Leerfish (garrick)", "Longfin jack", "Senegal kob"],
+  },
+
+  "Georgia Lowcountry": {
+    January: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    February: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    March: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    April: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    May: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    June: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    July: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    August: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    September: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    October: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    November: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+    December: ["black drum", "jack crevalle", "redfish", "spotted seatrout"],
+  },
+
+  "Hawaii": {
+    January: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    February: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    March: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    April: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    May: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    June: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    July: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    August: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    September: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    October: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    November: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+    December: ["bonefish (oio)", "giant trevally (ulua aukea)", "bluefin trevally (omilu)", "milkfish (awa)", "barracuda (kaku)", "papio jacks", "ladyfish (awa-awa)", "threadfin (moi)"],
+  },
+
+  "Honduras (Rio Sico / Mosquitia)": {
+    January: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    February: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    March: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    April: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    May: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    June: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    July: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    August: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    September: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    October: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    November: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+    December: ["permit", "bonefish", "Atlantic tarpon", "snook", "jack crevalle", "triggerfish", "barracuda"],
+  },
+
+  "Indonesia (Raja Ampat)": {
+    January: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    February: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    March: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    April: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    May: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    June: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    July: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    August: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    September: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    October: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    November: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+    December: ["giant trevally", "mangrove jack", "dogtooth tuna", "queenfish", "bluefin trevally", "Spanish mackerel", "snapper"],
+  },
+
+  "Jardines de la Reina, Cuba": {
+    January: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    February: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    March: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    April: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    May: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    June: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    July: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    August: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    September: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    October: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    November: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+    December: ["tarpon", "permit", "bonefish", "snook", "jack crevalle", "cubera snapper", "barracuda"],
+  },
+
+  "Los Roques, Venezuela": {
+    January: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    February: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    March: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    April: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    May: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    June: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    July: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    August: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    September: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    October: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    November: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+    December: ["bonefish", "permit", "tarpon", "barracuda", "jacks", "cubera snapper", "snook", "triggerfish"],
+  },
+
+  "Louisiana Marsh": {
+    January: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    February: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    March: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    April: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    May: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    June: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    July: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    August: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    September: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    October: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    November: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+    December: ["red drum", "speckled sea trout", "black drum", "sheepshead", "jack crevalle"],
+  },
+
+  "Madagascar (Nosy Be)": {
+    January: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    February: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    March: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    April: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    May: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    June: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    July: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    August: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    September: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    October: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    November: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+    December: ["Bluefin trevally", "Brassy trevally", "Dogtooth tuna", "Giant trevally", "Indo-Pacific sailfish", "King mackerel", "Queenfish", "Wahoo"],
+  },
+
+  "Maldives": {
+    January: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    February: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    March: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    April: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    May: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    June: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    July: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    August: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    September: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    October: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    November: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+    December: ["Bluefin trevally", "Bonefish", "Dogtooth tuna", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Picasso triggerfish", "Titan triggerfish", "Triggerfish", "Yellow-margin triggerfish"],
+  },
+
+  "Mosquito Lagoon & Indian River Lagoon, FL": {
+    January: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    February: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    March: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    April: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    May: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    June: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    July: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    August: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    September: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    October: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    November: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    December: ["black drum", "jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+  },
+
+  "Mozambique (Bazaruto Archipelago)": {
+    January: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    February: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    March: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    April: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    May: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    June: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    July: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    August: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    September: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    October: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    November: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+    December: ["bluefin trevally", "bonefish", "dogtooth tuna", "dorado", "giant trevally", "kingfish", "milkfish", "queenfish", "sailfish"],
+  },
+
+  "Nicaragua (Río San Juan)": {
+    January: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    February: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    March: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    April: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    May: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    June: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    July: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    August: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    September: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    October: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    November: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+    December: ["Atlantic tarpon", "fat snook", "common snook", "jack crevalle", "machaca"],
+  },
+
+  "Oman (Hallaniyat Islands)": {
+    January: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    February: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    March: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    April: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    May: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    June: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    July: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    August: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    September: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    October: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    November: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+    December: ["bluefin trevally", "bonefish", "dorado", "giant trevally", "golden trevally", "milkfish", "permit", "queenfish"],
+  },
+
+  "Outer Banks, NC": {
+    January: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    February: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    March: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    April: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    May: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    June: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    July: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    August: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    September: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    October: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    November: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+    December: ["red drum", "striped bass", "false albacore", "Spanish mackerel", "bluefish", "bluefin tuna", "little tunny"],
+  },
+
+  "Papua New Guinea (Bismarck Archipelago)": {
+    January: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    February: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    March: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    April: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    May: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    June: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    July: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    August: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    September: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    October: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    November: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+    December: ["giant trevally", "Niugini (Papuan) black bass", "barramundi", "dogtooth tuna", "mangrove jack", "bluefin trevally", "queenfish", "threadfin salmon"],
+  },
+
+  "Rodrigues, Mauritius": {
+    January: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    February: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    March: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    April: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    May: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    June: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    July: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    August: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    September: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    October: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    November: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+    December: ["Bluefin trevally", "Bonefish", "GT", "Giant trevally", "Indo-Pacific permit", "Milkfish", "Triggerfish"],
+  },
+
+  "Seychelles (Alphonse, Astove, Cosmoledo, Providence)": {
+    January: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    February: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    March: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    April: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    May: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    June: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    July: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    August: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    September: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    October: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    November: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+    December: ["giant trevally", "bonefish", "Indo-Pacific permit", "yellowmargin triggerfish", "titan triggerfish", "milkfish", "bumphead parrotfish", "bluefin trevally", "napoleon wrasse", "golden trevally"],
+  },
+
+  "Solomon Islands": {
+    January: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    February: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    March: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    April: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    May: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    June: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    July: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    August: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    September: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    October: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    November: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+    December: ["Bigeye trevally", "Bluefin trevally", "Bonefish", "Coral trout", "Dogtooth tuna", "Giant trevally", "Mangrove jack", "Queenfish", "Spanish mackerel", "Spot-tail bass", "Wahoo"],
+  },
+
+  "South Carolina Lowcountry": {
+    January: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    February: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    March: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    April: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    May: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    June: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    July: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    August: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    September: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    October: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    November: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+    December: ["jack crevalle", "redfish", "spotted seatrout", "tarpon"],
+  },
+
+  "Sudan / Nubian Flats (Red Sea)": {
+    January: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    February: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    March: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    April: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    May: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    June: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    July: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    August: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    September: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    October: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    November: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+    December: ["bluefin trevally", "bohar snapper", "bonefish", "giant trevally", "milkfish", "queenfish", "titan triggerfish", "yellowmargin triggerfish"],
+  },
+
+  "Tampa Bay & Sanibel, FL": {
+    January: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    February: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    March: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    April: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    May: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    June: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    July: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    August: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    September: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    October: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    November: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+    December: ["jack crevalle", "juvenile tarpon", "redfish", "snook", "spotted seatrout", "tarpon"],
+  },
+
+  "Texas Gulf Coast / Laguna Madre": {
+    January: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    February: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    March: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    April: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    May: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    June: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    July: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    August: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    September: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    October: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    November: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+    December: ["red drum", "speckled sea trout", "black drum", "sheepshead", "snook", "Spanish mackerel", "jack crevalle"],
+  },
+
+  "Turks & Caicos": {
+    January: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    February: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    March: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    April: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    May: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    June: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    July: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    August: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    September: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    October: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    November: ["bonefish", "permit", "barracuda", "jack crevalle"],
+    December: ["bonefish", "permit", "barracuda", "jack crevalle"],
+  },
+
 };
 
-/**
- * Look up recommended species for a destination + month.
- * Falls back to marquee-9 if no specific entry exists.
- */
-export function pickSpecies(destinationKey, month) {
-  const entry = SPECIES_BY_DESTINATION[destinationKey];
-  if (entry && entry[month]) return entry[month];
-  // Fallback: marquee 9 (caller will show first 6)
-  return [
-    "bonefish",
-    "tarpon",
-    "permit",
-    "redfish",
-    "snook",
-    "giant trevally",
-    "striped bass",
-    "false albacore",
-    "roosterfish",
-  ];
-}
+/** Grouped destination list — used by the intake form to render <optgroup>s. */
+export const DESTINATION_GROUPS = {
+  "Caribbean & Bahamas": [
+    "Andros, Bahamas",
+    "Abaco & Bahamas Out Islands (Long Island, Acklins, Crooked Island)",
+    "Bimini, Bahamas",
+    "Turks & Caicos",
+    "Cayman Islands",
+    "ABC Islands (Bonaire, Aruba, Curaçao)",
+    "Jardines de la Reina, Cuba",
+    "Cuba — Cayo Cruz / Cayo Largo"
+  ],
+  "Florida & Gulf Coast": [
+    "Florida Keys (Lower & Middle Keys)",
+    "Biscayne Bay & Everglades, FL",
+    "Mosquito Lagoon & Indian River Lagoon, FL",
+    "Tampa Bay & Sanibel, FL",
+    "Louisiana Marsh",
+    "Texas Gulf Coast / Laguna Madre"
+  ],
+  "Atlantic Coast (US)": [
+    "Outer Banks, NC",
+    "South Carolina Lowcountry",
+    "Georgia Lowcountry"
+  ],
+  "Mexico & Central America": [
+    "Ambergris Caye & Turneffe, Belize",
+    "Boca Paila & Sian Ka'an, Mexico",
+    "Ascension Bay & Espíritu Santo Bay, Mexico (Yucatán)",
+    "Baja California Sur, Mexico",
+    "Honduras (Rio Sico / Mosquitia)",
+    "Costa Rica Pacific Coast",
+    "Costa Rica Caribbean (Tortuguero / Río Colorado)",
+    "Nicaragua (Río San Juan)",
+    "Bocas del Toro, Panama"
+  ],
+  "South America": [
+    "Los Roques, Venezuela"
+  ],
+  "Africa & Middle East": [
+    "Sudan / Nubian Flats (Red Sea)",
+    "Oman (Hallaniyat Islands)",
+    "Mozambique (Bazaruto Archipelago)",
+    "Gabón, West Africa",
+    "Seychelles (Alphonse, Astove, Cosmoledo, Providence)"
+  ],
+  "Indian Ocean": [
+    "Maldives",
+    "Rodrigues, Mauritius",
+    "Madagascar (Nosy Be)"
+  ],
+  "Indo-Pacific & Oceania": [
+    "Australia — Exmouth / Ningaloo Reef",
+    "Australia — Cape York / Gulf of Carpentaria",
+    "Papua New Guinea (Bismarck Archipelago)",
+    "Indonesia (Raja Ampat)",
+    "Solomon Islands"
+  ],
+  "Pacific": [
+    "Hawaii",
+    "Christmas Island, Kiribati"
+  ]
+};
+
+/** Flat list of all valid destination names (used for server-side validation). */
+export const VALID_DESTINATIONS = new Set(Object.keys(SPECIES_BY_DESTINATION));

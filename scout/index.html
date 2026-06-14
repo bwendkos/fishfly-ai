@@ -223,24 +223,73 @@
         <legend>Where</legend>
 
         <div class="field">
-          <label for="country">Destination</label>
-          <select id="country" name="country" required>
+          <label for="destination">Destination</label>
+          <select id="destination" name="destination" required>
             <option value="">Select destination…</option>
-            <option value="Bahamas">Bahamas</option>
-            <option value="Belize">Belize</option>
-            <option value="Florida Keys">Florida Keys</option>
+            <optgroup label="Caribbean &amp; Bahamas">
+              <option value="Andros, Bahamas">Andros, Bahamas</option>
+              <option value="Abaco &amp; Bahamas Out Islands (Long Island, Acklins, Crooked Island)">Abaco &amp; Bahamas Out Islands (Long Island, Acklins, Crooked Island)</option>
+              <option value="Bimini, Bahamas">Bimini, Bahamas</option>
+              <option value="Turks &amp; Caicos">Turks &amp; Caicos</option>
+              <option value="Cayman Islands">Cayman Islands</option>
+              <option value="ABC Islands (Bonaire, Aruba, Curaçao)">ABC Islands (Bonaire, Aruba, Curaçao)</option>
+              <option value="Jardines de la Reina, Cuba">Jardines de la Reina, Cuba</option>
+              <option value="Cuba — Cayo Cruz / Cayo Largo">Cuba — Cayo Cruz / Cayo Largo</option>
+            </optgroup>
+            <optgroup label="Florida &amp; Gulf Coast">
+              <option value="Florida Keys (Lower &amp; Middle Keys)">Florida Keys (Lower &amp; Middle Keys)</option>
+              <option value="Biscayne Bay &amp; Everglades, FL">Biscayne Bay &amp; Everglades, FL</option>
+              <option value="Mosquito Lagoon &amp; Indian River Lagoon, FL">Mosquito Lagoon &amp; Indian River Lagoon, FL</option>
+              <option value="Tampa Bay &amp; Sanibel, FL">Tampa Bay &amp; Sanibel, FL</option>
+              <option value="Louisiana Marsh">Louisiana Marsh</option>
+              <option value="Texas Gulf Coast / Laguna Madre">Texas Gulf Coast / Laguna Madre</option>
+            </optgroup>
+            <optgroup label="Atlantic Coast (US)">
+              <option value="Outer Banks, NC">Outer Banks, NC</option>
+              <option value="South Carolina Lowcountry">South Carolina Lowcountry</option>
+              <option value="Georgia Lowcountry">Georgia Lowcountry</option>
+            </optgroup>
+            <optgroup label="Mexico &amp; Central America">
+              <option value="Ambergris Caye &amp; Turneffe, Belize">Ambergris Caye &amp; Turneffe, Belize</option>
+              <option value="Boca Paila &amp; Sian Ka'an, Mexico">Boca Paila &amp; Sian Ka'an, Mexico</option>
+              <option value="Ascension Bay &amp; Espíritu Santo Bay, Mexico (Yucatán)">Ascension Bay &amp; Espíritu Santo Bay, Mexico (Yucatán)</option>
+              <option value="Baja California Sur, Mexico">Baja California Sur, Mexico</option>
+              <option value="Honduras (Rio Sico / Mosquitia)">Honduras (Rio Sico / Mosquitia)</option>
+              <option value="Costa Rica Pacific Coast">Costa Rica Pacific Coast</option>
+              <option value="Costa Rica Caribbean (Tortuguero / Río Colorado)">Costa Rica Caribbean (Tortuguero / Río Colorado)</option>
+              <option value="Nicaragua (Río San Juan)">Nicaragua (Río San Juan)</option>
+              <option value="Bocas del Toro, Panama">Bocas del Toro, Panama</option>
+            </optgroup>
+            <optgroup label="South America">
+              <option value="Los Roques, Venezuela">Los Roques, Venezuela</option>
+            </optgroup>
+            <optgroup label="Africa &amp; Middle East">
+              <option value="Sudan / Nubian Flats (Red Sea)">Sudan / Nubian Flats (Red Sea)</option>
+              <option value="Oman (Hallaniyat Islands)">Oman (Hallaniyat Islands)</option>
+              <option value="Mozambique (Bazaruto Archipelago)">Mozambique (Bazaruto Archipelago)</option>
+              <option value="Gabón, West Africa">Gabón, West Africa</option>
+              <option value="Seychelles (Alphonse, Astove, Cosmoledo, Providence)">Seychelles (Alphonse, Astove, Cosmoledo, Providence)</option>
+            </optgroup>
+            <optgroup label="Indian Ocean">
+              <option value="Maldives">Maldives</option>
+              <option value="Rodrigues, Mauritius">Rodrigues, Mauritius</option>
+              <option value="Madagascar (Nosy Be)">Madagascar (Nosy Be)</option>
+            </optgroup>
+            <optgroup label="Indo-Pacific &amp; Oceania">
+              <option value="Australia — Exmouth / Ningaloo Reef">Australia — Exmouth / Ningaloo Reef</option>
+              <option value="Australia — Cape York / Gulf of Carpentaria">Australia — Cape York / Gulf of Carpentaria</option>
+              <option value="Papua New Guinea (Bismarck Archipelago)">Papua New Guinea (Bismarck Archipelago)</option>
+              <option value="Indonesia (Raja Ampat)">Indonesia (Raja Ampat)</option>
+              <option value="Solomon Islands">Solomon Islands</option>
+            </optgroup>
+            <optgroup label="Pacific">
+              <option value="Hawaii">Hawaii</option>
+              <option value="Christmas Island, Kiribati">Christmas Island, Kiribati</option>
+            </optgroup>
           </select>
         </div>
 
-        <div class="field" id="island-field" style="display:none">
-          <label for="island">Island / Area</label>
-          <select id="island" name="island"></select>
-        </div>
-
-        <div class="field" id="area-field" style="display:none">
-          <label for="area">Specific area</label>
-          <select id="area" name="area"></select>
-        </div>
+        <!-- island and area fields removed in Phase 2D - destinations are now flat library regions -->
       </fieldset>
 
       <!-- ============================================================
@@ -336,52 +385,408 @@
 
   <script>
     /* ============================================================
-       Destination cascade data
+       Destination + species lookup
+       Source: scout-lib/species-by-destination.mjs (regenerate together)
+       42 library destinations; species are the same across months per
+       destination right now (the library doesn't have month-by-month
+       granularity yet — Claude's prompt handles seasonal nuance).
        ============================================================ */
-    const DESTINATIONS = {
-      Bahamas: {
-        Andros: ["North Andros", "Central Andros", "South Andros"],
-        Abaco: ["Marsh Harbour", "Treasure Cay", "Cherokee Sound", "Elbow Cay"],
-        Exumas: ["Great Exuma", "Staniel Cay", "Compass Cay", "Exuma Cays"],
-        "Long Island": ["North Long Island", "South Long Island"],
-        Eleuthera: ["North Eleuthera", "Governor's Harbour", "South Eleuthera"],
-        Bimini: ["North Bimini", "South Bimini"],
-        "Grand Bahama": ["Freeport", "East End"],
-      },
-      Belize: {
-        "Ambergris Caye": ["San Pedro", "North Island", "South Island"],
-        "Turneffe Atoll": ["North Atoll", "South Atoll"],
-        Placencia: ["Placencia Village", "Seine Bight"],
-        "Glover's Reef": ["Northeast", "Southwest"],
-      },
-      "Florida Keys": {
-        Islamorada: ["Upper Matecumbe Key", "Lower Matecumbe Key", "Plantation Key", "Windley Key"],
-        Marathon: ["Boot Key", "Duck Key", "Grassy Key", "Vaca Key", "Seven Mile Bridge area"],
-        "Key West": ["Old Town", "Stock Island", "Boca Chica", "Cudjoe Key area", "Dry Tortugas (day trip)"],
-        "Other Keys": ["Key Largo", "Tavernier", "Big Pine Key", "Sugarloaf Key", "Summerland Key"],
-      },
-    };
+    const SPECIES_BY_DESTINATION = {
+    "Andros, Bahamas": [
+        "bonefish",
+        "permit",
+        "tarpon (baby and resident)",
+        "barracuda",
+        "jacks",
+        "sharks",
+        "mutton snapper"
+    ],
+    "Abaco & Bahamas Out Islands (Long Island, Acklins, Crooked Island)": [
+        "bonefish",
+        "permit",
+        "barracuda",
+        "jacks",
+        "sharks",
+        "occasional tarpon",
+        "mutton snapper"
+    ],
+    "Florida Keys (Lower & Middle Keys)": [
+        "tarpon",
+        "permit",
+        "bonefish",
+        "barracuda",
+        "sharks",
+        "mutton snapper",
+        "jack crevalle"
+    ],
+    "Biscayne Bay & Everglades, FL": [
+        "bonefish",
+        "permit",
+        "tarpon (juvenile/resident)",
+        "redfish",
+        "snook",
+        "barracuda",
+        "jacks",
+        "snapper",
+        "sharks"
+    ],
+    "Ambergris Caye & Turneffe, Belize": [
+        "permit",
+        "bonefish",
+        "tarpon",
+        "snook",
+        "jack crevalle",
+        "barracuda"
+    ],
+    "Ascension Bay & Espíritu Santo Bay, Mexico (Yucatán)": [
+        "permit",
+        "bonefish",
+        "tarpon",
+        "snook",
+        "jack crevalle",
+        "barracuda"
+    ],
+    "Jardines de la Reina, Cuba": [
+        "tarpon",
+        "permit",
+        "bonefish",
+        "snook",
+        "jack crevalle",
+        "cubera snapper",
+        "barracuda"
+    ],
+    "Christmas Island, Kiribati": [
+        "bonefish",
+        "giant trevally",
+        "bluefin trevally",
+        "golden trevally",
+        "yellowmargin triggerfish",
+        "milkfish",
+        "queenfish"
+    ],
+    "Seychelles (Alphonse, Astove, Cosmoledo, Providence)": [
+        "giant trevally",
+        "bonefish",
+        "Indo-Pacific permit",
+        "yellowmargin triggerfish",
+        "titan triggerfish",
+        "milkfish",
+        "bumphead parrotfish",
+        "bluefin trevally",
+        "napoleon wrasse",
+        "golden trevally"
+    ],
+    "Outer Banks, NC": [
+        "red drum",
+        "striped bass",
+        "false albacore",
+        "Spanish mackerel",
+        "bluefish",
+        "bluefin tuna",
+        "little tunny"
+    ],
+    "Louisiana Marsh": [
+        "red drum",
+        "speckled sea trout",
+        "black drum",
+        "sheepshead",
+        "jack crevalle"
+    ],
+    "Texas Gulf Coast / Laguna Madre": [
+        "red drum",
+        "speckled sea trout",
+        "black drum",
+        "sheepshead",
+        "snook",
+        "Spanish mackerel",
+        "jack crevalle"
+    ],
+    "Baja California Sur, Mexico": [
+        "roosterfish",
+        "jack crevalle",
+        "ladyfish",
+        "sierra mackerel",
+        "dorado",
+        "striped marlin",
+        "sailfish",
+        "yellowfin tuna",
+        "snook"
+    ],
+    "Hawaii": [
+        "bonefish (oio)",
+        "giant trevally (ulua aukea)",
+        "bluefin trevally (omilu)",
+        "milkfish (awa)",
+        "barracuda (kaku)",
+        "papio jacks",
+        "ladyfish (awa-awa)",
+        "threadfin (moi)"
+    ],
+    "Costa Rica Pacific Coast": [
+        "Pacific sailfish",
+        "blue marlin",
+        "black marlin",
+        "striped marlin",
+        "dorado",
+        "yellowfin tuna",
+        "roosterfish",
+        "jack crevalle",
+        "cubera snapper",
+        "Pacific snook",
+        "tripletail"
+    ],
+    "Los Roques, Venezuela": [
+        "bonefish",
+        "permit",
+        "tarpon",
+        "barracuda",
+        "jacks",
+        "cubera snapper",
+        "snook",
+        "triggerfish"
+    ],
+    "Sudan / Nubian Flats (Red Sea)": [
+        "bluefin trevally",
+        "bohar snapper",
+        "bonefish",
+        "giant trevally",
+        "milkfish",
+        "queenfish",
+        "titan triggerfish",
+        "yellowmargin triggerfish"
+    ],
+    "Oman (Hallaniyat Islands)": [
+        "bluefin trevally",
+        "bonefish",
+        "dorado",
+        "giant trevally",
+        "golden trevally",
+        "milkfish",
+        "permit",
+        "queenfish"
+    ],
+    "Mozambique (Bazaruto Archipelago)": [
+        "bluefin trevally",
+        "bonefish",
+        "dogtooth tuna",
+        "dorado",
+        "giant trevally",
+        "kingfish",
+        "milkfish",
+        "queenfish",
+        "sailfish"
+    ],
+    "Australia — Exmouth / Ningaloo Reef": [
+        "giant trevally",
+        "queenfish",
+        "longtail tuna",
+        "mahi-mahi",
+        "bluefin trevally",
+        "golden trevally",
+        "Indo-Pacific permit",
+        "Spanish mackerel",
+        "bonefish"
+    ],
+    "Australia — Cape York / Gulf of Carpentaria": [
+        "giant trevally",
+        "queenfish",
+        "threadfin salmon",
+        "milkfish",
+        "barramundi",
+        "mangrove jack",
+        "golden trevally",
+        "bluefin trevally"
+    ],
+    "Papua New Guinea (Bismarck Archipelago)": [
+        "giant trevally",
+        "Niugini (Papuan) black bass",
+        "barramundi",
+        "dogtooth tuna",
+        "mangrove jack",
+        "bluefin trevally",
+        "queenfish",
+        "threadfin salmon"
+    ],
+    "Indonesia (Raja Ampat)": [
+        "giant trevally",
+        "mangrove jack",
+        "dogtooth tuna",
+        "queenfish",
+        "bluefin trevally",
+        "Spanish mackerel",
+        "snapper"
+    ],
+    "Bimini, Bahamas": [
+        "bonefish",
+        "permit",
+        "barracuda"
+    ],
+    "Turks & Caicos": [
+        "bonefish",
+        "permit",
+        "barracuda",
+        "jack crevalle"
+    ],
+    "Cayman Islands": [
+        "bonefish",
+        "permit",
+        "tarpon",
+        "barracuda",
+        "jack crevalle",
+        "snook"
+    ],
+    "ABC Islands (Bonaire, Aruba, Curaçao)": [
+        "bonefish",
+        "barracuda",
+        "jack crevalle",
+        "permit",
+        "tarpon",
+        "ladyfish"
+    ],
+    "Boca Paila & Sian Ka'an, Mexico": [
+        "bonefish",
+        "permit",
+        "tarpon",
+        "snook",
+        "barracuda",
+        "jack crevalle"
+    ],
+    "Costa Rica Caribbean (Tortuguero / Río Colorado)": [
+        "Atlantic tarpon",
+        "fat snook",
+        "common snook",
+        "jack crevalle",
+        "cubera snapper",
+        "machaca"
+    ],
+    "Nicaragua (Río San Juan)": [
+        "Atlantic tarpon",
+        "fat snook",
+        "common snook",
+        "jack crevalle",
+        "machaca"
+    ],
+    "Honduras (Rio Sico / Mosquitia)": [
+        "permit",
+        "bonefish",
+        "Atlantic tarpon",
+        "snook",
+        "jack crevalle",
+        "triggerfish",
+        "barracuda"
+    ],
+    "Bocas del Toro, Panama": [
+        "Atlantic tarpon",
+        "snook",
+        "permit",
+        "jack crevalle",
+        "cubera snapper",
+        "Spanish mackerel",
+        "wahoo",
+        "yellowfin tuna"
+    ],
+    "Cuba — Cayo Cruz / Cayo Largo": [
+        "permit",
+        "bonefish",
+        "Atlantic tarpon",
+        "snook",
+        "jack crevalle",
+        "mutton snapper",
+        "cubera snapper",
+        "barracuda",
+        "triggerfish"
+    ],
+    "Gabón, West Africa": [
+        "Atlantic tarpon",
+        "Cubera snapper",
+        "Giant African threadfin",
+        "Jack crevalle",
+        "Leerfish (garrick)",
+        "Longfin jack",
+        "Senegal kob"
+    ],
+    "Maldives": [
+        "Bluefin trevally",
+        "Bonefish",
+        "Dogtooth tuna",
+        "Giant trevally",
+        "Indo-Pacific permit",
+        "Milkfish",
+        "Picasso triggerfish",
+        "Titan triggerfish",
+        "Triggerfish",
+        "Yellow-margin triggerfish"
+    ],
+    "Rodrigues, Mauritius": [
+        "Bluefin trevally",
+        "Bonefish",
+        "GT",
+        "Giant trevally",
+        "Indo-Pacific permit",
+        "Milkfish",
+        "Triggerfish"
+    ],
+    "Madagascar (Nosy Be)": [
+        "Bluefin trevally",
+        "Brassy trevally",
+        "Dogtooth tuna",
+        "Giant trevally",
+        "Indo-Pacific sailfish",
+        "King mackerel",
+        "Queenfish",
+        "Wahoo"
+    ],
+    "Solomon Islands": [
+        "Bigeye trevally",
+        "Bluefin trevally",
+        "Bonefish",
+        "Coral trout",
+        "Dogtooth tuna",
+        "Giant trevally",
+        "Mangrove jack",
+        "Queenfish",
+        "Spanish mackerel",
+        "Spot-tail bass",
+        "Wahoo"
+    ],
+    "Mosquito Lagoon & Indian River Lagoon, FL": [
+        "black drum",
+        "jack crevalle",
+        "juvenile tarpon",
+        "redfish",
+        "snook",
+        "spotted seatrout",
+        "tarpon"
+    ],
+    "South Carolina Lowcountry": [
+        "jack crevalle",
+        "redfish",
+        "spotted seatrout",
+        "tarpon"
+    ],
+    "Georgia Lowcountry": [
+        "black drum",
+        "jack crevalle",
+        "redfish",
+        "spotted seatrout"
+    ],
+    "Tampa Bay & Sanibel, FL": [
+        "jack crevalle",
+        "juvenile tarpon",
+        "redfish",
+        "snook",
+        "spotted seatrout",
+        "tarpon"
+    ]
+};
 
-    /* ============================================================
-       Species lookup — TODO: replace with real per-destination/month
-       lookup table from lib/species-by-destination.js
-       ============================================================ */
     const MARQUEE_SPECIES = [
       "bonefish", "tarpon", "permit", "redfish", "snook",
-      "giant trevally", "striped bass", "false albacore", "roosterfish"
-    ];
-    const SUPPORTING_SPECIES = [
-      "jack crevalle", "speckled sea trout", "barracuda", "triggerfish",
-      "bluefish", "mahi-mahi", "tuna", "sailfish", "spanish mackerel", "milkfish"
+      "giant trevally", "GT", "roosterfish"
     ];
 
-    // Simplified MVP heuristic: show 6 species likely-popular for the destination
-    // TODO: replace with lib/species-by-destination.js lookup table
-    function pickSpeciesForDestination(country, month) {
-      if (country === "Bahamas") return ["bonefish", "tarpon", "permit", "barracuda", "jack crevalle"];
-      if (country === "Belize") return ["bonefish", "permit", "tarpon", "snook", "barracuda", "jack crevalle"];
-      if (country === "Florida Keys") return ["tarpon", "permit", "bonefish", "snook", "barracuda", "jack crevalle"];
-      return MARQUEE_SPECIES.slice(0, 6);
+    function pickSpeciesForDestination(destination) {
+      return SPECIES_BY_DESTINATION[destination] || [];
     }
 
     /* ============================================================
@@ -389,52 +794,7 @@
        ============================================================ */
     const $ = (id) => document.getElementById(id);
 
-    // Cascading destination dropdowns
-    $("country").addEventListener("change", (e) => {
-      const country = e.target.value;
-      const islandField = $("island-field");
-      const areaField = $("area-field");
-      const islandSelect = $("island");
-      const areaSelect = $("area");
-
-      islandSelect.innerHTML = '<option value="">Select…</option>';
-      areaSelect.innerHTML = '<option value="">Select…</option>';
-
-      if (country && DESTINATIONS[country]) {
-        const islands = Object.keys(DESTINATIONS[country]);
-        islands.forEach((i) => {
-          const opt = document.createElement("option");
-          opt.value = i;
-          opt.textContent = i;
-          islandSelect.appendChild(opt);
-        });
-        islandField.style.display = "block";
-      } else {
-        islandField.style.display = "none";
-        areaField.style.display = "none";
-      }
-      updateSpecies();
-    });
-
-    $("island").addEventListener("change", (e) => {
-      const country = $("country").value;
-      const island = e.target.value;
-      const areaField = $("area-field");
-      const areaSelect = $("area");
-      areaSelect.innerHTML = '<option value="">Select…</option>';
-
-      if (country && island && DESTINATIONS[country][island]) {
-        DESTINATIONS[country][island].forEach((a) => {
-          const opt = document.createElement("option");
-          opt.value = a;
-          opt.textContent = a;
-          areaSelect.appendChild(opt);
-        });
-        areaField.style.display = "block";
-      } else {
-        areaField.style.display = "none";
-      }
-    });
+    $("destination").addEventListener("change", updateSpecies);
 
     // Timing radio cards
     document.querySelectorAll('input[name="timing_mode"]').forEach((r) => {
@@ -451,23 +811,24 @@
 
     // Dynamic species dropdown
     function updateSpecies() {
-      const country = $("country").value;
+      const destination = $("destination").value;
       const month = $("month").value;
       const grid = $("species-grid");
       const hint = $("species-hint");
 
-      if (!country) {
+      if (!destination) {
         grid.innerHTML = "";
-        hint.textContent = "Pick destination first — we'll show you the most relevant species.";
+        hint.textContent = "Pick destination first - we'll show you the most relevant species.";
         return;
       }
 
-      const recommended = pickSpeciesForDestination(country, month);
-      hint.textContent = `Top species at ${country}${month ? ` in ${month}` : ""}. Pick 1-6.`;
+      const recommended = pickSpeciesForDestination(destination);
+      hint.textContent = `Top species at ${destination}${month ? ` in ${month}` : ""}. Pick 1-6.`;
       grid.innerHTML = "";
 
       recommended.forEach((species) => {
-        const isMarquee = MARQUEE_SPECIES.includes(species);
+        const lowerSp = species.toLowerCase();
+        const isMarquee = MARQUEE_SPECIES.some((m) => lowerSp === m.toLowerCase() || lowerSp.includes(m.toLowerCase()));
         const label = document.createElement("label");
         label.className = "species-card" + (isMarquee ? " marquee" : "");
         label.innerHTML = `
@@ -490,9 +851,7 @@
       const errorBanner = $("error-banner");
       errorBanner.classList.remove("visible");
 
-      const country = $("country").value;
-      const island = $("island").value;
-      const area = $("area").value;
+      const destination = $("destination").value;
       const timingMode = document.querySelector('input[name="timing_mode"]:checked')?.value;
       const month = $("month").value;
       const startDate = $("start_date").value;
@@ -503,7 +862,7 @@
       const payload = {
         first_name: $("first_name").value.trim(),
         email: $("email").value.trim(),
-        destination: { country, island: island || null, area: area || null },
+        destination: destination,
         timing: {
           mode: timingMode,
           month: month || null,
@@ -518,7 +877,7 @@
       };
 
       btn.disabled = true;
-      btn.textContent = "Submitting…";
+      btn.textContent = "Submitting...";
 
       try {
         const res = await fetch("/scout/api/intake", {
@@ -535,7 +894,7 @@
           btn.textContent = "Generate my Trip Scout report";
         }
       } catch (err) {
-        showError("Network error — please try again.");
+        showError("Network error - please try again.");
         btn.disabled = false;
         btn.textContent = "Generate my Trip Scout report";
       }
