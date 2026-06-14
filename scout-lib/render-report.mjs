@@ -18,6 +18,7 @@
  */
 
 import { getReportCss } from "./render-css.mjs";
+import { getSpeciesImageUrl } from "./species-images.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -45,7 +46,7 @@ ${renderToolbar(context.reportId, context)}
 
   ${renderTripOverview(report.trip_overview, context)}
 
-  ${renderSpeciesProfiles(report.species_profiles)}
+  ${renderSpeciesProfiles(report.species_profiles, context)}
 
   ${renderWeatherMoonTides(report.weather_moon_tides)}
 
@@ -151,16 +152,22 @@ function renderTripOverview(section, context) {
   </section>`;
 }
 
-function renderSpeciesProfiles(profiles) {
+function renderSpeciesProfiles(profiles, context) {
   if (!Array.isArray(profiles) || profiles.length === 0) return "";
   return `
   <section class="section">
     <div class="section-header"><span class="section-number">02</span><h2>Target Species</h2></div>
-    ${profiles.map(renderOneSpecies).join("")}
+    ${profiles.map((p) => renderOneSpecies(p, context)).join("")}
   </section>`;
 }
 
-function renderOneSpecies(p) {
+function renderOneSpecies(p, context) {
+  // Look up an illustration for this species; renders a banner above the headline
+  // when found. Destination context disambiguates regional variants (cubera, etc).
+  const speciesImg = getSpeciesImageUrl(p.species, context?.destination);
+  const banner = speciesImg
+    ? `<img class="species-banner" src="${escapeAttr(speciesImg)}" alt="${escapeAttr(p.species)} illustration" loading="lazy">`
+    : "";
   const flies = (p.top_flies || [])
     .map((f, i) => {
       const libraryLink = f.library_url
@@ -185,6 +192,7 @@ function renderOneSpecies(p) {
 
   return `
   <div class="species-block">
+    ${banner}
     <h3>${escapeHtml(capitalize(p.species))}</h3>
     <h4>The fish</h4>
     <p>${escapeHtml(p.the_fish)}</p>

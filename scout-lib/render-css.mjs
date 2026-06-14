@@ -560,5 +560,34 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
   .rpt-nav-links { display: none; }
   .rpt-toolbar-inner { flex-direction: column; align-items: flex-start; }
 }
+
+/* Species banner -- watercolor scientific illustration above each species
+   block. Cream background blends into the page bg seamlessly. */
+.species-banner {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  margin: 0 auto 8px;
+  background: var(--bg-cream);
+  border-bottom: 1px solid var(--rule);
+}
+
+.species-block .species-banner + h3 {
+  margin-top: 16px;
+}
+
+@media print {
+  .species-banner { break-inside: avoid; }
+}
+
+@media (max-width: 720px) {
+  .species-banner {
+    width: calc(100% + 64px);
+    max-width: none;
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+}
 `;
 }
