@@ -1,23 +1,31 @@
 /**
- * GET /health
+ * GET /scout/health
  *
- * Simple health check — confirms the function runtime is up and reports
- * which environment variables are configured (without leaking their values).
+ * Health check — confirms the function runtime is up and reports which
+ * environment variables are configured (without leaking their values).
  * Useful for post-deploy smoke tests and uptime monitoring.
+ *
+ * Env-var names match what scout-intake, scout-confirm, scout-generate-
+ * background, and the lib/* modules actually read. Drift between this
+ * list and the real env names produces misleading set:false readings.
  */
 
 export default async () => {
   const env = {
+    // External service keys
     ANTHROPIC_API_KEY: maskedStatus(process.env.ANTHROPIC_API_KEY),
-    GMAIL_SMTP_USER: maskedStatus(process.env.GMAIL_SMTP_USER),
-    GMAIL_SMTP_PASS: maskedStatus(process.env.GMAIL_SMTP_PASS),
-    SENDER_EMAIL: maskedStatus(process.env.SENDER_EMAIL),
-    NETLIFY_SIGNING_SECRET: maskedStatus(process.env.NETLIFY_SIGNING_SECRET),
-    AMAZON_AFFILIATE_TAG: maskedStatus(process.env.AMAZON_AFFILIATE_TAG),
-    GHOST_ADMIN_URL: maskedStatus(process.env.GHOST_ADMIN_URL),
-    GHOST_ADMIN_KEY: maskedStatus(process.env.GHOST_ADMIN_KEY),
-    PUBLIC_BASE_URL: maskedStatus(process.env.PUBLIC_BASE_URL),
+    GMAIL_SMTP_USER:   maskedStatus(process.env.GMAIL_SMTP_USER),
+    GMAIL_SMTP_PASS:   maskedStatus(process.env.GMAIL_SMTP_PASS),
+    EMAIL_FROM_NAME:   maskedStatus(process.env.EMAIL_FROM_NAME),
+    EMAIL_FROM_ADDRESS: maskedStatus(process.env.EMAIL_FROM_ADDRESS),
+    GHOST_API_URL:     maskedStatus(process.env.GHOST_API_URL),
+    GHOST_ADMIN_API_KEY: maskedStatus(process.env.GHOST_ADMIN_API_KEY),
+    // Internal HMAC + admin secrets
+    NETLIFY_SIGNING_SECRET:  maskedStatus(process.env.NETLIFY_SIGNING_SECRET),
+    ADMIN_KEY:               maskedStatus(process.env.ADMIN_KEY),
     INTERNAL_TRIGGER_SECRET: maskedStatus(process.env.INTERNAL_TRIGGER_SECRET),
+    // Site config
+    PUBLIC_BASE_URL: maskedStatus(process.env.PUBLIC_BASE_URL),
   };
 
   return new Response(
