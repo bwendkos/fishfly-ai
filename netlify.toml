@@ -61,3 +61,20 @@
   from = "/scout/health"
   to = "/.netlify/functions/scout-health"
   status = 200
+
+# --- Trip Scout admin (private — gated by ADMIN_KEY env var) ---
+
+[[redirects]]
+  from = "/scout/admin/intakes"
+  to = "/.netlify/functions/scout-admin-intakes"
+  status = 200
+
+[[redirects]]
+  from = "/scout/admin/intakes.json"
+  to = "/.netlify/functions/scout-admin-intakes"
+  status = 200
+
+[[redirects]]
+  from = "/scout/admin/intakes.csv"
+  to = "/.netlify/functions/scout-admin-intakes"
+  status = 200
