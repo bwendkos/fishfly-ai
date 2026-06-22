@@ -102,6 +102,7 @@ async function runGeneration(intakeId) {
       firstName: intake.first_name,
       destination: intake.destination,
       species: intake.species,
+      timing: intake.timing,  // PR #9: needed by render-moon-calendar
     });
     console.log(`[generate] HTML rendered @ ${stamp()} (${html.length} chars)`);
 
