@@ -19,6 +19,7 @@
 
 import { getReportCss } from "./render-css.mjs";
 import { getSpeciesImageUrl } from "./species-images.mjs";
+import { renderMoonCalendar } from "./render-moon-calendar.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -48,7 +49,7 @@ ${renderToolbar(context.reportId, context)}
 
   ${renderSpeciesProfiles(report.species_profiles, context)}
 
-  ${renderWeatherMoonTides(report.weather_moon_tides)}
+  ${renderWeatherMoonTides(report.weather_moon_tides, context)}
 
   ${renderPackingChecklist(report.packing_checklist)}
 
@@ -213,8 +214,10 @@ function renderOneSpecies(p, context) {
   </div>`;
 }
 
-function renderWeatherMoonTides(section) {
+function renderWeatherMoonTides(section, context) {
   if (!section) return "";
+  // PR #9: moon phase calendar above Claude's moon_summary prose
+  const moonCalendar = renderMoonCalendar(context?.timing);
   const best = section.best_dates_recommendation
     ? `
     <div class="best-dates">
@@ -232,6 +235,7 @@ function renderWeatherMoonTides(section) {
     <h3>Weather</h3>
     <p>${escapeHtml(section.weather_overview)}</p>
     <h3>Moon</h3>
+    ${moonCalendar}
     <p>${escapeHtml(section.moon_summary)}</p>
     <h3>Tides</h3>
     <p>${escapeHtml(section.tide_summary)}</p>

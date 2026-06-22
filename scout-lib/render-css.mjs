@@ -589,5 +589,83 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
     margin-right: -32px;
   }
 }
+
+/* ============================================================
+   Moon phase calendar (PR #9) — strip for exact dates, grid for month
+   ============================================================ */
+.moon-calendar {
+  margin: 24px 0 16px;
+  padding: 20px 0;
+}
+.moon-calendar-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--sand);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.moon-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 14px;
+  align-items: flex-start;
+}
+.moon-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px 8px;
+}
+.moon-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 44px;
+}
+.moon-day .moon-svg {
+  flex-shrink: 0;
+}
+.moon-day-num {
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+.moon-day-event .moon-day-num {
+  color: var(--ocean);
+  font-weight: 600;
+}
+.moon-day-event-label {
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--sand);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+.moon-summary-line {
+  font-size: 13px;
+  color: var(--text-soft);
+  margin-top: 14px;
+  line-height: 1.6;
+}
+.moon-summary-line strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .moon-strip { gap: 12px 10px; }
+  .moon-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media print {
+  .moon-calendar { break-inside: avoid; }
+}
 `;
 }
