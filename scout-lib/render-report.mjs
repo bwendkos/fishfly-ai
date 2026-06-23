@@ -34,7 +34,8 @@ export function renderReport(report, context) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FishFly Trip Scout — ${escapeHtml(headerTitle)}</title>
+<title>${escapeHtml(headerTitle)} — FishFly Trip Scout</title>
+<link rel="icon" type="image/svg+xml" href="https://fishfly.ai/brand/marks/compass-filled-disc.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -79,14 +80,64 @@ ${renderToolbar(context.reportId, context)}
 
 function renderHeader(context, headerTitle, report) {
   // The wordmark + Trip Scout eyebrow now live in the global nav above.
-  // This block is just the article title for the destination.
+  // This block is just the article title for the destination + trip-dates eyebrow.
+  const tripDates = formatTripDates(context.timing);
+  const eyebrow = tripDates
+    ? `<div class="trip-dates-eyebrow">${escapeHtml(tripDates)}</div>`
+    : "";
   return `
   <div class="report-header">
+    ${eyebrow}
     <h1>${escapeHtml(headerTitle)}</h1>
     <p class="meta">
       ${context.species?.length || 0} target species · Generated ${new Date(context.generatedAt).toLocaleDateString()}
     </p>
   </div>`;
+}
+
+/**
+ * Format the timing object as a short display string for the report header
+ * eyebrow. A user may run several intakes for the same destination over
+ * different windows; this label disambiguates them at a glance.
+ *
+ *   exact     "Dec 3–7, 2026"  (same month)
+ *             "Dec 28 – Jan 3, 2027"  (month-crossing)
+ *   month     "December · 7 days"
+ *   flexible  "Nov / Dec / Jan · 7 days"
+ *
+ * Returns null if timing is missing or malformed, in which case the renderer
+ * omits the eyebrow entirely.
+ */
+function formatTripDates(timing) {
+  if (!timing || typeof timing !== "object") return null;
+  const daysSuffix = (n) => `${n} day${n === 1 ? "" : "s"}`;
+
+  if (timing.mode === "exact" && timing.start_date && timing.end_date) {
+    // ISO date strings ("2026-12-03"). Render with UTC to avoid TZ slippage.
+    const fmt = (iso) =>
+      new Date(iso + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+    const sMon = fmt(timing.start_date);
+    const eMon = fmt(timing.end_date);
+    const sDay = Number(timing.start_date.slice(8, 10));
+    const eDay = Number(timing.end_date.slice(8, 10));
+    const yr = timing.end_date.slice(0, 4);
+    if (sMon === eMon && sDay === eDay) return `${sMon} ${sDay}, ${yr}`;
+    if (sMon === eMon) return `${sMon} ${sDay}–${eDay}, ${yr}`;
+    return `${sMon} ${sDay} – ${eMon} ${eDay}, ${yr}`;
+  }
+
+  if (timing.mode === "month" && timing.month) {
+    return `${timing.month} · ${daysSuffix(timing.days || 0)}`;
+  }
+
+  if (timing.mode === "flexible") {
+    const months = Array.isArray(timing.flex_months) && timing.flex_months.length
+      ? timing.flex_months.map((m) => m.slice(0, 3)).join(" / ")
+      : "Flexible";
+    return `${months} · ${daysSuffix(timing.days || 0)}`;
+  }
+
+  return null;
 }
 
 /* ============================================================ */
