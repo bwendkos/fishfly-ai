@@ -74,7 +74,7 @@ async function runGeneration(intakeId) {
       return;
     }
     console.log(
-      `[generate] intake loaded @ ${stamp()} — ${intake.destination?.area || intake.destination?.country} / ${(intake.species || []).join(",")}`
+      `[generate] intake loaded @ ${stamp()} — ${typeof intake.destination === "string" ? intake.destination : (intake.destination?.area || intake.destination?.country)} / ${(intake.species || []).join(",")}`
     );
 
     // ---- 2. Fetch external data (TODO Phase 2) ----------
@@ -96,14 +96,23 @@ async function runGeneration(intakeId) {
     const baseUrl = process.env.PUBLIC_BASE_URL || "https://fishfly.ai";
     const reportUrl = `${baseUrl}/r/${reportId}`;
 
-    const html = renderReport(enrichedReport, {
-      reportId,
-      generatedAt: new Date().toISOString(),
-      firstName: intake.first_name,
-      destination: intake.destination,
-      species: intake.species,
-      timing: intake.timing,  // PR #9: needed by render-moon-calendar
-    });
+    let html;
+    try {
+      html = renderReport(enrichedReport, {
+        reportId,
+        generatedAt: new Date().toISOString(),
+        firstName: intake.first_name,
+        destination: intake.destination,
+        species: intake.species,
+        timing: intake.timing,  // PR #9: needed by render-moon-calendar
+      });
+    } catch (renderErr) {
+      const errMsg = `[generate] renderReport CRASHED for intake=${intakeId}: ${renderErr?.message}`;
+      console.error(errMsg);
+      if (renderErr?.stack) console.error(renderErr.stack);
+      await persistErrorToIntake(intakeId, errMsg, renderErr?.stack);
+      throw renderErr;
+    }
     console.log(`[generate] HTML rendered @ ${stamp()} (${html.length} chars)`);
 
     // ---- 6. Persist ----------
@@ -118,13 +127,11 @@ async function runGeneration(intakeId) {
     console.log(`[generate] persisted reportId=${reportId} @ ${stamp()}`);
 
     // ---- 7. Send "report ready" email ----------
-    const destStr = [
-      intake.destination.area,
-      intake.destination.island,
-      intake.destination.country,
-    ]
-      .filter(Boolean)
-      .join(" › ");
+    const destStr = typeof intake.destination === "string"
+      ? intake.destination
+      : [intake.destination?.area, intake.destination?.island, intake.destination?.country]
+          .filter(Boolean)
+          .join(" › ");
 
     try {
       const { subject, html: emailHtml } = reportReadyEmail({
@@ -148,7 +155,7 @@ async function runGeneration(intakeId) {
           firstName: intake.first_name,
           labels: [
             "source:trip-scout",
-            `destination:${intake.destination?.country?.toLowerCase()?.replace(/\s+/g, "-")}`,
+            `destination:${(typeof intake.destination === "string" ? intake.destination : intake.destination?.country || "unknown").toLowerCase().replace(/\s+/g, "-")}`,
             ...(intake.species || []).map((s) => `species:${s.replace(/\s+/g, "-")}`),
           ],
         });
@@ -160,8 +167,35 @@ async function runGeneration(intakeId) {
 
     console.log(`[generate] complete intake=${intakeId} report=${reportId} in ${stamp()}`);
   } catch (err) {
-    console.error(`[generate] FAILED for intake=${intakeId} @ ${stamp()}:`, err?.message || err);
+    const errMsg = `[generate] FAILED for intake=${intakeId} @ ${stamp()}: ${err?.message || err}`;
+    console.error(errMsg);
     if (err?.stack) console.error(err.stack);
+    // PR #13 diagnostic: persist error to intake so admin can read it without
+    // needing Netlify Functions log UI access.
+    await persistErrorToIntake(intakeId, errMsg, err?.stack).catch(() => {});
     // TODO: send "we ran into an issue" email to user OR notify admin
+  }
+}
+
+
+
+/**
+ * PR #13: write a diagnostic error onto the intake record so it's visible
+ * in the admin endpoint without needing Netlify Functions log access.
+ */
+async function persistErrorToIntake(intakeId, message, stack) {
+  try {
+    const { getStore } = await import("@netlify/blobs");
+    const store = getStore("intake");
+    const intake = await store.get(intakeId, { type: "json" });
+    if (!intake) return;
+    intake.error_log = {
+      at: new Date().toISOString(),
+      message,
+      stack: stack || null,
+    };
+    await store.setJSON(intakeId, intake);
+  } catch (_persistErr) {
+    // Fall through silently — we already logged the original error above.
   }
 }

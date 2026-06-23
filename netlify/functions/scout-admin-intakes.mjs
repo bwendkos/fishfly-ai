@@ -160,6 +160,7 @@ function csvResponse(intakes) {
     "newsletter_opt_in",
     "report_id",
     "report_url",
+    "error_log_message",
   ];
 
   const escape = (v) => {
@@ -185,6 +186,7 @@ function csvResponse(intakes) {
       escape(i.newsletter_opt_in),
       escape(i.report_id),
       escape(i.report_url),
+      escape(i.error_log?.message || ""),
     ].join(","));
   }
 
@@ -211,6 +213,9 @@ function htmlResponse(intakes, { filterEmail, filterSince, adminKey }) {
     const reportCell = i.report_id
       ? `<a href="${escapeAttr(i.report_url)}" target="_blank" rel="noopener">${escapeHtml(i.report_id)}</a>`
       : "—";
+    const errorCell = i.error_log
+      ? `<span class="err" title="${escapeAttr((i.error_log.stack || '').slice(0, 800))}">${escapeHtml(i.error_log.message || JSON.stringify(i.error_log))}</span>`
+      : "—";
     return `
       <tr>
         <td class="mono small">${escapeHtml(dateStr)}<br><span class="dim">${escapeHtml(timeStr)}</span></td>
@@ -222,6 +227,7 @@ function htmlResponse(intakes, { filterEmail, filterSince, adminKey }) {
         <td class="center">${newsletter}</td>
         <td class="center">${confirmed}</td>
         <td class="mono small">${reportCell}</td>
+        <td class="small err">${errorCell}</td>
       </tr>`;
   }).join("");
 
@@ -335,6 +341,7 @@ function htmlResponse(intakes, { filterEmail, filterSince, adminKey }) {
     top: 0;
   }
   tr:hover td { background: var(--bg-cream); }
+  td.err, .err { color: var(--rust); font-family: "JetBrains Mono", monospace; font-size: 11.5px; max-width: 280px; word-break: break-word; }
   td.mono, .mono { font-family: "JetBrains Mono", monospace; }
   td.small, .small { font-size: 12px; }
   td.center, .center { text-align: center; }
@@ -381,6 +388,7 @@ function htmlResponse(intakes, { filterEmail, filterSince, adminKey }) {
         <th class="center">Newsletter</th>
         <th class="center">Confirmed</th>
         <th>Report</th>
+        <th>Error</th>
       </tr>
     </thead>
     <tbody>${rows}</tbody>
