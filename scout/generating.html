@@ -8,15 +8,17 @@
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-cream: #f7f3ec;
       --bg-oyster: #efe9df;
       --ocean: #1e3a5f;
       --sand: #c89668;
+      --rust: #8b3a3a;
       --text-primary: #1a1f2e;
       --text-soft: #4a5568;
+      --text-muted: #8b8478;
       --rule: #d8d2c4;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,8 +28,10 @@
       color: var(--text-primary);
       line-height: 1.6;
       padding: 80px 24px;
+      min-height: 100vh;
     }
     .container { max-width: 560px; margin: 0 auto; text-align: center; }
+
     .wordmark {
       font-family: "Cormorant Garamond", Georgia, serif;
       font-style: italic;
@@ -45,6 +49,7 @@
       text-transform: uppercase;
       margin-bottom: 48px;
     }
+
     h1 {
       font-family: "Playfair Display", Georgia, serif;
       font-weight: 700;
@@ -52,15 +57,46 @@
       line-height: 1.15;
       margin-bottom: 24px;
     }
+    h1 .em {
+      font-style: italic;
+      color: var(--ocean);
+    }
     p {
       font-size: 18px;
       color: var(--text-soft);
       margin-bottom: 16px;
     }
+
+    /* ---- Elapsed counter ---- */
+    .elapsed {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 12px;
+      margin: 12px 0 32px;
+      padding: 10px 20px;
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+    }
+    .elapsed-value {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 18px;
+      color: var(--ocean);
+      letter-spacing: 0.02em;
+    }
+    .elapsed-typical {
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ---- Working dots ---- */
     .working-dots {
       display: inline-flex;
       gap: 6px;
-      margin: 12px 0 24px;
+      margin: 0 0 32px;
     }
     .working-dots span {
       display: inline-block;
@@ -76,38 +112,146 @@
       0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
       40% { transform: scale(1); opacity: 1; }
     }
+
+    /* ---- Phases card ---- */
     .card {
       background: #ffffff;
       border: 1px solid var(--rule);
       padding: 32px;
-      margin-top: 32px;
+      margin-top: 8px;
       text-align: left;
     }
     .card h2 {
       font-family: "Playfair Display", serif;
       font-size: 18px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
     }
+
     .step {
       display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+      transition: opacity 0.4s ease;
     }
-    .step-num {
+    .step:last-child { margin-bottom: 0; }
+
+    .step-icon {
       flex-shrink: 0;
       width: 28px;
       height: 28px;
-      background: var(--ocean);
-      color: #ffffff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
+      font-family: "Inter", sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
     }
-    .step-body { font-size: 14px; color: var(--text-soft); padding-top: 2px; }
-    .step-body strong { color: var(--text-primary); }
+    /* Pending — outline only */
+    .step[data-state="pending"] .step-icon {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1.5px solid var(--rule);
+    }
+    .step[data-state="pending"] .step-body { color: var(--text-muted); }
+
+    /* Active — sand fill with spinner */
+    .step[data-state="active"] .step-icon {
+      background: var(--sand);
+      color: #ffffff;
+      border: 1.5px solid var(--sand);
+      position: relative;
+    }
+    .step[data-state="active"] .step-icon::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1.5px solid var(--sand);
+      opacity: 0.35;
+      animation: ring 1.6s ease-out infinite;
+    }
+    @keyframes ring {
+      0%   { transform: scale(0.95); opacity: 0.4; }
+      80%  { transform: scale(1.45); opacity: 0; }
+      100% { transform: scale(1.45); opacity: 0; }
+    }
+    .step[data-state="active"] .step-body { color: var(--text-primary); }
+    .step[data-state="active"] .step-body strong { color: var(--ocean); }
+
+    /* Done — ocean fill with checkmark */
+    .step[data-state="done"] .step-icon {
+      background: var(--ocean);
+      color: #ffffff;
+      border: 1.5px solid var(--ocean);
+    }
+    .step[data-state="done"] .step-body { color: var(--text-soft); }
+
+    .step-body { font-size: 14px; padding-top: 4px; line-height: 1.55; }
+    .step-body strong { color: var(--text-primary); font-weight: 600; }
+
+    /* ---- Footer note ---- */
+    .footer-note {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-top: 32px;
+    }
+    .footer-note strong { color: var(--text-primary); font-weight: 600; }
+
+    /* ---- States: still-working banner ---- */
+    .still-working,
+    .failed {
+      display: none;
+      margin-top: 24px;
+      padding: 20px 24px;
+      border-radius: 4px;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .still-working {
+      background: var(--bg-oyster);
+      border-left: 3px solid var(--sand);
+      color: var(--text-primary);
+    }
+    .failed {
+      background: #ffffff;
+      border-left: 3px solid var(--rust);
+      color: var(--text-primary);
+    }
+    .still-working[data-visible="true"],
+    .failed[data-visible="true"] { display: block; }
+    .still-working strong, .failed strong { color: var(--ocean); }
+    .failed .label {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .failed code {
+      display: inline-block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      background: var(--bg-oyster);
+      padding: 2px 6px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 56px 16px; }
+      h1 { font-size: 28px; }
+      p { font-size: 16px; }
+      .card { padding: 24px 20px; }
+      .elapsed { flex-direction: column; gap: 4px; padding: 12px 18px; }
+      .elapsed-value { font-size: 16px; }
+      .elapsed-typical { font-size: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -115,29 +259,188 @@
     <div class="wordmark">fish<span class="dot">·</span>fly</div>
     <div class="tagline">Trip Scout</div>
 
-    <h1>Building your report.</h1>
+    <h1>Building <span class="em">your</span> report.</h1>
     <p>Confirmed. We're putting together your personalized trip brief now.</p>
+
+    <div class="elapsed" id="elapsed-card">
+      <span class="elapsed-value" id="elapsed">0 sec elapsed</span>
+      <span class="elapsed-typical">typical: 2–3 min</span>
+    </div>
+
     <div class="working-dots" aria-label="Working"><span></span><span></span><span></span></div>
 
     <div class="card">
       <h2>What's happening</h2>
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">Researching your destination — current conditions, species reality, local context.</div>
+      <div class="step" data-step="1" data-state="active">
+        <div class="step-icon">1</div>
+        <div class="step-body">Researching your destination — <strong>current conditions, species reality, local context</strong>.</div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
+      <div class="step" data-step="2" data-state="pending">
+        <div class="step-icon">2</div>
         <div class="step-body">Cross-referencing the <strong>FishFly Saltwater Fly Library</strong> for the right patterns.</div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">Compiling weather, tides, gear, regulations, and access into a single brief.</div>
+      <div class="step" data-step="3" data-state="pending">
+        <div class="step-icon">3</div>
+        <div class="step-body">Compiling weather, tides, gear, regulations, and access into <strong>a single brief</strong>.</div>
       </div>
     </div>
 
-    <p style="font-size: 14px; color: var(--text-soft); margin-top: 32px;">
+    <p class="footer-note">
       This usually takes <strong>2–3 minutes</strong>, occasionally longer. You can close this tab — we'll email you the link to your finished report. <strong>Tight lines.</strong>
     </p>
+
+    <div class="still-working" id="still-working">
+      <strong>Still working.</strong> This one's taking a bit longer than usual — totally normal for complex itineraries. You can safely close this tab; the email will still arrive when it's ready.
+    </div>
+
+    <div class="failed" id="failed">
+      <span class="label">Something went wrong</span>
+      <strong>We hit a problem generating your report.</strong> No charge, no action needed from you — Brad gets an alert on every failure and will sort it out manually. Reply to your confirmation email if you want a status update.
+      <div id="failed-detail" style="margin-top: 8px;"></div>
+    </div>
   </div>
+
+  <script>
+    (function () {
+      // ---- Intake ID from URL ----------
+      const params = new URLSearchParams(window.location.search);
+      const intakeId = params.get("intake");
+
+      // ---- Elapsed counter ----------
+      const startedAt = Date.now();
+      const elapsedEl = document.getElementById("elapsed");
+      function fmtElapsed(ms) {
+        const totalSec = Math.floor(ms / 1000);
+        const min = Math.floor(totalSec / 60);
+        const sec = totalSec % 60;
+        if (min === 0) return sec + " sec elapsed";
+        return min + " min " + String(sec).padStart(2, "0") + " sec elapsed";
+      }
+      function updateElapsed() {
+        elapsedEl.textContent = fmtElapsed(Date.now() - startedAt);
+      }
+      updateElapsed();
+      setInterval(updateElapsed, 1000);
+
+      // ---- Phase progression (purely time-based, not status-derived) ----
+      // The /scout-status endpoint only tells us pending/generating/ready/failed —
+      // it doesn't expose mid-generation milestones. So we walk the three phases
+      // on a heuristic timeline that mirrors the actual pipeline duration.
+      //
+      // Phase 1 (research):       0s  -> 45s    ~25%
+      // Phase 2 (library lookup): 45s -> 90s    ~50%
+      // Phase 3 (compile):        90s -> ready  ~75-100%
+      const steps = Array.from(document.querySelectorAll(".step"));
+      function setStepState(stepNum, state) {
+        const el = steps.find((s) => Number(s.dataset.step) === stepNum);
+        if (!el) return;
+        el.dataset.state = state;
+        // Replace icon content based on state
+        const icon = el.querySelector(".step-icon");
+        if (state === "done") icon.textContent = "✓";
+        else icon.textContent = String(stepNum);
+      }
+      function updatePhases() {
+        const elapsedMs = Date.now() - startedAt;
+        if (elapsedMs >= 90_000) {
+          setStepState(1, "done");
+          setStepState(2, "done");
+          setStepState(3, "active");
+        } else if (elapsedMs >= 45_000) {
+          setStepState(1, "done");
+          setStepState(2, "active");
+          setStepState(3, "pending");
+        } else {
+          setStepState(1, "active");
+          setStepState(2, "pending");
+          setStepState(3, "pending");
+        }
+      }
+      updatePhases();
+      setInterval(updatePhases, 5000);
+
+      // ---- Still-working banner after 5 min ----
+      const stillWorkingEl = document.getElementById("still-working");
+      setTimeout(function () {
+        if (!isFinished) stillWorkingEl.dataset.visible = "true";
+      }, 5 * 60 * 1000);
+
+      // ---- Polling: /scout/api/status?intake=<id> ----
+      const failedEl = document.getElementById("failed");
+      const failedDetail = document.getElementById("failed-detail");
+      let isFinished = false;
+      let consecutiveErrors = 0;
+
+      function markFinished() { isFinished = true; }
+
+      function showReady(reportId) {
+        markFinished();
+        // Walk all steps to done
+        setStepState(1, "done");
+        setStepState(2, "done");
+        setStepState(3, "done");
+        // Brief pause so the user sees the final checkmark animation
+        setTimeout(function () {
+          window.location.href = "/scout/r/" + reportId;
+        }, 700);
+      }
+
+      function showFailed(message) {
+        markFinished();
+        failedEl.dataset.visible = "true";
+        if (message) {
+          failedDetail.innerHTML = "Details (for Brad): <code>" + escapeHtml(message) + "</code>";
+        }
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[c];
+        });
+      }
+
+      async function pollStatus() {
+        if (isFinished || !intakeId) return;
+        try {
+          const r = await fetch("/scout/api/status?intake=" + encodeURIComponent(intakeId), {
+            headers: { "Accept": "application/json" },
+            cache: "no-store",
+          });
+          if (!r.ok) {
+            // 404 means intake not found — could be a stale URL.
+            // 500 / 5xx are transient; just back off.
+            consecutiveErrors++;
+            if (consecutiveErrors >= 6) {
+              // 6 consecutive failures (~90s of repeated errors) — show failed.
+              showFailed("Could not reach the status service.");
+            }
+            return;
+          }
+          consecutiveErrors = 0;
+          const data = await r.json();
+          if (data.status === "ready" && data.report_id) {
+            showReady(data.report_id);
+          } else if (data.status === "failed") {
+            showFailed(data.error_message);
+          }
+          // pending / generating — keep polling
+        } catch (err) {
+          consecutiveErrors++;
+          // Network errors during background generation aren't unusual
+          // (especially if the user briefly loses connectivity).
+        }
+      }
+
+      if (intakeId) {
+        // First poll after 8s (give the function a moment to spin up),
+        // then every 15s.
+        setTimeout(pollStatus, 8_000);
+        setInterval(pollStatus, 15_000);
+      } else {
+        // No intake ID — graceful degradation. Show the page as before;
+        // user will get the email when the report is ready.
+      }
+    })();
+  </script>
 </body>
 </html>

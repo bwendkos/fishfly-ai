@@ -53,6 +53,11 @@
   status = 200
 
 [[redirects]]
+  from = "/scout/api/status"
+  to = "/.netlify/functions/scout-status"
+  status = 200
+
+[[redirects]]
   from = "/scout/r/*"
   to = "/.netlify/functions/scout-report"
   status = 200
