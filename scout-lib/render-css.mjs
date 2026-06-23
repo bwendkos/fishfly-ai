@@ -304,28 +304,54 @@ body {
    Weather / Moon / Tides
    ============================================================ */
 .best-dates {
-  background: var(--bg-oyster);
-  border: 2px solid var(--ocean);
-  padding: 24px;
-  margin: 24px 0;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--sand);
+  padding: 28px 32px;
+  margin: 32px 0;
+  box-shadow: 0 1px 3px rgba(30, 58, 95, 0.04), 0 4px 12px rgba(30, 58, 95, 0.05);
 }
 .best-dates-label {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ocean);
-  margin-bottom: 8px;
+  color: var(--sand);
+  margin-bottom: 6px;
 }
 .best-dates h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 28px;
-  color: var(--text-primary);
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.15;
+  color: var(--ocean);
+  margin: 0 0 20px;
+  letter-spacing: -0.5px;
   text-transform: none;
-  letter-spacing: 0;
-  margin: 0 0 16px;
   padding: 0;
+}
+.best-dates h4 {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+.best-dates p {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  margin: 0;
+}
+.best-dates p + h4 { margin-top: 18px; }
+@media print {
+  .best-dates { break-inside: avoid; box-shadow: none; }
 }
 
 /* ============================================================
