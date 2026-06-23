@@ -154,6 +154,23 @@
     .species-card.selected { border-color: var(--ocean); background: var(--bg-oyster); }
     .species-card.marquee { font-weight: 600; }
 
+    /* Flexible-mode month multi-select — denser grid than species (months are short) */
+    .month-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    @media (max-width: 600px) { .month-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 400px) { .month-grid { grid-template-columns: 1fr 1fr; } }
+    .month-card {
+      padding: 10px 12px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+    }
+    .month-card input[type="checkbox"] { margin-right: 6px; }
+    .month-card.selected { border-color: var(--ocean); background: var(--bg-oyster); }
+
     /* Consent checkbox */
     .consent {
       display: flex;
@@ -367,6 +384,27 @@
               <option>July</option><option>August</option><option>September</option>
               <option>October</option><option>November</option><option>December</option>
             </select>
+          </div>
+        </div>
+
+        <div id="flex-months-picker" style="display:none; margin-top: 20px;">
+          <div class="field">
+            <label>Which months are you considering? <span class="optional-tag">(pick 2 or more)</span></label>
+            <div class="help" style="margin-bottom: 10px;">We'll recommend the best window across the months you select.</div>
+            <div class="month-grid" id="flex-months-grid">
+              <label class="month-card"><input type="checkbox" name="flex_month" value="January" /><span>January</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="February" /><span>February</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="March" /><span>March</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="April" /><span>April</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="May" /><span>May</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="June" /><span>June</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="July" /><span>July</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="August" /><span>August</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="September" /><span>September</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="October" /><span>October</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="November" /><span>November</span></label>
+              <label class="month-card"><input type="checkbox" name="flex_month" value="December" /><span>December</span></label>
+            </div>
           </div>
         </div>
 
@@ -1023,17 +1061,32 @@
         document.querySelectorAll(".radio-card").forEach((c) => c.classList.remove("selected"));
         r.closest(".radio-card").classList.add("selected");
         $("exact-dates").style.display = r.value === "exact" ? "block" : "none";
-        $("month-picker").style.display = r.value === "month" || r.value === "flexible" ? "block" : "none";
+        $("month-picker").style.display = r.value === "month" ? "block" : "none";
+        $("flex-months-picker").style.display = r.value === "flexible" ? "block" : "none";
         updateSpecies();
       });
     });
 
     $("month").addEventListener("change", updateSpecies);
 
+    // Wire flex-month checkboxes — toggle .selected and update species hint
+    document.querySelectorAll('input[name="flex_month"]').forEach((cb) => {
+      cb.addEventListener("change", () => {
+        cb.closest(".month-card").classList.toggle("selected", cb.checked);
+        updateSpecies();
+      });
+    });
+
+    function getCheckedFlexMonths() {
+      return Array.from(document.querySelectorAll('input[name="flex_month"]:checked')).map((i) => i.value);
+    }
+
     // Dynamic species dropdown
     function updateSpecies() {
       const destination = $("destination").value;
+      const timingMode = document.querySelector('input[name="timing_mode"]:checked')?.value;
       const month = $("month").value;
+      const flexMonths = getCheckedFlexMonths();
       const grid = $("species-grid");
       const hint = $("species-hint");
 
@@ -1044,7 +1097,12 @@
       }
 
       const recommended = pickSpeciesForDestination(destination);
-      hint.textContent = `Top species at ${destination}${month ? ` in ${month}` : ""}. Pick 1-6.`;
+      let timingLabel = "";
+      if (timingMode === "month" && month) timingLabel = ` in ${month}`;
+      else if (timingMode === "flexible" && flexMonths.length) {
+        timingLabel = ` across ${flexMonths.length} month${flexMonths.length === 1 ? "" : "s"}`;
+      }
+      hint.textContent = `Top species at ${destination}${timingLabel}. Pick 1-6.`;
       grid.innerHTML = "";
 
       recommended.forEach((species) => {
@@ -1075,10 +1133,18 @@
       const destination = $("destination").value;
       const timingMode = document.querySelector('input[name="timing_mode"]:checked')?.value;
       const month = $("month").value;
+      const flexMonths = getCheckedFlexMonths();
       const startDate = $("start_date").value;
       const endDate = $("end_date").value;
       const days = parseInt($("days").value, 10);
       const species = Array.from(document.querySelectorAll('input[name="species"]:checked')).map((i) => i.value);
+
+      // Client-side validation for flexible mode (server-side validates too)
+      if (timingMode === "flexible" && flexMonths.length < 2) {
+        errorBanner.textContent = "Select at least 2 months for flexible timing — that's how we know what window to recommend within.";
+        errorBanner.classList.add("visible");
+        return;
+      }
 
       const payload = {
         first_name: $("first_name").value.trim(),
@@ -1087,11 +1153,11 @@
         sub_area: $("sub_area").value.trim() || null,
         timing: {
           mode: timingMode,
-          month: month || null,
+          month: timingMode === "month" ? (month || null) : null,
           days,
           start_date: timingMode === "exact" ? startDate : null,
           end_date: timingMode === "exact" ? endDate : null,
-          flex_months: timingMode === "flexible" && month ? [month] : null,
+          flex_months: timingMode === "flexible" ? flexMonths : null,
         },
         species,
         consent: $("consent").checked,
