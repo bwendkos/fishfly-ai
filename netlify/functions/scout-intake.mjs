@@ -125,8 +125,11 @@ export default async (req) => {
         errors.push("timing.flex_months contains an invalid month name");
       }
     }
-    if (!Number.isFinite(timing.days) || timing.days < 1 || timing.days > 21) {
-      errors.push("timing.days must be 1-21");
+    if (!Number.isFinite(timing.days) || timing.days < 1 || timing.days > 7) {
+      // PR #19: capped at 7 days. Longer trips run one report per week so
+      // every Prime Eat Window stays focused and the report length stays
+      // bounded (max ~5 KB of per-day chart content).
+      errors.push("timing.days must be 1-7 (for longer trips, submit one report per week)");
     }
   }
 
