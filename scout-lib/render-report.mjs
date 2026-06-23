@@ -20,6 +20,7 @@
 import { getReportCss } from "./render-css.mjs";
 import { getSpeciesImageUrl } from "./species-images.mjs";
 import { renderMoonCalendar } from "./render-moon-calendar.mjs";
+import { renderSunCalendar } from "./render-sun-calendar.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -218,6 +219,8 @@ function renderWeatherMoonTides(section, context) {
   if (!section) return "";
   // PR #9: moon phase calendar above Claude's moon_summary prose
   const moonCalendar = renderMoonCalendar(context?.timing);
+  // PR #10: daylight calendar — needs destination for lat/lon + timezone
+  const sunCalendar = renderSunCalendar(context?.timing, context?.destination);
   const best = section.best_dates_recommendation
     ? `
     <div class="best-dates">
@@ -234,6 +237,8 @@ function renderWeatherMoonTides(section, context) {
     <div class="section-header"><span class="section-number">03</span><h2>Weather, Moon & Tides</h2></div>
     <h3>Weather</h3>
     <p>${escapeHtml(section.weather_overview)}</p>
+    <h3>Sun</h3>
+    ${sunCalendar}
     <h3>Moon</h3>
     ${moonCalendar}
     <p>${escapeHtml(section.moon_summary)}</p>
