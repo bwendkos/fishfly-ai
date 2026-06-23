@@ -667,5 +667,103 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
 @media print {
   .moon-calendar { break-inside: avoid; }
 }
+
+/* ============================================================
+   Sun calendar (PR #10) — daylight ribbon per trip day
+   Gradient colors are bound to CSS vars so the renderer can
+   reference them inline.
+   ============================================================ */
+:root {
+  --gradient-night:    #1a1f2e;
+  --gradient-twilight: #c89668;
+  --gradient-day:      #f7d8a0;
+}
+.sun-calendar {
+  margin: 24px 0 16px;
+  padding: 20px 0 4px;
+}
+.sun-calendar-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--sand);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.sun-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sun-row {
+  display: grid;
+  grid-template-columns: 110px 64px 1fr 64px 70px;
+  align-items: center;
+  gap: 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 12.5px;
+}
+.sun-row-date {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13px;
+}
+.sun-row-rise, .sun-row-set {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-soft);
+  font-size: 12px;
+  text-align: center;
+}
+.sun-row-length {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-muted);
+  font-size: 11.5px;
+  text-align: right;
+}
+.sun-row-ribbon {
+  height: 18px;
+  border-radius: 9px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--rule);
+}
+.sun-row-noon-tick {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  width: 1px;
+  background: rgba(30, 58, 95, 0.4);
+  transform: translateX(-50%);
+}
+.sun-row-polar {
+  grid-template-columns: 110px 1fr;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.sun-row-note {
+  font-size: 12.5px;
+}
+
+@media (max-width: 600px) {
+  .sun-row {
+    grid-template-columns: 1fr 60px 60px;
+    grid-template-areas:
+      "date  rise  set"
+      "ribbon ribbon ribbon"
+      "length length length";
+    gap: 4px 10px;
+  }
+  .sun-row-date { grid-area: date; }
+  .sun-row-rise { grid-area: rise; text-align: left; }
+  .sun-row-set  { grid-area: set; text-align: right; }
+  .sun-row-ribbon { grid-area: ribbon; }
+  .sun-row-length { grid-area: length; text-align: right; font-size: 11px; }
+}
+
+@media print {
+  .sun-calendar { break-inside: avoid; }
+  .sun-row-ribbon { box-shadow: inset 0 0 0 0.5pt var(--rule); }
+}
 `;
 }
