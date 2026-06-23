@@ -21,6 +21,7 @@ import { getReportCss } from "./render-css.mjs";
 import { getSpeciesImageUrl } from "./species-images.mjs";
 import { renderMoonCalendar } from "./render-moon-calendar.mjs";
 import { renderSunCalendar } from "./render-sun-calendar.mjs";
+import { renderSolunar } from "./render-solunar.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -221,6 +222,8 @@ function renderWeatherMoonTides(section, context) {
   const moonCalendar = renderMoonCalendar(context?.timing);
   // PR #10: daylight calendar — needs destination for lat/lon + timezone
   const sunCalendar = renderSunCalendar(context?.timing, context?.destination);
+  // PR #11: solunar peak windows — needs destination + timing
+  const solunarChart = renderSolunar(context?.timing, context?.destination);
   const best = section.best_dates_recommendation
     ? `
     <div class="best-dates">
@@ -245,6 +248,7 @@ function renderWeatherMoonTides(section, context) {
     <h3>Tides</h3>
     <p>${escapeHtml(section.tide_summary)}</p>
     <h3>Solunar</h3>
+    ${solunarChart}
     <p>${escapeHtml(section.solunar_summary)}</p>
     ${best}
   </section>`;
