@@ -132,12 +132,58 @@ function formatTripDates(timing) {
 
   if (timing.mode === "flexible") {
     const months = Array.isArray(timing.flex_months) && timing.flex_months.length
-      ? timing.flex_months.map((m) => m.slice(0, 3)).join(" / ")
+      ? sortFlexMonthsForward(timing.flex_months).map((m) => m.slice(0, 3)).join(" / ")
       : "Flexible";
     return `${months} · ${daysSuffix(timing.days || 0)}`;
   }
 
   return null;
+}
+
+/**
+ * Sort flex_months in trip-going-forward order, handling year-crossing windows
+ * gracefully. The form's getCheckedFlexMonths() returns months in DOM order
+ * (calendar Jan-Dec), so for a winter trip like "Nov / Dec / Jan" we'd get
+ * the array ["January", "November", "December"] and render the nonsensical
+ * "Jan / Nov / Dec".
+ *
+ * Algorithm: convert to month numbers, sort ascending, find the largest gap
+ * between consecutive months (including the wrap-around from Dec to Jan).
+ * The month immediately AFTER that gap is the "start" of the window — render
+ * from there, wrapping around if needed.
+ *
+ * Examples:
+ *   ["January", "November", "December"]   ->  Nov, Dec, Jan
+ *   ["November", "December"]               ->  Nov, Dec
+ *   ["April", "May", "June"]               ->  Apr, May, Jun (no wrap)
+ *   ["January", "December"]                ->  Dec, Jan
+ *   ["January", "June", "July"]            ->  Jan, Jun, Jul (two clusters,
+ *                                              biggest gap is Jul -> Jan)
+ */
+function sortFlexMonthsForward(monthNames) {
+  const MONTH_INDEX = {
+    January: 1, February: 2, March: 3, April: 4, May: 5, June: 6,
+    July: 7, August: 8, September: 9, October: 10, November: 11, December: 12,
+  };
+  // Map to numbers, drop unknowns, dedupe, sort ascending.
+  const nums = Array.from(new Set(monthNames.map((m) => MONTH_INDEX[m]).filter(Boolean))).sort((a, b) => a - b);
+  if (nums.length < 2) return monthNames;
+
+  // Find the largest gap between consecutive months (including wrap-around Dec -> Jan).
+  let maxGap = 0;
+  let maxGapIdx = 0;
+  for (let i = 0; i < nums.length; i++) {
+    const next = nums[(i + 1) % nums.length];
+    const gap = i === nums.length - 1 ? (next + 12 - nums[i]) : (next - nums[i]);
+    if (gap > maxGap) { maxGap = gap; maxGapIdx = i; }
+  }
+  // Start AFTER the largest gap.
+  const startIdx = (maxGapIdx + 1) % nums.length;
+  const reorderedNums = [...nums.slice(startIdx), ...nums.slice(0, startIdx)];
+
+  const NUMBER_TO_NAME = ["", "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+  return reorderedNums.map((n) => NUMBER_TO_NAME[n]);
 }
 
 /* ============================================================ */
@@ -406,7 +452,10 @@ function capitalize(s) {
 
 function formatDestination(dest) {
   if (!dest) return "Your Trip";
-  return [dest.area, dest.island, dest.country].filter(Boolean).join(" · ");
+  // PR #6+ destinations are flat library-region strings (e.g. "Andros, Bahamas").
+  if (typeof dest === "string") return dest;
+  // Legacy shape (pre-PR-#6): { country, island, area }.
+  return [dest.area, dest.island, dest.country].filter(Boolean).join(" · ") || "Your Trip";
 }
 
 function formatViability(v) {
