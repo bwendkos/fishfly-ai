@@ -81,6 +81,7 @@ export default async (req) => {
   const first_name = strOrNull(body.first_name, 40);
   const email = strOrNull(body.email, 200);
   const destination = body.destination;
+  const sub_area = strOrNull(body.sub_area, 80);  // PR #12: optional sub-area/lodge
   const timing = body.timing;
   const species = Array.isArray(body.species) ? body.species : null;
   const consent = body.consent === true || body.consent === "true";
@@ -139,6 +140,7 @@ export default async (req) => {
     first_name,
     email,
     destination,
+    sub_area,
     timing,
     species: species.map((s) => s.toLowerCase()),
     consent,
@@ -159,7 +161,7 @@ export default async (req) => {
   const baseUrl = process.env.PUBLIC_BASE_URL || `https://${req.headers.get("host")}`;
   const confirmationUrl = `${baseUrl}/api/confirm?token=${encodeURIComponent(token)}`;
 
-  const destStr = destination;
+  const destStr = sub_area ? `${sub_area} · ${destination}` : destination;
 
   try {
     const { subject, html } = confirmationEmail({

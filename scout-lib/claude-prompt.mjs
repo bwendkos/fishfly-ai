@@ -53,6 +53,9 @@ Lead with disclaimer. End with disclaimer. Be honest about enforcement reality. 
 
 export function buildUserMessage(intake) {
   const destStr = formatDestination(intake.destination);
+  const subAreaStr = intake.sub_area && intake.sub_area.trim()
+    ? `\n- Specific area / lodge: ${intake.sub_area.trim()}  (tailor the report to THIS specific spot — flats, lodge, town — wherever the angler specified)`
+    : "";
   const timingStr = formatTiming(intake.timing);
   const speciesStr = (intake.species || []).join(", ");
 
@@ -60,7 +63,7 @@ export function buildUserMessage(intake) {
 
 USER PROFILE
 - First name: ${intake.first_name}
-- Destination: ${destStr}
+- Destination: ${destStr}${subAreaStr}
 - Timing: ${timingStr}
 - Target species: ${speciesStr}
 

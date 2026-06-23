@@ -25,7 +25,9 @@ import { renderSolunar } from "./render-solunar.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
-  const headerTitle = formatDestination(context.destination);
+  const headerTitle = context.sub_area
+    ? `${context.sub_area} · ${formatDestination(context.destination)}`
+    : formatDestination(context.destination);
 
   return `<!DOCTYPE html>
 <html lang="en">
