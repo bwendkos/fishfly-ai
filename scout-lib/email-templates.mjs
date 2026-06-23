@@ -17,7 +17,13 @@ const FROM_NAME = process.env.EMAIL_FROM_NAME || "FishFly";
 /* ============================================================ */
 
 export function confirmationEmail({ firstName, confirmationUrl, destination }) {
-  const subject = `${firstName}, confirm your FishFly Trip Scout report request`;
+  // Subject includes destination (which already includes sub_area prefix when present,
+  // e.g. "Marathon · Florida Keys (Lower & Middle Keys)") so the recipient can tell at
+  // a glance WHICH trip request this confirmation is for — useful when a user has
+  // submitted multiple intakes recently.
+  const subject = destination
+    ? `${firstName}, confirm your Trip Scout for ${destination}`
+    : `${firstName}, confirm your FishFly Trip Scout report request`;
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>

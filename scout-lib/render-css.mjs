@@ -71,6 +71,16 @@ body {
   margin: 4px 0 16px;
 }
 
+.report-header .trip-dates-eyebrow {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 10px;
+}
+
 .report-header h1 {
   font-family: "Playfair Display", Georgia, serif;
   font-weight: 700;
