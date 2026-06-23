@@ -103,6 +103,7 @@ async function runGeneration(intakeId) {
         generatedAt: new Date().toISOString(),
         firstName: intake.first_name,
         destination: intake.destination,
+        sub_area: intake.sub_area,  // PR #12: optional sub-area for header
         species: intake.species,
         timing: intake.timing,  // PR #9: needed by render-moon-calendar
       });
