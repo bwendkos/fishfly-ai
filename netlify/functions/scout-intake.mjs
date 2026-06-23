@@ -113,6 +113,18 @@ export default async (req) => {
     if (timing.mode === "exact" && (!timing.start_date || !timing.end_date)) {
       errors.push("timing.start_date and end_date required when mode is exact");
     }
+    if (timing.mode === "flexible") {
+      // PR #16: flexible requires a multi-month selection (2-12 months) so Claude
+      // has an actual window to recommend within. Single-month flexible is just
+      // month-mode in disguise.
+      if (!Array.isArray(timing.flex_months) || timing.flex_months.length < 2) {
+        errors.push("timing.flex_months must list at least 2 months when mode is flexible");
+      } else if (timing.flex_months.length > 12) {
+        errors.push("timing.flex_months cannot list more than 12 months");
+      } else if (timing.flex_months.some((m) => !VALID_MONTHS.has(m))) {
+        errors.push("timing.flex_months contains an invalid month name");
+      }
+    }
     if (!Number.isFinite(timing.days) || timing.days < 1 || timing.days > 21) {
       errors.push("timing.days must be 1-21");
     }
