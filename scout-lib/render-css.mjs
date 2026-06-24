@@ -918,6 +918,135 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
 }
 
 /* ============================================================
+   Weather chart (PR #21 — StormGlass API)
+   Per-day wind-speed area chart with direction labels, precipitation
+   markers, and castable-threshold guideline. Same visual register as
+   sun/moon/solunar/tide charts.
+   ============================================================ */
+.weather-chart {
+  margin: 24px 0 16px;
+  padding: 20px 0 4px;
+}
+.weather-chart-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--sand);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.weather-chart-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.weather-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 80px;
+  align-items: center;
+  gap: 14px;
+  font-family: "Inter", sans-serif;
+}
+.weather-row-date {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13px;
+}
+.weather-row-chart {
+  height: 64px;
+  position: relative;
+}
+.weather-row-stats {
+  text-align: right;
+}
+.weather-row-temp {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-soft);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.weather-row-wave {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-muted);
+  font-size: 10.5px;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+.weather-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.weather-threshold-line {
+  stroke: var(--rule);
+  stroke-width: 0.4;
+  stroke-dasharray: 2 2;
+}
+.weather-wind-fill {
+  fill: var(--sand);
+  opacity: 0.28;
+}
+.weather-wind-line {
+  fill: none;
+  stroke: var(--sand);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.weather-wind-rust {
+  fill: var(--rust);
+  opacity: 0.45;
+}
+.weather-dir-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 5.5px;
+  fill: var(--text-soft);
+  letter-spacing: 0.04em;
+}
+.weather-precip-icon {
+  font-size: 7px;
+  fill: var(--ocean);
+}
+.weather-row-empty {
+  grid-template-columns: 110px 1fr;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.weather-row-note {
+  font-size: 12.5px;
+}
+.weather-chart-source {
+  margin-top: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .weather-row {
+    grid-template-columns: 1fr 80px;
+    grid-template-areas:
+      "date  stats"
+      "chart chart";
+    gap: 4px 10px;
+  }
+  .weather-row-date { grid-area: date; }
+  .weather-row-stats { grid-area: stats; text-align: right; }
+  .weather-row-chart { grid-area: chart; height: 70px; }
+}
+
+@media print {
+  .weather-chart { break-inside: avoid; }
+  .weather-wind-line { stroke-width: 1.2; }
+  .weather-wind-fill { opacity: 0.35; }
+  .weather-wind-rust { opacity: 0.55; }
+}
+
+/* ============================================================
    Solunar peak windows (PR #11)
    ============================================================ */
 .solunar-calendar {

@@ -29,6 +29,7 @@ import { sendEmail } from "../../scout-lib/email.mjs";
 import { reportReadyEmail } from "../../scout-lib/email-templates.mjs";
 import { addNewsletterSubscriber } from "../../scout-lib/ghost.mjs";
 import { fetchTidesForTrip, tripDates } from "../../scout-lib/worldtides.mjs";
+import { fetchWeatherForTripRange, splitWeatherByDay } from "../../scout-lib/stormglass.mjs";
 import { getDestinationMeta } from "../../scout-lib/destinations.mjs";
 
 export default async (req) => {
@@ -98,10 +99,10 @@ async function runGeneration(intakeId) {
     // leave context.tides empty and the renderer falls back to Claude's
     // tide_summary prose only. Trips in month/flexible mode return [] from
     // tripDates() — no per-day chart rendered.
+    const destMeta = getDestinationMeta(intake.destination);
+    const dates = tripDates(intake.timing);
     let tidesData = null;
     try {
-      const destMeta = getDestinationMeta(intake.destination);
-      const dates = tripDates(intake.timing);
       const apiKey = process.env.WORLDTIDES_API_KEY;
       if (destMeta && dates.length > 0 && apiKey) {
         tidesData = await fetchTidesForTrip({
@@ -116,9 +117,33 @@ async function runGeneration(intakeId) {
         console.warn("[generate] WORLDTIDES_API_KEY not set — skipping tide chart");
       }
     } catch (err) {
-      // Caught here means fetchTidesForTrip itself threw (rare — it catches
-      // per-day failures internally). Continue without tides.
       console.error(`[generate] WorldTides fetch failed @ ${stamp()}:`, err?.message);
+    }
+
+    // ---- 4c. Fetch real weather data (PR #21) ----------
+    // One StormGlass call covers the entire trip range. Same graceful-fallback
+    // pattern as tides: failure leaves context.weather null and the chart
+    // simply doesn't render — Claude's weather_overview prose still appears.
+    let weatherData = null;
+    try {
+      const apiKey = process.env.STORMGLASS_API_KEY;
+      if (destMeta && dates.length > 0 && apiKey) {
+        const range = await fetchWeatherForTripRange({
+          lat: destMeta.lat,
+          lon: destMeta.lon,
+          tz: destMeta.tz,
+          startDate: dates[0],
+          endDate: dates[dates.length - 1],
+          apiKey,
+        });
+        weatherData = splitWeatherByDay({ weather: range, dates, tz: destMeta.tz });
+        const successCount = weatherData.filter((d) => d.hours && d.hours.length > 0).length;
+        console.log(`[generate] StormGlass fetched @ ${stamp()} — ${successCount}/${dates.length} days, cost=${range.meta?.cost} quota=${range.meta?.dailyQuota}`);
+      } else if (!apiKey) {
+        console.warn("[generate] STORMGLASS_API_KEY not set — skipping weather chart");
+      }
+    } catch (err) {
+      console.error(`[generate] StormGlass fetch failed @ ${stamp()}:`, err?.message);
     }
 
     // ---- 5. Generate report ID + render HTML ----------
@@ -137,6 +162,7 @@ async function runGeneration(intakeId) {
         species: intake.species,
         timing: intake.timing,  // PR #9: needed by render-moon-calendar
         tides: tidesData,       // PR #20: real tide data (or null if unavailable)
+        weather: weatherData,   // PR #21: real weather data (or null if unavailable)
       });
     } catch (renderErr) {
       const errMsg = `[generate] renderReport CRASHED for intake=${intakeId}: ${renderErr?.message}`;
