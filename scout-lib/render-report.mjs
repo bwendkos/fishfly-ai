@@ -24,6 +24,7 @@ import { renderSunCalendar } from "./render-sun-calendar.mjs";
 import { renderSolunar } from "./render-solunar.mjs";
 import { renderTideChart } from "./render-tide-chart.mjs";
 import { renderWeatherChart } from "./render-weather-chart.mjs";
+import { renderPrimeEatWindow } from "./render-prime-eat-window.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -55,6 +56,8 @@ ${renderToolbar(context.reportId, context)}
   ${renderTripOverview(report.trip_overview, context)}
 
   ${renderSpeciesProfiles(report.species_profiles, context)}
+
+  ${renderPrimeEatWindow(context?.timing, context?.destination, context?.tides, context?.weather, context?.sub_area)}
 
   ${renderWeatherMoonTides(report.weather_moon_tides, context)}
 
@@ -345,7 +348,7 @@ function renderWeatherMoonTides(section, context) {
     : "";
   return `
   <section class="section">
-    <div class="section-header"><span class="section-number">03</span><h2>Weather, Moon & Tides</h2></div>
+    <div class="section-header"><span class="section-number">04</span><h2>Weather, Moon & Tides</h2></div>
     <h3>Weather</h3>
     ${weatherChart}
     <p>${escapeHtml(section.weather_overview)}</p>
@@ -372,7 +375,7 @@ function renderPackingChecklist(section) {
       : "";
   return `
   <section class="section">
-    <div class="section-header"><span class="section-number">04</span><h2>What to Bring</h2></div>
+    <div class="section-header"><span class="section-number">05</span><h2>What to Bring</h2></div>
     <h3 class="checklist-tier">Must Have</h3>
     ${cat("Tackle & Gear", section.must_have?.tackle_and_gear)}
     ${cat("Clothing & Sun", section.must_have?.clothing_sun)}
@@ -390,7 +393,7 @@ function renderLogistics(section) {
     .join("");
   return `
   <section class="section">
-    <div class="section-header"><span class="section-number">05</span><h2>How to Get There</h2></div>
+    <div class="section-header"><span class="section-number">06</span><h2>How to Get There</h2></div>
     <h3>Nearest airports</h3>
     <table><tbody>${airports}</tbody></table>
     <h3>Ground transport</h3>
@@ -415,7 +418,7 @@ function renderRegulations(section) {
     .join("");
   return `
   <section class="section">
-    <div class="section-header"><span class="section-number">06</span><h2>Regulations</h2></div>
+    <div class="section-header"><span class="section-number">07</span><h2>Regulations</h2></div>
     <div class="callout callout-warn">⚠️ ${escapeHtml(section.disclaimer_top)}</div>
     <h3>Licenses required</h3>
     <p>${escapeHtml(section.licenses_required)}</p>

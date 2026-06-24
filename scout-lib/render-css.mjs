@@ -930,6 +930,417 @@ circle.tide-extreme-high { fill: var(--sand); }
 }
 
 /* ============================================================
+   PRIME EAT WINDOW (PR #23) — the synthesis section
+   v3 mock locked: multi-day clickable table → per-day cards with
+   4-row chart + ranked windows. Three border tiers (best=ocean,
+   good=sand, weak=rust) with legend.
+   ============================================================ */
+:root {
+  --pew-tier-best: var(--ocean);    /* premium — set the alarm */
+  --pew-tier-good: var(--sand);     /* warm — fish hard */
+  --pew-tier-weak: var(--rust);     /* alert — weather day */
+}
+
+.pew-section { /* inherits .section styling */ }
+.pew-explainer {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-soft);
+  margin: 8px 0 24px;
+  max-width: 700px;
+}
+.pew-explainer strong { color: var(--text-primary); font-weight: 600; }
+
+/* Legend */
+.pew-legend {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--bg-oyster);
+  border-left: 3px solid var(--rule);
+  margin-bottom: 32px;
+}
+.pew-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.pew-legend-swatch {
+  width: 14px; height: 14px;
+  border-radius: 2px;
+}
+.pew-legend-swatch.pew-tier-best { background: var(--pew-tier-best); }
+.pew-legend-swatch.pew-tier-good { background: var(--pew-tier-good); }
+.pew-legend-swatch.pew-tier-weak { background: var(--pew-tier-weak); }
+.pew-legend-item small {
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  margin-left: 4px;
+}
+
+/* Multi-day table */
+.pew-multi {
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  padding: 28px 32px;
+  margin-bottom: 48px;
+}
+.pew-multi-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 4px;
+}
+.pew-multi-headline {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700; font-style: italic;
+  font-size: 22px; line-height: 1.2;
+  color: var(--ocean);
+  margin-bottom: 22px;
+}
+.pew-multi-table-head {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: grid;
+  grid-template-columns: 110px 1fr 100px 44px;
+  gap: 16px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.pew-multi-table-head > div:nth-child(3) { text-align: right; }
+.pew-multi-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 100px 44px;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0 12px 12px;
+  border-bottom: 1px solid var(--rule-soft, #e8e2d3);
+  border-left: 3px solid transparent;
+  color: inherit;
+  text-decoration: none;
+  transition: background 120ms ease;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
+.pew-multi-row:last-child { border-bottom: none; }
+.pew-multi-row:hover { background: var(--bg-cream); }
+.pew-multi-row.pew-tier-best { border-left-color: var(--pew-tier-best); }
+.pew-multi-row.pew-tier-good { border-left-color: var(--pew-tier-good); }
+.pew-multi-row.pew-tier-weak { border-left-color: var(--pew-tier-weak); }
+
+.pew-multi-day {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.pew-multi-eatwindow { line-height: 1.4; }
+.pew-multi-time {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--ocean);
+  letter-spacing: 0.02em;
+  margin-bottom: 3px;
+}
+.pew-multi-reason {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+.pew-multi-rating {
+  text-align: right;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* View-chart button (the chevron pill) */
+.pew-view-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--bg-cream);
+  border: 1px solid var(--rule);
+  color: var(--text-soft);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: auto;
+  transition: all 140ms ease;
+}
+.pew-view-btn svg { width: 16px; height: 16px; transition: transform 140ms ease; }
+.pew-multi-row:hover .pew-view-btn {
+  background: var(--ocean);
+  border-color: var(--ocean);
+  color: #ffffff;
+}
+.pew-multi-row:hover .pew-view-btn svg { transform: translateX(2px); }
+
+/* Per-day detail card */
+.pew-card {
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-left-width: 4px;
+  padding: 32px 36px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 3px rgba(30, 58, 95, 0.04), 0 4px 16px rgba(30, 58, 95, 0.06);
+  scroll-margin-top: 32px;
+}
+.pew-card.pew-tier-best { border-left-color: var(--pew-tier-best); }
+.pew-card.pew-tier-good { border-left-color: var(--pew-tier-good); }
+.pew-card.pew-tier-weak { border-left-color: var(--pew-tier-weak); }
+
+.pew-eyebrow-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pew-eyebrow {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sand);
+}
+.pew-mark {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--sand);
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+.pew-rating {
+  font-family: "Inter", sans-serif;
+  font-size: 13px; font-weight: 600;
+  color: var(--ocean);
+  letter-spacing: 0.04em;
+}
+.pew-stars {
+  color: var(--sand);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+.pew-stars-empty { color: var(--rule); }
+.pew-badge {
+  margin-left: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600; font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.pew-card.pew-tier-best .pew-badge { color: var(--pew-tier-best); }
+.pew-card.pew-tier-good .pew-badge { color: var(--pew-tier-good); }
+.pew-card.pew-tier-weak .pew-badge { color: var(--pew-tier-weak); }
+
+.pew-day-headline {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700; font-style: italic;
+  font-size: 28px; line-height: 1.15;
+  color: var(--ocean);
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+.pew-sub {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+.pew-sub strong { color: var(--text-soft); font-weight: 600; }
+
+/* The 4-row per-day chart */
+.pew-chart-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.pew-chart {
+  width: 100%;
+  height: 280px;
+  display: block;
+  overflow: visible;
+}
+.pew-chart-axis text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  fill: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.pew-chart-axis-line {
+  stroke: var(--rule);
+  stroke-width: 0.5;
+}
+/* Row backgrounds */
+.pew-row-bg { fill: var(--bg-oyster); opacity: 0.4; }
+.pew-row-light-band { fill: #f7e5cc; opacity: 0.85; }
+.pew-row-light-tick { stroke: var(--sand); stroke-width: 1.5; }
+.pew-row-tide-line { fill: none; stroke: var(--ocean); stroke-width: 1.5; opacity: 0.85; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; }
+.pew-row-tide-fill { fill: var(--ocean); opacity: 0.10; }
+.pew-tide-extreme-high { fill: var(--sand); }
+.pew-tide-extreme-low { fill: var(--ocean); }
+.pew-row-solunar-major { fill: var(--sand); opacity: 0.7; }
+.pew-row-solunar-minor { fill: var(--sand-soft, #e2c8a6); opacity: 0.7; }
+.pew-row-solunar-transit { stroke: var(--ocean); stroke-width: 1; stroke-dasharray: 2 2; opacity: 0.5; }
+.pew-row-wind-line { fill: none; stroke: var(--sand); stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; }
+.pew-row-wind-fill { fill: var(--sand); opacity: 0.28; }
+.pew-row-wind-rust { fill: var(--rust); opacity: 0.45; }
+.pew-row-wind-threshold { stroke: var(--rule); stroke-width: 0.4; stroke-dasharray: 2 2; }
+.pew-row-empty-text {
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  fill: var(--text-muted);
+  font-style: italic;
+}
+
+/* HTML overlay labels (avoids SVG text stretching — same fix as PR #22) */
+.pew-chart-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.pew-chart-row-label {
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  font-family: "Inter", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(247, 243, 236, 0.85);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+.pew-chart-marker {
+  position: absolute;
+  transform: translateX(-50%);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  background: rgba(247, 243, 236, 0.85);
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+.pew-chart-marker-sand { color: var(--sand); font-weight: 600; }
+.pew-chart-marker-ocean { color: var(--ocean); }
+
+/* Prime windows list */
+.pew-windows-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-soft, #e8e2d3);
+  margin-bottom: 14px;
+}
+.pew-windows-list {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.pew-window {
+  display: grid;
+  grid-template-columns: 90px 130px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--rule-soft, #e8e2d3);
+}
+.pew-window:last-child { border-bottom: none; }
+.pew-window-rating { font-size: 14px; letter-spacing: 0.04em; }
+.pew-window-time {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ocean);
+  letter-spacing: 0.02em;
+}
+.pew-window-reason {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+.pew-windows-empty {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 12px 0;
+}
+.pew-back {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-soft, #e8e2d3);
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+.pew-back:hover { color: var(--ocean); }
+
+@media (max-width: 600px) {
+  .pew-multi-table-head,
+  .pew-multi-row {
+    grid-template-columns: 80px 1fr 80px;
+    gap: 10px;
+  }
+  .pew-multi-table-head > div:nth-child(4),
+  .pew-view-btn { display: none; }
+  .pew-card { padding: 24px 20px; }
+  .pew-day-headline { font-size: 22px; }
+  .pew-window {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "rating time"
+      "reason reason";
+    gap: 4px 12px;
+  }
+  .pew-window-rating { grid-area: rating; }
+  .pew-window-time { grid-area: time; text-align: right; }
+  .pew-window-reason { grid-area: reason; margin-top: 4px; }
+  .pew-chart { height: 320px; }
+}
+
+@media print {
+  .pew-card { break-inside: avoid; box-shadow: none; }
+  .pew-multi { break-inside: avoid; }
+  .pew-view-btn { display: none; }
+  .pew-back { display: none; }
+}
+
+/* ============================================================
    Weather chart (PR #21 — StormGlass API)
    Per-day wind-speed area chart with direction labels, precipitation
    markers, and castable-threshold guideline. Same visual register as
