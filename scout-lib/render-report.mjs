@@ -23,6 +23,7 @@ import { renderMoonCalendar } from "./render-moon-calendar.mjs";
 import { renderSunCalendar } from "./render-sun-calendar.mjs";
 import { renderSolunar } from "./render-solunar.mjs";
 import { renderTideChart } from "./render-tide-chart.mjs";
+import { renderWeatherChart } from "./render-weather-chart.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -328,6 +329,9 @@ function renderWeatherMoonTides(section, context) {
   // (Empty string for month/flexible mode or when fetch failed — chart renderer
   // handles missing data gracefully and Claude's tide_summary prose still shows.)
   const tideChart = renderTideChart(context?.timing, context?.destination, context?.tides);
+  // PR #21: real weather chart — needs destination + timing + pre-fetched weather
+  // (Same graceful fallback — empty when data unavailable, Claude prose unaffected.)
+  const weatherChart = renderWeatherChart(context?.timing, context?.destination, context?.weather);
   const best = section.best_dates_recommendation
     ? `
     <div class="best-dates">
@@ -343,6 +347,7 @@ function renderWeatherMoonTides(section, context) {
   <section class="section">
     <div class="section-header"><span class="section-number">03</span><h2>Weather, Moon & Tides</h2></div>
     <h3>Weather</h3>
+    ${weatherChart}
     <p>${escapeHtml(section.weather_overview)}</p>
     <h3>Sun</h3>
     ${sunCalendar}
