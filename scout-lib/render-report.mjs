@@ -22,6 +22,7 @@ import { getSpeciesImageUrl } from "./species-images.mjs";
 import { renderMoonCalendar } from "./render-moon-calendar.mjs";
 import { renderSunCalendar } from "./render-sun-calendar.mjs";
 import { renderSolunar } from "./render-solunar.mjs";
+import { renderTideChart } from "./render-tide-chart.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -323,6 +324,10 @@ function renderWeatherMoonTides(section, context) {
   const sunCalendar = renderSunCalendar(context?.timing, context?.destination);
   // PR #11: solunar peak windows — needs destination + timing
   const solunarChart = renderSolunar(context?.timing, context?.destination);
+  // PR #20: real tide chart — needs destination + timing + pre-fetched tide data
+  // (Empty string for month/flexible mode or when fetch failed — chart renderer
+  // handles missing data gracefully and Claude's tide_summary prose still shows.)
+  const tideChart = renderTideChart(context?.timing, context?.destination, context?.tides);
   const best = section.best_dates_recommendation
     ? `
     <div class="best-dates">
@@ -345,6 +350,7 @@ function renderWeatherMoonTides(section, context) {
     ${moonCalendar}
     <p>${escapeHtml(section.moon_summary)}</p>
     <h3>Tides</h3>
+    ${tideChart}
     <p>${escapeHtml(section.tide_summary)}</p>
     <h3>Solunar</h3>
     ${solunarChart}

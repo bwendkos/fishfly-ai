@@ -803,6 +803,121 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
 }
 
 /* ============================================================
+   Tide chart (PR #20 — WorldTides API)
+   Per-day 24-hour tide curve with H/L markers. Visual register
+   matches the sun/moon/solunar charts above.
+   ============================================================ */
+.tide-chart {
+  margin: 24px 0 16px;
+  padding: 20px 0 4px;
+}
+.tide-chart-label {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--sand);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.tide-chart-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tide-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 60px;
+  align-items: center;
+  gap: 14px;
+  font-family: "Inter", sans-serif;
+}
+.tide-row-date {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13px;
+}
+.tide-row-chart {
+  height: 56px;
+  position: relative;
+}
+.tide-row-range {
+  font-family: "JetBrains Mono", monospace;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: right;
+}
+.tide-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+.tide-midline {
+  stroke: var(--rule);
+  stroke-width: 0.3;
+  stroke-dasharray: 1.5 1.5;
+}
+.tide-fill {
+  fill: var(--ocean);
+  opacity: 0.08;
+}
+.tide-line {
+  fill: none;
+  stroke: var(--ocean);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+  vector-effect: non-scaling-stroke;
+}
+.tide-extreme circle {
+  fill: var(--ocean);
+}
+.tide-extreme-high circle { fill: var(--sand); }
+.tide-extreme text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 5.5px;
+  fill: var(--text-soft);
+  letter-spacing: 0.02em;
+}
+.tide-extreme-high text { fill: var(--sand); font-weight: 600; }
+.tide-row-empty {
+  grid-template-columns: 110px 1fr;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.tide-row-note {
+  font-size: 12.5px;
+}
+.tide-chart-source {
+  margin-top: 14px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .tide-row {
+    grid-template-columns: 1fr 60px;
+    grid-template-areas:
+      "date  range"
+      "chart chart";
+    gap: 4px 10px;
+  }
+  .tide-row-date { grid-area: date; }
+  .tide-row-range { grid-area: range; text-align: right; }
+  .tide-row-chart { grid-area: chart; height: 64px; }
+}
+
+@media print {
+  .tide-chart { break-inside: avoid; }
+  .tide-line { opacity: 1; stroke-width: 1.2; }
+  .tide-fill { opacity: 0.15; }
+}
+
+/* ============================================================
    Solunar peak windows (PR #11)
    ============================================================ */
 .solunar-calendar {

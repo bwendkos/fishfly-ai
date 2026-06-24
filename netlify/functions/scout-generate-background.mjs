@@ -28,6 +28,8 @@ import { enrichWithLibraryLinks } from "../../scout-lib/library-matcher.mjs";
 import { sendEmail } from "../../scout-lib/email.mjs";
 import { reportReadyEmail } from "../../scout-lib/email-templates.mjs";
 import { addNewsletterSubscriber } from "../../scout-lib/ghost.mjs";
+import { fetchTidesForTrip, tripDates } from "../../scout-lib/worldtides.mjs";
+import { getDestinationMeta } from "../../scout-lib/destinations.mjs";
 
 export default async (req) => {
   // ---- Internal trigger guard ----------
@@ -91,6 +93,34 @@ async function runGeneration(intakeId) {
     const enrichedReport = enrichWithLibraryLinks(report, intake);
     console.log(`[generate] Library matcher run @ ${stamp()}`);
 
+    // ---- 4b. Fetch real tide data (PR #20) ----------
+    // Non-fatal — if WorldTides fails or the destination has no lat/lon, we
+    // leave context.tides empty and the renderer falls back to Claude's
+    // tide_summary prose only. Trips in month/flexible mode return [] from
+    // tripDates() — no per-day chart rendered.
+    let tidesData = null;
+    try {
+      const destMeta = getDestinationMeta(intake.destination);
+      const dates = tripDates(intake.timing);
+      const apiKey = process.env.WORLDTIDES_API_KEY;
+      if (destMeta && dates.length > 0 && apiKey) {
+        tidesData = await fetchTidesForTrip({
+          lat: destMeta.lat,
+          lon: destMeta.lon,
+          dates,
+          apiKey,
+        });
+        const successCount = tidesData.filter((d) => !d.error).length;
+        console.log(`[generate] WorldTides fetched @ ${stamp()} — ${successCount}/${dates.length} days`);
+      } else if (!apiKey) {
+        console.warn("[generate] WORLDTIDES_API_KEY not set — skipping tide chart");
+      }
+    } catch (err) {
+      // Caught here means fetchTidesForTrip itself threw (rare — it catches
+      // per-day failures internally). Continue without tides.
+      console.error(`[generate] WorldTides fetch failed @ ${stamp()}:`, err?.message);
+    }
+
     // ---- 5. Generate report ID + render HTML ----------
     const reportId = generateReportId();
     const baseUrl = process.env.PUBLIC_BASE_URL || "https://fishfly.ai";
@@ -106,6 +136,7 @@ async function runGeneration(intakeId) {
         sub_area: intake.sub_area,  // PR #12: optional sub-area for header
         species: intake.species,
         timing: intake.timing,  // PR #9: needed by render-moon-calendar
+        tides: tidesData,       // PR #20: real tide data (or null if unavailable)
       });
     } catch (renderErr) {
       const errMsg = `[generate] renderReport CRASHED for intake=${intakeId}: ${renderErr?.message}`;
