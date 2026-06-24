@@ -81,9 +81,9 @@ function renderDayRow(day, meta) {
           <!-- Castable-threshold guideline -->
           <line x1="0" y1="${thresholdY().toFixed(2)}" x2="${W}" y2="${thresholdY().toFixed(2)}" class="weather-threshold-line"/>
           ${windSvg}
-          ${precipIcons}
-          ${directionLabels}
         </svg>
+        <div class="weather-overlay-text">${directionLabels}</div>
+        <div class="weather-overlay-icons">${precipIcons}</div>
       </div>
       <div class="weather-row-stats">
         <div class="weather-row-temp">${tempStr}</div>
@@ -147,7 +147,9 @@ function renderDirectionLabels(hours, tz) {
   const n = hours.length;
   if (n === 0) return "";
 
-  // Sample at ~25%, ~50%, ~75% of the day
+  // Sample at ~25%, ~50%, ~75% of the day. Render as HTML elements positioned
+  // by left% so they don't stretch with the SVG viewBox (which uses
+  // preserveAspectRatio="none" so paths fill the row width).
   const samples = [Math.floor(n * 0.25), Math.floor(n * 0.5), Math.floor(n * 0.75)];
   return samples
     .map((idx) => {
@@ -156,9 +158,9 @@ function renderDirectionLabels(hours, tz) {
       const kts = (h.windSpeed ?? 0) * KT_PER_MS;
       if (kts < 1) return ""; // skip calm hours
       const dir = degreesToCompass(h.windDirection);
-      const x = (idx / (n - 1)) * W;
+      const leftPct = (idx / Math.max(n - 1, 1)) * 100;
       const speedStr = `${Math.round(kts)}kt ${dir}`;
-      return `<text x="${x.toFixed(2)}" y="10" text-anchor="middle" class="weather-dir-label">${escapeHtml(speedStr)}</text>`;
+      return `<span class="weather-dir-label" style="left:${leftPct.toFixed(2)}%">${escapeHtml(speedStr)}</span>`;
     })
     .join("");
 }
@@ -166,7 +168,9 @@ function renderDirectionLabels(hours, tz) {
 function renderPrecipIcons(hours, tz) {
   const n = hours.length;
   if (n === 0) return "";
-  // Show an icon at the start of any 2+ hour run of significant precipitation
+  // Show an icon centered over any 2+ hour run of significant precipitation.
+  // Rendered as HTML positioned by left% (same reason as direction labels —
+  // text inside the viewBox-stretched SVG would distort).
   const icons = [];
   let runStart = null;
   for (let i = 0; i < n; i++) {
@@ -175,8 +179,8 @@ function renderPrecipIcons(hours, tz) {
     if ((!wet || i === n - 1) && runStart !== null) {
       const runEnd = wet ? i : i - 1;
       if (runEnd - runStart >= 1) {
-        const x = ((runStart + (runEnd - runStart) / 2) / (n - 1)) * W;
-        icons.push(`<text x="${x.toFixed(2)}" y="${(H - 3).toFixed(2)}" text-anchor="middle" class="weather-precip-icon">⛈</text>`);
+        const leftPct = ((runStart + (runEnd - runStart) / 2) / Math.max(n - 1, 1)) * 100;
+        icons.push(`<span class="weather-precip-icon" style="left:${leftPct.toFixed(2)}%">⛈</span>`);
       }
       runStart = null;
     }

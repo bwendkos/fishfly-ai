@@ -85,29 +85,33 @@ function renderDayRow(day, meta) {
   const fillPath = `M ${pts[0]} L ${pts.slice(1).join(" L ")} L ${W},${H} L 0,${H} Z`;
 
   // === Extreme markers (H / L) ===
-  const extremesSvg = (day.extremes || [])
-    .map((e) => {
-      const ts = new Date(e.dt * 1000);
-      const fraction = localDayFraction(ts, meta.tz);
-      if (fraction === null) return "";
-      // Skip extremes outside the [0, 1] day window (WorldTides sometimes
-      // returns a small overlap at day boundaries).
-      if (fraction < -0.02 || fraction > 1.02) return "";
-      const x = Math.max(0, Math.min(1, fraction)) * W;
-      const yNorm = (maxH - e.height) / range;
-      const y = PAD_TOP + yNorm * (H - PAD_TOP - PAD_BOTTOM);
-      const isHigh = (e.type || "").toLowerCase() === "high";
-      const label = `${isHigh ? "H" : "L"} ${formatLocalTime(ts, meta.tz, { hour: "numeric", minute: "2-digit", hour12: false }).replace(/^(\d):/, "0$1:")}`;
-      // Place the label above-the-line for highs, below-the-line for lows
-      const labelY = isHigh ? Math.max(y - 5, 7) : Math.min(y + 9, H - 2);
-      const labelAnchor = (() => {
-        if (x < 12) return "start";
-        if (x > W - 12) return "end";
-        return "middle";
-      })();
-      return `<g class="tide-extreme tide-extreme-${isHigh ? "high" : "low"}"><circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="1.4"/><text x="${x.toFixed(2)}" y="${labelY.toFixed(2)}" text-anchor="${labelAnchor}">${escapeHtml(label)}</text></g>`;
-    })
-    .join("");
+  // Circles stay in the SVG (paths/shapes scale correctly).
+  // Text labels move to HTML overlay so they don't stretch with the viewBox
+  // (preserveAspectRatio="none" stretches SVG text glyphs horizontally too).
+  const extremeCircles = [];
+  const extremeLabels = [];
+  for (const e of day.extremes || []) {
+    const ts = new Date(e.dt * 1000);
+    const fraction = localDayFraction(ts, meta.tz);
+    if (fraction === null) continue;
+    // Skip extremes outside the day window (WorldTides sometimes returns a
+    // small overlap at day boundaries).
+    if (fraction < -0.02 || fraction > 1.02) continue;
+    const clamped = Math.max(0, Math.min(1, fraction));
+    const x = clamped * W;
+    const yNorm = (maxH - e.height) / range;
+    const y = PAD_TOP + yNorm * (H - PAD_TOP - PAD_BOTTOM);
+    const isHigh = (e.type || "").toLowerCase() === "high";
+    extremeCircles.push(
+      `<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="1.4" class="tide-extreme-${isHigh ? "high" : "low"}"/>`
+    );
+    const label = `${isHigh ? "H" : "L"} ${formatLocalTime(ts, meta.tz, { hour: "numeric", minute: "2-digit", hour12: false }).replace(/^(\d):/, "0$1:")}`;
+    const leftPct = clamped * 100;
+    const cls = `tide-extreme-label tide-extreme-label-${isHigh ? "high" : "low"}`;
+    extremeLabels.push(
+      `<span class="${cls}" style="left:${leftPct.toFixed(2)}%">${escapeHtml(label)}</span>`
+    );
+  }
 
   return `
     <div class="tide-row">
@@ -117,8 +121,9 @@ function renderDayRow(day, meta) {
           <line x1="0" y1="${(PAD_TOP + (H - PAD_TOP - PAD_BOTTOM) / 2).toFixed(2)}" x2="${W}" y2="${(PAD_TOP + (H - PAD_TOP - PAD_BOTTOM) / 2).toFixed(2)}" class="tide-midline"/>
           <path d="${fillPath}" class="tide-fill"/>
           <path d="${linePath}" class="tide-line"/>
-          ${extremesSvg}
+          ${extremeCircles.join("")}
         </svg>
+        <div class="tide-overlay-labels">${extremeLabels.join("")}</div>
       </div>
       <div class="tide-row-range">${visualRange.toFixed(1)}m</div>
     </div>`;

@@ -871,17 +871,29 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
   opacity: 0.85;
   vector-effect: non-scaling-stroke;
 }
-.tide-extreme circle {
-  fill: var(--ocean);
+/* Extreme markers — circles in SVG, labels as HTML overlay
+   (SVG text glyphs stretch horizontally under preserveAspectRatio="none";
+   HTML labels render at proper proportions.) */
+circle.tide-extreme-low  { fill: var(--ocean); }
+circle.tide-extreme-high { fill: var(--sand); }
+.tide-overlay-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
-.tide-extreme-high circle { fill: var(--sand); }
-.tide-extreme text {
+.tide-extreme-label {
+  position: absolute;
+  transform: translateX(-50%);
   font-family: "JetBrains Mono", monospace;
-  font-size: 5.5px;
-  fill: var(--text-soft);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-soft);
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
-.tide-extreme-high text { fill: var(--sand); font-weight: 600; }
+/* Highs sit above the chart's vertical center; lows sit below. */
+.tide-extreme-label-high { top: 2px; color: var(--sand); font-weight: 600; }
+.tide-extreme-label-low  { bottom: 2px; }
 .tide-row-empty {
   grid-template-columns: 110px 1fr;
   font-style: italic;
@@ -1000,15 +1012,33 @@ tr:nth-child(even) td { background: var(--bg-oyster); }
   fill: var(--rust);
   opacity: 0.45;
 }
+/* Direction labels + precipitation icons — HTML overlays so they don't
+   stretch with the SVG viewBox (preserveAspectRatio="none" distorts text
+   glyphs horizontally). Positioned absolutely by left%. */
+.weather-overlay-text,
+.weather-overlay-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
 .weather-dir-label {
+  position: absolute;
+  top: 2px;
+  transform: translateX(-50%);
   font-family: "JetBrains Mono", monospace;
-  font-size: 5.5px;
-  fill: var(--text-soft);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-soft);
   letter-spacing: 0.04em;
+  white-space: nowrap;
 }
 .weather-precip-icon {
-  font-size: 7px;
-  fill: var(--ocean);
+  position: absolute;
+  bottom: 2px;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: var(--ocean);
+  line-height: 1;
 }
 .weather-row-empty {
   grid-template-columns: 110px 1fr;
