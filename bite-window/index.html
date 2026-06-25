@@ -191,6 +191,122 @@
       line-height: 1.45;
     }
 
+    /* Location autocomplete dropdown (PR #26) */
+    .location-field {
+      position: relative;
+    }
+    .location-status {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 140ms ease;
+    }
+    .location-status.active { opacity: 1; }
+    .location-status.error { color: var(--rust); }
+    .location-status.confirmed { color: var(--sand); }
+
+    .suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      margin-top: 4px;
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(30, 58, 95, 0.10), 0 1px 3px rgba(30, 58, 95, 0.06);
+      max-height: 320px;
+      overflow-y: auto;
+      z-index: 10;
+      display: none;
+    }
+    .suggestions[data-open="true"] { display: block; }
+    .suggestion {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--rule-soft);
+      cursor: pointer;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.45;
+      transition: background 80ms ease;
+    }
+    .suggestion:last-child { border-bottom: none; }
+    .suggestion:hover,
+    .suggestion[data-highlighted="true"] {
+      background: var(--bg-cream);
+    }
+    .suggestion-name { font-weight: 500; }
+    .suggestion-context {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      margin-top: 1px;
+    }
+    .suggestion-empty {
+      padding: 14px 16px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-style: italic;
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
+    /* Email field — extra explicit "no spam" cue */
+    .field input[type="email"] {
+      width: 100%;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--text-primary);
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    /* Consent checkboxes — match Trip Scout's pattern */
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 14px 16px;
+      background: var(--bg-oyster);
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-soft);
+      margin-top: 12px;
+      cursor: pointer;
+    }
+    .consent input[type="checkbox"] {
+      margin-top: 3px;
+      flex-shrink: 0;
+      width: 16px; height: 16px;
+      cursor: pointer;
+    }
+    .consent strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Section divider between "Who" + "Where & when" */
+    .form-section-divider {
+      margin: 28px 0 22px;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule-soft);
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
     /* Date range — two side-by-side inputs */
     .date-range {
       display: grid;
@@ -388,7 +504,7 @@
   <!-- =========================================================
        SCAFFOLD NOTICE (remove when backend ships in PR #26)
        ========================================================= -->
-  <div class="scaffold-notice">scaffold — submit is disabled · backend lands in PR #26</div>
+  <div class="scaffold-notice">scaffold — autocomplete works · report backend lands in PR #27</div>
 
   <!-- =========================================================
        HERO + FORM
@@ -404,20 +520,57 @@
 
     <!-- INTAKE FORM ===================================== -->
     <form class="form-card" id="bite-window-form" novalidate>
-      <div class="form-card-label">Tell us where &amp; when</div>
-      <h2 class="form-card-title">Forecast your bite.</h2>
+      <div class="form-card-label">Get your forecast</div>
+      <h2 class="form-card-title">Where &amp; when are you fishing?</h2>
+
+      <div class="field">
+        <label for="first_name">First name</label>
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          required
+          maxlength="40"
+          autocomplete="given-name"
+          placeholder="Brad"
+        />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          maxlength="200"
+          autocomplete="email"
+          placeholder="you@example.com"
+        />
+        <div class="field-help">We&rsquo;ll send your Bite Window report here. No spam.</div>
+      </div>
+
+      <div class="form-section-divider">The trip</div>
 
       <div class="field">
         <label for="location">Location</label>
-        <input
-          type="text"
-          id="location"
-          name="location"
-          placeholder="e.g. Marathon, FL or Andros, Bahamas"
-          autocomplete="off"
-          required
-        />
-        <div class="field-help">Saltwater only. Any coastal town, region, or named flat works.</div>
+        <div class="location-field">
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Start typing a coastal town or flat…"
+            autocomplete="off"
+            spellcheck="false"
+            required
+          />
+          <div class="location-status" id="location-status">searching…</div>
+          <div class="suggestions" id="suggestions" role="listbox"></div>
+        </div>
+        <input type="hidden" id="location_lat" name="location_lat" />
+        <input type="hidden" id="location_lon" name="location_lon" />
+        <input type="hidden" id="location_country" name="location_country" />
+        <div class="field-help">Saltwater only. Pick from suggestions, or type freely &mdash; we&rsquo;ll validate at submit.</div>
       </div>
 
       <div class="field">
@@ -435,11 +588,23 @@
         <div class="date-end-hint">Leave the end date blank for a single-day forecast. Multi-day up to 7 days.</div>
       </div>
 
+      <div class="form-section-divider">Consent</div>
+
+      <label class="consent">
+        <input type="checkbox" id="consent" name="consent" required />
+        <span>I&rsquo;m OK with FishFly emailing me my Bite Window report and occasional updates. <strong>Unsubscribe anytime.</strong></span>
+      </label>
+
+      <label class="consent">
+        <input type="checkbox" id="newsletter_opt_in" name="newsletter_opt_in" />
+        <span>Send me the FishFly Field Notes newsletter (1&ndash;2 emails / month). Optional.</span>
+      </label>
+
       <div class="submit-row">
         <button type="submit" id="submit-btn" disabled>
           Show me the bite window
         </button>
-        <div class="submit-note" id="submit-note">Fill in location &amp; start date to enable</div>
+        <div class="submit-note" id="submit-note">Fill in the form to enable</div>
       </div>
     </form>
 
@@ -490,13 +655,24 @@
   </footer>
 
   <script>
-    /* Wire enable/disable state for the submit button. Default start to today. */
+    /* Bite Window intake — location autocomplete (PR #26) + form wiring.
+       Backend report generation still pending (PR #27). */
     (function () {
       const locationInput = document.getElementById("location");
+      const locationStatus = document.getElementById("location-status");
+      const suggestionsEl = document.getElementById("suggestions");
+      const latInput = document.getElementById("location_lat");
+      const lonInput = document.getElementById("location_lon");
+      const countryInput = document.getElementById("location_country");
       const startInput = document.getElementById("start_date");
       const endInput = document.getElementById("end_date");
       const submitBtn = document.getElementById("submit-btn");
       const submitNote = document.getElementById("submit-note");
+      const form = document.getElementById("bite-window-form");
+      const firstNameInput = document.getElementById("first_name");
+      const emailInput = document.getElementById("email");
+      const consentInput = document.getElementById("consent");
+      const newsletterInput = document.getElementById("newsletter_opt_in");
 
       // Default start = today
       const today = new Date();
@@ -504,38 +680,194 @@
       startInput.min = todayStr;
       startInput.value = todayStr;
 
-      function update() {
-        const loc = locationInput.value.trim();
+      // ============================================================
+      // Submit button state
+      // Submit gates on: name, email (basic format), location, start_date, consent.
+      // Newsletter opt-in is genuinely optional.
+      // ============================================================
+      const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      function refreshSubmitState() {
         const start = startInput.value;
-        const end = endInput.value;
-        // End date constraint: must be after start, max 7 days
+        // Cap end date 6 days after start
         if (start) {
           endInput.min = start;
           const startD = new Date(start + "T00:00:00");
-          const maxD = new Date(startD.getTime() + 6 * 86400000); // +6 days = 7 day max
+          const maxD = new Date(startD.getTime() + 6 * 86400000);
           endInput.max = `${maxD.getFullYear()}-${String(maxD.getMonth() + 1).padStart(2, "0")}-${String(maxD.getDate()).padStart(2, "0")}`;
         }
-        const ready = loc.length >= 2 && start;
+        const hasName = firstNameInput.value.trim().length >= 1;
+        const hasEmail = EMAIL_RE.test(emailInput.value.trim());
+        const hasLocation = locationInput.value.trim().length >= 2;
+        const hasStart = !!start;
+        const hasConsent = consentInput.checked;
+        const ready = hasName && hasEmail && hasLocation && hasStart && hasConsent;
         submitBtn.disabled = !ready;
-        if (ready) {
-          submitNote.textContent = "Backend lands in PR #26 — this is just the scaffold";
-          submitNote.style.color = "var(--sand)";
-        } else {
-          submitNote.textContent = "Fill in location & start date to enable";
-          submitNote.style.color = "var(--text-muted)";
+        let note;
+        if (!hasName)            note = "Add your first name";
+        else if (!hasEmail)      note = "Enter a valid email";
+        else if (!hasLocation)   note = "Add a location";
+        else if (!hasStart)      note = "Pick a start date";
+        else if (!hasConsent)    note = "Check the consent box to receive your report";
+        else if (!latInput.value) note = "Tip: pick from suggestions for an accurate coastal match";
+        else                     note = "Report generation lands in PR #27";
+        submitNote.textContent = note;
+        submitNote.style.color = ready ? "var(--sand)" : "var(--text-muted)";
+      }
+      firstNameInput.addEventListener("input", refreshSubmitState);
+      emailInput.addEventListener("input", refreshSubmitState);
+      startInput.addEventListener("change", refreshSubmitState);
+      endInput.addEventListener("change", refreshSubmitState);
+      consentInput.addEventListener("change", refreshSubmitState);
+
+      // ============================================================
+      // Location autocomplete
+      // ============================================================
+      let debounceTimer = null;
+      let lastQuery = "";
+      let activeRequest = null;
+
+      function setLocationStatus(text, kind) {
+        locationStatus.textContent = text || "";
+        locationStatus.classList.remove("active", "error", "confirmed");
+        if (kind) {
+          locationStatus.classList.add("active");
+          if (kind === "error") locationStatus.classList.add("error");
+          if (kind === "confirmed") locationStatus.classList.add("confirmed");
         }
       }
-      locationInput.addEventListener("input", update);
-      startInput.addEventListener("change", update);
-      endInput.addEventListener("change", update);
-      update();
 
-      // For the scaffold PR, intercept the submit
-      document.getElementById("bite-window-form").addEventListener("submit", (e) => {
+      function clearGeoFields() {
+        latInput.value = "";
+        lonInput.value = "";
+        countryInput.value = "";
+      }
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" })[c]);
+      }
+
+      function renderSuggestions(items) {
+        if (!items.length) {
+          suggestionsEl.innerHTML = '<div class="suggestion-empty">No matches. Try a town, marina, or landmark.</div>';
+          suggestionsEl.dataset.open = "true";
+          return;
+        }
+        suggestionsEl.innerHTML = items.map((s, i) => {
+          // Split name into headline (first chunk) + context (rest)
+          const parts = s.name.split(", ");
+          const headline = parts[0];
+          const context = parts.slice(1).join(", ");
+          return `<div class="suggestion" role="option" data-index="${i}"><span class="suggestion-name">${escapeHtml(headline)}</span>${context ? `<span class="suggestion-context">${escapeHtml(context)}</span>` : ""}</div>`;
+        }).join("");
+        suggestionsEl.dataset.open = "true";
+        suggestionsEl._items = items;
+      }
+
+      function closeSuggestions() {
+        suggestionsEl.dataset.open = "false";
+      }
+
+      function pickSuggestion(item) {
+        if (!item) return;
+        locationInput.value = item.name;
+        latInput.value = item.lat;
+        lonInput.value = item.lon;
+        countryInput.value = item.country || "";
+        closeSuggestions();
+        setLocationStatus(item.country ? `pin · ${item.country}` : "pin", "confirmed");
+        refreshSubmitState();
+      }
+
+      async function fetchSuggestions(q) {
+        if (activeRequest) activeRequest.abort?.();
+        const controller = typeof AbortController === "function" ? new AbortController() : null;
+        activeRequest = controller;
+        setLocationStatus("searching…", "active");
+        try {
+          const r = await fetch(`/bite-window/api/geocode?q=${encodeURIComponent(q)}`, {
+            signal: controller?.signal,
+          });
+          if (!r.ok) throw new Error(`geocode HTTP ${r.status}`);
+          const data = await r.json();
+          const items = data.suggestions || [];
+          renderSuggestions(items);
+          setLocationStatus(items.length ? `${items.length} matches` : "no matches", items.length ? null : "error");
+        } catch (err) {
+          if (err.name === "AbortError") return;
+          console.warn("[bite-window] geocode failed:", err?.message);
+          setLocationStatus("offline", "error");
+          suggestionsEl.innerHTML = '<div class="suggestion-empty">Search unavailable — type your location anyway.</div>';
+          suggestionsEl.dataset.open = "true";
+        } finally {
+          activeRequest = null;
+        }
+      }
+
+      locationInput.addEventListener("input", () => {
+        clearGeoFields();
+        const q = locationInput.value.trim();
+        refreshSubmitState();
+        clearTimeout(debounceTimer);
+        if (q.length < 2) {
+          closeSuggestions();
+          setLocationStatus("");
+          return;
+        }
+        if (q === lastQuery) return;
+        lastQuery = q;
+        debounceTimer = setTimeout(() => fetchSuggestions(q), 250);
+      });
+
+      // Keyboard navigation in the dropdown
+      let highlightedIdx = -1;
+      function setHighlight(i) {
+        const items = suggestionsEl.querySelectorAll(".suggestion");
+        if (!items.length) return;
+        if (i < 0) i = items.length - 1;
+        if (i >= items.length) i = 0;
+        items.forEach((el, j) => el.dataset.highlighted = (j === i) ? "true" : "false");
+        items[i].scrollIntoView({ block: "nearest" });
+        highlightedIdx = i;
+      }
+      locationInput.addEventListener("keydown", (e) => {
+        if (suggestionsEl.dataset.open !== "true") return;
+        if (e.key === "ArrowDown") { e.preventDefault(); setHighlight(highlightedIdx + 1); }
+        else if (e.key === "ArrowUp") { e.preventDefault(); setHighlight(highlightedIdx - 1); }
+        else if (e.key === "Enter") {
+          if (highlightedIdx >= 0 && suggestionsEl._items) {
+            e.preventDefault();
+            pickSuggestion(suggestionsEl._items[highlightedIdx]);
+            highlightedIdx = -1;
+          }
+        } else if (e.key === "Escape") {
+          closeSuggestions();
+          highlightedIdx = -1;
+        }
+      });
+
+      suggestionsEl.addEventListener("click", (e) => {
+        const el = e.target.closest(".suggestion");
+        if (!el || !suggestionsEl._items) return;
+        const idx = parseInt(el.dataset.index, 10);
+        pickSuggestion(suggestionsEl._items[idx]);
+        highlightedIdx = -1;
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest(".location-field")) closeSuggestions();
+      });
+
+      // ============================================================
+      // Form submission (still scaffold-only — PR #27 wires the backend)
+      // ============================================================
+      form.addEventListener("submit", (e) => {
         e.preventDefault();
-        submitNote.textContent = "Scaffold only — backend pipeline lands in PR #26.";
+        submitNote.textContent = "Report generation pipeline lands in PR #27.";
         submitNote.style.color = "var(--rust)";
       });
+
+      refreshSubmitState();
     })();
   </script>
 </body>

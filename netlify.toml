@@ -83,3 +83,10 @@
   from = "/scout/admin/intakes.csv"
   to = "/.netlify/functions/scout-admin-intakes"
   status = 200
+
+# --- Bite Window API (PR #26: Mapbox geocoding proxy) ---
+
+[[redirects]]
+  from = "/bite-window/api/geocode"
+  to = "/.netlify/functions/bite-window-geocode"
+  status = 200
