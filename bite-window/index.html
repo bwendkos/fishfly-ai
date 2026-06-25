@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bite Window — FishFly</title>
+  <meta name="description" content="When the bite is on. A daily fishing forecast for saltwater anglers — synthesizing sun, tide, solunar, wind, and weather into a single timeline.">
+  <link rel="icon" type="image/svg+xml" href="/brand/marks/compass-filled-disc.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #f7f3ec;
+      --bg-oyster: #efe9df;
+      --ocean: #1e3a5f;
+      --ocean-soft: #4a6a93;
+      --sand: #c89668;
+      --sand-soft: #e2c8a6;
+      --rust: #8b3a3a;
+      --text-primary: #1a1f2e;
+      --text-soft: #4a5568;
+      --text-muted: #8b8478;
+      --rule: #d8d2c4;
+      --rule-soft: #e8e2d3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", -apple-system, sans-serif;
+      background: var(--bg-cream);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ============================================================
+       NAV (consistent with rest of fishfly.ai)
+       ============================================================ */
+    .site-nav {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .site-nav-brand {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic; font-weight: 700;
+      font-size: 24px;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .site-nav-brand .dot { color: var(--sand); margin: 0 3px; }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 120ms ease;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--ocean); }
+    .nav-links a.active { font-weight: 600; }
+
+    /* ============================================================
+       MAIN PAGE LAYOUT
+       ============================================================ */
+    .main {
+      flex: 1;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 32px 64px;
+    }
+
+    .eyebrow {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 16px;
+    }
+    .eyebrow .feature-mark {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--sand);
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+      transform: translateY(-1px);
+    }
+    .headline {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 48px;
+      line-height: 1.1;
+      color: var(--text-primary);
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .lede {
+      font-family: "Inter", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--text-soft);
+      max-width: 580px;
+      margin-bottom: 40px;
+    }
+    .lede strong { color: var(--text-primary); font-weight: 600; }
+
+    /* ============================================================
+       INTAKE FORM CARD
+       ============================================================ */
+    .form-card {
+      background: #ffffff;
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--sand);
+      padding: 36px 40px;
+      box-shadow: 0 1px 3px rgba(30, 58, 95, 0.04), 0 4px 16px rgba(30, 58, 95, 0.06);
+      margin-bottom: 32px;
+    }
+    .form-card-label {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 6px;
+    }
+    .form-card-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.2;
+      color: var(--ocean);
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
+    }
+
+    .field {
+      margin-bottom: 22px;
+    }
+    .field:last-of-type { margin-bottom: 0; }
+    .field label {
+      display: block;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .field input[type="text"],
+    .field input[type="date"] {
+      width: 100%;
+      font-family: "Inter", sans-serif;
+      font-size: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #ffffff;
+      color: var(--text-primary);
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.08);
+    }
+    .field input::placeholder { color: var(--text-muted); }
+    .field-help {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.45;
+    }
+
+    /* Date range — two side-by-side inputs */
+    .date-range {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .date-range > div { display: flex; flex-direction: column; }
+    .date-range .field-sublabel {
+      font-family: "Inter", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .date-end-hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* Submit button */
+    .submit-row {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule-soft);
+    }
+    button[type="submit"] {
+      width: 100%;
+      font-family: "Inter", sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 24px;
+      background: var(--ocean);
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 140ms ease, transform 80ms ease;
+    }
+    button[type="submit"]:hover:not(:disabled) { background: #2a4d7a; }
+    button[type="submit"]:active:not(:disabled) { transform: translateY(1px); }
+    button[type="submit"]:disabled {
+      background: var(--text-muted);
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .submit-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ============================================================
+       SUPPORTING SECTION — "What you'll get" + cross-promo
+       ============================================================ */
+    .features {
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .features-label {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 14px;
+    }
+    .features-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 24px;
+      color: var(--ocean);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .feature-item {
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid var(--rule);
+    }
+    .feature-item h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .feature-item p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-soft);
+    }
+
+    .cross-promo {
+      margin-top: 32px;
+      padding: 24px 28px;
+      background: var(--bg-oyster);
+      border-left: 3px solid var(--ocean);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-soft);
+    }
+    .cross-promo strong { color: var(--text-primary); font-weight: 600; }
+    .cross-promo a {
+      color: var(--ocean);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ocean);
+      transition: color 120ms ease;
+    }
+    .cross-promo a:hover { color: var(--sand); border-color: var(--sand); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      padding: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--rule);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-links { display: flex; gap: 12px; align-items: center; }
+    .footer-links a { color: var(--text-soft); text-decoration: none; }
+    .footer-links a:hover { color: var(--ocean); }
+    .footer-links .sep { color: var(--rule); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 720px) {
+      .site-nav { padding: 20px 20px; flex-wrap: wrap; gap: 12px 16px; }
+      .nav-links { gap: 18px; font-size: 13px; }
+      .main { padding: 24px 20px 48px; }
+      .headline { font-size: 36px; }
+      .lede { font-size: 16px; }
+      .form-card { padding: 28px 24px; }
+      .form-card-title { font-size: 22px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* Mock notice — for the scaffold PR only, remove when backend ships */
+    .scaffold-notice {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      padding: 12px 20px;
+      background: var(--bg-oyster);
+      border-left: 3px solid var(--sand);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       NAV
+       ========================================================= -->
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" class="site-nav-brand">fish<span class="dot">·</span>fly</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/library/">Library</a>
+      <a href="/scout/">Trip Scout</a>
+      <a href="/bite-window/" class="active">Bite Window</a>
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </nav>
+
+  <!-- =========================================================
+       SCAFFOLD NOTICE (remove when backend ships in PR #26)
+       ========================================================= -->
+  <div class="scaffold-notice">scaffold — submit is disabled · backend lands in PR #26</div>
+
+  <!-- =========================================================
+       HERO + FORM
+       ========================================================= -->
+  <main class="main">
+    <div class="eyebrow"><span class="feature-mark"></span>Bite Window</div>
+    <h1 class="headline">When the bite is on.</h1>
+    <p class="lede">
+      A daily fishing forecast for saltwater anglers &mdash; <strong>fly or spinning, every species.</strong>
+      Tell us where and when. We synthesize sun, tide, solunar peaks, wind, and weather into a single
+      timeline so you know which hours of which days to be on the water.
+    </p>
+
+    <!-- INTAKE FORM ===================================== -->
+    <form class="form-card" id="bite-window-form" novalidate>
+      <div class="form-card-label">Tell us where &amp; when</div>
+      <h2 class="form-card-title">Forecast your bite.</h2>
+
+      <div class="field">
+        <label for="location">Location</label>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="e.g. Marathon, FL or Andros, Bahamas"
+          autocomplete="off"
+          required
+        />
+        <div class="field-help">Saltwater only. Any coastal town, region, or named flat works.</div>
+      </div>
+
+      <div class="field">
+        <label>Date(s)</label>
+        <div class="date-range">
+          <div>
+            <span class="field-sublabel">Start</span>
+            <input type="date" id="start_date" name="start_date" required />
+          </div>
+          <div>
+            <span class="field-sublabel">End <small style="font-weight:400;text-transform:none;letter-spacing:0;opacity:0.75;">(optional)</small></span>
+            <input type="date" id="end_date" name="end_date" />
+          </div>
+        </div>
+        <div class="date-end-hint">Leave the end date blank for a single-day forecast. Multi-day up to 7 days.</div>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" id="submit-btn" disabled>
+          Show me the bite window
+        </button>
+        <div class="submit-note" id="submit-note">Fill in location &amp; start date to enable</div>
+      </div>
+    </form>
+
+    <!-- WHAT YOU'LL GET ================================== -->
+    <section class="features">
+      <div class="features-label">What's in the report</div>
+      <h2 class="features-title">Five signals, one timeline.</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>Daily rating</h3>
+          <p>A 1&ndash;5&#9733; score per day based on how strongly conditions converge. Best, Good, or Weak at a glance.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Hour-by-hour timeline</h3>
+          <p>Stacked rows for light, tide, solunar windows, and wind. See exactly when signals align.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Ranked prime windows</h3>
+          <p>Top 1&ndash;3 time blocks per day with reasoning &mdash; <em>"first-light flood meets solunar major"</em>.</p>
+        </div>
+        <div class="feature-item">
+          <h3>Real data, not estimates</h3>
+          <p>Live tides from WorldTides, hourly weather from StormGlass (NOAA + ECMWF blend), algorithmic sun + moon + solunar.</p>
+        </div>
+      </div>
+
+      <div class="cross-promo">
+        <strong>Planning a multi-day trip?</strong> The Bite Window is also section 03 of every
+        <a href="/scout/">Trip Scout</a> report &mdash; alongside species recommendations,
+        flies cross-linked to our library, weather context, packing, logistics, and regulations.
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="footer">
+    <div>&copy; 2026 FishFly.ai</div>
+    <div class="footer-links">
+      <a href="/">Home</a><span class="sep">·</span>
+      <a href="/library/">Library</a><span class="sep">·</span>
+      <a href="/scout/">Trip Scout</a><span class="sep">·</span>
+      <a href="/bite-window/">Bite Window</a><span class="sep">·</span>
+      <a href="/about/">About</a><span class="sep">·</span>
+      <a href="/blog/">Blog</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Wire enable/disable state for the submit button. Default start to today. */
+    (function () {
+      const locationInput = document.getElementById("location");
+      const startInput = document.getElementById("start_date");
+      const endInput = document.getElementById("end_date");
+      const submitBtn = document.getElementById("submit-btn");
+      const submitNote = document.getElementById("submit-note");
+
+      // Default start = today
+      const today = new Date();
+      const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+      startInput.min = todayStr;
+      startInput.value = todayStr;
+
+      function update() {
+        const loc = locationInput.value.trim();
+        const start = startInput.value;
+        const end = endInput.value;
+        // End date constraint: must be after start, max 7 days
+        if (start) {
+          endInput.min = start;
+          const startD = new Date(start + "T00:00:00");
+          const maxD = new Date(startD.getTime() + 6 * 86400000); // +6 days = 7 day max
+          endInput.max = `${maxD.getFullYear()}-${String(maxD.getMonth() + 1).padStart(2, "0")}-${String(maxD.getDate()).padStart(2, "0")}`;
+        }
+        const ready = loc.length >= 2 && start;
+        submitBtn.disabled = !ready;
+        if (ready) {
+          submitNote.textContent = "Backend lands in PR #26 — this is just the scaffold";
+          submitNote.style.color = "var(--sand)";
+        } else {
+          submitNote.textContent = "Fill in location & start date to enable";
+          submitNote.style.color = "var(--text-muted)";
+        }
+      }
+      locationInput.addEventListener("input", update);
+      startInput.addEventListener("change", update);
+      endInput.addEventListener("change", update);
+      update();
+
+      // For the scaffold PR, intercept the submit
+      document.getElementById("bite-window-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        submitNote.textContent = "Scaffold only — backend pipeline lands in PR #26.";
+        submitNote.style.color = "var(--rust)";
+      });
+    })();
+  </script>
+</body>
+</html>
