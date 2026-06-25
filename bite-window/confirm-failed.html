@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bite Window confirmation issue — FishFly</title>
+  <link rel="icon" type="image/svg+xml" href="/brand/marks/compass-filled-disc.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,700&family=Playfair+Display:ital,wght@1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f7f3ec;
+      color: #1a1f2e;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+    .wordmark {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: -0.5px;
+      color: #1a1f2e;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .wordmark .dot { color: #c89668; margin: 0 3px; }
+    .tagline {
+      font-family: "Inter", sans-serif;
+      font-weight: 500; font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c89668;
+      margin-bottom: 48px;
+    }
+    .card {
+      max-width: 560px;
+      background: #ffffff;
+      border: 1px solid #d8d2c4;
+      border-left: 4px solid #8b3a3a;
+      padding: 36px;
+      box-shadow: 0 1px 3px rgba(30, 58, 95, 0.04), 0 4px 16px rgba(30, 58, 95, 0.06);
+    }
+    .eyebrow {
+      font-family: "Inter", sans-serif;
+      font-weight: 600; font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #8b3a3a;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-style: italic; font-weight: 700;
+      font-size: 28px;
+      color: #1a1f2e;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 15px;
+      color: #4a5568;
+      margin-bottom: 14px;
+    }
+    .reason-code {
+      display: inline-block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      background: #efe9df;
+      padding: 3px 8px;
+      border-radius: 3px;
+      color: #8b8478;
+      letter-spacing: 0.02em;
+    }
+    .cta {
+      display: inline-block;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      background: #1e3a5f;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 3px;
+      margin-top: 20px;
+      transition: background 140ms ease;
+    }
+    .cta:hover { background: #2a4d7a; }
+  </style>
+</head>
+<body>
+  <a href="/" class="wordmark">fish<span class="dot">·</span>fly</a>
+  <div class="tagline">Bite Window</div>
+
+  <div class="card">
+    <div class="eyebrow">Something didn't line up</div>
+    <h1>We couldn't confirm that link.</h1>
+    <p id="reason-message">Your magic link looks invalid or expired. Confirmation links work for 24 hours; after that you&rsquo;ll need to request a fresh one.</p>
+    <p>Sometimes this happens when an email client pre-fetches the link (which marks it as used) before you click through.</p>
+    <p style="margin-top: 18px;"><span class="reason-code" id="reason-code">reason</span></p>
+    <a href="/bite-window/" class="cta">Start a new request</a>
+  </div>
+
+  <script>
+    /* Show a friendlier message based on the reason query param */
+    const params = new URLSearchParams(window.location.search);
+    const reason = params.get("reason") || "unknown";
+    const messages = {
+      "Missing token": "Your link is missing the confirmation token. Try copying the full URL from your email.",
+      "Malformed token": "The confirmation token doesn't have the expected shape. Try a fresh request.",
+      "Token expired": "Your link expired. Confirmation links work for 24 hours — request a fresh Bite Window report.",
+      "Signature mismatch": "Your link's signature doesn't match. Don't hand-edit the URL; copy it intact from your email.",
+      "Invalid expiry": "The link's expiry field is malformed. Try a fresh request.",
+      "intake_not_found": "We can't find your original request. The intake may have been removed. Try a fresh request.",
+      "storage_error": "We hit a temporary storage error reading your intake. Try again in a moment.",
+      "render_error": "We hit a problem rendering your report. Try a fresh request, and if it happens again, contact support.",
+      "persist_error": "We generated your report but couldn't save it. Try a fresh request.",
+    };
+    const msgEl = document.getElementById("reason-message");
+    const codeEl = document.getElementById("reason-code");
+    if (messages[reason]) msgEl.textContent = messages[reason];
+    codeEl.textContent = `reason: ${reason}`;
+  </script>
+</body>
+</html>

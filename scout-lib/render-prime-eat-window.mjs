@@ -35,11 +35,14 @@ const F_PER_C_OFFSET = 32;
 /*  Top-level renderer                                            */
 /* ============================================================ */
 
-export function renderPrimeEatWindow(timing, destination, tides, weather, sub_area) {
+export function renderPrimeEatWindow(timing, destination, tides, weather, sub_area, metaOverride = null) {
   if (!timing || timing.mode !== "exact") return "";
   if (!timing.start_date || !timing.end_date) return "";
 
-  const meta = getDestinationMeta(destination);
+  // metaOverride lets callers pass { lat, lon, tz } directly for arbitrary
+  // coordinates (e.g. Bite Window's Mapbox-geocoded locations). Trip Scout
+  // omits it and falls back to the curated destinations.mjs lookup.
+  const meta = metaOverride || getDestinationMeta(destination);
   if (!meta) return "";
 
   // Build per-day data records
