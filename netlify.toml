@@ -11,8 +11,10 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  # Trip Scout functions need access to the scout-lib/ directory
-  included_files = ["scout-lib/**"]
+  # Trip Scout functions need scout-lib/; Bite Window functions need bite-lib/
+  # AND scout-lib/ (Bite Window reuses crypto.mjs, email.mjs, worldtides.mjs,
+  # stormglass.mjs, render-prime-eat-window.mjs, render-css.mjs).
+  included_files = ["scout-lib/**", "bite-lib/**"]
 
 # Background function — full 15-min timeout
 [functions."scout-generate-background"]
@@ -89,4 +91,21 @@
 [[redirects]]
   from = "/bite-window/api/geocode"
   to = "/.netlify/functions/bite-window-geocode"
+  status = 200
+
+# --- Bite Window backend (PR #27: submit, confirm, report viewer) ---
+
+[[redirects]]
+  from = "/bite-window/api/submit"
+  to = "/.netlify/functions/bite-window-submit"
+  status = 200
+
+[[redirects]]
+  from = "/bite-window/api/confirm"
+  to = "/.netlify/functions/bite-window-confirm"
+  status = 200
+
+[[redirects]]
+  from = "/bite-window/r/*"
+  to = "/.netlify/functions/bite-window-report"
   status = 200

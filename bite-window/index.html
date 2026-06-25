@@ -501,10 +501,7 @@
     </div>
   </nav>
 
-  <!-- =========================================================
-       SCAFFOLD NOTICE (remove when backend ships in PR #26)
-       ========================================================= -->
-  <div class="scaffold-notice">scaffold — autocomplete works · report backend lands in PR #27</div>
+  <!-- (PR #27: backend is live; scaffold notice removed) -->
 
   <!-- =========================================================
        HERO + FORM
@@ -709,8 +706,8 @@
         else if (!hasStart)      note = "Pick a start date";
         else if (!hasConsent)    note = "Check the consent box to receive your report";
         else if (!latInput.value) note = "Tip: pick from suggestions for an accurate coastal match";
-        else                     note = "Report generation lands in PR #27";
-        submitNote.textContent = note;
+        else                     note = "We&rsquo;ll send a confirmation link to your email";
+        submitNote.innerHTML = note;
         submitNote.style.color = ready ? "var(--sand)" : "var(--text-muted)";
       }
       firstNameInput.addEventListener("input", refreshSubmitState);
@@ -859,13 +856,69 @@
       });
 
       // ============================================================
-      // Form submission (still scaffold-only — PR #27 wires the backend)
+      // Form submission — POST to /bite-window/api/submit
+      // On success, swap the form for a "check your email" confirmation card.
       // ============================================================
-      form.addEventListener("submit", (e) => {
+      form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        submitNote.textContent = "Report generation pipeline lands in PR #27.";
-        submitNote.style.color = "var(--rust)";
+        if (submitBtn.disabled) return;
+
+        const originalLabel = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+        submitNote.textContent = "Building your confirmation email…";
+        submitNote.style.color = "var(--text-muted)";
+
+        const payload = {
+          first_name: firstNameInput.value.trim(),
+          email: emailInput.value.trim(),
+          location: locationInput.value.trim(),
+          location_lat: latInput.value ? parseFloat(latInput.value) : null,
+          location_lon: lonInput.value ? parseFloat(lonInput.value) : null,
+          location_country: countryInput.value || null,
+          start_date: startInput.value,
+          end_date: endInput.value || null,
+          consent: consentInput.checked,
+          newsletter_opt_in: newsletterInput.checked,
+        };
+
+        try {
+          const r = await fetch("/bite-window/api/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+          const data = await r.json().catch(() => ({}));
+          if (!r.ok) {
+            const detail = (data.details && data.details.join(" · ")) || data.error || `HTTP ${r.status}`;
+            throw new Error(detail);
+          }
+          showConfirmationSent(payload.email, data.warning);
+        } catch (err) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+          submitNote.textContent = "Couldn't send: " + (err?.message || "unknown error") + ". Try again.";
+          submitNote.style.color = "var(--rust)";
+        }
       });
+
+      // Replace the form with a success state — angler sees this until they
+      // click the magic link in the email.
+      function showConfirmationSent(email, warning) {
+        form.innerHTML = `
+          <div style="text-align:center; padding: 20px 0 8px;">
+            <div class="form-card-label">Confirmation sent</div>
+            <h2 class="form-card-title">Check your email.</h2>
+            <p style="font-size: 15px; color: var(--text-soft); margin-top: 6px; line-height: 1.6;">
+              We just sent a confirmation link to <strong style="color: var(--text-primary);">${email.replace(/[<>&"']/g, (c) => ({"<":"&lt;",">":"&gt;","&":"&amp;",'"':"&quot;","'":"&#39;"}[c]))}</strong>.
+              Click the link in the email to generate your Bite Window report &mdash; it&rsquo;ll open instantly once you confirm.
+            </p>
+            <p style="font-size: 13.5px; color: var(--text-muted); margin-top: 18px; font-style: italic;">
+              Confirmation links work for 24 hours. Check your spam folder if you don&rsquo;t see it within a minute or two.
+            </p>
+            ${warning ? `<p style="font-size: 13px; color: var(--rust); margin-top: 16px;">${warning}</p>` : ""}
+          </div>`;
+      }
 
       refreshSubmitState();
     })();
