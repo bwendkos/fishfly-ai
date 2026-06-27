@@ -671,44 +671,71 @@
       const consentInput = document.getElementById("consent");
       const newsletterInput = document.getElementById("newsletter_opt_in");
 
-      // Default start = today
+      // Default start = today.
+      // NB: We intentionally do NOT set startInput.min or endInput.min/max
+      // HTML5 attributes. Browsers re-validate as the user types — when
+      // they're partway through typing a year (e.g. "0002" en route to
+      // "2026"), the partial value falls below `min` and the browser
+      // SILENTLY CLEARS the whole field. Brad hit this on the end_date
+      // field. Validate in JS at submit time instead.
       const today = new Date();
       const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-      startInput.min = todayStr;
       startInput.value = todayStr;
 
       // ============================================================
       // Submit button state
-      // Submit gates on: name, email (basic format), location, start_date, consent.
-      // Newsletter opt-in is genuinely optional.
+      // Submit gates on: name, email (basic format), location, start_date
+      // (valid + not in the past), end_date (if present: valid + after
+      // start + within 7-day window), consent. Newsletter is optional.
       // ============================================================
       const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+      const MAX_TRIP_DAYS = 7;
+
       function refreshSubmitState() {
         const start = startInput.value;
-        // Cap end date 6 days after start
-        if (start) {
-          endInput.min = start;
-          const startD = new Date(start + "T00:00:00");
-          const maxD = new Date(startD.getTime() + 6 * 86400000);
-          endInput.max = `${maxD.getFullYear()}-${String(maxD.getMonth() + 1).padStart(2, "0")}-${String(maxD.getDate()).padStart(2, "0")}`;
-        }
+        const end = endInput.value;
         const hasName = firstNameInput.value.trim().length >= 1;
         const hasEmail = EMAIL_RE.test(emailInput.value.trim());
         const hasLocation = locationInput.value.trim().length >= 2;
-        const hasStart = !!start;
         const hasConsent = consentInput.checked;
-        const ready = hasName && hasEmail && hasLocation && hasStart && hasConsent;
+
+        // Date validation (JS-side — no HTML5 min/max constraints)
+        const startValid = DATE_RE.test(start);
+        const endValid = !end || DATE_RE.test(end);
+        let dateRangeNote = null;
+        let dateRangeOk = startValid && endValid;
+        if (startValid) {
+          const startMs = new Date(start + "T00:00:00").getTime();
+          const todayMs = new Date(todayStr + "T00:00:00").getTime();
+          if (startMs < todayMs) {
+            dateRangeNote = "Start date is in the past — pick today or later";
+            dateRangeOk = false;
+          } else if (end && endValid) {
+            const endMs = new Date(end + "T00:00:00").getTime();
+            if (endMs < startMs) {
+              dateRangeNote = "End date is before start date";
+              dateRangeOk = false;
+            } else if (Math.floor((endMs - startMs) / 86400000) + 1 > MAX_TRIP_DAYS) {
+              dateRangeNote = `Trip range exceeds ${MAX_TRIP_DAYS} days — shorten the window`;
+              dateRangeOk = false;
+            }
+          }
+        }
+
+        const ready = hasName && hasEmail && hasLocation && startValid && dateRangeOk && hasConsent;
         submitBtn.disabled = !ready;
         let note;
-        if (!hasName)            note = "Add your first name";
-        else if (!hasEmail)      note = "Enter a valid email";
-        else if (!hasLocation)   note = "Add a location";
-        else if (!hasStart)      note = "Pick a start date";
-        else if (!hasConsent)    note = "Check the consent box to receive your report";
-        else if (!latInput.value) note = "Tip: pick from suggestions for an accurate coastal match";
-        else                     note = "We&rsquo;ll send a confirmation link to your email";
+        if (!hasName)              note = "Add your first name";
+        else if (!hasEmail)        note = "Enter a valid email";
+        else if (!hasLocation)     note = "Add a location";
+        else if (!startValid)      note = "Pick a valid start date";
+        else if (dateRangeNote)    note = dateRangeNote;
+        else if (!hasConsent)      note = "Check the consent box to receive your report";
+        else if (!latInput.value)  note = "Tip: pick from suggestions for an accurate coastal match";
+        else                       note = "We&rsquo;ll send a confirmation link to your email";
         submitNote.innerHTML = note;
-        submitNote.style.color = ready ? "var(--sand)" : "var(--text-muted)";
+        submitNote.style.color = ready ? "var(--sand)" : (dateRangeNote ? "var(--rust)" : "var(--text-muted)");
       }
       firstNameInput.addEventListener("input", refreshSubmitState);
       emailInput.addEventListener("input", refreshSubmitState);
