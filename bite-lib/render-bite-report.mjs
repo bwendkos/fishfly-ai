@@ -14,6 +14,11 @@
  */
 
 import { renderPrimeEatWindow } from "../scout-lib/render-prime-eat-window.mjs";
+import { renderSunCalendar } from "../scout-lib/render-sun-calendar.mjs";
+import { renderMoonCalendar } from "../scout-lib/render-moon-calendar.mjs";
+import { renderSolunar } from "../scout-lib/render-solunar.mjs";
+import { renderTideChart } from "../scout-lib/render-tide-chart.mjs";
+import { renderWeatherChart } from "../scout-lib/render-weather-chart.mjs";
 import { getReportCss } from "../scout-lib/render-css.mjs";
 
 export function renderBiteReport(report) {
@@ -39,6 +44,15 @@ export function renderBiteReport(report) {
     tides,
     weather,
     null,             // no sub_area in Bite Window
+    metaOverride,
+    { sectionNumber: null }  // standalone Eat Window report: no section numbers
+  );
+
+  const wmtSection = renderWeatherMoonTides(
+    intake.timing,
+    locationLabel,
+    tides,
+    weather,
     metaOverride
   );
 
@@ -47,7 +61,7 @@ export function renderBiteReport(report) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(locationLabel)} &mdash; FishFly Bite Window</title>
+<title>${escapeHtml(locationLabel)} &mdash; FishFly Eat Window</title>
 <link rel="icon" type="image/svg+xml" href="https://fishfly.ai/brand/marks/compass-filled-disc.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,15 +205,17 @@ export function renderBiteReport(report) {
     <div class="bw-report-header">
       <div class="trip-dates-eyebrow">${escapeHtml(dateLabel)}</div>
       <h1>${escapeHtml(locationLabel)}</h1>
-      <p class="meta">Bite Window &middot; Report ID: ${escapeHtml(reportId)} &middot; Generated ${escapeHtml(formatTimestamp(generatedAt))}</p>
+      <p class="meta">Eat Window &middot; Report ID: ${escapeHtml(reportId)} &middot; Generated ${escapeHtml(formatTimestamp(generatedAt))}</p>
     </div>
 
     ${pewSection || renderUnavailable(locationLabel)}
 
+    ${wmtSection}
+
     <section class="bw-cross-promo">
       <div class="bw-cross-promo-label">Planning a longer trip?</div>
       <h3>Get the full FishFly Trip Scout brief.</h3>
-      <p>Species recommendations, flies cross-linked to our library, gear lists, logistics, regulations &mdash; all alongside the same Bite Window synthesis you&rsquo;re looking at now.</p>
+      <p>Species recommendations, flies cross-linked to our library, gear lists, logistics, regulations &mdash; all alongside the same Eat Window synthesis you&rsquo;re looking at now.</p>
       <a class="cta-button" href="/scout/">Try Trip Scout &rarr;</a>
     </section>
 
@@ -221,10 +237,49 @@ export function renderBiteReport(report) {
 </html>`;
 }
 
+/**
+ * Render the Weather, Moon & Tides section — the same five charts as Trip Scout's
+ * section 04, but without Claude prose between them (Bite Window's only Claude
+ * call is the Prime Eat Window summary). Each subheading is only rendered when
+ * its chart returns content, so month/flexible modes (which skip the tide and
+ * weather charts) don't leave empty headings.
+ *
+ * No section number — the Bite Window standalone report doesn't number its
+ * sections (Brad's PR #29 spec).
+ */
+function renderWeatherMoonTides(timing, destination, tides, weather, metaOverride) {
+  const weatherChart = renderWeatherChart(timing, destination, weather, metaOverride);
+  const sunCalendar = renderSunCalendar(timing, destination, metaOverride);
+  const moonCalendar = renderMoonCalendar(timing);
+  const tideChart = renderTideChart(timing, destination, tides, metaOverride);
+  const solunarChart = renderSolunar(timing, destination, metaOverride);
+
+  // If nothing renders, suppress the whole section
+  if (!weatherChart && !sunCalendar && !moonCalendar && !tideChart && !solunarChart) {
+    return "";
+  }
+
+  const weatherBlock = weatherChart ? `<h3>Weather</h3>${weatherChart}` : "";
+  const sunBlock = sunCalendar ? `<h3>Sun</h3>${sunCalendar}` : "";
+  const moonBlock = moonCalendar ? `<h3>Moon</h3>${moonCalendar}` : "";
+  const tideBlock = tideChart ? `<h3>Tides</h3>${tideChart}` : "";
+  const solunarBlock = solunarChart ? `<h3>Solunar</h3>${solunarChart}` : "";
+
+  return `
+  <section class="section">
+    <div class="section-header"><h2>Weather, Moon &amp; Tides</h2></div>
+    ${weatherBlock}
+    ${sunBlock}
+    ${moonBlock}
+    ${tideBlock}
+    ${solunarBlock}
+  </section>`;
+}
+
 function renderUnavailable(locationLabel) {
   return `
     <div style="background:#ffffff;border:1px solid var(--rule);border-left:3px solid var(--rust);padding:28px 32px;">
-      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-size:24px;color:var(--text-primary);margin-bottom:12px;">No bite window today.</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-size:24px;color:var(--text-primary);margin-bottom:12px;">No Eat Window today.</h2>
       <p style="font-size:14.5px;color:var(--text-soft);">We couldn&rsquo;t synthesize a Prime Eat Window for <strong>${escapeHtml(locationLabel)}</strong>. The location may not be coastal, or the date range may be too far in the past. Try a fresh request at <a href="/bite-window/" style="color:var(--ocean);font-weight:600;">/bite-window</a>.</p>
     </div>`;
 }

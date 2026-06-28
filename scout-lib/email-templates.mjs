@@ -45,7 +45,7 @@ export function confirmationEmail({ firstName, confirmationUrl, destination }) {
     <h1>Hey ${escapeHtml(firstName)} —</h1>
     <p>Almost there. Click below to confirm your Trip Scout request for <strong>${escapeHtml(destination)}</strong> and we'll start generating your report.</p>
     <p><a class="button" href="${confirmationUrl}">Generate my trip report</a></p>
-    <p>Your report will take 2-3 minutes. We'll email it to you the moment it's ready.</p>
+    <p>Please allow up to 10 minutes for your personalized Trip Scout report to process. We'll email you the link the moment it's ready.</p>
     <div class="footer">
       <p>If the button doesn't work, paste this into your browser:<br>
         <span class="url">${confirmationUrl}</span></p>

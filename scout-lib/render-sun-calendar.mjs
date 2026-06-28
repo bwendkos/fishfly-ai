@@ -19,8 +19,8 @@ const MONTHS = [
   "July", "August", "September", "October", "November", "December",
 ];
 
-export function renderSunCalendar(timing, destination) {
-  const meta = getDestinationMeta(destination);
+export function renderSunCalendar(timing, destination, metaOverride = null) {
+  const meta = metaOverride || getDestinationMeta(destination);
   if (!meta || !timing) return "";
 
   if (timing.mode === "exact" && timing.start_date && timing.end_date) {

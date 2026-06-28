@@ -20,13 +20,13 @@ const FROM_NAME = process.env.EMAIL_FROM_NAME || "FishFly";
 export function confirmationEmail({ firstName, confirmationUrl, location, dateLabel }) {
   const locationLabel = location ? escapeHtml(location) : "your spot";
   const dateBlurb = dateLabel ? ` for <strong>${escapeHtml(dateLabel)}</strong>` : "";
-  const subject = `${firstName}, confirm your Bite Window for ${location || "your spot"}`;
+  const subject = `${firstName}, confirm your Eat Window for ${location || "your spot"}`;
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Confirm your Bite Window report</title>
+  <title>Confirm your Eat Window report</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; color: #1a1f2e; margin: 0; padding: 24px; background: #f7f3ec; }
     .container { max-width: 560px; margin: 0 auto; background: #ffffff; padding: 32px; border-radius: 8px; }
@@ -40,7 +40,7 @@ export function confirmationEmail({ firstName, confirmationUrl, location, dateLa
 <body>
   <div class="container">
     <h1>Hey ${escapeHtml(firstName)} &mdash;</h1>
-    <p>Almost there. Click below to confirm your Bite Window report for <strong>${locationLabel}</strong>${dateBlurb} and we&rsquo;ll synthesize sun, tide, solunar, wind, and weather into a single timeline.</p>
+    <p>Almost there. Click below to confirm your Eat Window report for <strong>${locationLabel}</strong>${dateBlurb} and we&rsquo;ll synthesize sun, tide, solunar, wind, and weather into a single timeline.</p>
     <p><a class="button" href="${confirmationUrl}">Show me the bite window</a></p>
     <p>Generation is instant. You&rsquo;ll land on your report a few seconds after clicking the button above.</p>
     <div class="footer">
@@ -62,13 +62,13 @@ export function confirmationEmail({ firstName, confirmationUrl, location, dateLa
 export function reportReadyEmail({ firstName, reportUrl, location, dateLabel }) {
   const locationLabel = location ? escapeHtml(location) : "your spot";
   const dateBlurb = dateLabel ? escapeHtml(dateLabel) : "";
-  const subject = `${firstName}, your Bite Window for ${location || "your spot"} is ready`;
+  const subject = `${firstName}, your Eat Window for ${location || "your spot"} is ready`;
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Bite Window report is ready</title>
+  <title>Your Eat Window report is ready</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.5; color: #1a1f2e; margin: 0; padding: 24px; background: #f7f3ec; }
     .container { max-width: 560px; margin: 0 auto; background: #ffffff; padding: 32px; border-radius: 8px; }
@@ -81,14 +81,14 @@ export function reportReadyEmail({ firstName, reportUrl, location, dateLabel }) 
 </head>
 <body>
   <div class="container">
-    <h1>Your Bite Window is ready, ${escapeHtml(firstName)}.</h1>
+    <h1>Your Eat Window is ready, ${escapeHtml(firstName)}.</h1>
     <p>Synthesizing five signals into a single timeline so you know which hours of which days to be on the water.</p>
 
     <div class="summary">
       <strong>${locationLabel}</strong>${dateBlurb ? "<br>" + dateBlurb : ""}
     </div>
 
-    <p><a class="button" href="${reportUrl}">View my Bite Window</a></p>
+    <p><a class="button" href="${reportUrl}">View my Eat Window</a></p>
 
     <p>Bookmark or share the link &mdash; reports stay live for 30 days.</p>
 
