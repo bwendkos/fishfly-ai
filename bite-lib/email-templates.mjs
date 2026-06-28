@@ -41,7 +41,7 @@ export function confirmationEmail({ firstName, confirmationUrl, location, dateLa
   <div class="container">
     <h1>Hey ${escapeHtml(firstName)} &mdash;</h1>
     <p>Almost there. Click below to confirm your Eat Window report for <strong>${locationLabel}</strong>${dateBlurb} and we&rsquo;ll synthesize sun, tide, solunar, wind, and weather into a single timeline.</p>
-    <p><a class="button" href="${confirmationUrl}">Show me the bite window</a></p>
+    <p><a class="button" href="${confirmationUrl}">Show me the Eat Window</a></p>
     <p>Generation is instant. You&rsquo;ll land on your report a few seconds after clicking the button above.</p>
     <div class="footer">
       <p>If the button doesn&rsquo;t work, paste this into your browser:<br>
