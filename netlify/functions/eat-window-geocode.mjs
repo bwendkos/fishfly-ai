@@ -1,5 +1,5 @@
 /**
- * GET /bite-window/api/geocode?q=<query>
+ * GET /eat-window/api/geocode?q=<query>
  *
  * Mapbox Geocoding proxy for the Bite Window location autocomplete.
  *

@@ -495,7 +495,7 @@
       <a href="/">Home</a>
       <a href="/library/">Library</a>
       <a href="/scout/">Trip Scout</a>
-      <a href="/bite-window/" class="active">Eat Window</a>
+      <a href="/eat-window/" class="active">Eat Window</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
     </div>
@@ -516,7 +516,7 @@
     </p>
 
     <!-- INTAKE FORM ===================================== -->
-    <form class="form-card" id="bite-window-form" novalidate>
+    <form class="form-card" id="eat-window-form" novalidate>
       <div class="form-card-label">Get your forecast</div>
       <h2 class="form-card-title">Where &amp; when are you fishing?</h2>
 
@@ -643,14 +643,14 @@
       <a href="/">Home</a><span class="sep">·</span>
       <a href="/library/">Library</a><span class="sep">·</span>
       <a href="/scout/">Trip Scout</a><span class="sep">·</span>
-      <a href="/bite-window/">Eat Window</a><span class="sep">·</span>
+      <a href="/eat-window/">Eat Window</a><span class="sep">·</span>
       <a href="/about/">About</a><span class="sep">·</span>
       <a href="/blog/">Blog</a>
     </div>
   </footer>
 
   <script>
-    /* Bite Window intake — location autocomplete (PR #26) + form wiring.
+    /* Eat Window intake — location autocomplete (PR #26) + form wiring.
        Backend report generation still pending (PR #27). */
     (function () {
       const locationInput = document.getElementById("location");
@@ -663,7 +663,7 @@
       const endInput = document.getElementById("end_date");
       const submitBtn = document.getElementById("submit-btn");
       const submitNote = document.getElementById("submit-note");
-      const form = document.getElementById("bite-window-form");
+      const form = document.getElementById("eat-window-form");
       const firstNameInput = document.getElementById("first_name");
       const emailInput = document.getElementById("email");
       const consentInput = document.getElementById("consent");
@@ -806,7 +806,7 @@
         activeRequest = controller;
         setLocationStatus("searching…", "active");
         try {
-          const r = await fetch(`/bite-window/api/geocode?q=${encodeURIComponent(q)}`, {
+          const r = await fetch(`/eat-window/api/geocode?q=${encodeURIComponent(q)}`, {
             signal: controller?.signal,
           });
           if (!r.ok) throw new Error(`geocode HTTP ${r.status}`);
@@ -816,7 +816,7 @@
           setLocationStatus(items.length ? `${items.length} matches` : "no matches", items.length ? null : "error");
         } catch (err) {
           if (err.name === "AbortError") return;
-          console.warn("[bite-window] geocode failed:", err?.message);
+          console.warn("[eat-window] geocode failed:", err?.message);
           setLocationStatus("offline", "error");
           suggestionsEl.innerHTML = '<div class="suggestion-empty">Search unavailable — type your location anyway.</div>';
           suggestionsEl.dataset.open = "true";
@@ -881,7 +881,7 @@
       });
 
       // ============================================================
-      // Form submission — POST to /bite-window/api/submit
+      // Form submission — POST to /eat-window/api/submit
       // On success, swap the form for a "check your email" confirmation card.
       // ============================================================
       form.addEventListener("submit", async (e) => {
@@ -908,7 +908,7 @@
         };
 
         try {
-          const r = await fetch("/bite-window/api/submit", {
+          const r = await fetch("/eat-window/api/submit", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),

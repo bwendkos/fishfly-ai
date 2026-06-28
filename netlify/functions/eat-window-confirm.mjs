@@ -1,9 +1,9 @@
 /**
- * GET /bite-window/api/confirm?token=<signed_token>
+ * GET /eat-window/api/confirm?token=<signed_token>
  *
  * Magic-link target. Validates the token, fetches tide + weather data
  * (cached), generates the Bite Window report synchronously, persists it,
- * sends a "report ready" email, and redirects the user to /bite-window/r/<id>.
+ * sends a "report ready" email, and redirects the user to /eat-window/r/<id>.
  *
  * Unlike Trip Scout (which fires a 15-min background function because Claude
  * generation is slow), the Bite Window report is fully algorithmic — sun,
@@ -35,7 +35,7 @@ export default async (req) => {
   const result = verifyConfirmationToken(token);
   if (!result.valid) {
     console.warn("[bite-confirm] token rejected:", result.reason);
-    return redirectTo(req, `/bite-window/confirm-failed.html?reason=${encodeURIComponent(result.reason)}`);
+    return redirectTo(req, `/eat-window/confirm-failed.html?reason=${encodeURIComponent(result.reason)}`);
   }
   const { intakeId } = result;
 
@@ -45,15 +45,15 @@ export default async (req) => {
     intake = await getIntake(intakeId);
   } catch (err) {
     console.error("[bite-confirm] getIntake failed:", err);
-    return redirectTo(req, "/bite-window/confirm-failed.html?reason=storage_error");
+    return redirectTo(req, "/eat-window/confirm-failed.html?reason=storage_error");
   }
   if (!intake) {
-    return redirectTo(req, "/bite-window/confirm-failed.html?reason=intake_not_found");
+    return redirectTo(req, "/eat-window/confirm-failed.html?reason=intake_not_found");
   }
 
   // ---- Idempotency: already generated? ----
   if (intake.report_id) {
-    return redirectTo(req, `/bite-window/r/${intake.report_id}`);
+    return redirectTo(req, `/eat-window/r/${intake.report_id}`);
   }
 
   // ---- Mark confirmed ----
@@ -132,12 +132,12 @@ export default async (req) => {
       weather,
       reportId,
       generatedAt: new Date().toISOString(),
-      reportUrl: `${root}/bite-window/r/${reportId}`,
+      reportUrl: `${root}/eat-window/r/${reportId}`,
     });
     console.log(`[bite-confirm] HTML rendered @ ${stamp()} (${html.length} chars)`);
   } catch (err) {
     console.error("[bite-confirm] renderBiteReport crashed:", err);
-    return redirectTo(req, "/bite-window/confirm-failed.html?reason=render_error");
+    return redirectTo(req, "/eat-window/confirm-failed.html?reason=render_error");
   }
 
   // ---- Persist ----
@@ -155,14 +155,14 @@ export default async (req) => {
     console.log(`[bite-confirm] persisted reportId=${reportId} @ ${stamp()}`);
   } catch (err) {
     console.error("[bite-confirm] persist failed:", err);
-    return redirectTo(req, "/bite-window/confirm-failed.html?reason=persist_error");
+    return redirectTo(req, "/eat-window/confirm-failed.html?reason=persist_error");
   }
 
   // ---- Send "report ready" email (best-effort) ----
   try {
     const baseUrl = process.env.PUBLIC_BASE_URL || `https://${req.headers.get("host")}`;
     const root = baseUrl.replace(/\/scout\/?$/, "");
-    const reportUrl = `${root}/bite-window/r/${reportId}`;
+    const reportUrl = `${root}/eat-window/r/${reportId}`;
     const dateLabel = intake.timing.days > 1
       ? `${intake.timing.start_date} → ${intake.timing.end_date}`
       : intake.timing.start_date;
@@ -180,7 +180,7 @@ export default async (req) => {
   }
 
   // ---- Redirect to the report ----
-  return redirectTo(req, `/bite-window/r/${reportId}`);
+  return redirectTo(req, `/eat-window/r/${reportId}`);
 };
 
 function redirectTo(req, path) {
