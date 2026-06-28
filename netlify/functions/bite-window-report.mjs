@@ -50,10 +50,10 @@ function notFound() {
   return new Response(
     `<!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><title>Bite Window report not found</title></head>
+<head><meta charset="UTF-8"><title>Eat Window report not found</title></head>
 <body style="font-family: system-ui, sans-serif; max-width: 560px; margin: 80px auto; padding: 0 22px; color: #1a1f2e; line-height: 1.6;">
-  <h1 style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 32px; margin-bottom: 14px;">Bite Window report not found</h1>
-  <p>The report ID in your link doesn&rsquo;t match anything in our system. It may have been mistyped or the report may have expired. <a href="https://fishfly.ai/bite-window" style="color: #1e3a5f; font-weight: 600;">Generate a new Bite Window report</a>.</p>
+  <h1 style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 32px; margin-bottom: 14px;">Eat Window report not found</h1>
+  <p>The report ID in your link doesn&rsquo;t match anything in our system. It may have been mistyped or the report may have expired. <a href="https://fishfly.ai/bite-window" style="color: #1e3a5f; font-weight: 600;">Generate a new Eat Window report</a>.</p>
 </body>
 </html>`,
     {

@@ -194,7 +194,7 @@ export function renderBiteReport(report) {
       <a href="/">Home</a>
       <a href="/library/">Library</a>
       <a href="/scout/">Trip Scout</a>
-      <a href="/bite-window/" class="active">Bite Window</a>
+      <a href="/bite-window/" class="active">Eat Window</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
     </div>
@@ -227,7 +227,7 @@ export function renderBiteReport(report) {
       <a href="/">Home</a><span class="sep">&middot;</span>
       <a href="/library/">Library</a><span class="sep">&middot;</span>
       <a href="/scout/">Trip Scout</a><span class="sep">&middot;</span>
-      <a href="/bite-window/">Bite Window</a><span class="sep">&middot;</span>
+      <a href="/bite-window/">Eat Window</a><span class="sep">&middot;</span>
       <a href="/about/">About</a><span class="sep">&middot;</span>
       <a href="/blog/">Blog</a>
     </div>
