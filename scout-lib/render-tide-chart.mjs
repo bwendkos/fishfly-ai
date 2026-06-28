@@ -31,11 +31,11 @@ const H = 100;
 const PAD_TOP = 14;
 const PAD_BOTTOM = 14;
 
-export function renderTideChart(timing, destination, tidesData) {
+export function renderTideChart(timing, destination, tidesData, metaOverride = null) {
   if (!timing || timing.mode !== "exact") return "";
   if (!Array.isArray(tidesData) || tidesData.length === 0) return "";
 
-  const meta = getDestinationMeta(destination);
+  const meta = metaOverride || getDestinationMeta(destination);
   if (!meta) return "";
 
   const rows = tidesData.map((day) => renderDayRow(day, meta)).join("");

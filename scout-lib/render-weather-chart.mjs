@@ -36,11 +36,11 @@ const CASTABLE_THRESHOLD_KTS = 15;
 const KT_PER_MS = 1.94384;
 const F_PER_C_OFFSET = 32;
 
-export function renderWeatherChart(timing, destination, weatherData) {
+export function renderWeatherChart(timing, destination, weatherData, metaOverride = null) {
   if (!timing || timing.mode !== "exact") return "";
   if (!Array.isArray(weatherData) || weatherData.length === 0) return "";
 
-  const meta = getDestinationMeta(destination);
+  const meta = metaOverride || getDestinationMeta(destination);
   if (!meta) return "";
 
   const rows = weatherData.map((day) => renderDayRow(day, meta)).join("");

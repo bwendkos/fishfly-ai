@@ -35,7 +35,7 @@ const F_PER_C_OFFSET = 32;
 /*  Top-level renderer                                            */
 /* ============================================================ */
 
-export function renderPrimeEatWindow(timing, destination, tides, weather, sub_area, metaOverride = null) {
+export function renderPrimeEatWindow(timing, destination, tides, weather, sub_area, metaOverride = null, options = {}) {
   if (!timing || timing.mode !== "exact") return "";
   if (!timing.start_date || !timing.end_date) return "";
 
@@ -57,9 +57,13 @@ export function renderPrimeEatWindow(timing, destination, tides, weather, sub_ar
   const tableRows = days.map((d, i) => renderTableRow(d, i + 1, meta)).join("");
   const detailCards = days.map((d, i) => renderDayCard(d, i + 1, dayCount, meta)).join("");
 
+  // options.sectionNumber: "03" (Trip Scout default) | null/false (Bite Window — no number)
+  const sectionNumber = ("sectionNumber" in options) ? options.sectionNumber : "03";
+  const numberMarkup = sectionNumber ? `<span class="section-number">${escapeHtml(sectionNumber)}</span>` : "";
+
   return `
   <section class="section pew-section" id="prime-eat-window">
-    <div class="section-header"><span class="section-number">03</span><h2>Prime Eat Window</h2></div>
+    <div class="section-header">${numberMarkup}<h2>Prime Eat Window</h2></div>
 
     <p class="pew-explainer">
       The Prime Eat Window is FishFly's synthesis of every condition that drives whether fish
