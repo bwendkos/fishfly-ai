@@ -11,8 +11,8 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-  # Trip Scout functions need scout-lib/; Bite Window functions need bite-lib/
-  # AND scout-lib/ (Bite Window reuses crypto.mjs, email.mjs, worldtides.mjs,
+  # Trip Scout functions need scout-lib/; Eat Window functions need bite-lib/
+  # AND scout-lib/ (Eat Window reuses crypto.mjs, email.mjs, worldtides.mjs,
   # stormglass.mjs, render-prime-eat-window.mjs, render-css.mjs).
   included_files = ["scout-lib/**", "bite-lib/**"]
 
@@ -86,26 +86,44 @@
   to = "/.netlify/functions/scout-admin-intakes"
   status = 200
 
-# --- Bite Window API (PR #26: Mapbox geocoding proxy) ---
+# --- Eat Window API (PR #26: Mapbox geocoding proxy) ---
 
 [[redirects]]
-  from = "/bite-window/api/geocode"
-  to = "/.netlify/functions/bite-window-geocode"
+  from = "/eat-window/api/geocode"
+  to = "/.netlify/functions/eat-window-geocode"
   status = 200
 
-# --- Bite Window backend (PR #27: submit, confirm, report viewer) ---
+# --- Eat Window backend (PR #27: submit, confirm, report viewer) ---
 
 [[redirects]]
-  from = "/bite-window/api/submit"
-  to = "/.netlify/functions/bite-window-submit"
-  status = 200
-
-[[redirects]]
-  from = "/bite-window/api/confirm"
-  to = "/.netlify/functions/bite-window-confirm"
+  from = "/eat-window/api/submit"
+  to = "/.netlify/functions/eat-window-submit"
   status = 200
 
 [[redirects]]
-  from = "/bite-window/r/*"
-  to = "/.netlify/functions/bite-window-report"
+  from = "/eat-window/api/confirm"
+  to = "/.netlify/functions/eat-window-confirm"
   status = 200
+
+[[redirects]]
+  from = "/eat-window/r/*"
+  to = "/.netlify/functions/eat-window-report"
+  status = 200
+# ---- Legacy /bite-window/ → /eat-window/ 301 redirects ----
+# PR #33 renamed the URL path. These 301s catch:
+#   - confirmation magic links already in users' inboxes (/bite-window/api/confirm?token=...)
+#   - shared report URLs (/bite-window/r/<id>)
+#   - any external bookmarks pointing at /bite-window/
+# Query strings are preserved automatically by Netlify.
+
+[[redirects]]
+  from = "/bite-window"
+  to = "/eat-window/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bite-window/*"
+  to = "/eat-window/:splat"
+  status = 301
+  force = true

@@ -1,5 +1,5 @@
 /**
- * POST /bite-window/api/submit
+ * POST /eat-window/api/submit
  *
  * Validates the Bite Window intake, stores it in Blobs, signs a confirmation
  * token, and sends a confirmation email with the magic link.
@@ -10,7 +10,7 @@
  *
  * Required env vars:
  *   - NETLIFY_SIGNING_SECRET  (HMAC for confirmation tokens)
- *   - PUBLIC_BASE_URL         (defaults to https://fishfly.ai/bite-window)
+ *   - PUBLIC_BASE_URL         (defaults to https://fishfly.ai/eat-window)
  *   - SMTP_*                  (sendEmail via scout-lib/email.mjs)
  */
 
@@ -117,7 +117,7 @@ export default async (req) => {
     const baseUrl = process.env.PUBLIC_BASE_URL || `https://${req.headers.get("host")}`;
     // Strip trailing /scout if PUBLIC_BASE_URL is the Trip Scout base
     const root = baseUrl.replace(/\/scout\/?$/, "");
-    confirmationUrl = `${root}/bite-window/api/confirm?token=${encodeURIComponent(token)}`;
+    confirmationUrl = `${root}/eat-window/api/confirm?token=${encodeURIComponent(token)}`;
   } catch (err) {
     console.error("[bite-submit] token sign failed:", err);
     return json({ error: "token_error" }, 500);

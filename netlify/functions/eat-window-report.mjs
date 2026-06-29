@@ -1,5 +1,5 @@
 /**
- * GET /bite-window/r/<id>
+ * GET /eat-window/r/<id>
  *
  * Serves a stored Bite Window report HTML by its ID. Mirrors scout-report.mjs
  * but reads from the bite-report Blobs store.
@@ -16,7 +16,7 @@ export default async (req) => {
   }
 
   const url = new URL(req.url);
-  const match = url.pathname.match(/^\/bite-window\/r\/([a-z0-9]+)\/?$/i);
+  const match = url.pathname.match(/^\/eat-window\/r\/([a-z0-9]+)\/?$/i);
   if (!match) {
     return notFound();
   }
@@ -53,7 +53,7 @@ function notFound() {
 <head><meta charset="UTF-8"><title>Eat Window report not found</title></head>
 <body style="font-family: system-ui, sans-serif; max-width: 560px; margin: 80px auto; padding: 0 22px; color: #1a1f2e; line-height: 1.6;">
   <h1 style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 32px; margin-bottom: 14px;">Eat Window report not found</h1>
-  <p>The report ID in your link doesn&rsquo;t match anything in our system. It may have been mistyped or the report may have expired. <a href="https://fishfly.ai/bite-window" style="color: #1e3a5f; font-weight: 600;">Generate a new Eat Window report</a>.</p>
+  <p>The report ID in your link doesn&rsquo;t match anything in our system. It may have been mistyped or the report may have expired. <a href="https://fishfly.ai/eat-window" style="color: #1e3a5f; font-weight: 600;">Generate a new Eat Window report</a>.</p>
 </body>
 </html>`,
     {

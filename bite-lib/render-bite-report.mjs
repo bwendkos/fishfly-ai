@@ -194,7 +194,7 @@ export function renderBiteReport(report) {
       <a href="/">Home</a>
       <a href="/library/">Library</a>
       <a href="/scout/">Trip Scout</a>
-      <a href="/bite-window/" class="active">Eat Window</a>
+      <a href="/eat-window/" class="active">Eat Window</a>
       <a href="/about/">About</a>
       <a href="/blog/">Blog</a>
     </div>
@@ -227,7 +227,7 @@ export function renderBiteReport(report) {
       <a href="/">Home</a><span class="sep">&middot;</span>
       <a href="/library/">Library</a><span class="sep">&middot;</span>
       <a href="/scout/">Trip Scout</a><span class="sep">&middot;</span>
-      <a href="/bite-window/">Eat Window</a><span class="sep">&middot;</span>
+      <a href="/eat-window/">Eat Window</a><span class="sep">&middot;</span>
       <a href="/about/">About</a><span class="sep">&middot;</span>
       <a href="/blog/">Blog</a>
     </div>
@@ -280,7 +280,7 @@ function renderUnavailable(locationLabel) {
   return `
     <div style="background:#ffffff;border:1px solid var(--rule);border-left:3px solid var(--rust);padding:28px 32px;">
       <h2 style="font-family:'Playfair Display',serif;font-style:italic;font-size:24px;color:var(--text-primary);margin-bottom:12px;">No Eat Window today.</h2>
-      <p style="font-size:14.5px;color:var(--text-soft);">We couldn&rsquo;t synthesize a Prime Eat Window for <strong>${escapeHtml(locationLabel)}</strong>. The location may not be coastal, or the date range may be too far in the past. Try a fresh request at <a href="/bite-window/" style="color:var(--ocean);font-weight:600;">/bite-window</a>.</p>
+      <p style="font-size:14.5px;color:var(--text-soft);">We couldn&rsquo;t synthesize a Prime Eat Window for <strong>${escapeHtml(locationLabel)}</strong>. The location may not be coastal, or the date range may be too far in the past. Try a fresh request at <a href="/eat-window/" style="color:var(--ocean);font-weight:600;">/eat-window</a>.</p>
     </div>`;
 }
 
