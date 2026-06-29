@@ -20,6 +20,39 @@ const MAX_WEB_SEARCHES = 5; // Trip Scout doesn't need 10; tighter budget
 
 const WEB_SEARCH_TOOL_TYPE = "web_search_20250305";
 
+// Network/server-error retry policy.
+//
+// Each Claude call is 4-8 minutes; running out of the Netlify 15-min background
+// budget is a real risk, so we keep total retries tight. The fast-path goal is
+// to absorb transient failures (ECONNRESET, brief 5xx, momentary 429) without
+// the user ever seeing a "report failed" email.
+//
+// Backoff schedule below: attempt 1 fails -> wait 1s -> attempt 2 fails -> wait
+// 4s -> attempt 3. Max ~5s of sleep across the whole sequence; the dominant
+// cost remains the Claude call itself.
+//
+// We own retries here rather than letting the SDK's built-in retry handle them
+// (the SDK is configured with maxRetries: 0 below) because:
+//   - We want explicit logging of each attempt for production debugging
+//   - We want to respect 429 Retry-After while still bounding total wait
+//   - We want network retries to apply BEFORE the existing schema-validation
+//     retry (so a network blip doesn't burn the schema-retry budget)
+const MAX_NETWORK_RETRIES = 2;
+const BACKOFF_MS = [1000, 4000];
+
+const NODE_NETWORK_ERROR_CODES = new Set([
+  "ECONNRESET",
+  "ETIMEDOUT",
+  "ENOTFOUND",
+  "EPIPE",
+  "ECONNREFUSED",
+  "ECONNABORTED",
+  "UND_ERR_SOCKET",
+  "UND_ERR_CONNECT_TIMEOUT",
+  "UND_ERR_HEADERS_TIMEOUT",
+  "UND_ERR_BODY_TIMEOUT",
+]);
+
 export async function generateTripReport(intake) {
   const client = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY,
@@ -31,7 +64,7 @@ export async function generateTripReport(intake) {
 
   console.log("[anthropic] first attempt starting…");
   const t0 = Date.now();
-  const firstResponse = await callClaude(client, [initialUserMessage]);
+  const firstResponse = await callClaudeWithNetworkRetry(client, [initialUserMessage], "initial");
   console.log(`[anthropic] first attempt complete in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 
   const firstReport = extractToolUseInput(firstResponse);
@@ -69,7 +102,7 @@ export async function generateTripReport(intake) {
 
   console.log("[anthropic] retry attempt starting…");
   const t1 = Date.now();
-  const retryResponse = await callClaude(client, retryMessages);
+  const retryResponse = await callClaudeWithNetworkRetry(client, retryMessages, "schema-retry");
   console.log(`[anthropic] retry complete in ${((Date.now() - t1) / 1000).toFixed(1)}s`);
 
   const retryReport = extractToolUseInput(retryResponse);
@@ -129,6 +162,106 @@ async function callClaude(client, messages) {
   } finally {
     clearInterval(heartbeat);
   }
+}
+
+/**
+ * Wrap callClaude with retry logic for transient network failures and Anthropic
+ * 5xx / 429 responses. Schema-validation errors are NOT retried here — those
+ * are handled separately in generateTripReport with corrective re-prompting.
+ *
+ * Why bother:
+ *   Trip Scout generation is 4-8 minutes of model time. A single ECONNRESET
+ *   in the middle of streaming (we hit one at 247s during PR #21 verification)
+ *   kills the whole run and sends the user a "report failed" email. With this
+ *   wrapper, the same transient failure becomes a sub-second hiccup that the
+ *   user never sees.
+ *
+ * What we retry on:
+ *   - Anthropic.APIConnectionError / APIConnectionTimeoutError (SDK network)
+ *   - Anthropic.RateLimitError (429) — respects Retry-After header
+ *   - Anthropic.InternalServerError (500) and any 5xx by status code
+ *   - Raw Node fetch / undici errors (ECONNRESET, ETIMEDOUT, etc.) that may
+ *     leak past the SDK's error mapping
+ *
+ * What we do NOT retry on:
+ *   - 4xx other than 429 (bad request, auth, content policy — retrying won't
+ *     fix any of these)
+ *   - ValidationError (caller's responsibility, separate retry loop)
+ *   - Any other unexpected error
+ */
+async function callClaudeWithNetworkRetry(client, messages, label) {
+  for (let attempt = 1; attempt <= MAX_NETWORK_RETRIES + 1; attempt++) {
+    try {
+      return await callClaude(client, messages);
+    } catch (err) {
+      const retryable = isRetryableError(err);
+      const errName = err?.constructor?.name || "Error";
+      const status = err?.status ?? err?.response?.status ?? "—";
+      const code = err?.cause?.code || err?.code || "—";
+      const msg = (err?.message || "").slice(0, 200);
+      console.warn(
+        `[anthropic] ${label} attempt ${attempt} failed: ${errName} status=${status} code=${code} retryable=${retryable}  ${msg}`
+      );
+
+      if (!retryable || attempt > MAX_NETWORK_RETRIES) {
+        throw err;
+      }
+
+      // Respect Retry-After when Anthropic sends one (429 rate-limit case).
+      // Bound it by our backoff schedule so a hostile/buggy header can't pin
+      // us for minutes inside a function that has only ~15 to play with.
+      let delayMs = BACKOFF_MS[attempt - 1] ?? BACKOFF_MS[BACKOFF_MS.length - 1];
+      const retryAfter = readRetryAfter(err);
+      if (Number.isFinite(retryAfter) && retryAfter > 0) {
+        delayMs = Math.min(Math.max(delayMs, retryAfter * 1000), 10_000);
+      }
+
+      console.log(`[anthropic] ${label} sleeping ${delayMs}ms before retry ${attempt + 1}…`);
+      await sleep(delayMs);
+    }
+  }
+  // Unreachable — the loop either returns successfully or throws above.
+  throw new Error(`[anthropic] ${label} exhausted retries without throwing`);
+}
+
+function isRetryableError(err) {
+  if (!err) return false;
+
+  // SDK-typed errors (when the SDK is imported, instanceof checks are reliable)
+  if (Anthropic?.APIConnectionError && err instanceof Anthropic.APIConnectionError) return true;
+  if (Anthropic?.APIConnectionTimeoutError && err instanceof Anthropic.APIConnectionTimeoutError) return true;
+  if (Anthropic?.RateLimitError && err instanceof Anthropic.RateLimitError) return true;
+  if (Anthropic?.InternalServerError && err instanceof Anthropic.InternalServerError) return true;
+
+  // Status-based fallback for any APIError variant the SDK exposes
+  const status = err.status ?? err.response?.status;
+  if (Number.isFinite(status)) {
+    if (status === 429) return true;
+    if (status >= 500 && status < 600) return true;
+    return false; // Other 4xx — not retryable
+  }
+
+  // Raw Node / undici network errors that didn't get wrapped by the SDK
+  const code = err.cause?.code || err.code;
+  if (code && NODE_NETWORK_ERROR_CODES.has(code)) return true;
+
+  // AbortError on stream — usually means the connection dropped
+  if (err.name === "AbortError") return true;
+
+  return false;
+}
+
+function readRetryAfter(err) {
+  // SDK error has .headers (already a plain object); fetch-style errors have .response.headers
+  const fromObj = err?.headers?.["retry-after"] || err?.headers?.["Retry-After"];
+  if (fromObj) return parseFloat(fromObj);
+  const fromFetch = err?.response?.headers?.get?.("retry-after");
+  if (fromFetch) return parseFloat(fromFetch);
+  return null;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function extractToolUseInput(response) {
