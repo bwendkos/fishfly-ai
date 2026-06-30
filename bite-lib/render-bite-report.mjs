@@ -19,6 +19,7 @@ import { renderMoonCalendar } from "../scout-lib/render-moon-calendar.mjs";
 import { renderSolunar } from "../scout-lib/render-solunar.mjs";
 import { renderTideChart } from "../scout-lib/render-tide-chart.mjs";
 import { renderWeatherChart } from "../scout-lib/render-weather-chart.mjs";
+import { renderTripMap } from "../scout-lib/render-trip-map.mjs";
 import { getReportCss } from "../scout-lib/render-css.mjs";
 
 export function renderBiteReport(report) {
@@ -55,6 +56,28 @@ export function renderBiteReport(report) {
     weather,
     metaOverride
   );
+
+  // Interactive destination map. Unlike Trip Scout (which uses curated
+  // destinations.mjs centroids + per-destination POIs from destination-pois.mjs),
+  // the Eat Window report has a user-supplied lat/lng from Mapbox autocomplete.
+  // We render a single marker on the user's exact location instead of trying to
+  // match it against curated POIs. Higher default zoom (11) since the user
+  // pinpointed a specific spot, not a region.
+  const tripMap = metaOverride
+    ? renderTripMap({
+        meta: metaOverride,
+        pois: [{
+          lat: metaOverride.lat,
+          lng: metaOverride.lon,
+          kind: "lodge",
+          label: locationLabel,
+          detail: "Your fishing location.",
+        }],
+        apiKey: process.env.GOOGLE_MAPS_API_KEY,
+        destinationName: locationLabel,
+        zoom: 11,
+      })
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -207,6 +230,8 @@ export function renderBiteReport(report) {
       <h1>${escapeHtml(locationLabel)}</h1>
       <p class="meta">Eat Window &middot; Report ID: ${escapeHtml(reportId)} &middot; Generated ${escapeHtml(formatTimestamp(generatedAt))}</p>
     </div>
+
+    ${tripMap}
 
     ${pewSection || renderUnavailable(locationLabel)}
 
