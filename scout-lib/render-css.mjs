@@ -1621,5 +1621,100 @@ circle.tide-extreme-high { fill: var(--sand); }
 @media print {
   .solunar-calendar { break-inside: avoid; }
 }
+
+/* ============================================================ */
+/*  Interactive destination map (Section 01)                       */
+/*  PR #35 — Google Maps JS API embed                              */
+/* ============================================================ */
+
+.trip-map-figure {
+  margin: 32px 0 24px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(26,31,46,0.04);
+}
+#trip-map {
+  width: 100%;
+  height: 520px;
+  background: var(--bg-oyster);
+}
+.trip-map-caption {
+  font-family: "Inter", sans-serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text-muted);
+  padding: 10px 16px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.trip-map-legend {
+  display: flex;
+  gap: 18px;
+  font-style: normal;
+  color: var(--text-soft);
+}
+.trip-map-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-dot {
+  display: inline-block;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.legend-airport { background: var(--ocean); }
+.legend-lodge   { background: var(--sand); }
+.legend-flats   { background: var(--rust); }
+
+/* Google Maps InfoWindow override — match the FishFly editorial register */
+.gm-style .gm-style-iw-c {
+  padding: 0 !important;
+  border-radius: 2px !important;
+  box-shadow: 0 4px 16px rgba(26,31,46,0.18) !important;
+  border: 1px solid var(--rule) !important;
+}
+.gm-style .gm-style-iw-d {
+  overflow: hidden !important;
+  max-width: 260px !important;
+}
+.ff-popup {
+  padding: 12px 16px 14px;
+  font-family: "Inter", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-primary);
+  max-width: 240px;
+}
+.ff-popup strong {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 15.5px;
+  color: var(--ocean);
+  margin-bottom: 5px;
+}
+.ff-popup-kind {
+  display: inline-block;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+/* Hide the map gracefully when printing — it's an interactive figure */
+@media print {
+  .trip-map-figure { display: none; }
+}
 `;
 }
