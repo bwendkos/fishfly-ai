@@ -1716,5 +1716,53 @@ circle.tide-extreme-high { fill: var(--sand); }
 @media print {
   .trip-map-figure { display: none; }
 }
+
+/* ============================================================ */
+/*  Phase 2F — Report hero + section opener watercolors            */
+/*  PR #38                                                         */
+/* ============================================================ */
+
+/* Report hero — full-width watercolor at the top of the article.
+   No figcaption (deliberate: caption would be destination-specific
+   and confusing for non-matching destinations). */
+.ff-hero {
+  margin: 28px 0 40px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--bg-oyster);
+  box-shadow: 0 1px 0 rgba(26,31,46,0.04);
+}
+.ff-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Section opener — watercolor banner that opens sections 05/06/07.
+   Sits just below the section-header line, above the section's first
+   <h3> or paragraph. Same visual register as the hero, slightly tighter
+   margins so it doesn't crowd the section structure. */
+.ff-section-opener {
+  margin: 24px 0 32px;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--bg-oyster);
+  box-shadow: 0 1px 0 rgba(26,31,46,0.04);
+}
+.ff-section-opener img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media print {
+  .ff-hero,
+  .ff-section-opener {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+}
 `;
 }

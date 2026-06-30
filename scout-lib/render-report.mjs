@@ -100,7 +100,10 @@ function renderHeader(context, headerTitle, report) {
     <p class="meta">
       ${context.species?.length || 0} target species · Generated ${new Date(context.generatedAt).toLocaleDateString()}
     </p>
-  </div>`;
+  </div>
+  <figure class="ff-hero">
+    <img src="/brand/heroes/sections/report-hero.jpg" alt="Trip destination hero" loading="eager">
+  </figure>`;
 }
 
 /**
@@ -268,7 +271,7 @@ function renderTripOverview(section, context) {
     <p class="greeting">${escapeHtml(section.greeting)}</p>
     ${tripMap}
     <h3>What to know before you go</h3>
-    <p>${escapeHtml(section.destination_reality)}</p>
+    ${renderProse(section.destination_reality)}
     <h3>Species reality check</h3>
     <div class="reality-grid">${realityChecks}</div>
     <div class="callout"><strong>Weather note:</strong> ${escapeHtml(section.weather_caveat)}</div>
@@ -357,9 +360,9 @@ function renderWeatherMoonTides(section, context) {
       <div class="best-dates-label">Recommended window</div>
       <h3>${escapeHtml(section.best_dates_recommendation.window_label)}</h3>
       <h4>Why this window</h4>
-      <p>${escapeHtml(section.best_dates_recommendation.why_this_window)}</p>
+      ${renderProse(section.best_dates_recommendation.why_this_window)}
       <h4>How this affects your species</h4>
-      <p>${escapeHtml(section.best_dates_recommendation.per_species_benefit)}</p>
+      ${renderProse(section.best_dates_recommendation.per_species_benefit)}
     </div>`
     : "";
   return `
@@ -367,18 +370,18 @@ function renderWeatherMoonTides(section, context) {
     <div class="section-header"><span class="section-number">04</span><h2>Weather, Moon & Tides</h2></div>
     <h3>Weather</h3>
     ${weatherChart}
-    <p>${escapeHtml(section.weather_overview)}</p>
+    ${renderProse(section.weather_overview)}
     <h3>Sun</h3>
     ${sunCalendar}
     <h3>Moon</h3>
     ${moonCalendar}
-    <p>${escapeHtml(section.moon_summary)}</p>
+    ${renderProse(section.moon_summary)}
     <h3>Tides</h3>
     ${tideChart}
-    <p>${escapeHtml(section.tide_summary)}</p>
+    ${renderProse(section.tide_summary)}
     <h3>Solunar</h3>
     ${solunarChart}
-    <p>${escapeHtml(section.solunar_summary)}</p>
+    ${renderProse(section.solunar_summary)}
     ${best}
   </section>`;
 }
@@ -392,6 +395,9 @@ function renderPackingChecklist(section) {
   return `
   <section class="section">
     <div class="section-header"><span class="section-number">05</span><h2>What to Bring</h2></div>
+    <figure class="ff-section-opener">
+      <img src="/brand/heroes/sections/what-to-bring.jpg" alt="Saltwater fly gear still-life — section opener" loading="lazy">
+    </figure>
     <h3 class="checklist-tier">Must Have</h3>
     ${cat("Tackle & Gear", section.must_have?.tackle_and_gear)}
     ${cat("Clothing & Sun", section.must_have?.clothing_sun)}
@@ -410,12 +416,15 @@ function renderLogistics(section) {
   return `
   <section class="section">
     <div class="section-header"><span class="section-number">06</span><h2>How to Get There</h2></div>
+    <figure class="ff-section-opener">
+      <img src="/brand/heroes/sections/how-to-get-there.jpg" alt="Nautical chart — section opener" loading="lazy">
+    </figure>
     <h3>Nearest airports</h3>
     <table><tbody>${airports}</tbody></table>
     <h3>Ground transport</h3>
-    <p>${escapeHtml(section.ground_transport)}</p>
+    ${renderProse(section.ground_transport)}
     <h3>Lodging notes</h3>
-    <p>${escapeHtml(section.lodging_notes)}</p>
+    ${renderProse(section.lodging_notes)}
   </section>`;
 }
 
@@ -435,9 +444,12 @@ function renderRegulations(section) {
   return `
   <section class="section">
     <div class="section-header"><span class="section-number">07</span><h2>Regulations</h2></div>
+    <figure class="ff-section-opener">
+      <img src="/brand/heroes/sections/regulations.jpg" alt="Fishing-permit documents still-life — section opener" loading="lazy">
+    </figure>
     <div class="callout callout-warn">⚠️ ${escapeHtml(section.disclaimer_top)}</div>
     <h3>Licenses required</h3>
-    <p>${escapeHtml(section.licenses_required)}</p>
+    ${renderProse(section.licenses_required)}
     <h3>Species regulations</h3>
     <table>
       <thead><tr><th>Species</th><th>Season</th><th>Bag limit</th><th>Size limit</th></tr></thead>
@@ -478,6 +490,24 @@ function escapeAttr(s) {
 function capitalize(s) {
   if (typeof s !== "string" || !s) return "";
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/**
+ * Render a long-prose field as one or more <p> blocks. Splits on double
+ * newlines (one or more blank lines) so Claude can opt into multi-paragraph
+ * prose in a single schema field without us needing to change the schema.
+ *
+ * Pairs with the "PARAGRAPH RHYTHM" clause in claude-prompt.mjs (PR #38).
+ * Long single-paragraph prose still renders correctly — just as one <p>.
+ */
+function renderProse(text) {
+  if (typeof text !== "string" || !text.trim()) return "";
+  return text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean)
+    .map((p) => `<p>${escapeHtml(p)}</p>`)
+    .join("\n    ");
 }
 
 function formatDestination(dest) {
