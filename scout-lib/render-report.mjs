@@ -25,6 +25,9 @@ import { renderSolunar } from "./render-solunar.mjs";
 import { renderTideChart } from "./render-tide-chart.mjs";
 import { renderWeatherChart } from "./render-weather-chart.mjs";
 import { renderPrimeEatWindow } from "./render-prime-eat-window.mjs";
+import { renderTripMap } from "./render-trip-map.mjs";
+import { getDestinationPOIs, getDestinationZoom } from "./destination-pois.mjs";
+import { getDestinationMeta } from "./destinations.mjs";
 
 export function renderReport(report, context) {
   const css = getReportCss();
@@ -247,10 +250,23 @@ function renderTripOverview(section, context) {
     )
     .join("");
 
+  // Interactive destination map. Sits between the greeting paragraph and the
+  // "What to know before you go" prose — grounds the reader geographically
+  // before they read the destination context. Gracefully omits if the API
+  // key is unset or the destination has no centroid lookup.
+  const tripMap = renderTripMap({
+    meta: getDestinationMeta(context?.destination),
+    pois: getDestinationPOIs(context?.destination),
+    apiKey: process.env.GOOGLE_MAPS_API_KEY,
+    destinationName: context?.destination,
+    zoom: getDestinationZoom(context?.destination),
+  });
+
   return `
   <section class="section">
     <div class="section-header"><span class="section-number">01</span><h2>Trip Overview</h2></div>
     <p class="greeting">${escapeHtml(section.greeting)}</p>
+    ${tripMap}
     <h3>What to know before you go</h3>
     <p>${escapeHtml(section.destination_reality)}</p>
     <h3>Species reality check</h3>
