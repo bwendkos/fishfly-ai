@@ -15,7 +15,7 @@
 
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { REPORT_SCHEMA } from "./claude-schema.mjs";
+import { REPORT_SCHEMA, TOOL_NAME } from "./claude-schema.mjs";
 
 const ajv = new Ajv({
   allErrors: true,        // collect all errors, not just the first
@@ -75,10 +75,12 @@ function buildCorrectivePrompt(errors) {
 
 ${lines.join("\n")}
 
-Please re-submit the report via the \`submit_safety_briefing\` tool, fixing only the issues listed above. Keep all other content identical. Pay particular attention to:
-- \`self_critique\` must be an array of EXACTLY THREE strings, each at least 100 characters.
-- Every category must have either 3 products (applicable=true) or 0 products with an \`omission_reason\` (applicable=false).
-- Every \`confirmed_specs\` field requires both \`value\` and \`source_url\` (source_url can be null with [unverified] in value).`;
+Please re-submit the report via the \`${TOOL_NAME}\` tool, fixing only the issues listed above. Keep all other content identical. Specific reminders for the Trip Scout schema:
+- Every required field in every section must be populated with real content (no placeholders, no empty strings, no "TBD").
+- Every \`species_profiles\` entry must include all subfields: \`the_fish\`, \`gear\`, \`top_flies\` (array), \`presentation\`, \`conservation\`.
+- \`viability\` values (in \`trip_overview.species_reality_check\`) must be exactly one of: \`prime\`, \`solid\`, \`marginal\`, \`non_viable\`.
+- \`best_dates_recommendation\` (when present) requires \`window_label\`, \`why_this_window\`, \`per_species_benefit\`.
+- Field types matter: arrays must be arrays, strings must be strings, no nesting mistakes.`;
 }
 
 /**
