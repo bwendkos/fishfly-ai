@@ -8,7 +8,11 @@
  * Marker types (palette-aligned with the rest of the report):
  *   - Airport (✈, ocean blue #1e3a5f) — entry points to the destination
  *   - Lodge   (★, sand #c89668) — primary fishing villages / lodge clusters
- *   - Flats   (◆, rust #8b3a3a) — notable named fishing areas
+ *
+ * Named-flats markers were removed by policy: pinpointing specific fishing
+ * flats surfaces sensitive information about guide waters and works against
+ * the etiquette Trip Scout is trying to model. Any `kind: "flats"` in the
+ * POI catalog is filtered out at render time.
  *
  * Map controls (all native Google Maps):
  *   - Map / Satellite / Hybrid / Terrain layer toggle (top-right)
@@ -34,7 +38,6 @@ const DEFAULT_ZOOM = 9; // sane default — most destinations are island-scale
 const MARKER_STYLE = {
   airport: { color: "#1e3a5f", glyph: "✈", kindLabel: "Airport" },
   lodge:   { color: "#c89668", glyph: "★", kindLabel: "Lodge cluster" },
-  flats:   { color: "#8b3a3a", glyph: "◆", kindLabel: "Flats" },
 };
 
 export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
@@ -44,11 +47,17 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
   const safeApiKey = encodeURIComponent(apiKey);
   const center = { lat: meta.lat, lng: meta.lon };
 
+  // Filter out any flats markers up-front: destination-pois.mjs should no
+  // longer emit them, but this keeps the render defensive in case a legacy
+  // entry survives an incomplete cleanup.
+  const filteredPois = (Array.isArray(pois) ? pois : [])
+    .filter((p) => p && p.kind !== "flats");
+
   // Always include a destination-centroid marker if no curated POIs were provided
   // — so even uncurated destinations get a single "you are here" pin instead of
   // an empty map.
-  const markers = (Array.isArray(pois) && pois.length > 0)
-    ? pois
+  const markers = filteredPois.length > 0
+    ? filteredPois
     : [{
         lat: meta.lat,
         lng: meta.lon,
@@ -84,7 +93,6 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
       <span class="trip-map-legend">
         <span><span class="legend-dot legend-airport"></span> Airports</span>
         <span><span class="legend-dot legend-lodge"></span> Lodges</span>
-        <span><span class="legend-dot legend-flats"></span> Flats</span>
       </span>
     </figcaption>
   </figure>
