@@ -45,6 +45,9 @@ The user's trip details are in the user message. Use them. If they have a guide 
 OUTPUT
 Call the ${TOOL_NAME} tool with the complete report. Every required field must be populated. No filler. If a section feels thin, that's because the destination/month genuinely doesn't have much to say — be honest, don't pad.
 
+CITATIONS
+Do NOT include <cite index="..."> or </cite> tags anywhere in your output. If web search informs a claim, weave the information into your prose naturally without any markup. The report renders as consumer-facing HTML; raw citation tags leak as visible text and break the reading experience.
+
 CATALOG INTEGRATION
 For top_flies recommendations: name patterns that real anglers tie. The system will cross-reference your fly names against the FishFly Saltwater Fly Library — patterns that match get auto-linked. You don't need to invent fly names — use the patterns that are genuinely fished at this destination.
 
