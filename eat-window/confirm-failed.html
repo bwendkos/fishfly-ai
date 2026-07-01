@@ -16,23 +16,56 @@
       color: #1a1f2e;
       line-height: 1.6;
       min-height: 100vh;
+      padding: 0 24px 48px;
+    }
+    .failure-main {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 32px 24px;
+      padding-top: 64px;
     }
-    .wordmark {
+
+    /* Site nav (matches eat-window pattern) */
+    .site-nav {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .site-nav-brand {
       font-family: "Cormorant Garamond", Georgia, serif;
       font-style: italic;
       font-weight: 700;
-      font-size: 32px;
-      letter-spacing: -0.5px;
+      font-size: 24px;
       color: #1a1f2e;
       text-decoration: none;
-      margin-bottom: 8px;
+      letter-spacing: -0.5px;
     }
-    .wordmark .dot { color: #c89668; margin: 0 3px; }
+    .site-nav-brand .dot { color: #c89668; margin: 0 3px; }
+    .site-nav .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .site-nav .nav-links a {
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: #4a5568;
+      text-decoration: none;
+      transition: color 120ms ease;
+    }
+    .site-nav .nav-links a:hover,
+    .site-nav .nav-links a.active { color: #1e3a5f; }
+    .site-nav .nav-links a.active { font-weight: 600; }
+    @media (max-width: 640px) {
+      .site-nav { padding: 20px 20px; flex-wrap: wrap; gap: 12px 16px; }
+      .site-nav .nav-links { gap: 16px; font-size: 13px; }
+    }
+
     .tagline {
       font-family: "Inter", sans-serif;
       font-weight: 500; font-size: 11px;
@@ -99,16 +132,29 @@
   </style>
 </head>
 <body>
-  <a href="/" class="wordmark">fish<span class="dot">·</span>fly</a>
-  <div class="tagline">Eat Window</div>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" class="site-nav-brand">fish<span class="dot">·</span>fly</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/library/">Library</a>
+      <a href="/scout/">Trip Scout</a>
+      <a href="/eat-window/" class="active">Eat Window</a>
+      <a href="/about/">About</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </nav>
 
-  <div class="card">
-    <div class="eyebrow">Something didn't line up</div>
-    <h1>We couldn't confirm that link.</h1>
-    <p id="reason-message">Your magic link looks invalid or expired. Confirmation links work for 24 hours; after that you&rsquo;ll need to request a fresh one.</p>
-    <p>Sometimes this happens when an email client pre-fetches the link (which marks it as used) before you click through.</p>
-    <p style="margin-top: 18px;"><span class="reason-code" id="reason-code">reason</span></p>
-    <a href="/eat-window/" class="cta">Start a new request</a>
+  <div class="failure-main">
+    <div class="tagline">Eat Window</div>
+
+    <div class="card">
+      <div class="eyebrow">Something didn't line up</div>
+      <h1>We couldn't confirm that link.</h1>
+      <p id="reason-message">Your magic link looks invalid or expired. Confirmation links work for 24 hours; after that you&rsquo;ll need to request a fresh one.</p>
+      <p>Sometimes this happens when an email client pre-fetches the link (which marks it as used) before you click through.</p>
+      <p style="margin-top: 18px;"><span class="reason-code" id="reason-code">reason</span></p>
+      <a href="/eat-window/" class="cta">Start a new request</a>
+    </div>
   </div>
 
   <script>
