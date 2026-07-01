@@ -1,12 +1,16 @@
 /**
  * Per-destination points of interest for the Trip Scout interactive map.
  *
- * Each entry is a list of markers to overlay on the destination map. Three
+ * Each entry is a list of markers to overlay on the destination map. Two
  * marker kinds, palette-aligned with the rest of the report:
  *
  *   - "airport"  ✈  ocean blue  — entry points (with airline + route notes)
  *   - "lodge"    ★  sand        — primary fishing village / lodge cluster
- *   - "flats"    ◆  rust        — notable named fishing areas
+ *
+ * Named flats markers were removed by policy: pinpointing specific fishing
+ * flats surfaces sensitive guide-water info and works against the etiquette
+ * Trip Scout is trying to model. render-trip-map.mjs also filters `kind:
+ * "flats"` defensively at render time.
  *
  * Destinations NOT listed here fall back to a single "centroid" marker
  * (rendered by render-trip-map.mjs) so every destination gets some map
@@ -14,8 +18,9 @@
  *
  * Keys MUST EXACTLY match the destination names used in destinations.mjs.
  *
- * Curation policy: ≤ 6 markers per destination total. Less is more; the map
- * is a wayfinding aid, not an encyclopedia.
+ * Curation policy: ≤ 6 markers per destination total (airports + lodge
+ * clusters + notable towns). Less is more; the map is a wayfinding aid,
+ * not an encyclopedia.
  */
 
 export const DESTINATION_POIS = {
@@ -38,17 +43,7 @@ export const DESTINATION_POIS = {
     {
       lat: 24.330, lng: -77.788, kind: "lodge",
       label: "Behring Point / Cargill Creek",
-      detail: "Heart of central Andros bonefish country. Multiple lodges within a 5-mile radius. Middle Bight crab flats 10 min by skiff.",
-    },
-    {
-      lat: 24.620, lng: -77.760, kind: "flats",
-      label: "North Bight flats",
-      detail: "Wide protected creeks — bonefish, baby tarpon, occasional permit. Best on the incoming tide.",
-    },
-    {
-      lat: 24.080, lng: -77.640, kind: "flats",
-      label: "Mars Bay / South flats",
-      detail: "Largest bonefish on the island, more wading, fewer boats. A long run from Central but worth the day trip.",
+      detail: "Heart of central Andros bonefish country. Multiple lodges within a 5-mile radius.",
     },
   ],
 
