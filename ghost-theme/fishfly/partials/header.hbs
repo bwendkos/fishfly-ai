@@ -30,9 +30,9 @@
     <nav class="nav-links" aria-label="Primary">
       {{#foreach @site.navigation}}
         {{#match label "Sign-up"}}
-          <a class="cta" href="{{url}}">{{label}}</a>
+          <a class="cta" href="{{this.url}}">{{label}}</a>
         {{else}}
-          <a href="{{url}}">{{label}}</a>
+          <a href="{{this.url}}">{{label}}</a>
         {{/match}}
       {{/foreach}}
     </nav>
