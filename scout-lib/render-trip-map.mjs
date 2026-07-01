@@ -7,7 +7,8 @@
  *
  * Marker types (palette-aligned with the rest of the report):
  *   - Airport (✈, ocean blue #1e3a5f) — entry points to the destination
- *   - Lodge   (★, sand #c89668) — primary fishing villages / lodge clusters
+ *   - Lodge   (★, sand #c89668)       — primary fishing villages / lodge clusters
+ *   - Town    (⚓, text-soft #4a5568) — named settlements relevant to the fishery
  *
  * Named-flats markers were removed by policy: pinpointing specific fishing
  * flats surfaces sensitive information about guide waters and works against
@@ -38,6 +39,7 @@ const DEFAULT_ZOOM = 9; // sane default — most destinations are island-scale
 const MARKER_STYLE = {
   airport: { color: "#1e3a5f", glyph: "✈", kindLabel: "Airport" },
   lodge:   { color: "#c89668", glyph: "★", kindLabel: "Lodge cluster" },
+  town:    { color: "#4a5568", glyph: "⚓", kindLabel: "Town" },
 };
 
 export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
@@ -93,6 +95,7 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
       <span class="trip-map-legend">
         <span><span class="legend-dot legend-airport"></span> Airports</span>
         <span><span class="legend-dot legend-lodge"></span> Lodges</span>
+        <span><span class="legend-dot legend-town"></span> Towns</span>
       </span>
     </figcaption>
   </figure>
