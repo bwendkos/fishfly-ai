@@ -335,5 +335,8 @@ function formatTimestamp(iso) {
 
 function escapeHtml(s) {
   if (typeof s !== "string") return "";
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  // Strip Anthropic web-search cite tags before HTML-escaping (see
+  // scout-lib/render-report.mjs for full context — same fix, same reason).
+  const cleaned = s.replace(/<\/?cite(?:\s+[^>]*)?>/g, "");
+  return cleaned.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }

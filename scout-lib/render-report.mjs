@@ -476,7 +476,12 @@ function renderFooter(context) {
 
 function escapeHtml(s) {
   if (typeof s !== "string") return "";
-  return s
+  // Strip Anthropic web-search cite tags before HTML-escaping. Claude's
+  // web_search_20250305 tool annotates factual claims with
+  // <cite index="N-M">…</cite>; without this strip, escapeHtml turns
+  // them into visible literal "<cite index=..." text in the report.
+  const cleaned = s.replace(/<\/?cite(?:\s+[^>]*)?>/g, "");
+  return cleaned
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
