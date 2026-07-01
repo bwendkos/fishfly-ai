@@ -321,7 +321,7 @@ function renderOneSpecies(p, context) {
     ${banner}
     <h3>${escapeHtml(capitalize(p.species))}</h3>
     <h4>The fish</h4>
-    <p>${escapeHtml(p.the_fish)}</p>
+    ${renderProse(p.the_fish)}
     <h4>Gear</h4>
     <ul class="gear-list">
       <li><strong>Rod:</strong> ${escapeHtml(p.gear.rod)}</li>
@@ -333,9 +333,9 @@ function renderOneSpecies(p, context) {
     <h4>Top flies</h4>
     <div class="fly-grid">${flies}</div>
     <h4>Presentation</h4>
-    <p>${escapeHtml(p.presentation)}</p>
+    ${renderProse(p.presentation)}
     <h4>Conservation</h4>
-    <p>${escapeHtml(p.conservation)}</p>
+    ${renderProse(p.conservation)}
   </div>`;
 }
 
