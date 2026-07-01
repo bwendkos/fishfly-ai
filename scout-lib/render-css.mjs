@@ -1672,6 +1672,7 @@ circle.tide-extreme-high { fill: var(--sand); }
 }
 .legend-airport { background: var(--ocean); }
 .legend-lodge   { background: var(--sand); }
+.legend-town    { background: var(--text-soft); }
 
 /* Google Maps InfoWindow override — match the FishFly editorial register */
 .gm-style .gm-style-iw-c {
