@@ -86,6 +86,11 @@
   to = "/.netlify/functions/scout-admin-intakes"
   status = 200
 
+[[redirects]]
+  from = "/scout/admin/purge"
+  to = "/.netlify/functions/scout-admin-purge"
+  status = 200
+
 # --- Eat Window API (PR #26: Mapbox geocoding proxy) ---
 
 [[redirects]]
