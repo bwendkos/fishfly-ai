@@ -214,6 +214,7 @@ function renderNav() {
       <a href="https://fishfly.ai/">Home</a>
       <a href="https://fishfly.ai/library/">Library</a>
       <a href="https://fishfly.ai/scout/">Trip Scout</a>
+      <a href="https://fishfly.ai/eat-window/">Eat Window</a>
       <a href="https://fishfly.ai/about/">About</a>
       <a href="https://fishfly.ai/blog/">Blog</a>
     </div>
