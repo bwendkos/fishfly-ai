@@ -7,13 +7,19 @@
  *
  * Marker types (palette-aligned with the rest of the report):
  *   - Airport (✈, ocean blue #1e3a5f) — entry points to the destination
- *   - Lodge   (★, sand #c89668)       — primary fishing villages / lodge clusters
- *   - Town    (⚓, text-soft #4a5568) — named settlements relevant to the fishery
+ *   - Lodge   (★, sand #c89668)       — lodges, marinas, and guide-fleet hubs
  *
  * Named-flats markers were removed by policy: pinpointing specific fishing
  * flats surfaces sensitive information about guide waters and works against
  * the etiquette Trip Scout is trying to model. Any `kind: "flats"` in the
  * POI catalog is filtered out at render time.
+ *
+ * Town markers were also removed. Google Maps labels every settlement
+ * natively — putting an extra ⚓ pin on Ocracoke while Empire and Buras
+ * stay unmarked created false asymmetry ("why is that town highlighted?").
+ * Towns that ARE genuine fishing hubs (Port Mansfield's marina cluster,
+ * Kailua-Kona's charter fleet, etc.) are classed as `kind: "lodge"` — the
+ * semantic that matches their role.
  *
  * Map controls (all native Google Maps):
  *   - Map / Satellite / Hybrid / Terrain layer toggle (top-right)
@@ -38,8 +44,7 @@ const DEFAULT_ZOOM = 9; // sane default — most destinations are island-scale
 
 const MARKER_STYLE = {
   airport: { color: "#1e3a5f", glyph: "✈", kindLabel: "Airport" },
-  lodge:   { color: "#c89668", glyph: "★", kindLabel: "Lodge cluster" },
-  town:    { color: "#4a5568", glyph: "⚓", kindLabel: "Town" },
+  lodge:   { color: "#c89668", glyph: "★", kindLabel: "Fishing hub" },
 };
 
 export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
@@ -93,9 +98,8 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
     <figcaption class="trip-map-caption">
       <span>Drag to pan · scroll to zoom · use the Map / Satellite toggle in the top-right · click markers for detail.</span>
       <span class="trip-map-legend">
-        <span><span class="legend-dot legend-airport"></span> Airports</span>
-        <span><span class="legend-dot legend-lodge"></span> Lodges</span>
-        <span><span class="legend-dot legend-town"></span> Towns</span>
+        <span><span class="legend-icon legend-airport">✈</span> Airports</span>
+        <span><span class="legend-icon legend-lodge">★</span> Lodges</span>
       </span>
     </figcaption>
   </figure>
