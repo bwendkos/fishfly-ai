@@ -635,10 +635,12 @@ const MAX_WIND_KTS_CHART = 25;
 function renderWindRow(day, meta, y, h) {
   const wx = day.weather;
   if (!wx || !Array.isArray(wx.hours) || wx.hours.length === 0) {
+    // Same tone as PR #47's Weather-section empty state: honest, actionable.
+    // Kept compact so it fits the single-row SVG viewport at chart-width scale.
     return `
       <g class="pew-row pew-row-wind">
         <rect x="0" y="${y}" width="${CHART_W}" height="${h}" class="pew-row-bg"/>
-        <text x="${CHART_W / 2}" y="${y + h / 2 + 3}" text-anchor="middle" class="pew-row-empty-text">weather data unavailable</text>
+        <text x="${CHART_W / 2}" y="${y + h / 2 + 3}" text-anchor="middle" class="pew-row-empty-text">Beyond 10-day forecast window</text>
       </g>`;
   }
   // Sort hours by time, map to (x, y) where y is wind speed (knots)
