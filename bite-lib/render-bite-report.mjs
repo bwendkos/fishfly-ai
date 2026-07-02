@@ -69,7 +69,7 @@ export function renderBiteReport(report) {
         pois: [{
           lat: metaOverride.lat,
           lng: metaOverride.lon,
-          kind: "lodge",
+          kind: "location",
           label: locationLabel,
           detail: "Your fishing location.",
         }],
