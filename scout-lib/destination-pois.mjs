@@ -1,32 +1,39 @@
 /**
  * Per-destination points of interest for the Trip Scout interactive map.
  *
- * Each entry is a list of markers to overlay on the destination map. Two
- * marker kinds, palette-aligned with the rest of the report:
+ * Each entry is a list of markers to overlay on the destination map. One
+ * marker kind:
  *
  *   - "airport"  ✈  ocean blue  — entry points (with airline + route notes)
- *   - "lodge"    ★  sand        — lodges, marinas, and guide-fleet hubs
  *
- * Named flats markers were removed by policy: pinpointing specific fishing
- * flats surfaces sensitive guide-water info and works against the etiquette
- * Trip Scout is trying to model. render-trip-map.mjs filters `kind: "flats"`
- * defensively at render time.
+ * WHY AIRPORTS ONLY (Policy — see PR #49):
+ * Earlier passes marked "lodges" and "towns" as well, but both surfaced
+ * coverage problems that misled users:
+ *   - Lodges: my selection was biased toward aggregator-listed operators
+ *     (Yellow Dog, Nervous Waters, Frontiers) — which take commissions and
+ *     under-represent family-run, direct-book, and newer operations. Marking
+ *     3 of 15 real lodges made users assume they were "the best" or "the
+ *     only ones" — neither true.
+ *   - Towns: Google Maps labels every settlement natively; adding a FishFly
+ *     pin on one town while others stayed unmarked created false asymmetry.
  *
- * Town markers were also removed. Google Maps labels every settlement
- * natively; adding an extra pin on Ocracoke while Empire and Buras stayed
- * unmarked created false asymmetry ("why is that one highlighted?"). Towns
- * that ARE genuine fishing hubs (Port Mansfield's marina cluster,
- * Kailua-Kona's charter fleet, etc.) are classed as `kind: "lodge"` — the
- * semantic that matches their role.
+ * Airports pass both tests: objective (IATA/ICAO-listed, currently serviced),
+ * genuinely additive to the map (users get spatial context on where to fly
+ * in), and unbiased (either the airport exists or it doesn't).
  *
- * Destinations NOT listed here fall back to a single "centroid" marker
- * (rendered by render-trip-map.mjs) so every destination gets some map
- * content even before its POIs are curated.
+ * Lodge recommendations still appear in the report — Claude names specific
+ * lodges with rich context in the trip overview + species profiles + logistics
+ * sections. The map's job is now purely "where do you fly in?".
+ *
+ * Named flats markers were also removed by policy: pinpointing specific
+ * fishing flats surfaces sensitive guide-water info. render-trip-map.mjs
+ * filters `kind: "flats"` defensively at render time.
+ *
+ * Destinations NOT listed here render with no markers — Google Maps still
+ * centers on the destination via meta lookup, but no FishFly pins overlay.
  *
  * Keys MUST EXACTLY match the destination names used in destinations.mjs.
  *
- * Curation policy: ≤ 6 markers per destination total (airports + fishing
- * hubs). Less is more; the map is a wayfinding aid, not an encyclopedia.
  * Every marker cites a public source in an inline `src:` comment so future
  * maintainers can re-verify without re-researching.
  */
@@ -48,11 +55,6 @@ export const DESTINATION_POIS = {
       label: "Mangrove Cay (MAY)",
       detail: "South Andros gateway — best for lodges south of the Middle Bight.",
     },
-    {
-      lat: 24.330, lng: -77.788, kind: "lodge",
-      label: "Behring Point / Cargill Creek",
-      detail: "Heart of central Andros bonefish country. Multiple lodges within a 5-mile radius.",
-    },
   ],
 
   "Biscayne Bay & Everglades, FL": [
@@ -61,18 +63,6 @@ export const DESTINATION_POIS = {
       label: "Miami Intl (MIA)",
       detail: "Primary gateway for Biscayne Bay + Everglades anglers. Rental car recommended — most guides launch from marinas 30-60 min south, toward Homestead or Flamingo.",
       // src: https://en.wikipedia.org/wiki/Miami_International_Airport
-    },
-    {
-      lat: 25.47778, lng: -80.47500, kind: "lodge",
-      label: "Homestead, FL",
-      detail: "Southernmost mainland town before the Everglades National Park entrance — the last stop for fuel, tackle, and lodging before heading into the park's backcountry.",
-      // src: https://en.wikipedia.org/wiki/Homestead,_Florida
-    },
-    {
-      lat: 25.14083, lng: -80.92417, kind: "lodge",
-      label: "Flamingo, FL",
-      detail: "The only settlement inside Everglades National Park, at the park's southern tip on Florida Bay. Home to the NPS marina and launch point for backcountry tarpon, snook, and redfish flats.",
-      // src: https://en.wikipedia.org/wiki/Flamingo,_Florida
     },
   ],
 
@@ -89,18 +79,6 @@ export const DESTINATION_POIS = {
       detail: "Puts anglers within 10-20 min of Middle Keys marinas like Duck Key — fewer commercial routes than EYW, but cuts drive time substantially if fishing the Marathon area.",
       // src: https://en.wikipedia.org/wiki/Florida_Keys_Marathon_International_Airport
     },
-    {
-      lat: 24.7757, lng: -80.9129, kind: "lodge",
-      label: "Hawks Cay Marina, Duck Key",
-      detail: "Full-service marina cluster at MM 61 in the Middle Keys with a resident charter fleet — a hub for backcountry and reef trips out of Duck Key, 9 mi from Marathon.",
-      // src: https://www.hawkscay.com/
-    },
-    {
-      lat: 24.67333, lng: -81.50417, kind: "lodge",
-      label: "Bahia Honda Sporting Club, Cudjoe Key",
-      detail: "The only fully-inclusive fly-fishing lodge in the Lower Keys — a Mediterranean-style villa 25 min from Key West specializing in Apr-Jun sight-fishing for migratory tarpon, with permit and bonefish shots on the side.",
-      // src: https://www.frontierstravel.com/bahia-honda
-    },
   ],
 
   "Georgia Lowcountry": [
@@ -115,18 +93,6 @@ export const DESTINATION_POIS = {
       label: "Brunswick Golden Isles (BQK)",
       detail: "Small commercial airport (Delta service to Atlanta) 5 mi north of Brunswick, putting anglers within 15-20 min of the Golden Isles causeways to St. Simons, Sea Island, and Jekyll.",
       // src: https://en.wikipedia.org/wiki/Brunswick_Golden_Isles_Airport
-    },
-    {
-      lat: 31.2991, lng: -81.3284, kind: "lodge",
-      label: "Little St. Simons Island Lodge",
-      detail: "Private, boat-access-only barrier island lodge running naturalist-led creek fishing and a dedicated fly-fishing workshop program for redfish, sea trout, and flounder in the surrounding tidal marshes.",
-      // src: https://www.littlestsimonsisland.com/activities/fishing
-    },
-    {
-      lat: 31.2017, lng: -81.3317, kind: "lodge",
-      label: "Sea Island Resort",
-      detail: "Golden Isles resort with a documented saltwater fly-fishing program (via On The Fly Outfitters) targeting tailing redfish on the flats and seasonal tarpon in the marshes behind the island.",
-      // src: https://www.seaisland.com/about/sea-island-life/the-art-of-fly-fishing/
     },
   ],
 
@@ -143,18 +109,6 @@ export const DESTINATION_POIS = {
       detail: "Primary airport for the Big Island's leeward (Kona) coast, gateway for offshore / bluewater fly-fishing for tuna and marlin.",
       // src: https://en.wikipedia.org/wiki/Kona_International_Airport
     },
-    {
-      lat: 21.39750, lng: -157.73944, kind: "lodge",
-      label: "Kailua, Oahu",
-      detail: "Windward Oahu town on Kailua Bay — the primary bonefish (o'io) gateway and access point for wading / kayak flats fishing.",
-      // src: https://en.wikipedia.org/wiki/Kailua,_Hawaii
-    },
-    {
-      lat: 19.65000, lng: -155.99417, kind: "lodge",
-      label: "Kailua-Kona",
-      detail: "Second-largest Big Island settlement on Kailua Bay (west coast) — commercial hub and charter-boat base for Kona-coast offshore fly-fishing.",
-      // src: https://en.wikipedia.org/wiki/Kailua-Kona
-    },
   ],
 
   "Louisiana Marsh": [
@@ -164,24 +118,6 @@ export const DESTINATION_POIS = {
       detail: "Primary gateway for the Louisiana marsh; direct flights to nearly every major US city, roughly a 2-hour drive south to Venice.",
       // src: https://en.wikipedia.org/wiki/Louis_Armstrong_New_Orleans_International_Airport
     },
-    {
-      lat: 29.573, lng: -89.786, kind: "lodge",
-      label: "Woodland Plantation",
-      detail: "Historic 1834 riverfront lodge in West Pointe a la Hache (north of Venice) — sight-fishing for 30-40 lb redfish and black drum in the Deep Delta marsh, ~40 min from MSY.",
-      // src: https://woodlandplantation.com/activities/fishing/
-    },
-    {
-      lat: 29.28, lng: -89.35, kind: "lodge",
-      label: "Redfish Lodge of Louisiana",
-      detail: "Capt. Mike Frenette's all-inclusive lodge at Venice Marina — 50+ years targeting trophy bull reds and slot reds on fly and light tackle at the Delta's mouth.",
-      // src: https://www.laredfish.com/lodge
-    },
-    {
-      lat: 29.82056, lng: -89.65667, kind: "lodge",
-      label: "Dogwood Lodge (Hopedale)",
-      detail: "Yellow Dog-affiliated floating lodge at Breton Sound Marina in Hopedale, ~1 hr from New Orleans — sight-fishing trophy redfish in the clear-water Biloxi Marsh.",
-      // src: https://www.yellowdogflyfishing.com/products/dogwood-lodge
-    },
   ],
 
   "Mosquito Lagoon & Indian River Lagoon, FL": [
@@ -190,18 +126,6 @@ export const DESTINATION_POIS = {
       label: "Daytona Beach Intl (DAB)",
       detail: "Closest commercial airport to the lagoon system — about 30-40 min from Titusville or New Smyrna Beach launch points. Smaller and often cheaper than routing through Orlando.",
       // src: https://en.wikipedia.org/wiki/Daytona_Beach_International_Airport
-    },
-    {
-      lat: 28.59111, lng: -80.81389, kind: "lodge",
-      label: "Titusville, FL",
-      detail: "Main launch town for Mosquito Lagoon's famed clear-water redfish and black drum sight-fishing flats, bordering the Merritt Island / Canaveral NWR shoreline.",
-      // src: https://en.wikipedia.org/wiki/Titusville,_Florida
-    },
-    {
-      lat: 29.02444, lng: -80.92694, kind: "lodge",
-      label: "New Smyrna Beach, FL",
-      detail: "Southern access point for the Indian River Lagoon and northern Mosquito Lagoon — home to most of the guide fleet working the area's spotted sea trout and redfish flats.",
-      // src: https://en.wikipedia.org/wiki/New_Smyrna_Beach,_Florida
     },
   ],
 
@@ -218,24 +142,6 @@ export const DESTINATION_POIS = {
       detail: "Small NPS-operated general-aviation airstrip in Kill Devil Hills next to the Wright Brothers Memorial — useful for private pilots flying directly into the northern Outer Banks near Oregon Inlet.",
       // src: https://en.wikipedia.org/wiki/First_Flight_Airport
     },
-    {
-      lat: 35.79705, lng: -75.54779, kind: "lodge",
-      label: "Oregon Inlet Fishing Center",
-      detail: "Full-service marina cluster at the north end of the Basnight Bridge in Cape Hatteras National Seashore — hosts one of the largest charter fleets on the Eastern Seaboard, with inshore / nearshore options for redfish, striper, and false albacore.",
-      // src: https://www.oregon-inlet.com/oregon-inlet-marina-info/
-    },
-    {
-      lat: 35.21819, lng: -75.69596, kind: "lodge",
-      label: "Hatteras Harbor Marina",
-      detail: "The only marina on Hatteras Island with its own Charter Boat Association — a multi-boat fleet of inshore and nearshore guides working the Hatteras/Buxton waters for false albacore, red drum, and speckled trout each fall.",
-      // src: https://www.hatterasharbor.com/marina
-    },
-    {
-      lat: 35.11278, lng: -75.97583, kind: "lodge",
-      label: "Ocracoke, NC",
-      detail: "Ferry-only Outer Banks village (no bridge access) with its own charter/guide fleet — reached via the free Hatteras-Ocracoke ferry or toll ferries from the mainland.",
-      // src: https://en.wikipedia.org/wiki/Ocracoke,_North_Carolina
-    },
   ],
 
   "South Carolina Lowcountry": [
@@ -250,18 +156,6 @@ export const DESTINATION_POIS = {
       label: "Hilton Head Island (HHH)",
       detail: "Small commercial airport on Hilton Head with regional jet service to East Coast hubs — about 15-20 min from the Sea Pines/Harbour Town charter fleet.",
       // src: https://en.wikipedia.org/wiki/Hilton_Head_Airport
-    },
-    {
-      lat: 32.1386, lng: -80.8128, kind: "lodge",
-      label: "Harbour Town Yacht Basin, Sea Pines",
-      detail: "Marina cluster inside Sea Pines Resort where multiple named charter operators dock — targets redfish, tarpon, and shark species in Calibogue Sound.",
-      // src: https://www.seapines.com/experiences/watersports
-    },
-    {
-      lat: 32.6034, lng: -80.0939, kind: "lodge",
-      label: "Kiawah Island Golf Resort",
-      detail: "Charleston-area resort base for saltwater fly fishing — independent fly guides (e.g. Tails of the Tides) launch from Kiawah's creeks and marshes to sight-fish tailing redfish year-round.",
-      // src: https://www.tailsofthetides.com/
     },
   ],
 
@@ -278,12 +172,6 @@ export const DESTINATION_POIS = {
       detail: "The right airport for the Sanibel / Captiva / Pine Island side of this destination — about 45-60 min from Pine Island Sound, avoiding the longer drive down from Tampa.",
       // src: https://en.wikipedia.org/wiki/Southwest_Florida_International_Airport
     },
-    {
-      lat: 26.6611, lng: -82.1539, kind: "lodge",
-      label: "Tarpon Lodge, Pine Island",
-      detail: "Historic 1926 Old Florida lodge on Pine Island Sound with direct water access to Cabbage Key, Useppa, Boca Grande, and Sanibel/Captiva — well positioned for tarpon, snook, and redfish on the flats and passes.",
-      // src: https://www.visitfortmyers.com/listing/tarpon-lodge-restaurant/46387
-    },
   ],
 
   "Texas Gulf Coast / Laguna Madre": [
@@ -299,34 +187,11 @@ export const DESTINATION_POIS = {
       detail: "Gateway to the middle/upper Laguna Madre — roughly 40-45 min drive to Port Aransas or Rockport guide docks.",
       // src: https://en.wikipedia.org/wiki/Corpus_Christi_International_Airport
     },
-    {
-      lat: 26.55556, lng: -97.43111, kind: "lodge",
-      label: "Port Mansfield, TX",
-      detail: "Iconic Lower Laguna Madre tarpon and redfish-flats town — nearly the entire local guide fleet launches from here, anchored by Mansfield Marina.",
-      // src: https://en.wikipedia.org/wiki/Port_Mansfield,_Texas
-    },
-    {
-      lat: 27.833, lng: -97.067, kind: "lodge",
-      label: "Port Aransas, TX",
-      detail: "Middle-coast launch point on Mustang Island at Aransas Pass — base for guides working the upper Laguna Madre and Corpus Christi Bay flats.",
-      // src: https://en.wikipedia.org/wiki/Port_Aransas,_Texas
-    },
-    {
-      lat: 28.02729, lng: -97.05453, kind: "lodge",
-      label: "Rockport, TX",
-      detail: "Middle-coast guide hub on Aransas Bay just north of Port Aransas — long-standing base for redfish and speckled trout guides working the northern Laguna Madre complex.",
-      // src: https://en.wikipedia.org/wiki/Rockport,_Texas
-    },
-    {
-      lat: 26.1, lng: -97.16667, kind: "lodge",
-      label: "South Padre Island, TX",
-      detail: "Southernmost lodging hub on the Lower Laguna Madre's east side — closest beach town to HRL and a base for anglers pursuing tarpon and snook in the southern lagoon.",
-      // src: https://en.wikipedia.org/wiki/South_Padre_Island,_Texas
-    },
   ],
 
-  // Other 31 destinations: add curated POIs in subsequent batches. Until then
-  // the map renders with a single centroid marker (see render-trip-map.mjs default).
+  // Other 31 destinations: add airport POIs in future batches. Until then
+  // the map renders with no FishFly pins — Google Maps still centers on
+  // the destination centroid via the meta lookup.
 };
 
 /**
