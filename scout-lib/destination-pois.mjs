@@ -44,16 +44,19 @@ export const DESTINATION_POIS = {
       lat: 25.054, lng: -78.049, kind: "airport",
       label: "San Andros (SAQ)",
       detail: "North Andros entry — ~45 min from Nassau via Bahamasair daily. Best for lodges in North Andros.",
+      // src: https://en.wikipedia.org/wiki/San_Andros_Airport
     },
     {
       lat: 24.687, lng: -77.749, kind: "airport",
       label: "Andros Town (ASD)",
       detail: "Central Andros entry / Fresh Creek — closest to Cargill Creek & Behring Point lodges. Western Air daily from Nassau.",
+      // src: https://en.wikipedia.org/wiki/Andros_Town_International_Airport
     },
     {
       lat: 24.193, lng: -77.660, kind: "airport",
       label: "Mangrove Cay (MAY)",
       detail: "South Andros gateway — best for lodges south of the Middle Bight.",
+      // src: https://en.wikipedia.org/wiki/Clarence_A._Bain_Airport
     },
   ],
 
@@ -805,3 +808,4 @@ const DESTINATION_ZOOM = {
 export function getDestinationZoom(destinationName) {
   return DESTINATION_ZOOM[destinationName] || null;
 }
+
