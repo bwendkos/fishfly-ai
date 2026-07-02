@@ -1701,7 +1701,8 @@ circle.tide-extreme-high { fill: var(--sand); }
   font-weight: 700;
   line-height: 1;
 }
-.legend-airport { background: var(--ocean); }
+.legend-airport  { background: var(--ocean); }
+.legend-location { background: var(--sand); }
 
 /* Google Maps InfoWindow override — match the FishFly editorial register */
 .gm-style .gm-style-iw-c {

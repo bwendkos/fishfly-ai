@@ -50,8 +50,19 @@
 const DEFAULT_ZOOM = 9; // sane default — most destinations are island-scale
 
 const MARKER_STYLE = {
-  airport: { color: "#1e3a5f", glyph: "✈", kindLabel: "Airport" },
+  // ✈ Trip Scout — airports curated in scout-lib/destination-pois.mjs.
+  //   Objective (IATA-listed), bias-free, additive.
+  airport:  { color: "#1e3a5f", glyph: "✈", kindLabel: "Airport",              legendLabel: "Airports" },
+  // ◉ Eat Window — the user's own geocoded fishing location. Not "curated
+  //   by us" so no aggregator bias, no false comprehensiveness. Just the
+  //   pin they typed into the intake form.
+  location: { color: "#c89668", glyph: "◉", kindLabel: "Your fishing location", legendLabel: "Your location" },
 };
+
+// The kinds the map should render. Any POI whose `kind` isn't in this set
+// is filtered out defensively (legacy lodge/flats/town data, malformed
+// inputs, etc.).
+const ALLOWED_KINDS = new Set(Object.keys(MARKER_STYLE));
 
 export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
   if (!apiKey) return "";
@@ -60,11 +71,10 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
   const safeApiKey = encodeURIComponent(apiKey);
   const center = { lat: meta.lat, lng: meta.lon };
 
-  // Filter out any legacy non-airport markers (lodges, flats, towns) up-front.
-  // destination-pois.mjs no longer emits these post-PR #49, but this keeps the
-  // render defensive against stale POI data.
+  // Filter out any legacy non-styled markers (lodges, flats, towns from
+  // pre-PR-#49 catalog data). Any kind not in MARKER_STYLE is dropped.
   const markers = (Array.isArray(pois) ? pois : [])
-    .filter((p) => p && p.kind === "airport");
+    .filter((p) => p && ALLOWED_KINDS.has(p.kind));
 
   const useZoom = Number.isFinite(zoom) ? zoom : DEFAULT_ZOOM;
 
@@ -89,10 +99,8 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
   <figure class="trip-map-figure" aria-label="Interactive destination map">
     <div id="trip-map" data-config="${escapeAttr(configJson)}"></div>
     <figcaption class="trip-map-caption">
-      <span>Drag to pan · scroll to zoom · use the Map / Satellite toggle in the top-right · click the ✈ marker for airport detail. Lodge and outfitter recommendations appear throughout the report below.</span>
-      <span class="trip-map-legend">
-        <span><span class="legend-icon legend-airport">✈</span> Airports</span>
-      </span>
+      <span>Drag to pan · scroll to zoom · use the Map / Satellite toggle in the top-right · click a marker for detail.</span>
+      <span class="trip-map-legend">${renderLegend(markers)}</span>
     </figcaption>
   </figure>
   <script>
@@ -172,6 +180,25 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
 /* ============================================================ */
 /*  Helpers                                                       */
 /* ============================================================ */
+
+/**
+ * Render the legend swatches for the map caption, based on which kinds
+ * are actually present in the markers list. That way Trip Scout maps
+ * (airport-only) show one item, Eat Window maps (location pin) show a
+ * different item, and each surface stays honest about what's on it.
+ */
+function renderLegend(markers) {
+  if (!Array.isArray(markers) || markers.length === 0) return "";
+  const kindsPresent = new Set(markers.map((m) => m && m.kind).filter(Boolean));
+  const items = Array.from(kindsPresent)
+    .filter((k) => MARKER_STYLE[k])
+    .map((k) => {
+      const style = MARKER_STYLE[k];
+      const label = style.legendLabel || style.kindLabel;
+      return `<span><span class="legend-icon legend-${k}">${style.glyph}</span> ${label}</span>`;
+    });
+  return items.join("");
+}
 
 function escapeAttr(s) {
   if (typeof s !== "string") return "";
