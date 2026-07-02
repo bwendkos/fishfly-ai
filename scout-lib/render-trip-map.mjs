@@ -5,21 +5,28 @@
  * with FishFly-branded markers. Goes inside section 01 (Trip Overview),
  * between the greeting paragraph and the "What to know before you go" prose.
  *
- * Marker types (palette-aligned with the rest of the report):
+ * Marker types (one kind):
  *   - Airport (✈, ocean blue #1e3a5f) — entry points to the destination
- *   - Lodge   (★, sand #c89668)       — lodges, marinas, and guide-fleet hubs
  *
- * Named-flats markers were removed by policy: pinpointing specific fishing
- * flats surfaces sensitive information about guide waters and works against
- * the etiquette Trip Scout is trying to model. Any `kind: "flats"` in the
- * POI catalog is filtered out at render time.
+ * POLICY — WHY AIRPORTS ONLY (see PR #49):
+ * Earlier passes marked lodges and towns as well, but both surfaced
+ * coverage problems that misled users:
+ *   - Lodges: selection was biased toward aggregator-listed operators
+ *     (Yellow Dog, Nervous Waters, Frontiers) — which take commissions and
+ *     under-represent family-run, direct-book, and newer operations.
+ *     Marking 3 of 15 real lodges made users assume they were "the best"
+ *     or "the only ones" — neither true.
+ *   - Towns: Google Maps labels every settlement natively; adding a
+ *     FishFly pin on Ocracoke while Empire and Buras stayed unmarked
+ *     created false asymmetry.
  *
- * Town markers were also removed. Google Maps labels every settlement
- * natively — putting an extra ⚓ pin on Ocracoke while Empire and Buras
- * stay unmarked created false asymmetry ("why is that town highlighted?").
- * Towns that ARE genuine fishing hubs (Port Mansfield's marina cluster,
- * Kailua-Kona's charter fleet, etc.) are classed as `kind: "lodge"` — the
- * semantic that matches their role.
+ * Airports pass both tests: objective (IATA/ICAO-listed, currently
+ * serviced), genuinely additive to the map (users get spatial context on
+ * where to fly in), and unbiased. Lodge recommendations still appear —
+ * Claude names specific lodges with rich context in the report prose.
+ *
+ * Legacy `kind: "flats"` and `kind: "lodge"` values in POI data are
+ * filtered out defensively at render time.
  *
  * Map controls (all native Google Maps):
  *   - Map / Satellite / Hybrid / Terrain layer toggle (top-right)
@@ -44,7 +51,6 @@ const DEFAULT_ZOOM = 9; // sane default — most destinations are island-scale
 
 const MARKER_STYLE = {
   airport: { color: "#1e3a5f", glyph: "✈", kindLabel: "Airport" },
-  lodge:   { color: "#c89668", glyph: "★", kindLabel: "Fishing hub" },
 };
 
 export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
@@ -54,24 +60,11 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
   const safeApiKey = encodeURIComponent(apiKey);
   const center = { lat: meta.lat, lng: meta.lon };
 
-  // Filter out any flats markers up-front: destination-pois.mjs should no
-  // longer emit them, but this keeps the render defensive in case a legacy
-  // entry survives an incomplete cleanup.
-  const filteredPois = (Array.isArray(pois) ? pois : [])
-    .filter((p) => p && p.kind !== "flats");
-
-  // Always include a destination-centroid marker if no curated POIs were provided
-  // — so even uncurated destinations get a single "you are here" pin instead of
-  // an empty map.
-  const markers = filteredPois.length > 0
-    ? filteredPois
-    : [{
-        lat: meta.lat,
-        lng: meta.lon,
-        kind: "lodge",
-        label: destinationName || "Destination",
-        detail: "Approximate centroid of the destination region.",
-      }];
+  // Filter out any legacy non-airport markers (lodges, flats, towns) up-front.
+  // destination-pois.mjs no longer emits these post-PR #49, but this keeps the
+  // render defensive against stale POI data.
+  const markers = (Array.isArray(pois) ? pois : [])
+    .filter((p) => p && p.kind === "airport");
 
   const useZoom = Number.isFinite(zoom) ? zoom : DEFAULT_ZOOM;
 
@@ -96,10 +89,9 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
   <figure class="trip-map-figure" aria-label="Interactive destination map">
     <div id="trip-map" data-config="${escapeAttr(configJson)}"></div>
     <figcaption class="trip-map-caption">
-      <span>Drag to pan · scroll to zoom · use the Map / Satellite toggle in the top-right · click markers for detail.</span>
+      <span>Drag to pan · scroll to zoom · use the Map / Satellite toggle in the top-right · click the ✈ marker for airport detail. Lodge and outfitter recommendations appear throughout the report below.</span>
       <span class="trip-map-legend">
         <span><span class="legend-icon legend-airport">✈</span> Airports</span>
-        <span><span class="legend-icon legend-lodge">★</span> Lodges</span>
       </span>
     </figcaption>
   </figure>
@@ -135,7 +127,7 @@ export function renderTripMap({ meta, pois, apiKey, destinationName, zoom }) {
         var bounds = new google.maps.LatLngBounds();
 
         (config.markers || []).forEach(function (m) {
-          var style = STYLE[m.kind] || STYLE.lodge;
+          var style = STYLE[m.kind] || STYLE.airport;
           var marker = new google.maps.Marker({
             position: { lat: m.lat, lng: m.lng },
             map: map,
