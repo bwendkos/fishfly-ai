@@ -5,12 +5,19 @@
  * marker kinds, palette-aligned with the rest of the report:
  *
  *   - "airport"  ✈  ocean blue  — entry points (with airline + route notes)
- *   - "lodge"    ★  sand        — primary fishing village / lodge cluster
+ *   - "lodge"    ★  sand        — lodges, marinas, and guide-fleet hubs
  *
  * Named flats markers were removed by policy: pinpointing specific fishing
  * flats surfaces sensitive guide-water info and works against the etiquette
- * Trip Scout is trying to model. render-trip-map.mjs also filters `kind:
- * "flats"` defensively at render time.
+ * Trip Scout is trying to model. render-trip-map.mjs filters `kind: "flats"`
+ * defensively at render time.
+ *
+ * Town markers were also removed. Google Maps labels every settlement
+ * natively; adding an extra pin on Ocracoke while Empire and Buras stayed
+ * unmarked created false asymmetry ("why is that one highlighted?"). Towns
+ * that ARE genuine fishing hubs (Port Mansfield's marina cluster,
+ * Kailua-Kona's charter fleet, etc.) are classed as `kind: "lodge"` — the
+ * semantic that matches their role.
  *
  * Destinations NOT listed here fall back to a single "centroid" marker
  * (rendered by render-trip-map.mjs) so every destination gets some map
@@ -18,10 +25,10 @@
  *
  * Keys MUST EXACTLY match the destination names used in destinations.mjs.
  *
- * Curation policy: ≤ 6 markers per destination total (airports + lodge
- * clusters + notable towns). Less is more; the map is a wayfinding aid,
- * not an encyclopedia. Every marker cites a public source in an inline
- * `src:` comment so future maintainers can re-verify without re-researching.
+ * Curation policy: ≤ 6 markers per destination total (airports + fishing
+ * hubs). Less is more; the map is a wayfinding aid, not an encyclopedia.
+ * Every marker cites a public source in an inline `src:` comment so future
+ * maintainers can re-verify without re-researching.
  */
 
 export const DESTINATION_POIS = {
@@ -56,13 +63,13 @@ export const DESTINATION_POIS = {
       // src: https://en.wikipedia.org/wiki/Miami_International_Airport
     },
     {
-      lat: 25.47778, lng: -80.47500, kind: "town",
+      lat: 25.47778, lng: -80.47500, kind: "lodge",
       label: "Homestead, FL",
       detail: "Southernmost mainland town before the Everglades National Park entrance — the last stop for fuel, tackle, and lodging before heading into the park's backcountry.",
       // src: https://en.wikipedia.org/wiki/Homestead,_Florida
     },
     {
-      lat: 25.14083, lng: -80.92417, kind: "town",
+      lat: 25.14083, lng: -80.92417, kind: "lodge",
       label: "Flamingo, FL",
       detail: "The only settlement inside Everglades National Park, at the park's southern tip on Florida Bay. Home to the NPS marina and launch point for backcountry tarpon, snook, and redfish flats.",
       // src: https://en.wikipedia.org/wiki/Flamingo,_Florida
@@ -137,13 +144,13 @@ export const DESTINATION_POIS = {
       // src: https://en.wikipedia.org/wiki/Kona_International_Airport
     },
     {
-      lat: 21.39750, lng: -157.73944, kind: "town",
+      lat: 21.39750, lng: -157.73944, kind: "lodge",
       label: "Kailua, Oahu",
       detail: "Windward Oahu town on Kailua Bay — the primary bonefish (o'io) gateway and access point for wading / kayak flats fishing.",
       // src: https://en.wikipedia.org/wiki/Kailua,_Hawaii
     },
     {
-      lat: 19.65000, lng: -155.99417, kind: "town",
+      lat: 19.65000, lng: -155.99417, kind: "lodge",
       label: "Kailua-Kona",
       detail: "Second-largest Big Island settlement on Kailua Bay (west coast) — commercial hub and charter-boat base for Kona-coast offshore fly-fishing.",
       // src: https://en.wikipedia.org/wiki/Kailua-Kona
@@ -156,12 +163,6 @@ export const DESTINATION_POIS = {
       label: "New Orleans Louis Armstrong (MSY)",
       detail: "Primary gateway for the Louisiana marsh; direct flights to nearly every major US city, roughly a 2-hour drive south to Venice.",
       // src: https://en.wikipedia.org/wiki/Louis_Armstrong_New_Orleans_International_Airport
-    },
-    {
-      lat: 29.27694, lng: -89.35472, kind: "town",
-      label: "Venice, LA",
-      detail: "The 'Fishing Capital of the World' and epicenter of the fishery — southern terminus of the Great River Road, base for bull redfish and offshore trips at the mouth of the Mississippi.",
-      // src: https://en.wikipedia.org/wiki/Venice,_Louisiana
     },
     {
       lat: 29.573, lng: -89.786, kind: "lodge",
@@ -191,13 +192,13 @@ export const DESTINATION_POIS = {
       // src: https://en.wikipedia.org/wiki/Daytona_Beach_International_Airport
     },
     {
-      lat: 28.59111, lng: -80.81389, kind: "town",
+      lat: 28.59111, lng: -80.81389, kind: "lodge",
       label: "Titusville, FL",
       detail: "Main launch town for Mosquito Lagoon's famed clear-water redfish and black drum sight-fishing flats, bordering the Merritt Island / Canaveral NWR shoreline.",
       // src: https://en.wikipedia.org/wiki/Titusville,_Florida
     },
     {
-      lat: 29.02444, lng: -80.92694, kind: "town",
+      lat: 29.02444, lng: -80.92694, kind: "lodge",
       label: "New Smyrna Beach, FL",
       detail: "Southern access point for the Indian River Lagoon and northern Mosquito Lagoon — home to most of the guide fleet working the area's spotted sea trout and redfish flats.",
       // src: https://en.wikipedia.org/wiki/New_Smyrna_Beach,_Florida
@@ -230,16 +231,10 @@ export const DESTINATION_POIS = {
       // src: https://www.hatterasharbor.com/marina
     },
     {
-      lat: 35.11278, lng: -75.97583, kind: "town",
+      lat: 35.11278, lng: -75.97583, kind: "lodge",
       label: "Ocracoke, NC",
       detail: "Ferry-only Outer Banks village (no bridge access) with its own charter/guide fleet — reached via the free Hatteras-Ocracoke ferry or toll ferries from the mainland.",
       // src: https://en.wikipedia.org/wiki/Ocracoke,_North_Carolina
-    },
-    {
-      lat: 35.90472, lng: -75.66944, kind: "town",
-      label: "Manteo, NC",
-      detail: "Historic Roanoke Island town and Dare County seat, common lodging base and gateway between mainland access roads and the Hatteras/Oregon Inlet fishing grounds.",
-      // src: https://en.wikipedia.org/wiki/Manteo,_North_Carolina
     },
   ],
 
@@ -289,12 +284,6 @@ export const DESTINATION_POIS = {
       detail: "Historic 1926 Old Florida lodge on Pine Island Sound with direct water access to Cabbage Key, Useppa, Boca Grande, and Sanibel/Captiva — well positioned for tarpon, snook, and redfish on the flats and passes.",
       // src: https://www.visitfortmyers.com/listing/tarpon-lodge-restaurant/46387
     },
-    {
-      lat: 26.47306, lng: -82.14722, kind: "town",
-      label: "Sanibel, FL",
-      detail: "The namesake barrier island for this region's lower half — a base for accessing Pine Island Sound and San Carlos Bay flats without the longer drive to mainland marinas.",
-      // src: https://en.wikipedia.org/wiki/Sanibel,_Florida
-    },
   ],
 
   "Texas Gulf Coast / Laguna Madre": [
@@ -311,25 +300,25 @@ export const DESTINATION_POIS = {
       // src: https://en.wikipedia.org/wiki/Corpus_Christi_International_Airport
     },
     {
-      lat: 26.55556, lng: -97.43111, kind: "town",
+      lat: 26.55556, lng: -97.43111, kind: "lodge",
       label: "Port Mansfield, TX",
       detail: "Iconic Lower Laguna Madre tarpon and redfish-flats town — nearly the entire local guide fleet launches from here, anchored by Mansfield Marina.",
       // src: https://en.wikipedia.org/wiki/Port_Mansfield,_Texas
     },
     {
-      lat: 27.833, lng: -97.067, kind: "town",
+      lat: 27.833, lng: -97.067, kind: "lodge",
       label: "Port Aransas, TX",
       detail: "Middle-coast launch point on Mustang Island at Aransas Pass — base for guides working the upper Laguna Madre and Corpus Christi Bay flats.",
       // src: https://en.wikipedia.org/wiki/Port_Aransas,_Texas
     },
     {
-      lat: 28.02729, lng: -97.05453, kind: "town",
+      lat: 28.02729, lng: -97.05453, kind: "lodge",
       label: "Rockport, TX",
       detail: "Middle-coast guide hub on Aransas Bay just north of Port Aransas — long-standing base for redfish and speckled trout guides working the northern Laguna Madre complex.",
       // src: https://en.wikipedia.org/wiki/Rockport,_Texas
     },
     {
-      lat: 26.1, lng: -97.16667, kind: "town",
+      lat: 26.1, lng: -97.16667, kind: "lodge",
       label: "South Padre Island, TX",
       detail: "Southernmost lodging hub on the Lower Laguna Madre's east side — closest beach town to HRL and a base for anglers pursuing tarpon and snook in the southern lagoon.",
       // src: https://en.wikipedia.org/wiki/South_Padre_Island,_Texas

@@ -1467,6 +1467,25 @@ circle.tide-extreme-high { fill: var(--sand); }
   letter-spacing: 0.04em;
 }
 
+/* Whole-chart empty state: trip is entirely beyond the 10-day forecast horizon */
+.weather-chart-outside-window {
+  background: var(--bg-oyster);
+  border-left: 3px solid var(--sand);
+  padding: 20px 22px;
+}
+.weather-outside-window-note {
+  margin: 12px 0 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.55;
+  max-width: 720px;
+}
+.weather-outside-window-note strong {
+  color: var(--ocean);
+  font-weight: 600;
+}
+
 @media (max-width: 600px) {
   .weather-row {
     grid-template-columns: 1fr 80px;
@@ -1663,16 +1682,27 @@ circle.tide-extreme-high { fill: var(--sand); }
   align-items: center;
   gap: 6px;
 }
-.legend-dot {
-  display: inline-block;
-  width: 14px; height: 14px;
+/*
+ * Legend icons match the actual map markers: colored circle with a white
+ * glyph overlay (✈ airport, ★ lodge). The circle uses the same 3px white
+ * ring + 1px rule outline that Google Maps SDK applies to our marker pins,
+ * so the legend reads as a literal 1:1 with the map.
+ */
+.legend-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
   border-radius: 50%;
   border: 2px solid #ffffff;
   box-shadow: 0 0 0 1px var(--rule);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
 }
 .legend-airport { background: var(--ocean); }
 .legend-lodge   { background: var(--sand); }
-.legend-town    { background: var(--text-soft); }
 
 /* Google Maps InfoWindow override — match the FishFly editorial register */
 .gm-style .gm-style-iw-c {

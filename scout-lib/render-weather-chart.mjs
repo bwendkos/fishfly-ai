@@ -43,6 +43,24 @@ export function renderWeatherChart(timing, destination, weatherData, metaOverrid
   const meta = metaOverride || getDestinationMeta(destination);
   if (!meta) return "";
 
+  // If EVERY day is beyond the StormGlass forecast horizon (10 days), replace
+  // the empty chart with an actionable note instead of a stack of "unavailable"
+  // rows. The seasonal outlook prose below still carries the section.
+  const allBeyondWindow = weatherData.every(
+    (day) => !Array.isArray(day?.hours) || day.hours.length === 0
+  );
+  if (allBeyondWindow) {
+    return `
+  <div class="weather-chart weather-chart-outside-window">
+    <div class="weather-chart-label">Conditions at your destination</div>
+    <div class="weather-outside-window-note">
+      <strong>Live forecast is only available within 10 days of your trip.</strong>
+      Come back and run this report again once your dates are within that window — StormGlass will have wind, tide, and precipitation for every trip day. The seasonal outlook below still applies today.
+    </div>
+    <div class="weather-chart-source">Live forecast source: StormGlass (blended NOAA + ECMWF + DWD models)</div>
+  </div>`;
+  }
+
   const rows = weatherData.map((day) => renderDayRow(day, meta)).join("");
 
   return `
@@ -55,10 +73,12 @@ export function renderWeatherChart(timing, destination, weatherData, metaOverrid
 
 function renderDayRow(day, meta) {
   if (!day || !Array.isArray(day.hours) || day.hours.length === 0) {
+    // Partial-window case: some days in the trip have forecast, this one
+    // doesn't (probably day 11+). Whole-chart case already handled upstream.
     return `
     <div class="weather-row weather-row-empty">
       <div class="weather-row-date">${formatDate(day?.date, meta.tz)}</div>
-      <div class="weather-row-note">Weather data unavailable</div>
+      <div class="weather-row-note">Beyond 10-day forecast window</div>
     </div>`;
   }
 
