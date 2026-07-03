@@ -16,6 +16,7 @@
 
 import { verifyConfirmationToken } from "../../scout-lib/crypto.mjs";
 import { getIntake, markIntakeConfirmed } from "../../scout-lib/storage.mjs";
+import { addNewsletterSubscriber } from "../../scout-lib/ghost.mjs";
 
 export default async (req) => {
   if (req.method !== "GET") {
@@ -63,6 +64,29 @@ export default async (req) => {
     } catch (err) {
       console.error("[confirm] markIntakeConfirmed failed:", err);
       return redirectTo(req, "/confirm-failed.html?reason=update_error");
+    }
+
+    // ---- Ghost newsletter opt-in ----
+    // Moved from scout-generate-background (post-generation) to here so users
+    // are captured for marketing on confirm, not only on successful report
+    // completion. Non-fatal — subscription failure doesn't block generation.
+    if (intake.newsletter_opt_in) {
+      const destStr = typeof intake.destination === "string"
+        ? intake.destination
+        : (intake.destination?.country || "unknown");
+      addNewsletterSubscriber({
+        email: intake.email,
+        firstName: intake.first_name,
+        labels: [
+          "source:trip-scout",
+          `destination:${destStr.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+          ...(intake.species || []).map((s) => `species:${s.replace(/\s+/g, "-")}`),
+        ],
+      })
+        .then(() => console.log(`[confirm] ghost subscribe done for ${intake.email}`))
+        .catch((err) => console.error("[confirm] ghost subscribe failed:", err));
+      // Fire-and-forget: don't await. Subscribe call can take 1-3s; the
+      // magic-link click flow should return the redirect fast.
     }
 
     // Kick off background generation by invoking the background function.

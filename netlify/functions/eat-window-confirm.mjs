@@ -22,6 +22,7 @@ import { fetchWeatherForTripRange, splitWeatherByDay } from "../../scout-lib/sto
 import { sendEmail } from "../../scout-lib/email.mjs";
 import { reportReadyEmail } from "../../bite-lib/email-templates.mjs";
 import { renderBiteReport } from "../../bite-lib/render-bite-report.mjs";
+import { addNewsletterSubscriber } from "../../scout-lib/ghost.mjs";
 
 export default async (req) => {
   if (req.method !== "GET") {
@@ -65,6 +66,25 @@ export default async (req) => {
       console.error("[bite-confirm] mark confirmed failed:", err);
       // Continue — non-fatal
     }
+  }
+
+  // ---- Ghost newsletter opt-in (PR #55) ----
+  // The intake stores newsletter_opt_in but the confirm handler previously
+  // never acted on it. Fire-and-forget subscription so users are captured
+  // for marketing regardless of report generation outcome.
+  if (intake.newsletter_opt_in) {
+    const locSlug = (intake.location || "unknown")
+      .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    addNewsletterSubscriber({
+      email: intake.email,
+      firstName: intake.first_name,
+      labels: [
+        "source:eat-window",
+        `location:${locSlug}`,
+      ],
+    })
+      .then(() => console.log(`[bite-confirm] ghost subscribe done for ${intake.email}`))
+      .catch((err) => console.error("[bite-confirm] ghost subscribe failed:", err));
   }
 
   // ---- Generate report ----
