@@ -15,7 +15,10 @@
  *   8. Store HTML + metadata in Blobs
  *   9. Update intake with report_id
  *  10. Send "report ready" email
- *  11. If newsletter_opt_in, add to Ghost newsletter
+ *
+ * Newsletter opt-in was previously step 11 here. Moved to scout-confirm.mjs
+ * on 2026-07-03 so users are captured for marketing on confirmation, not
+ * only on successful report completion. See PR #55.
  *
  * Idempotency: if report_id is already set on the intake, exit early.
  */
@@ -27,7 +30,6 @@ import { renderReport } from "../../scout-lib/render-report.mjs";
 import { enrichWithLibraryLinks } from "../../scout-lib/library-matcher.mjs";
 import { sendEmail } from "../../scout-lib/email.mjs";
 import { reportReadyEmail } from "../../scout-lib/email-templates.mjs";
-import { addNewsletterSubscriber } from "../../scout-lib/ghost.mjs";
 import { fetchTidesForTrip, tripDates } from "../../scout-lib/worldtides.mjs";
 import { fetchWeatherForTripRange, splitWeatherByDay } from "../../scout-lib/stormglass.mjs";
 import { getDestinationMeta } from "../../scout-lib/destinations.mjs";
@@ -205,23 +207,8 @@ async function runGeneration(intakeId) {
       // Don't fail the run — report is saved; admin can re-send.
     }
 
-    // ---- 8. Optional Ghost newsletter opt-in ----------
-    if (intake.newsletter_opt_in) {
-      try {
-        await addNewsletterSubscriber({
-          email: intake.email,
-          firstName: intake.first_name,
-          labels: [
-            "source:trip-scout",
-            `destination:${(typeof intake.destination === "string" ? intake.destination : intake.destination?.country || "unknown").toLowerCase().replace(/\s+/g, "-")}`,
-            ...(intake.species || []).map((s) => `species:${s.replace(/\s+/g, "-")}`),
-          ],
-        });
-        console.log(`[generate] ghost subscribe done @ ${stamp()}`);
-      } catch (err) {
-        console.error("[generate] ghost subscribe failed:", err);
-      }
-    }
+    // NOTE: newsletter opt-in is handled in scout-confirm.mjs (PR #55).
+    // Users are added to the Ghost newsletter on confirmation, not here.
 
     console.log(`[generate] complete intake=${intakeId} report=${reportId} in ${stamp()}`);
   } catch (err) {

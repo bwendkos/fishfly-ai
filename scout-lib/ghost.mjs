@@ -1,18 +1,17 @@
 /**
  * Ghost Admin API wrapper.
  *
- * Used ONLY when an intake explicitly opted in to the Road Voyage newsletter
- * via the separate consent checkbox. Adds the subscriber to Ghost with custom
- * labels so you can segment the list later.
+ * Adds a subscriber to the FishFly Ghost newsletter with source/attribution
+ * labels so the list can be segmented later. Called from scout-confirm and
+ * eat-window-confirm when an intake has newsletter_opt_in=true.
  *
  * Required env vars:
- *   GHOST_ADMIN_URL  — Admin API URL, e.g. https://travel-smart-live-free.ghost.io
- *   GHOST_ADMIN_KEY  — Admin API key from Ghost > Settings > Integrations > Add custom integration
- *                      Format: <id>:<secret_hex>
+ *   GHOST_API_URL         — Ghost admin base, e.g. https://fly-fish-fish-fly.ghost.io
+ *   GHOST_ADMIN_API_KEY   — Admin API key, format: <id>:<secret_hex>
  *
- * If env vars are not set, all calls become no-ops and log a warning. This
- * means dev/preview environments don't need Ghost configured — emails still
- * send, reports still generate, only newsletter sync is skipped.
+ * If env vars are not set, all calls become no-ops and log a warning. Dev/
+ * preview environments don't need Ghost configured — emails still send,
+ * reports still generate, only newsletter sync is skipped.
  */
 
 import { createHmac } from "node:crypto";
@@ -23,12 +22,13 @@ const ADMIN_KEY = process.env.GHOST_ADMIN_API_KEY;
 const ENABLED = Boolean(ADMIN_URL && ADMIN_KEY);
 
 /**
- * Add a member to the Ghost newsletter list with custom labels.
+ * Add a member to the Ghost newsletter list with attribution labels.
  *
  * @param {object} subscriber
  * @param {string} subscriber.email
  * @param {string} subscriber.firstName
- * @param {string[]} [subscriber.labels] - extra labels beyond the default ("rv-safety")
+ * @param {string[]} [subscriber.labels] - attribution labels for segmentation
+ *                                          (e.g. "source:trip-scout", "destination:andros-bahamas")
  * @returns {Promise<{ added: boolean, reason?: string }>}
  */
 export async function addNewsletterSubscriber({ email, firstName, labels = [] }) {
@@ -37,7 +37,10 @@ export async function addNewsletterSubscriber({ email, firstName, labels = [] })
     return { added: false, reason: "Ghost not configured" };
   }
 
-  const allLabels = ["rv-safety", ...labels];
+  // Labels come entirely from the caller. The old "rv-safety" default was a
+  // stale relic from the Road Voyage fork — removed 2026-07-03 to keep the
+  // FishFly member list clean.
+  const allLabels = labels;
 
   try {
     const token = signJwt(ADMIN_KEY);
