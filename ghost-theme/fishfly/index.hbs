@@ -10,6 +10,23 @@
   <div class="index-rule"></div>
 </section>
 
+{{#if @site.members_enabled}}
+  {{!-- Compact subscribe strip — pinned above the post grid so first-paint shows both signup and posts. --}}
+  <aside class="subscribe-strip" aria-label="Subscribe to Field Notes">
+    <div class="subscribe-strip-copy">
+      <div class="subscribe-strip-eyebrow">Subscribe</div>
+      <p class="subscribe-strip-tagline">Field Notes by email — free, no spam.</p>
+    </div>
+    <form class="subscribe-strip-form" data-members-form="signup">
+      <label class="visually-hidden" for="strip-email">Email address</label>
+      <input id="strip-email" type="email" name="email" data-members-email required placeholder="your@email.com" autocomplete="email">
+      <button type="submit" data-members-form-button>Subscribe</button>
+    </form>
+    <p class="subscribe-strip-success" data-members-success hidden>Check your email for a magic link to confirm.</p>
+    <p class="subscribe-strip-error" data-members-error hidden></p>
+  </aside>
+{{/if}}
+
 <section class="post-grid">
   {{#foreach posts}}
     {{> "post-card"}}

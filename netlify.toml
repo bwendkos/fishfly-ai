@@ -40,6 +40,24 @@
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
 
+
+# ---- Blog ----
+# The blog lives on Ghost at blog.fishfly.ai. Any hit to /blog on the marketing
+# site 301s there. force=true because the legacy static blog/index.html predates
+# the Ghost blog going live — this redirect overrides the file-serve default.
+
+[[redirects]]
+  from = "/blog"
+  to = "https://blog.fishfly.ai/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "https://blog.fishfly.ai/:splat"
+  status = 301
+  force = true
+
 # ---- Trip Scout function routing ----
 # Rewrites (status 200) keep the user-facing URL at fishfly.ai/scout/...
 # while the function executes server-side.
