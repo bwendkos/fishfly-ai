@@ -1,7 +1,7 @@
 {
   "name": "fishfly",
   "description": "Custom Ghost theme for FishFly \u2014 editorial reading experience matching fishfly.ai brand.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "ghost": ">=5.0.0",
     "ghost-api": "v5"
