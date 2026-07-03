@@ -756,9 +756,17 @@ img, video { max-width: 100%; height: auto; display: block; }
   font-style: italic;
   font-size: 0.95rem;
   margin: 0;
+  display: none;
 }
 .subscribe-strip-success { color: var(--accent); }
 .subscribe-strip-error { color: var(--rust); }
+
+/* Ghost Portal adds .success or .error to the form on submit; reveal the
+   matching sibling message. Also hide the loading state gracefully. */
+.subscribe-strip-form.loading button { opacity: 0.6; cursor: wait; }
+.subscribe-strip-form.success ~ .subscribe-strip-success { display: block; }
+.subscribe-strip-form.error ~ .subscribe-strip-error { display: block; }
+.subscribe-strip-form.success { display: none; }
 
 /* =====================================================================
    SUBSCRIBE NUDGE (post — updated 2026-07-03 to be inline form
@@ -801,9 +809,16 @@ img, video { max-width: 100%; height: auto; display: block; }
   font-size: 1rem;
   margin: 22px 0 0;
   text-align: center;
+  display: none;
 }
 .subscribe-nudge-success { color: var(--accent); }
 .subscribe-nudge-error { color: var(--rust); }
+
+/* Ghost Portal state classes — reveal matching sibling on form. */
+.subscribe-nudge-form.loading .subscribe-nudge-button { opacity: 0.6; cursor: wait; }
+.subscribe-nudge-form.success ~ .subscribe-nudge-success { display: block; }
+.subscribe-nudge-form.error ~ .subscribe-nudge-error { display: block; }
+.subscribe-nudge-form.success { display: none; }
 
 /* Screen-reader-only utility */
 .visually-hidden {
