@@ -44,28 +44,46 @@ export async function addNewsletterSubscriber({ email, firstName, labels = [] })
 
   try {
     const token = signJwt(ADMIN_KEY);
+
+    // Build member payload. Ghost rejects `name: null` with 422; only include
+    // `name` when it's a non-empty string. (Fix 2026-07-03: subscribe.mjs from
+    // the blog signup surfaces has no first-name field, so it passed null and
+    // every blog signup was silently 422'd and misclassified as "already
+    // exists" by the fallback below.)
+    const member = {
+      email,
+      labels: allLabels.map((name) => ({ name })),
+      subscribed: true,
+    };
+    if (typeof firstName === "string" && firstName.trim().length > 0) {
+      member.name = firstName.trim();
+    }
+
     const res = await fetch(`${ADMIN_URL}/ghost/api/admin/members/`, {
       method: "POST",
       headers: {
         Authorization: `Ghost ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        members: [
-          {
-            email,
-            name: firstName,
-            labels: allLabels.map((name) => ({ name })),
-            subscribed: true,
-          },
-        ],
-      }),
+      body: JSON.stringify({ members: [member] }),
     });
 
     if (res.status === 422) {
-      // Member already exists — try to update labels instead
-      console.log(`[ghost] Member ${email} already exists; attempting label update`);
-      return await updateMemberLabels(email, allLabels, token);
+      // 422 covers TWO different cases from Ghost:
+      //   (a) member already exists — expected, fall through to label merge
+      //   (b) validation error — rarer, should be logged loudly
+      // Read the response body to disambiguate.
+      const errBody = await res.text();
+      let errJson = null;
+      try { errJson = JSON.parse(errBody); } catch { /* keep null */ }
+      const message = errJson?.errors?.[0]?.message || "";
+      if (message.toLowerCase().includes("member already exists") ||
+          errJson?.errors?.[0]?.property === "email") {
+        console.log(`[ghost] Member ${email} already exists; attempting label update`);
+        return await updateMemberLabels(email, allLabels, token);
+      }
+      console.error(`[ghost] Add failed with 422 validation error: ${errBody}`);
+      return { added: false, reason: `Validation 422: ${message || errBody.slice(0, 200)}` };
     }
 
     if (!res.ok) {
