@@ -30,6 +30,72 @@
     {{> "footer"}}
   </div>
 
+  {{!-- FishFly subscribe handler (PR #56).
+       Any container with [data-ff-subscribe] gets its <form> submit
+       intercepted. Adds `.success` or `.error` class to the form on
+       completion — the theme's CSS reveals sibling message elements
+       and hides the form on success. Cross-origin fetch to
+       https://fishfly.ai/.netlify/functions/subscribe. --}}
+  <script>
+    (function () {
+      var containers = document.querySelectorAll("[data-ff-subscribe]");
+      if (!containers.length) return;
+
+      containers.forEach(function (container) {
+        var form = container.querySelector("form");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          var button = form.querySelector("button[type='submit']");
+          var emailInput = form.querySelector("input[type='email']");
+          var gotchaInput = form.querySelector("input[name='_gotcha']");
+          if (!emailInput || !emailInput.value) return;
+
+          var email = emailInput.value.trim();
+          var source = container.getAttribute("data-ff-source") || "";
+          var gotcha = gotchaInput ? gotchaInput.value : "";
+
+          form.classList.remove("error");
+          if (button) {
+            button.disabled = true;
+            button.dataset.originalText = button.dataset.originalText || button.textContent;
+            button.textContent = "Subscribing…";
+          }
+
+          fetch("https://fishfly.ai/.netlify/functions/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, source: source, _gotcha: gotcha }),
+          })
+            .then(function (res) {
+              return res.json().then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (result) {
+              if (result.ok && result.data && result.data.ok) {
+                // Success: theme CSS reveals the .subscribe-*-success message
+                // and hides the form.
+                form.classList.add("success");
+              } else {
+                throw new Error(result.data && result.data.message || "subscription failed");
+              }
+            })
+            .catch(function (err) {
+              console.error("[ff-subscribe]", err);
+              form.classList.add("error");
+              if (button) {
+                button.disabled = false;
+                button.textContent = button.dataset.originalText || "Subscribe";
+              }
+            });
+        });
+      });
+    })();
+  </script>
+
   {{ghost_foot}}
 </body>
 </html>

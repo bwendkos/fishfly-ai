@@ -10,22 +10,28 @@
   <div class="index-rule"></div>
 </section>
 
-{{#if @site.members_enabled}}
-  {{!-- Compact subscribe strip — pinned above the post grid so first-paint shows both signup and posts. --}}
-  <aside class="subscribe-strip" aria-label="Subscribe to Field Notes">
-    <div class="subscribe-strip-copy">
-      <div class="subscribe-strip-eyebrow">Subscribe</div>
-      <p class="subscribe-strip-tagline">Field Notes by email — free, no spam.</p>
-    </div>
-    <form class="subscribe-strip-form" data-members-form="signup">
-      <label class="visually-hidden" for="strip-email">Email address</label>
-      <input id="strip-email" type="email" name="email" data-members-email required placeholder="your@email.com" autocomplete="email">
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="subscribe-strip-success">Check your email for a magic link to confirm.</p>
-    <p class="subscribe-strip-error">Something went wrong — try again in a moment.</p>
-  </aside>
-{{/if}}
+{{!-- Compact subscribe strip — pinned above the post grid so first-paint
+     shows both signup and posts. Routes through FishFly's own
+     /.netlify/functions/subscribe on fishfly.ai (see default.hbs script).
+     Was previously wired to Ghost Portal (PR #53/#54) but Portal's
+     send-magic-link endpoint returns 400 on this site — see PR #56. --}}
+<aside class="subscribe-strip" aria-label="Subscribe to Field Notes"
+       data-ff-subscribe data-ff-source="field-notes-strip">
+  <div class="subscribe-strip-copy">
+    <div class="subscribe-strip-eyebrow">Subscribe</div>
+    <p class="subscribe-strip-tagline">Field Notes by email — free, no spam.</p>
+  </div>
+  <form class="subscribe-strip-form">
+    <label class="visually-hidden" for="strip-email">Email address</label>
+    <input id="strip-email" type="email" name="email" required
+           placeholder="your@email.com" autocomplete="email">
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+           style="position:absolute;left:-9999px" aria-hidden="true">
+    <button type="submit">Subscribe</button>
+  </form>
+  <p class="subscribe-strip-success">Thanks — check your inbox for a welcome note.</p>
+  <p class="subscribe-strip-error">Something went wrong — try again in a moment.</p>
+</aside>
 
 <section class="post-grid">
   {{#foreach posts}}
