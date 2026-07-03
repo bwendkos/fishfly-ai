@@ -51,10 +51,18 @@
 
 </article>
 
+{{#if @site.members_enabled}}
 <aside class="subscribe-nudge">
   <div class="subscribe-nudge-rule"></div>
   <div class="subscribe-nudge-eyebrow">More dispatches</div>
   <p class="subscribe-nudge-title serif">Get Field Notes by email — smarter saltwater trips, straight from the source.</p>
-  <a class="subscribe-nudge-button" href="https://fishfly.ai/#signup">Sign up</a>
+  <form class="subscribe-nudge-form" data-members-form="signup">
+    <label class="visually-hidden" for="nudge-email">Email address</label>
+    <input id="nudge-email" type="email" name="email" data-members-email required placeholder="your@email.com" autocomplete="email">
+    <button class="subscribe-nudge-button" type="submit" data-members-form-button>Subscribe</button>
+  </form>
+  <p class="subscribe-nudge-success" data-members-success hidden>Thanks — check your email for a magic link to confirm.</p>
+  <p class="subscribe-nudge-error" data-members-error hidden></p>
 </aside>
+{{/if}}
 {{/post}}
