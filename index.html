@@ -418,7 +418,7 @@ a { color: inherit; text-decoration: none; }
     const res = await fetch('/.netlify/functions/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, _gotcha }),
+      body: JSON.stringify({ email, source: 'landing', _gotcha }),
     });
     const data = await res.json();
 
