@@ -93,6 +93,12 @@ function renderHeader(context, headerTitle, report) {
   const eyebrow = tripDates
     ? `<div class="trip-dates-eyebrow">${escapeHtml(tripDates)}</div>`
     : "";
+  // Region-appropriate hero. Falls back to `atlantic` (Bahamas dawn) if the
+  // destination has no hero_region set — safe default matching the pre-PR-#60
+  // single-hero behavior.
+  const meta = getDestinationMeta(context?.destination);
+  const heroRegion = meta?.hero_region || "atlantic";
+  const heroUrl = `/brand/heroes/regions/${heroRegion}.jpg`;
   return `
   <div class="report-header">
     ${eyebrow}
@@ -102,7 +108,7 @@ function renderHeader(context, headerTitle, report) {
     </p>
   </div>
   <figure class="ff-hero">
-    <img src="/brand/heroes/sections/report-hero.jpg" alt="Trip destination hero" loading="eager">
+    <img src="${escapeAttr(heroUrl)}" alt="Trip destination hero" loading="eager">
   </figure>`;
 }
 
