@@ -162,8 +162,13 @@ a { color: inherit; text-decoration: none; }
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: 1fr;
   gap: 28px;
+}
+@media (min-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 .product-card {
   border: 1px solid var(--rule);
