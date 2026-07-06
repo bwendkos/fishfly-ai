@@ -109,6 +109,11 @@
   to = "/.netlify/functions/scout-admin-purge"
   status = 200
 
+[[redirects]]
+  from = "/scout/admin/send-reminder-email"
+  to = "/.netlify/functions/scout-admin-send-reminder-email"
+  status = 200
+
 # --- Eat Window API (PR #26: Mapbox geocoding proxy) ---
 
 [[redirects]]
